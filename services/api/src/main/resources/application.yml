@@ -1,0 +1,76 @@
+spring:
+  application:
+    name: viva-mais-api
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 3MB
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/vivamais}
+    username: ${DATABASE_USER:vivamais}
+    password: ${DATABASE_PASSWORD}
+    hikari:
+      maximum-pool-size: ${DATABASE_POOL_SIZE:4}
+      minimum-idle: 1
+      connection-timeout: 10000
+  flyway:
+    enabled: true
+    clean-disabled: true
+  jackson:
+    time-zone: UTC
+  mvc:
+    problemdetails:
+      enabled: true
+server:
+  port: ${PORT:8080}
+  shutdown: graceful
+  error:
+    include-message: never
+    include-stacktrace: never
+  tomcat:
+    connection-timeout: 15s
+    max-swallow-size: 16KB
+    threads:
+      max: 30
+    max-http-form-post-size: 16KB
+  max-http-request-header-size: 16KB
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+      probes:
+        enabled: true
+app:
+  demo-only: true
+  cors-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000,http://127.0.0.1:3000,http://localhost:8081,http://127.0.0.1:8081}
+  session-duration: PT30M
+  bootstrap-password: ${DEMO_BOOTSTRAP_PASSWORD:}
+springdoc:
+  swagger-ui:
+    enabled: false
+logging:
+  level:
+    root: INFO
+    org.springframework.web: WARN
+    org.springframework.jdbc: WARN
+files:
+  directory: ${FILES_DIRECTORY:${user.dir}/.local/private-files}
+  encryption-key: ${FILES_ENCRYPTION_KEY:}
+  backend: ${STORAGE_BACKEND:local}
+  supabase-url: ${SUPABASE_URL:}
+  bucket: ${SUPABASE_STORAGE_BUCKET:viva-private}
+  service-key: ${SUPABASE_SERVICE_ROLE_KEY:}
+ocr:
+  command: ${TESSERACT_COMMAND:tesseract}
+  node-script: ${OCR_NODE_SCRIPT:}
+  node: ${OCR_NODE_EXECUTABLE:node}
+food:
+  analysis-enabled: ${FOOD_ANALYSIS_ENABLED:false}
+  endpoint: ${FOOD_ANALYSIS_ENDPOINT:}
+  api-key: ${FOOD_ANALYSIS_API_KEY:}
+  approved-criteria: ${FOOD_APPROVED_CRITERIA:}
+  approval-reference: ${FOOD_APPROVAL_REFERENCE:}

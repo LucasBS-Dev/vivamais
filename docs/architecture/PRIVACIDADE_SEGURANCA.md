@@ -1,0 +1,9 @@
+# Privacidade e segurança da demonstração
+
+Inventário F1: nomes/e-mails sintéticos, papel, clínica, modalidade, vínculo, hashes de senha/sessão e eventos mínimos de auditoria. Não há CPF, endereço, foto, medida clínica ou prescrição coletados na fundação. Princípio de minimização preservado; requisitos posteriores constam em REQUISITOS.md.
+
+Operadores planejados: Vercel (web/BFF), Railway (API), Supabase (banco e posteriormente fotos) e Expo (build/distribuição). Região e suboperadores devem ser avaliados pela instituição; hospedagem no Brasil não resolve por si só transferência internacional. Não há fornecedor IA escolhido nem treinamento com dados. Base legal não é assumida como consentimento; registro de base, direitos, correção, retenção e exclusão dependem de revisão D03. Não executar apagamento de prontuário por solicitação sem análise institucional.
+
+Controles F1: autenticação adaptativa, tokens opacos curtos com hash no banco e revogação, acesso por clínica/vínculo, queries parametrizadas, validação de entrada, CORS por allowlist, CSRF no BFF por origem, logs sem payloads, health mínimo, separação local/demo e teste de acesso horizontal. Auditoria não deve ser editável por usuários comuns. Administrador do banco ainda pode alterar dados; armazenamento imutável externo e segregação de funções são trabalho posterior, não uma garantia desta demo.
+
+Antes de dados reais: threat model e pentest, políticas e contratos aprovados, privilégio mínimo no banco, criptografia/rotação de segredos e backup, recuperação/ativação verificada, MFA para profissionais, gestão de vulnerabilidades, limites distribuídos, retenção e expurgo de sessões/auditoria definidos, upload seguro e avaliação clínica/regulatória. O limitador por processo da F1 é proteção inicial; não é defesa contra botnet/distribuição de IPs.

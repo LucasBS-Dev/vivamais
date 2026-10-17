@@ -1,0 +1,102 @@
+name: Viva+ foundation
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  typescript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm build:web
+      - run: pnpm --filter @viva/mobile export:web
+      - run: pnpm contracts:generate && git diff --exit-code -- packages/contracts/src/generated.ts
+      - run: pnpm audit --audit-level high
+  java:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+      - run: bash mvnw --batch-mode --no-transfer-progress verify
+        working-directory: services/api
+      - name: Dependency scan
+        run: bash mvnw --batch-mode --no-transfer-progress org.owasp:dependency-check-maven:12.1.8:check -DfailBuildOnCVSS=7 -Dformats=JSON,HTML -DnvdApiKeyEnvironmentVariable=NVD_API_KEY
+        working-directory: services/api
+        env:
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+  secret-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  browser:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17.9-alpine
+        env:
+          POSTGRES_DB: vivamais
+          POSTGRES_USER: vivamais
+          POSTGRES_PASSWORD: ci-isolated-synthetic-only
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U vivamais"
+          --health-interval 5s
+          --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm --filter @viva/mobile export:web
+      - name: Generate ephemeral bootstrap credential
+        run: echo "E2E_PASSWORD=$(openssl rand -hex 24)" >> "$GITHUB_ENV"
+      - name: Build API
+        run: bash mvnw --batch-mode --no-transfer-progress -DskipTests package
+        working-directory: services/api
+      - name: Start synthetic API
+        run: java -jar services/api/target/viva-mais-api-0.1.0-SNAPSHOT.jar > /tmp/viva-api.log 2>&1 &
+        env:
+          DATABASE_URL: jdbc:postgresql://localhost:5432/vivamais
+          DATABASE_USER: vivamais
+          DATABASE_PASSWORD: ci-isolated-synthetic-only
+          SPRING_PROFILES_ACTIVE: bootstrap
+          DEMO_BOOTSTRAP_PASSWORD: ${{ env.E2E_PASSWORD }}
+      - name: Wait for API
+        run: for i in $(seq 1 60); do curl --fail --silent http://localhost:8080/actuator/health && exit 0; sleep 2; done; exit 1
+      - run: pnpm test:e2e
+        env:
+          E2E_PASSWORD: ${{ env.E2E_PASSWORD }}
+          API_BASE_URL: http://127.0.0.1:8080

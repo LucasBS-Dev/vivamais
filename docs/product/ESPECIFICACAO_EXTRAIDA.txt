@@ -1,0 +1,204 @@
+Viva+
+ESPECIFICAÇÃO FUNCIONAL E VISUAL
+Aplicativo do paciente + Plataforma web profissional + Pulseira Pulso em Dia
+Documento-base para revisão, validação e estimativa de desenvolvimento
+Versão 1.0 — proposta inicialAs telas ilustradas são referências visuais. Regras clínicas, segurança, integração com a pulseira e detalhes técnicos devem ser validados antes da implementação.
+
+1. Objetivo do projeto
+O Viva+ é uma solução de apoio ao autocuidado de pessoas com hipertensão arterial e ao acompanhamento realizado por profissionais de saúde. O projeto combina um aplicativo móvel para pacientes, uma plataforma web para profissionais e a pulseira eletrônica Pulso em Dia, com possibilidade de acompanhamento por diário impresso para pessoas que não utilizem o aplicativo.
+1.1 Objetivos principais
+Facilitar o registro da pressão arterial e a visualização do histórico.
+Ajudar o paciente a lembrar dos horários dos medicamentos e registrar suas próprias confirmações.
+Oferecer orientação educativa sobre alimentação a partir de fotos, com limitações claras.
+Disponibilizar sugestões de atividade física adaptadas ao perfil e às orientações profissionais.
+Permitir que a equipe consulte os dados durante as consultas, sem exigir vigilância diária de todos os pacientes.
+Oferecer uma alternativa para quem usa a pulseira e o diário impresso, sem smartphone/app.
+2. Componentes da solução
+2.1 Aplicativo móvel Viva+ — paciente
+Aplicativo instalado no celular do paciente, com interface simples, letras e botões grandes, linguagem clara, poucos passos por tarefa e retorno visual após cada ação.
+2.2 Plataforma web Viva+ — profissional
+Sistema acessado pelo navegador do computador, com autenticação profissional, cadastro e consulta de pacientes, gráficos, registros e resumo para consultas.
+2.3 Pulseira Pulso em Dia
+Dispositivo de lembrete de medicamentos. A pulseira não é descrita como equipamento de medição de pressão nem de alimentação. O mecanismo de configuração e sincronização depende da especificação técnica do hardware.
+2.4 Diário impresso
+Alternativa para pacientes com dificuldade de acesso digital. O profissional poderá transcrever manualmente os registros do diário para a plataforma.
+3. Perfis e modalidades de acompanhamento
+3.1 Paciente com aplicativo
+Utiliza os recursos disponíveis no app: pressão arterial, medicamentos, alimentação e atividade física.
+Pode enviar registros para a plataforma quando houver conexão.
+Pode realizar algumas ações offline; os dados ficam pendentes até a sincronização.
+3.2 Paciente com pulseira e diário impresso
+Recebe lembretes de medicamentos pela pulseira, conforme programação autorizada.
+Registra pressão arterial e demais informações acordadas no diário impresso.
+O profissional transcreve os dados relevantes na plataforma.
+Não deve ser obrigado a utilizar o aplicativo ou funções exclusivas do app.
+4. Aplicativo do paciente — telas e requisitos
+4.1 Boas-vindas e acesso
+Tela de boas-vindas com marca Viva+, mensagem acolhedora e botão principal para começar.
+Tela de acesso com CPF como identificador, conforme proposta visual.
+A autenticação final deve ser definida com segurança adequada; CPF isolado não deve ser tratado como senha ou prova suficiente de identidade.
+4.2 Página inicial
+Exibir saudação e quatro botões principais, grandes e fáceis de reconhecer:
+Minha Pressão
+Meus Medicamentos
+Minha Alimentação
+Atividade Física
+Também pode haver atalho para Meu Histórico e indicação discreta de registros aguardando sincronização.
+4.3 Minha Pressão
+Permitir digitação manual dos valores de pressão sistólica e diastólica.
+Interpretar expressões inequívocas como “11 por 7” como 110/70 mmHg, mas mostrar os valores convertidos e pedir confirmação antes de salvar. Se houver ambiguidade, pedir esclarecimento.
+Permitir fotografar o visor de um aparelho de pressão ou escolher uma foto da galeria.
+Usar OCR/IA para reconhecer os números visíveis; mostrar os valores detectados e exigir confirmação do paciente antes de salvar.
+Se a foto estiver ilegível, orientar a tirar outra foto ou digitar os valores.
+Salvar valor, data e hora da medição quando conhecida, origem do dado (digitação, foto/OCR ou transcrição profissional) e pulso opcional se o aparelho mostrar esse valor.
+Exibir histórico e gráfico simples com pressão sistólica e diastólica ao longo do tempo.
+A foto serve para ler o visor do aparelho; o celular não mede a pressão por meio da câmera.
+4.4 Meus Medicamentos
+Exibir nome do medicamento, dose/instrução cadastrada e horários definidos pelo profissional autorizado.
+Permitir notificações locais no celular, incluindo lembrete cinco minutos antes e no horário programado (por exemplo, 07h55 e 08h00 para uma dose às 08h00), conforme configuração escolhida.
+Permitir que o paciente registre a própria resposta, por exemplo, “Tomei”, “Ainda não tomei” ou “Não tomei”, caso essas opções sejam aprovadas no desenho final.
+Guardar o horário programado e o horário em que o paciente confirmou; uma confirmação é autorrelato, não prova de ingestão.
+Mostrar claramente registros não confirmados como “sem confirmação”, sem concluir automaticamente que o medicamento foi esquecido ou não tomado.
+Não recomendar dose extra ou instruções de compensação quando uma dose for perdida; orientar o paciente a seguir as instruções clínicas recebidas.
+4.5 Minha Alimentação
+Permitir tirar foto da refeição ou selecionar imagem da galeria.
+Quando houver internet, enviar a imagem para análise automatizada e retornar orientação educativa com semáforo: verde (boa opção em termos gerais), amarelo (há aspectos a melhorar), vermelho (pode conter itens frequentemente associados a excesso de sal, ultraprocessados ou frituras).
+Identificar alimentos visíveis quando possível e explicar a orientação em linguagem simples e respeitosa.
+Se a imagem não permitir avaliação confiável, informar isso e pedir nova foto ou oferecer orientação geral.
+Não afirmar que a foto permite medir precisamente sódio, gordura, porções ou nutrientes; não apresentar o resultado como diagnóstico.
+Definir conteúdo, critérios e limites com profissional de saúde/nutrição antes da implementação.
+4.6 Atividade Física
+Apresentar sugestões leves, com instruções simples, ilustrações ou vídeos: caminhada em local plano, mobilidade sentada, movimentos suaves de braços/ombros e alongamentos adaptados.
+Informar duração sugerida, passos básicos e cuidados de segurança.
+Permitir registrar que a atividade foi realizada, quando o paciente desejar.
+Personalizar as sugestões de acordo com mobilidade, equilíbrio, limitações e orientações da equipe de saúde.
+Não substituir avaliação clínica nem incentivar exercício que contrarie restrições individuais.
+4.7 Histórico e sincronização
+Exibir registros anteriores de pressão e, quando disponível, de medicamentos, alimentação e atividade física.
+Diferenciar dados salvos no aparelho daqueles já enviados à plataforma.
+Permitir registrar dados offline quando tecnicamente viável e sincronizar depois, evitando duplicação de registros.
+Exibir mensagens compreensíveis para erros de sincronização e permitir nova tentativa.
+5. Plataforma web do profissional — telas e requisitos
+5.1 Login profissional
+Acesso individual com credenciais, recuperação segura de acesso e encerramento de sessão.
+Aplicar permissões conforme o papel e a autorização de cada profissional.
+5.2 Painel inicial
+Atalho para pesquisar pacientes por nome ou identificador autorizado.
+Acesso ao cadastro, consultas, relatórios e configurações conforme permissões.
+Indicadores gerais do projeto podem ser incluídos, desde que úteis e autorizados.
+O painel não deve criar a expectativa de monitoramento diário obrigatório de cada paciente.
+5.3 Cadastro de paciente
+Campos a definir conforme necessidade: nome completo, CPF, data de nascimento, telefone/contato, endereço e informações pertinentes ao cuidado.
+Selecionar modalidade: (A) aplicativo Viva+; (B) pulseira Pulso em Dia + diário impresso.
+Registrar consentimentos e informações necessárias ao tratamento de dados, conforme avaliação jurídica e institucional.
+Evitar coletar dados que não sejam necessários ao propósito do projeto.
+5.4 Perfil do paciente / visão geral
+Mostrar resumo do paciente, modalidade de acompanhamento e abas para pressão, medicamentos, alimentação, atividade física, diário e consultas, conforme modalidade e permissões.
+Exibir data e origem dos registros para contextualizar a informação.
+5.5 Histórico da pressão arterial
+Gráfico com pressão sistólica e diastólica ao longo do tempo e filtros por período.
+Tabela com data/hora da medição, valores, pulso opcional, origem e observações.
+Permitir inclusão manual pelo profissional, inclusive dados transcritos do diário impresso.
+Registrar separadamente a data/hora da medição e a data/hora da digitação, quando forem diferentes.
+Definir com a equipe clínica eventuais limites, avisos e protocolos; o sistema não deve diagnosticar automaticamente.
+5.6 Gestão de medicamentos e confirmações
+Cadastrar ou atualizar medicamento, dose/instrução e horários conforme prescrição/plano autorizado.
+Exibir confirmações informadas pelo paciente, com horário da dose programada e horário da resposta.
+Distinguir “confirmado”, “resposta informada como não tomado” e “sem confirmação”.
+Manter histórico de alterações do esquema medicamentoso e a data de início de vigência.
+Após alteração, atualizar os lembretes do app e, quando aplicável, a programação da pulseira, confirmando o estado de sincronização.
+5.7 Alimentação
+Galeria das fotos enviadas pelo paciente, com data/hora e resultado educativo associado.
+Exibir limites/avisos de análise automatizada; permitir que o profissional contextualize o resultado durante a consulta.
+5.8 Atividade física
+Exibir os registros voluntariamente realizados pelo paciente, incluindo tipo de atividade, duração, data e observações quando disponíveis.
+5.9 Pulseira Pulso em Dia
+Permitir selecionar o paciente na modalidade pulseira e cadastrar os horários de lembretes dos medicamentos.
+Definir o mecanismo real de transferência da programação ao dispositivo após confirmação das capacidades do hardware (por exemplo, aplicativo de configuração autorizado, conexão direta ou outro método suportado).
+Mostrar estado da última sincronização e sinalizar configuração pendente, se o dispositivo permitir essa informação.
+A pulseira deve manter os lembretes localmente para funcionar sem internet, se isso for suportado pelo hardware.
+Se houver botão de confirmação no dispositivo, ele representa reconhecimento do alerta, não comprovação de que o medicamento foi ingerido.
+5.10 Diário impresso
+Formulário para o profissional transcrever pressão, pulso opcional, data/hora real da medição, medicamentos tomados conforme relato e observações relevantes.
+Identificar a origem como “diário impresso transcrito pelo profissional”, registrando também quem digitou e quando.
+5.11 Resumo da consulta de enfermagem
+Reunir gráficos e registros recentes de pressão, informações de medicamentos, fotos de alimentação, atividades registradas e entradas do diário, conforme disponibilidade.
+Permitir anotações da consulta, barreiras de adesão relatadas, objetivos acordados e plano de cuidado individualizado.
+Permitir registrar data, profissional responsável e orientações fornecidas.
+O resumo apoia a consulta; não substitui julgamento profissional nem cria diagnóstico automático.
+5.12 Histórico de consultas
+Listar consultas anteriores com data, profissional, resumo e acesso aos registros relacionados, conforme permissões.
+6. Regras gerais de funcionamento
+O profissional consulta os dados de um paciente quando necessário, especialmente durante o atendimento; não é requisito que a equipe acompanhe todos diariamente.
+Os registros devem guardar sua origem e os horários relevantes, para evitar confundir hora da medição, hora de envio e hora de digitação.
+O sistema deve distinguir falta de registro de um evento clínico confirmado.
+As mensagens ao paciente devem ser simples, não culpabilizantes e adequadas à acessibilidade.
+Dados de saúde e dados pessoais devem ser protegidos por controles de acesso, trilha de auditoria, transmissão e armazenamento seguros, cópias de segurança e política de retenção.
+O projeto deve ser avaliado à luz da LGPD e das regras institucionais aplicáveis antes de operar com dados reais.
+7. Requisitos de acessibilidade e experiência
+Texto legível, bom contraste, botões grandes, ícones acompanhados de palavras e telas sem excesso de informação.
+Navegação consistente, linguagem cotidiana e mensagens claras de sucesso/erro.
+Não depender apenas de cor para transmitir informação; usar texto e ícones junto ao semáforo da alimentação.
+Evitar fluxos longos e pedir confirmação antes de salvar dados reconhecidos automaticamente.
+Considerar leitores de tela, ampliação de texto e testes com pessoas idosas e com diferentes níveis de alfabetização digital.
+8. Funcionamento offline e sincronização
+Proposta inicial a validar tecnicamente:
+Dados já sincronizados e horários de medicamentos devem poder ser consultados offline, dentro dos limites do sistema operacional.
+Lembretes do app devem usar notificações locais programadas; funcionamento depende de permissões e restrições do celular.
+Novos registros podem ficar armazenados localmente e ser enviados quando a conexão voltar.
+Análise de fotos por IA provavelmente exigirá internet na primeira versão.
+A interface deve identificar itens pendentes e confirmar quando foram sincronizados.
+9. Direção visual e referências
+As imagens de interface aprovadas conceitualmente pela responsável pelo projeto servem como referência de estilo e organização, não como especificação pixel a pixel. A identidade sugerida utiliza azul, verde/azul-petróleo, fundos claros, cartões com cantos arredondados, ícones intuitivos e tipografia legível.
+Aplicativo do paciente: tela de boas-vindas, acesso, página inicial, pressão (entrada, digitação, foto, resultado e histórico), medicamentos, notificação, alimentação (foto e resultado), atividade física e histórico.
+Plataforma profissional: login, painel, cadastro, perfil do paciente, histórico da pressão, medicamentos, alimentação, atividade física, configuração da pulseira, diário impresso, resumo da consulta e histórico de consultas.
+As imagens geradas são mockups ilustrativos e podem conter textos ou dados fictícios; não devem ser usadas como fonte de dados clínicos nem como telas finais sem revisão.
+10. Pontos que precisam de definição antes do desenvolvimento
+Autenticação do paciente: Definir alternativa simples e segura ao acesso apenas por CPF (por exemplo, fluxo de ativação e método de recuperação).
+Tecnologia da pulseira: Confirmar fabricante/hardware, conectividade, memória, forma de programar horários, autonomia, confirmação por botão e disponibilidade de estado de sincronização.
+Regras clínicas: Profissional responsável deve validar mensagens educativas, limites para avisos de pressão e orientações de atividade física.
+Análise de imagens: Escolher solução de OCR para visor e serviço/modelo de análise de alimentos; definir privacidade, consentimento, custos, precisão e comportamento quando houver baixa confiança.
+Prescrição e responsabilidade: Definir quem pode cadastrar/alterar medicamentos e como a plataforma refletirá uma alteração de prescrição.
+Consentimento e LGPD: Definir base legal, avisos de privacidade, papéis de controlador/operador, acesso, retenção, exclusão e atendimento aos direitos do titular.
+Integrações: Verificar necessidade de integração com prontuário eletrônico, sistemas institucionais ou dispositivos de pressão.
+Plataformas: Definir versões mínimas de iOS/Android e navegadores suportados.
+Notificações: Definir preferências do paciente, fuso horário, mudanças de horário e tratamento de notificações desativadas.
+MVP e orçamento: Priorizar o que entra na primeira versão, estimar prazo/custo e separar funções futuras.
+11. Critérios de aceite iniciais
+Um profissional autorizado consegue entrar, cadastrar paciente e definir sua modalidade de acompanhamento.
+O app permite inserir manualmente uma pressão e exige confirmação dos valores detectados por foto antes de salvar.
+O histórico apresenta valores, datas/horas disponíveis e origem do registro.
+O paciente consegue consultar seu esquema de medicamentos e receber lembretes locais após conceder permissões necessárias.
+A plataforma mostra confirmações como autorrelato e distingue itens sem confirmação.
+O profissional consegue registrar dados transcritos de diário impresso e identificar sua origem.
+As fotos e os resultados educativos de alimentação aparecem no perfil correto, com data e limitações claramente indicadas.
+O estado pendente/sincronizado é compreensível e os registros não são duplicados na sincronização.
+Os controles de acesso impedem que pessoas não autorizadas visualizem dados de saúde.
+As principais tarefas são testadas com usuários representativos, incluindo pessoas idosas.
+12. Entregáveis esperados do programador
+Proposta de arquitetura e tecnologias, com justificativas.
+Protótipo navegável validado antes da implementação completa.
+Plano de desenvolvimento por fases (MVP e evoluções).
+Estimativa de prazo, custo de desenvolvimento, hospedagem, manutenção e serviços de IA/notificações.
+Plano de testes funcionais, de segurança, acessibilidade, sincronização offline e recuperação de falhas.
+Documentação de implantação, operação, cópias de segurança e suporte.
+Demonstração e entrega do código-fonte, credenciais administrativas e documentação acordada em contrato.
+13. Observação final
+Este documento consolida a visão funcional e visual conhecida até o momento. Ele é uma base para discussão com o programador e não substitui a validação clínica, jurídica, de privacidade, de segurança nem a confirmação técnica do hardware da pulseira. Antes de iniciar o desenvolvimento, a responsável pelo projeto deve revisar o documento, aprovar o escopo e priorizar o MVP.
+
+ANEXO A — Referência visual do aplicativo do paciente
+Mockup ilustrativo das principais telas do aplicativo móvel Viva+. Serve como referência de organização, identidade visual e navegação. Textos e dados exibidos são exemplos e devem ser revisados antes da implementação.
+
+
+ANEXO B — Referência visual da plataforma web profissional
+Proposta visual da plataforma web usada pelo profissional de saúde no computador. Inclui exemplos de login, painel inicial, cadastro, perfil do paciente, histórico de pressão, medicamentos, alimentação, atividade física, pulseira, diário e consulta. É uma referência visual, não uma aplicação funcional.
+
+
+ANEXO C — Interface detalhada da aba Atividade Física personalizada
+Proposta visual do fluxo personalizado da aba Atividade Física. O app considera informações relevantes do perfil (idade, mobilidade, risco de queda e orientações clínicas), pergunta como a pessoa se sente naquele dia e verifica se há medição recente da pressão. Somente dentro de regras de segurança clínica previamente aprovadas deverá apresentar atividade adaptada. A IA não substitui avaliação profissional e não deve recomendar exercício diante de sinais de alerta ou contraindicações.
+
+Notas para interpretação dos mockups
+As imagens são protótipos estáticos e ilustrativos; não representam telas funcionais nem decisões clínicas finais.
+Nomes, registros, datas, pressões e medicamentos mostrados nas imagens são fictícios e servem apenas para demonstrar o layout.
+A interface final deve ser testada com usuários, incluindo pessoas idosas, e validada quanto a acessibilidade, privacidade e segurança.
+Os critérios clínicos para recomendações de exercício, mensagens de alerta e adaptação por pressão arterial precisam ser definidos pela equipe responsável antes do lançamento.

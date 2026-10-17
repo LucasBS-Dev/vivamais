@@ -1,0 +1,12 @@
+# Copiar/selecionar este arquivo na configuração Railway. Nenhum recurso é criado aqui.
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+watchPatterns = ["/services/api/**"]
+
+[deploy]
+healthcheckPath = "/actuator/health"
+healthcheckTimeout = 120
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3
+numReplicas = 1

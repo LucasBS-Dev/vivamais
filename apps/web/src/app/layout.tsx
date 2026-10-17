@@ -1,0 +1,36 @@
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
+import { headers } from "next/headers";
+import { tokens } from "@viva/design-tokens";
+import "./globals.css";
+
+export const dynamic = "force-dynamic";
+export const metadata: Metadata = {
+  title: { default: "Viva+ | Plataforma profissional", template: "%s | Viva+" },
+  description:
+    "Plataforma profissional Viva+ / Pulso em Dia. Demonstração acadêmica com dados sintéticos.",
+  robots: { index: false, follow: false },
+};
+
+export default async function RootLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const colors = tokens.colors;
+  const nonce = (await headers()).get("x-nonce") || undefined;
+  const theme = `:root{--brand:${colors.primary};--brand-dark:${colors.primaryDark};--teal:${colors.teal};--surface:${colors.surface};--background:${colors.background};--ink:${colors.text};--muted:${colors.muted};--border:${colors.border};--danger:${colors.danger};--focus:${colors.focus}}`;
+  return (
+    <html lang="pt-BR">
+      <head>
+        <style nonce={nonce}>{theme}</style>
+      </head>
+      <body>
+        <a className="skip-link" href="#conteudo">
+          Pular para o conteúdo
+        </a>
+        {children}
+      </body>
+    </html>
+  );
+}

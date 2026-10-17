@@ -1,0 +1,35 @@
+# Executar somente com paciente sintético provisionado no backend.
+# maestro test -e DEMO_EMAIL=... -e DEMO_PASSWORD=... apps/mobile/.maestro/login.yaml
+appId: org.vivamais.academicdemo
+---
+- launchApp:
+    clearState: true
+- tapOn:
+    id: start-button
+- tapOn:
+    id: email-input
+- inputText: ${DEMO_EMAIL}
+- tapOn:
+    id: password-input
+- inputText: ${DEMO_PASSWORD}
+- hideKeyboard
+- tapOn:
+    id: login-button
+- extendedWaitUntil:
+    visible: "Como podemos ajudar?"
+    timeout: 20000
+- scrollUntilVisible:
+    element:
+      id: module-blood-pressure
+    direction: DOWN
+- tapOn:
+    id: module-blood-pressure
+- assertVisible: "Ainda não iniciado"
+- tapOn: "Voltar ao início"
+- scrollUntilVisible:
+    element:
+      id: logout-button
+    direction: DOWN
+- tapOn:
+    id: logout-button
+- assertVisible: "Vamos entrar?"

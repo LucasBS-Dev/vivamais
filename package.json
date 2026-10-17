@@ -1,0 +1,34 @@
+{
+  "name": "viva-mais",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.28.2",
+  "engines": {
+    "node": ">=22.16.0 <25"
+  },
+  "scripts": {
+    "dev:web": "pnpm --filter @viva/web dev",
+    "dev:mobile": "pnpm --filter @viva/mobile start",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "build:web": "pnpm --filter @viva/web build",
+    "contracts:generate": "openapi-typescript services/api/openapi.json -o packages/contracts/src/generated.ts && node infra/sync-shared.mjs",
+    "format:check": "prettier --check \"apps/**/*.{ts,tsx,css}\" \"packages/**/*.ts\"",
+    "lint": "eslint apps packages",
+    "test:e2e": "playwright test",
+    "shared:sync": "node infra/sync-shared.mjs",
+    "postinstall": "node infra/sync-shared.mjs"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "vitest": "4.1.11",
+    "openapi-typescript": "7.10.1",
+    "prettier": "3.6.2",
+    "@playwright/test": "1.56.1",
+    "eslint": "9.39.1",
+    "typescript-eslint": "8.46.1"
+  },
+  "dependencies": {
+    "tesseract.js": "7.0.0"
+  }
+}

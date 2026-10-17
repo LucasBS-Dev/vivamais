@@ -1,0 +1,16 @@
+packages:
+  - apps/*
+  - packages/*
+
+injectWorkspacePackages: true
+dedupeInjectedDeps: false
+
+overrides:
+  react-native-worklets: 0.10.1
+  '@react-native/metro-config': 0.86.3
+  tinypool: 2.1.2
+
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+  - unrs-resolver

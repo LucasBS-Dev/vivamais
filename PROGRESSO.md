@@ -1,0 +1,23 @@
+# Progresso Viva+
+
+## Retomada após limite de uso
+
+Estado conferido em 16/10/2026: `git status --short` mostra os arquivos da fundação ainda não versionados; nenhum arquivo foi descartado. Fundação existente preservada. A tentativa interrompida deixou o contrato CARE_API.md e pequenos ajustes em api.ts, sem implementar os módulos clínicos. Não considerar esse contrato uma funcionalidade concluída.
+
+Última entrega verificada: autenticação, clínicas, vínculos, auditoria, portal e Expo conectados à API. Evidências anteriores: 19 testes web, 9 mobile, 5 unitários Java, 10 de integração PostgreSQL e 6 E2E de navegador. No início da tentativa de continuação, os 19 testes web e 9 mobile foram repetidos com sucesso, e a suíte Java voltou a registrar 10 integrações aprovadas. A API 8080 precisa ser reiniciada; web 3000 e preview 8081 respondem.
+
+Backend implementado e verificado em PostgreSQL real: cadastro com convite de ativação de uso único, recuperação assistida com reautenticação e revogação, pressão manual idempotente, planos/versionamento de medicamentos, autorrelatos, diário transcrito, perfil funcional, atividades, consultas, resumo e configurações de pulseira explicitamente simuladas/indisponíveis. Suíte executada: 5 unitários + 14 de integração passaram, incluindo os 10 existentes e 4 novos cenários amplos. V1 preservada e V2 aplicada do zero nos testes. As tabelas e APIs existem; interfaces e E2E dos módulos novos ainda em implementação/verificação, portanto não considerar entrega ponta a ponta concluída.
+
+Portal: cadastro e ficha conectados às novas APIs. E2E real de cadastro → ativação → leitura pelo paciente → leitura no portal → plano de medicamentos → isolamento de outra clínica PASSOU (11,6 s). Reenvio da mesma medição resultou em uma única linha no histórico. TypeScript e ESLint passaram. A primeira tentativa foi interrompida por Fast Refresh durante uma alteração concorrente; a repetição com código estável passou.
+
+Mobile: ativação, pressão manual com confirmação de abreviação, medicamentos/autorrelato, atividade e fila de sincronização implementados. 13 testes unitários passaram, incluindo fila/reenvio/isolamento e cálculo dos lembretes; TypeScript corrigido e export web passou (852 módulos). SQLCipher nativo e notificações locais têm implementação e plugins, mas precisam de build/dispositivo físico para validação. Web usa fila apenas em memória explicitamente identificada.
+
+Arquivos privados, OCR e alimentação: V3/V4 e serviços verificados. `mvnw verify` concluído novamente às 23:22:54 de 16/10: 5 unitários + 16 integrações, zero falhas/erros/skips. Inclui sanitização de imagem, cifra AES-GCM local, autorização cruzada, revogação do link, análise indisponível sem provedor e Tesseract real (118/76, pulso 71) com ausência de leitura antes da confirmação. Adaptador Supabase implementado, sem credenciais e sem teste no fornecedor. Não alterar V1–V4 aplicadas.
+
+Continuação às 23:25: portal com busca paginada na API; mobile com perfil, histórico, gráfico, filtro de período, visualização dos planos e autorrelatos por dia. Cadastro de atividade exige escolha explícita do estado informado. Falha de armazenamento mantém o formulário preenchido. Navegação de retorno usa dismissTo para evitar duplicação da rota anterior. Contrato OpenAPI regenerado da API atual e estados dos módulos atualizados. 19 testes web e 13 mobile repetidos com sucesso; typecheck será repetido após os ajustes de identidade protegida para retomada offline. Export Expo passou com 860 módulos; nenhum teste físico nativo realizado.
+
+Em andamento: E2E completo no Expo web → fila com falha de rede → reenvio idempotente → OCR → foto de refeição → leitura no portal. A primeira execução atravessou todos os passos do aplicativo e falhou no segundo login profissional do teste; ajustado o ensaio para reutilizar sua sessão existente. Não registrar esse teste como aprovado até a execução completa. Operação/release, resumo de consulta ampliado, interface administrativa de vínculos e evidências finais ainda pendentes.
+
+Runtime local desta continuação: PostgreSQL 55432 sessão 38505; API Maven 8080 sessão 64677 com OCR_NODE_SCRIPT e OCR_DATA_DIRECTORY; Next 3000 sessão 36696; preview Expo 8081 sessão 93768. Sessões podem expirar: confirmar health antes de reiniciar. Credenciais sintéticas ficam em work/demo-credentials.json, fora do repositório/pacote; não imprimi-las em logs/chat.
+
+Bloqueios externos preservados: hardware/protocolo desconhecido, critérios clínicos personalizados não aprovados, contas/credenciais de hospedagem e lojas, testes físicos nativos e publicação. Continuar todo o trabalho local independente desses bloqueios.

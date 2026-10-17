@@ -1,0 +1,23 @@
+# Contrato clínico F2–F6
+
+Todas rotas abaixo usam `/api/v1`, Bearer, organização + vínculo existentes. JSON camelCase. Erros application/problem+json. `Page<T>={items:T[],total:number,page:number,size:number}`. Listas paginadas aceitam page=0, size=20 (máx100). Instantes ISO UTC; datas YYYY-MM-DD; horários HH:mm. UUID `id` de escrita é gerado no cliente para retry idempotente (mesmo corpo=200, corpo diferente=409).
+
+- GET `/patients/search?q=&page=0&size=20`: Page<PatientView>. GET `/patients` legado preservado.
+- POST `/patients` `{displayName,modality:'APP'|'BRACELET_DIARY',email?}`: `{patient:PatientView,activationToken?:string,expiresAt?:string}`. APP exige email; profissional criador é vinculado. Token entregue uma vez (24h).
+- POST público `/auth/activate` `{token,password}` ->204. Senha mínimo12 caracteres e máximo72 bytes UTF8.
+- POST `/patients/{id}/access-reset` `{password}` senha atual do profissional/admin -> `{activationToken,expiresAt}`. Revoga sessões do paciente; entrega segura manual na demo.
+- GET `/professionals` (admin) -> `{id,displayName}[]`; POST `/patients/{id}/assignments` (admin) `{professionalId}` ->204.
+- GET `/patients/{id}/readings?page&size&from&to` -> Page<Reading>. POST mesmo caminho `{id,systolic,diastolic,pulse?,measuredAt,source:'MANUAL'|'PROFESSIONAL'|'PRINTED_DIARY'|'OCR_CONFIRMED',ocrDocumentId?,ocrConfirmed?}` -> Reading `{id,patientId,systolic,diastolic,pulse,measuredAt,createdAt,syncedAt,source,authorId}`. Sem interpretação clínica. Paciente não pode source profissional.
+- GET `/patients/{id}/medications` -> MedicationPlan[]; POST mesmo `{name,instruction,startsOn,endsOn?,timeZone:'America/Sao_Paulo',schedules:['08:00']}`. PUT `/medications/{planId}` mesmo corpo + `version` (409 se obsoleta). Saída `{id,patientId,name,instruction,startsOn,endsOn,timeZone,schedules,version,active,createdAt,authorId}`. GET `/medications/{planId}/history` -> versões anteriores. Somente profissional/admin escreve.
+- GET `/patients/{id}/medication-events?date=YYYY-MM-DD` -> `{planId,name,instruction,scheduledAt,status:'TAKEN'|'NOT_TAKEN'|'NO_CONFIRMATION',reportedAt?,authorId?}[]`.
+- POST `/patients/{id}/medication-reports` `{id,planId,scheduledAt,status:'TAKEN'|'NOT_TAKEN',reportedAt}` -> relatório `{id,planId,patientId,scheduledAt,status,reportedAt,createdAt,syncedAt,authorId,source:'SELF_REPORT'|'PROFESSIONAL_TRANSCRIPTION'}`. Profissional transcreve; paciente autorrelata. Uma resposta por plano/horário; outro ID com mesma dose ->409.
+- GET `/patients/{id}/diary?page&size` -> Page<Diary>; POST mesmo `{id,occurredAt,systolic?,diastolic?,pulse?,medicationReport?,notes}` profissional/admin. medicationReport texto livre autorrelatado, sem afirmar ingestão. Valores geram reading `PRINTED_DIARY`. Saída mesmo + `{patientId,authorId,createdAt,source:'PRINTED_DIARY'}`.
+- GET `/patients/{id}/activity-profile` nullable; PUT mesmo `{mobility,balance,restrictions,professionalGuidance}` pro/admin. Saída mesmo + `{patientId,authorId,updatedAt,personalizationStatus:'BLOCKED_PENDING_CLINICAL_APPROVAL'}`.
+- GET `/patients/{id}/activities?page&size` -> Page<Activity>; POST mesmo `{id,type,durationMinutes,occurredAt,notes?,feeling:'WELL'|'TIRED'|'UNWELL'}`. Saída mesmo+`{patientId,authorId,createdAt,syncedAt}`.
+- GET `/education?module=activity|food` -> `{id,module,title,body,status,reviewedBy,reviewedAt}[]`: somente conteúdo neutro aprovado tecnicamente, sem prescrição personalizada.
+- GET `/patients/{id}/consultations?page&size` ->Page<Consultation>; POST mesmo `{id,occurredAt,notes,goals,carePlan}` pro/admin. Saída mesmo+`{patientId,authorId,createdAt}`.
+- GET `/patients/{id}/summary` -> `{patient,readings,medications,activities,diary,consultations,functionalProfile}` últimas20; fotos via API separada do root.
+- GET `/patients/{id}/device` ->nullable `{id,patientId,label,serialNumber?,createdAt,authorId}`; POST mesmo `{label,serialNumber?}` pro/admin. Uma pulseira por paciente, modalidade BRACELET_DIARY.
+- GET `/patients/{id}/device/configurations` ->config[]; POST mesmo `{schedules:['08:00'],adapter:'SIMULATED'|'HARDWARE'}`. Simulado retorna `{id,deviceId,schedules,status:'SYNCED',simulated:true,adapter:'SIMULATED',message,createdAt,authorId}`; HARDWARE retorna status UNSUPPORTED simulated false. Nunca declara teste físico.
+
+Nenhum cadastro público profissional; sem limiares clínicos inventados. Conteúdo personalizado bloqueado. Fotos/OCR/alimentação têm contrato separado em FILE_API.md.
