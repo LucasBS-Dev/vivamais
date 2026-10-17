@@ -20,7 +20,7 @@ export default defineConfig({
   projects: [{ name: "chromium" }],
   webServer: [{
     command:
-      "node node_modules/next/dist/bin/next dev apps/web --webpack --hostname 127.0.0.1 --port 3000",
+        "node node_modules/next/dist/bin/next dev web --webpack --hostname 127.0.0.1 --port 3000",
     url: baseURL,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

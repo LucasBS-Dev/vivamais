@@ -17,7 +17,7 @@ services:
     mem_limit: 512m
   api:
     build:
-      context: ./services/api
+      context: ./backend/demo
     depends_on:
       postgres:
         condition: service_healthy
@@ -31,9 +31,13 @@ services:
       DEMO_BOOTSTRAP_PASSWORD: ${DEMO_BOOTSTRAP_PASSWORD:-}
       CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:3000,http://127.0.0.1:3000,http://localhost:8081,http://127.0.0.1:8081}
       JAVA_TOOL_OPTIONS: -XX:MaxRAMPercentage=60 -XX:InitialRAMPercentage=20 -XX:+ExitOnOutOfMemoryError
+      FILES_DIRECTORY: /app/.local/private-files
+    volumes:
+      - arquivos-privados:/app/.local/private-files
     ports:
       - "127.0.0.1:8080:8080"
     mem_limit: 1g
     stop_grace_period: 30s
 volumes:
   postgres-data:
+  arquivos-privados:

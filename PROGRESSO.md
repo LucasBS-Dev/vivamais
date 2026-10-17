@@ -21,3 +21,21 @@ Em andamento: E2E completo no Expo web → fila com falha de rede → reenvio id
 Runtime local desta continuação: PostgreSQL 55432 sessão 38505; API Maven 8080 sessão 64677 com OCR_NODE_SCRIPT e OCR_DATA_DIRECTORY; Next 3000 sessão 36696; preview Expo 8081 sessão 93768. Sessões podem expirar: confirmar health antes de reiniciar. Credenciais sintéticas ficam em work/demo-credentials.json, fora do repositório/pacote; não imprimi-las em logs/chat.
 
 Bloqueios externos preservados: hardware/protocolo desconhecido, critérios clínicos personalizados não aprovados, contas/credenciais de hospedagem e lojas, testes físicos nativos e publicação. Continuar todo o trabalho local independente desses bloqueios.
+
+## Correções obrigatórias de estrutura, português e protótipos (16–17/10)
+
+Prompt de padronização integralmente lido, ZIP AgendAqui realmente inspecionado, 3 montagens e 36 recortes abertos. Checkpoint seguro local 99c7295 antes da refatoração. Expo foi movido para app/components/contexts/hooks/services/assets na raiz; Next para web/; Java para backend/demo em com.vivamais/{config,controller,dto,model,repositories,security,service}. Migrações V1–V4 preservadas. Fontes anteriores continuam no checkpoint; dependências/builds antigos ignorados não foram apagados.
+
+Classes, DTOs e métodos principais Java em português, com JsonProperty e nomes explícitos HTTP preservando o contrato anterior. TypeScript refatorado por símbolos para nomes próprios em português; tipos compartilhados regenerados/renomeados. Restam identificadores auxiliares/comentários e propriedades de compatibilidade a revisar. Campos JSON/SQL já persistidos mantidos por compatibilidade, documentar exceções antes de considerar padronização completa.
+
+Última suíte Java após tradução do domínio: verify PASSOU em 17/10 00:00:56, 5 unitários + 17 integrações, zero falhas/erros/skips. 13 testes mobile e 19 web repetidos com sucesso após organização/primeira tradução. Typechecks/lint passaram; repetir após alterações seguintes. Adicionado depois um GET autorizado em português para resultado de pressão e novo teste de isolamento: esta última alteração ainda aguarda verify.
+
+Quatro screenshots reais iniciais capturadas e abertas: login, painel, cadastro e Expo web início. Comparação encontrou variante do logo, botão e inputs, já corrigidos no código, ainda sem recaptura. Painel permanece diferente: próxima prioridade. As outras capturas/fidelidade ainda pendentes em FIDELIDADE_VISUAL.md. Não declarar 36 telas fiéis/concluídas.
+
+App tem rotas canônicas inicio/acesso/perfil/historico/pressao/medicamentos/alimentacao/atividade-fisica e redirecionamentos das rotas antigas. Pressão agora separa entrada, digitação com confirmação, foto e resultado real; novo fluxo e hooks precisam E2E após export. Atividade possui contexto transitório, serviços, hooks e etapas com perfil/última medição reais; conteúdos personalizados/vídeo corretamente bloqueados, sem regras inventadas.
+
+Quatro objetos cifrados e a chave existentes em services/api/.local/private-files foram preservados em .local/private-files; chave vazia anterior arquivada em .local/estrutura-anterior. Reiniciar API com FILES_DIRECTORY absoluto dessa pasta, pois o processo anterior carregou a chave vazia e foi encerrado.
+
+Backup/restore real: cliente PostgreSQL 17.11 obtido do fornecedor oficial, pg_dump do banco sintético vivamais restaurado em viva_restore_20261017: 4 migrations, 10 pacientes e 4 metadados de objetos. Sessões restauradas revogadas e códigos/grants removidos só no banco restaurado. Dump 85755 bytes, SHA256 06cd694f666b432ecd99138b91fc63581797198a1879e18e018e5fef7445c7f2. Cópia AES-GCM decifrada e comparada byte a byte; chave fora do repositório. Ainda testar login/permissões/fotos com API contra o banco restaurado.
+
+Runtime: PostgreSQL sessão 38505; Next 3000 sessão 40330; preview Expo 8081 sessão 14579. API foi parada para preservar objetos/chave e empacotar domínio traduzido. O JAR atual precisa novo verify e reinício; não tratar health como disponível até verificar. Export Expo da raiz passou com 880 módulos antes das etapas/hook de pressão mais recentes; reexportar. Credenciais/ferramentas/dumps ficam em work fora de Git/outputs publicados.

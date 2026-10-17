@@ -1,0 +1,13 @@
+node_modules
+.git
+referencias_codex
+backend
+web
+.local
+backups
+docs
+tests
+playwright-report
+test-results
+*.log
+.env*

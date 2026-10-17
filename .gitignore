@@ -21,3 +21,8 @@ test-results/
 backups/
 .DS_Store
 Thumbs.db
+
+.idea/
+.vscode/
+
+/h -u origin main

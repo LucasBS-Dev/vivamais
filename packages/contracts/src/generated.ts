@@ -11,8 +11,8 @@ export interface paths {
       path?: never;
       cookie?: never;
     };
-    get: operations["profile"];
-    put: operations["profile_1"];
+    get: operations["perfilAtividade"];
+    put: operations["perfilAtividade_1"];
     post?: never;
     delete?: never;
     options?: never;
@@ -43,7 +43,7 @@ export interface paths {
       path?: never;
       cookie?: never;
     };
-    get: operations["patients"];
+    get: operations["pacientes"];
     put?: never;
     post: operations["create"];
     delete?: never;
@@ -59,9 +59,9 @@ export interface paths {
       path?: never;
       cookie?: never;
     };
-    get: operations["readings"];
+    get: operations["listarRegistrosPressao"];
     put?: never;
-    post: operations["reading"];
+    post: operations["salvarRegistroPressao"];
     delete?: never;
     options?: never;
     head?: never;
@@ -75,9 +75,9 @@ export interface paths {
       path?: never;
       cookie?: never;
     };
-    get: operations["medications"];
+    get: operations["listarMedicamentos"];
     put?: never;
-    post: operations["medication"];
+    post: operations["salvarMedicamento"];
     delete?: never;
     options?: never;
     head?: never;
@@ -93,7 +93,7 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations["report"];
+    post: operations["registrarAutorrelato"];
     delete?: never;
     options?: never;
     head?: never;
@@ -107,9 +107,9 @@ export interface paths {
       path?: never;
       cookie?: never;
     };
-    get: operations["meals"];
+    get: operations["listarRefeicoes"];
     put?: never;
-    post: operations["meal"];
+    post: operations["registrarRefeicao"];
     delete?: never;
     options?: never;
     head?: never;
@@ -139,9 +139,9 @@ export interface paths {
       path?: never;
       cookie?: never;
     };
-    get: operations["diary"];
+    get: operations["diario"];
     put?: never;
-    post: operations["diary_1"];
+    post: operations["diario_1"];
     delete?: never;
     options?: never;
     head?: never;
@@ -155,9 +155,9 @@ export interface paths {
       path?: never;
       cookie?: never;
     };
-    get: operations["device"];
+    get: operations["pulseira"];
     put?: never;
-    post: operations["device_1"];
+    post: operations["pulseira_1"];
     delete?: never;
     options?: never;
     head?: never;
@@ -171,9 +171,9 @@ export interface paths {
       path?: never;
       cookie?: never;
     };
-    get: operations["configurations"];
+    get: operations["listarConfiguracoes"];
     put?: never;
-    post: operations["configure"];
+    post: operations["configurar"];
     delete?: never;
     options?: never;
     head?: never;
@@ -189,7 +189,7 @@ export interface paths {
     };
     get: operations["consultations"];
     put?: never;
-    post: operations["consultation"];
+    post: operations["registrarConsulta"];
     delete?: never;
     options?: never;
     head?: never;
@@ -203,9 +203,25 @@ export interface paths {
       path?: never;
       cookie?: never;
     };
+    get: operations["listarVinculos"];
+    put?: never;
+    post: operations["autorizarVinculo"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/patients/{id}/assignments/revoke": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
     get?: never;
     put?: never;
-    post: operations["assign"];
+    post: operations["revogarVinculo"];
     delete?: never;
     options?: never;
     head?: never;
@@ -221,7 +237,7 @@ export interface paths {
     };
     get: operations["activities"];
     put?: never;
-    post: operations["activity"];
+    post: operations["registrarAtividade"];
     delete?: never;
     options?: never;
     head?: never;
@@ -253,7 +269,7 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations["analyze"];
+    post: operations["analisarAlimentacao"];
     delete?: never;
     options?: never;
     head?: never;
@@ -301,7 +317,7 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations["logout"];
+    post: operations["sair"];
     delete?: never;
     options?: never;
     head?: never;
@@ -318,7 +334,7 @@ export interface paths {
     get?: never;
     put?: never;
     /** Abre sessão opaca de 30 minutos */
-    post: operations["login"];
+    post: operations["entrar"];
     delete?: never;
     options?: never;
     head?: never;
@@ -334,7 +350,7 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations["activate"];
+    post: operations["ativarConta"];
     delete?: never;
     options?: never;
     head?: never;
@@ -348,7 +364,7 @@ export interface paths {
       path?: never;
       cookie?: never;
     };
-    get: operations["modules"];
+    get: operations["listarModulos"];
     put?: never;
     post?: never;
     delete?: never;
@@ -364,7 +380,7 @@ export interface paths {
       path?: never;
       cookie?: never;
     };
-    get: operations["professionals"];
+    get: operations["listarProfissionais"];
     put?: never;
     post?: never;
     delete?: never;
@@ -380,7 +396,7 @@ export interface paths {
       path?: never;
       cookie?: never;
     };
-    get: operations["patient"];
+    get: operations["paciente"];
     put?: never;
     post?: never;
     delete?: never;
@@ -396,7 +412,7 @@ export interface paths {
       path?: never;
       cookie?: never;
     };
-    get: operations["summary"];
+    get: operations["resumirConsulta"];
     put?: never;
     post?: never;
     delete?: never;
@@ -413,6 +429,22 @@ export interface paths {
       cookie?: never;
     };
     get: operations["events"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/patients/{id}/export": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["exportarResumo"];
     put?: never;
     post?: never;
     delete?: never;
@@ -453,6 +485,22 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/api/v1/pacientes/{idPaciente}/registros-pressao/{idRegistro}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["buscarRegistroPressao"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/api/v1/organization": {
     parameters: {
       query?: never;
@@ -460,7 +508,7 @@ export interface paths {
       path?: never;
       cookie?: never;
     };
-    get: operations["organization"];
+    get: operations["buscarUnidade"];
     put?: never;
     post?: never;
     delete?: never;
@@ -508,7 +556,7 @@ export interface paths {
       path?: never;
       cookie?: never;
     };
-    get: operations["dashboard"];
+    get: operations["consultarPainel"];
     put?: never;
     post?: never;
     delete?: never;
@@ -537,13 +585,13 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
   schemas: {
-    ActivityProfile: {
+    PerfilAtividade: {
       mobility: string;
       balance: string;
       restrictions: string;
       professionalGuidance: string;
     };
-    MedicationInput: {
+    EntradaMedicamento: {
       name: string;
       instruction: string;
       /** Format: date */
@@ -555,19 +603,13 @@ export interface components {
       /** Format: int32 */
       version?: number;
     };
-    PatientCreate: {
+    CadastroPaciente: {
       displayName: string;
       modality: string;
       /** Format: email */
       email?: string;
     };
-    PatientCreated: {
-      patient?: components["schemas"]["PatientView"];
-      activationToken?: string;
-      /** Format: date-time */
-      expiresAt?: string;
-    };
-    PatientView: {
+    Paciente: {
       /** Format: uuid */
       id: string;
       displayName: string;
@@ -576,7 +618,13 @@ export interface components {
       /** Format: uuid */
       organizationId: string;
     };
-    ReadingInput: {
+    PacienteCadastrado: {
+      patient?: components["schemas"]["Paciente"];
+      activationToken?: string;
+      /** Format: date-time */
+      expiresAt?: string;
+    };
+    EntradaRegistroPressao: {
       /** Format: uuid */
       id: string;
       /** Format: int32 */
@@ -592,7 +640,7 @@ export interface components {
       ocrDocumentId?: string;
       ocrConfirmed?: boolean;
     };
-    Reading: {
+    RegistroPressao: {
       /** Format: uuid */
       id?: string;
       /** Format: uuid */
@@ -615,7 +663,7 @@ export interface components {
       /** Format: uuid */
       ocrDocumentId?: string;
     };
-    ReportInput: {
+    EntradaAutorrelato: {
       /** Format: uuid */
       id: string;
       /** Format: uuid */
@@ -626,14 +674,14 @@ export interface components {
       /** Format: date-time */
       reportedAt: string;
     };
-    MealInput: {
+    EntradaRefeicao: {
       /** Format: uuid */
       fileId: string;
       /** Format: date-time */
       occurredAt: string;
       notes?: string;
     };
-    DiaryInput: {
+    EntradaDiario: {
       /** Format: uuid */
       id: string;
       /** Format: date-time */
@@ -647,15 +695,15 @@ export interface components {
       medicationReport?: string;
       notes?: string;
     };
-    DeviceInput: {
+    EntradaPulseira: {
       label: string;
       serialNumber?: string;
     };
-    DeviceConfigurationInput: {
+    EntradaConfiguracaoPulseira: {
       schedules: string[];
       adapter: string;
     };
-    ConsultationInput: {
+    EntradaConsulta: {
       /** Format: uuid */
       id: string;
       /** Format: date-time */
@@ -664,11 +712,11 @@ export interface components {
       goals: string;
       carePlan: string;
     };
-    Assignment: {
+    VinculoProfissional: {
       /** Format: uuid */
       professionalId: string;
     };
-    ActivityInput: {
+    EntradaAtividade: {
       /** Format: uuid */
       id: string;
       type: string;
@@ -679,26 +727,26 @@ export interface components {
       notes?: string;
       feeling: string;
     };
-    Reauthenticate: {
+    ConfirmacaoSenha: {
       password: string;
     };
-    AccessCode: {
+    CodigoAcesso: {
       activationToken?: string;
       /** Format: date-time */
       expiresAt?: string;
     };
-    LoginRequest: {
+    SolicitacaoAcesso: {
       /** Format: email */
       email: string;
       password: string;
     };
-    LoginResponse: {
+    RespostaAcesso: {
       accessToken: string;
       /** Format: date-time */
       expiresAt: string;
-      user: components["schemas"]["UserView"];
+      user: components["schemas"]["Usuario"];
     };
-    UserView: {
+    Usuario: {
       /** Format: uuid */
       id: string;
       email: string;
@@ -708,11 +756,11 @@ export interface components {
       /** Format: uuid */
       organizationId: string;
     };
-    Activation: {
+    AtivacaoConta: {
       token: string;
       password: string;
     };
-    ModuleView: {
+    Modulo: {
       /** @enum {string} */
       key:
         | "blood-pressure"
@@ -732,8 +780,8 @@ export interface components {
         | "BLOCKED_PENDING_HARDWARE_SPEC";
       reason: string;
     };
-    PageReading: {
-      items?: components["schemas"]["Reading"][];
+    PaginaRegistroPressao: {
+      items?: components["schemas"]["RegistroPressao"][];
       /** Format: int64 */
       total?: number;
       /** Format: int32 */
@@ -741,7 +789,7 @@ export interface components {
       /** Format: int32 */
       size?: number;
     };
-    PageMapStringObject: {
+    PaginaMapStringObject: {
       items?: {
         [key: string]: unknown;
       }[];
@@ -752,8 +800,8 @@ export interface components {
       /** Format: int32 */
       size?: number;
     };
-    PagePatientView: {
-      items?: components["schemas"]["PatientView"][];
+    PaginaPaciente: {
+      items?: components["schemas"]["Paciente"][];
       /** Format: int64 */
       total?: number;
       /** Format: int32 */
@@ -761,12 +809,12 @@ export interface components {
       /** Format: int32 */
       size?: number;
     };
-    OrganizationView: {
+    Unidade: {
       /** Format: uuid */
       id: string;
       name: string;
     };
-    DashboardView: {
+    ResumoPainel: {
       /** Format: int64 */
       patientCount: number;
       /** Format: int64 */
@@ -774,6 +822,8 @@ export interface components {
       /** Format: int64 */
       diaryCount: number;
       organizationName: string;
+      /** Format: int64 */
+      consultasSemana?: number;
     };
     ApiProblem: {
       /** Format: int32 */
@@ -790,7 +840,7 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-  profile: {
+  perfilAtividade: {
     parameters: {
       query?: never;
       header?: never;
@@ -841,7 +891,7 @@ export interface operations {
       };
     };
   };
-  profile_1: {
+  perfilAtividade_1: {
     parameters: {
       query?: never;
       header?: never;
@@ -852,7 +902,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["ActivityProfile"];
+        "application/json": components["schemas"]["PerfilAtividade"];
       };
     };
     responses: {
@@ -907,7 +957,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["MedicationInput"];
+        "application/json": components["schemas"]["EntradaMedicamento"];
       };
     };
     responses: {
@@ -951,7 +1001,7 @@ export interface operations {
       };
     };
   };
-  patients: {
+  pacientes: {
     parameters: {
       query?: never;
       header?: never;
@@ -966,7 +1016,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "*/*": components["schemas"]["PatientView"][];
+          "*/*": components["schemas"]["Paciente"][];
         };
       };
       /** @description Sessão ausente, inválida ou credenciais incorretas */
@@ -1007,7 +1057,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["PatientCreate"];
+        "application/json": components["schemas"]["CadastroPaciente"];
       };
     };
     responses: {
@@ -1017,7 +1067,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "*/*": components["schemas"]["PatientCreated"];
+          "*/*": components["schemas"]["PacienteCadastrado"];
         };
       };
       /** @description Sessão ausente, inválida ou credenciais incorretas */
@@ -1049,7 +1099,7 @@ export interface operations {
       };
     };
   };
-  readings: {
+  listarRegistrosPressao: {
     parameters: {
       query?: {
         page?: number;
@@ -1071,7 +1121,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "*/*": components["schemas"]["PageReading"];
+          "*/*": components["schemas"]["PaginaRegistroPressao"];
         };
       };
       /** @description Sessão ausente, inválida ou credenciais incorretas */
@@ -1103,7 +1153,7 @@ export interface operations {
       };
     };
   };
-  reading: {
+  salvarRegistroPressao: {
     parameters: {
       query?: never;
       header?: never;
@@ -1114,7 +1164,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["ReadingInput"];
+        "application/json": components["schemas"]["EntradaRegistroPressao"];
       };
     };
     responses: {
@@ -1124,7 +1174,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "*/*": components["schemas"]["Reading"];
+          "*/*": components["schemas"]["RegistroPressao"];
         };
       };
       /** @description Sessão ausente, inválida ou credenciais incorretas */
@@ -1156,7 +1206,7 @@ export interface operations {
       };
     };
   };
-  medications: {
+  listarMedicamentos: {
     parameters: {
       query?: never;
       header?: never;
@@ -1207,7 +1257,7 @@ export interface operations {
       };
     };
   };
-  medication: {
+  salvarMedicamento: {
     parameters: {
       query?: never;
       header?: never;
@@ -1218,7 +1268,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["MedicationInput"];
+        "application/json": components["schemas"]["EntradaMedicamento"];
       };
     };
     responses: {
@@ -1262,7 +1312,7 @@ export interface operations {
       };
     };
   };
-  report: {
+  registrarAutorrelato: {
     parameters: {
       query?: never;
       header?: never;
@@ -1273,7 +1323,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["ReportInput"];
+        "application/json": components["schemas"]["EntradaAutorrelato"];
       };
     };
     responses: {
@@ -1317,7 +1367,7 @@ export interface operations {
       };
     };
   };
-  meals: {
+  listarRefeicoes: {
     parameters: {
       query?: {
         page?: number;
@@ -1337,7 +1387,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "*/*": components["schemas"]["PageMapStringObject"];
+          "*/*": components["schemas"]["PaginaMapStringObject"];
         };
       };
       /** @description Sessão ausente, inválida ou credenciais incorretas */
@@ -1369,7 +1419,7 @@ export interface operations {
       };
     };
   };
-  meal: {
+  registrarRefeicao: {
     parameters: {
       query?: never;
       header?: never;
@@ -1380,7 +1430,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["MealInput"];
+        "application/json": components["schemas"]["EntradaRefeicao"];
       };
     };
     responses: {
@@ -1484,7 +1534,7 @@ export interface operations {
       };
     };
   };
-  diary: {
+  diario: {
     parameters: {
       query?: {
         page?: number;
@@ -1504,7 +1554,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "*/*": components["schemas"]["PageMapStringObject"];
+          "*/*": components["schemas"]["PaginaMapStringObject"];
         };
       };
       /** @description Sessão ausente, inválida ou credenciais incorretas */
@@ -1536,7 +1586,7 @@ export interface operations {
       };
     };
   };
-  diary_1: {
+  diario_1: {
     parameters: {
       query?: never;
       header?: never;
@@ -1547,7 +1597,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["DiaryInput"];
+        "application/json": components["schemas"]["EntradaDiario"];
       };
     };
     responses: {
@@ -1591,7 +1641,7 @@ export interface operations {
       };
     };
   };
-  device: {
+  pulseira: {
     parameters: {
       query?: never;
       header?: never;
@@ -1642,7 +1692,7 @@ export interface operations {
       };
     };
   };
-  device_1: {
+  pulseira_1: {
     parameters: {
       query?: never;
       header?: never;
@@ -1653,7 +1703,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["DeviceInput"];
+        "application/json": components["schemas"]["EntradaPulseira"];
       };
     };
     responses: {
@@ -1697,7 +1747,7 @@ export interface operations {
       };
     };
   };
-  configurations: {
+  listarConfiguracoes: {
     parameters: {
       query?: never;
       header?: never;
@@ -1748,7 +1798,7 @@ export interface operations {
       };
     };
   };
-  configure: {
+  configurar: {
     parameters: {
       query?: never;
       header?: never;
@@ -1759,7 +1809,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["DeviceConfigurationInput"];
+        "application/json": components["schemas"]["EntradaConfiguracaoPulseira"];
       };
     };
     responses: {
@@ -1823,7 +1873,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "*/*": components["schemas"]["PageMapStringObject"];
+          "*/*": components["schemas"]["PaginaMapStringObject"];
         };
       };
       /** @description Sessão ausente, inválida ou credenciais incorretas */
@@ -1855,7 +1905,7 @@ export interface operations {
       };
     };
   };
-  consultation: {
+  registrarConsulta: {
     parameters: {
       query?: never;
       header?: never;
@@ -1866,7 +1916,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["ConsultationInput"];
+        "application/json": components["schemas"]["EntradaConsulta"];
       };
     };
     responses: {
@@ -1910,7 +1960,58 @@ export interface operations {
       };
     };
   };
-  assign: {
+  listarVinculos: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            [key: string]: unknown;
+          }[];
+        };
+      };
+      /** @description Sessão ausente, inválida ou credenciais incorretas */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/problem+json": components["schemas"]["ApiProblem"];
+        };
+      };
+      /** @description Recurso fora do escopo autorizado */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/problem+json": components["schemas"]["ApiProblem"];
+        };
+      };
+      /** @description Falha interna sem detalhes sensíveis */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/problem+json": components["schemas"]["ApiProblem"];
+        };
+      };
+    };
+  };
+  autorizarVinculo: {
     parameters: {
       query?: never;
       header?: never;
@@ -1921,7 +2022,58 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["Assignment"];
+        "application/json": components["schemas"]["VinculoProfissional"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description Sessão ausente, inválida ou credenciais incorretas */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/problem+json": components["schemas"]["ApiProblem"];
+        };
+      };
+      /** @description Recurso fora do escopo autorizado */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/problem+json": components["schemas"]["ApiProblem"];
+        };
+      };
+      /** @description Falha interna sem detalhes sensíveis */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/problem+json": components["schemas"]["ApiProblem"];
+        };
+      };
+    };
+  };
+  revogarVinculo: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["VinculoProfissional"];
       };
     };
     responses: {
@@ -1981,7 +2133,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "*/*": components["schemas"]["PageMapStringObject"];
+          "*/*": components["schemas"]["PaginaMapStringObject"];
         };
       };
       /** @description Sessão ausente, inválida ou credenciais incorretas */
@@ -2013,7 +2165,7 @@ export interface operations {
       };
     };
   };
-  activity: {
+  registrarAtividade: {
     parameters: {
       query?: never;
       header?: never;
@@ -2024,7 +2176,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["ActivityInput"];
+        "application/json": components["schemas"]["EntradaAtividade"];
       };
     };
     responses: {
@@ -2079,7 +2231,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["Reauthenticate"];
+        "application/json": components["schemas"]["ConfirmacaoSenha"];
       };
     };
     responses: {
@@ -2089,7 +2241,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "*/*": components["schemas"]["AccessCode"];
+          "*/*": components["schemas"]["CodigoAcesso"];
         };
       };
       /** @description Sessão ausente, inválida ou credenciais incorretas */
@@ -2121,7 +2273,7 @@ export interface operations {
       };
     };
   };
-  analyze: {
+  analisarAlimentacao: {
     parameters: {
       query?: never;
       header?: never;
@@ -2274,7 +2426,7 @@ export interface operations {
       };
     };
   };
-  logout: {
+  sair: {
     parameters: {
       query?: never;
       header?: never;
@@ -2319,7 +2471,7 @@ export interface operations {
       };
     };
   };
-  login: {
+  entrar: {
     parameters: {
       query?: never;
       header?: never;
@@ -2328,7 +2480,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["LoginRequest"];
+        "application/json": components["schemas"]["SolicitacaoAcesso"];
       };
     };
     responses: {
@@ -2338,7 +2490,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "*/*": components["schemas"]["LoginResponse"];
+          "*/*": components["schemas"]["RespostaAcesso"];
         };
       };
       /** @description Formato inválido */
@@ -2388,7 +2540,7 @@ export interface operations {
       };
     };
   };
-  activate: {
+  ativarConta: {
     parameters: {
       query?: never;
       header?: never;
@@ -2397,7 +2549,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["Activation"];
+        "application/json": components["schemas"]["AtivacaoConta"];
       };
     };
     responses: {
@@ -2437,7 +2589,7 @@ export interface operations {
       };
     };
   };
-  modules: {
+  listarModulos: {
     parameters: {
       query?: never;
       header?: never;
@@ -2452,7 +2604,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "*/*": components["schemas"]["ModuleView"][];
+          "*/*": components["schemas"]["Modulo"][];
         };
       };
       /** @description Sessão ausente, inválida ou credenciais incorretas */
@@ -2484,7 +2636,7 @@ export interface operations {
       };
     };
   };
-  professionals: {
+  listarProfissionais: {
     parameters: {
       query?: never;
       header?: never;
@@ -2533,7 +2685,7 @@ export interface operations {
       };
     };
   };
-  patient: {
+  paciente: {
     parameters: {
       query?: never;
       header?: never;
@@ -2550,7 +2702,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "*/*": components["schemas"]["PatientView"];
+          "*/*": components["schemas"]["Paciente"];
         };
       };
       /** @description Sessão ausente, inválida ou credenciais incorretas */
@@ -2582,7 +2734,7 @@ export interface operations {
       };
     };
   };
-  summary: {
+  resumirConsulta: {
     parameters: {
       query?: never;
       header?: never;
@@ -2686,6 +2838,57 @@ export interface operations {
       };
     };
   };
+  exportarResumo: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            [key: string]: unknown;
+          };
+        };
+      };
+      /** @description Sessão ausente, inválida ou credenciais incorretas */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/problem+json": components["schemas"]["ApiProblem"];
+        };
+      };
+      /** @description Recurso fora do escopo autorizado */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/problem+json": components["schemas"]["ApiProblem"];
+        };
+      };
+      /** @description Falha interna sem detalhes sensíveis */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/problem+json": components["schemas"]["ApiProblem"];
+        };
+      };
+    };
+  };
   search: {
     parameters: {
       query?: {
@@ -2705,7 +2908,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "*/*": components["schemas"]["PagePatientView"];
+          "*/*": components["schemas"]["PaginaPaciente"];
         };
       };
       /** @description Sessão ausente, inválida ou credenciais incorretas */
@@ -2752,7 +2955,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "*/*": components["schemas"]["PatientView"];
+          "*/*": components["schemas"]["Paciente"];
         };
       };
       /** @description Sessão ausente, inválida ou credenciais incorretas */
@@ -2784,7 +2987,59 @@ export interface operations {
       };
     };
   };
-  organization: {
+  buscarRegistroPressao: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        idPaciente: string;
+        idRegistro: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            [key: string]: unknown;
+          };
+        };
+      };
+      /** @description Sessão ausente, inválida ou credenciais incorretas */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/problem+json": components["schemas"]["ApiProblem"];
+        };
+      };
+      /** @description Recurso fora do escopo autorizado */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/problem+json": components["schemas"]["ApiProblem"];
+        };
+      };
+      /** @description Falha interna sem detalhes sensíveis */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/problem+json": components["schemas"]["ApiProblem"];
+        };
+      };
+    };
+  };
+  buscarUnidade: {
     parameters: {
       query?: never;
       header?: never;
@@ -2799,7 +3054,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "*/*": components["schemas"]["OrganizationView"];
+          "*/*": components["schemas"]["Unidade"];
         };
       };
       /** @description Sessão ausente, inválida ou credenciais incorretas */
@@ -2933,7 +3188,7 @@ export interface operations {
       };
     };
   };
-  dashboard: {
+  consultarPainel: {
     parameters: {
       query?: never;
       header?: never;
@@ -2948,7 +3203,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "*/*": components["schemas"]["DashboardView"];
+          "*/*": components["schemas"]["ResumoPainel"];
         };
       };
       /** @description Sessão ausente, inválida ou credenciais incorretas */
@@ -2995,7 +3250,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          "*/*": components["schemas"]["UserView"];
+          "*/*": components["schemas"]["Usuario"];
         };
       };
       /** @description Sessão ausente, inválida ou credenciais incorretas */

@@ -5,7 +5,7 @@ import { extname, isAbsolute, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 // Local verification of an already exported Expo bundle. This is not a production host.
-const root = await realpath(fileURLToPath(new URL('../apps/mobile/dist/', import.meta.url)));
+const root = await realpath(fileURLToPath(new URL('../dist/', import.meta.url)));
 const contentTypes = {
   '.html': 'text/html; charset=utf-8',
   '.js': 'application/javascript; charset=utf-8',

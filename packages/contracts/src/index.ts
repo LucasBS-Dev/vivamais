@@ -1,15 +1,15 @@
 import type { components } from "./generated";
 export type { components, paths, operations } from "./generated";
-export type SessionUser = components["schemas"]["UserView"];
-export type Role = SessionUser["role"];
-export type AuthResponse = components["schemas"]["LoginResponse"];
-export type PatientSummary = components["schemas"]["PatientView"];
-export type DashboardSummary = components["schemas"]["DashboardView"];
-export type ModuleStatus = components["schemas"]["ModuleView"];
-export type ModuleKey = ModuleStatus["key"];
-export interface ApiProblem {
+export type UsuarioSessao = components["schemas"]["Usuario"];
+export type PapelUsuario = UsuarioSessao["role"];
+export type RespostaAutenticacao = components["schemas"]["RespostaAcesso"];
+export type Paciente = components["schemas"]["Paciente"];
+export type ResumoPainel = components["schemas"]["ResumoPainel"];
+export type EstadoModulo = components["schemas"]["Modulo"];
+export type ChaveModulo = EstadoModulo["key"];
+export interface ProblemaApi {
   status: number;
   title: string;
   detail: string;
 }
-// ApiProblem narrows the structured Spring errors; domain aliases derive from OpenAPI.
+// Os tipos de domínio são derivados do OpenAPI; os campos JSON existentes mantêm compatibilidade.

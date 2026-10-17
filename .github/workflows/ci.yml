@@ -21,7 +21,7 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build:web
-      - run: pnpm --filter @viva/mobile export:web
+      - run: pnpm export:mobile
       - run: pnpm contracts:generate && git diff --exit-code -- packages/contracts/src/generated.ts
       - run: pnpm audit --audit-level high
   java:
@@ -33,11 +33,15 @@ jobs:
           distribution: temurin
           java-version: 21
           cache: maven
+      - name: Install real OCR runtime
+        run: sudo apt-get update && sudo apt-get install -y tesseract-ocr tesseract-ocr-eng
       - run: bash mvnw --batch-mode --no-transfer-progress verify
-        working-directory: services/api
+        working-directory: backend/demo
+        env:
+          TEST_NATIVE_OCR: true
       - name: Dependency scan
         run: bash mvnw --batch-mode --no-transfer-progress org.owasp:dependency-check-maven:12.1.8:check -DfailBuildOnCVSS=7 -Dformats=JSON,HTML -DnvdApiKeyEnvironmentVariable=NVD_API_KEY
-        working-directory: services/api
+        working-directory: backend/demo
         env:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
   secret-scan:
@@ -80,14 +84,14 @@ jobs:
           cache: maven
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps chromium
-      - run: pnpm --filter @viva/mobile export:web
+      - run: pnpm export:mobile
       - name: Generate ephemeral bootstrap credential
         run: echo "E2E_PASSWORD=$(openssl rand -hex 24)" >> "$GITHUB_ENV"
       - name: Build API
         run: bash mvnw --batch-mode --no-transfer-progress -DskipTests package
-        working-directory: services/api
+        working-directory: backend/demo
       - name: Start synthetic API
-        run: java -jar services/api/target/viva-mais-api-0.1.0-SNAPSHOT.jar > /tmp/viva-api.log 2>&1 &
+        run: java -jar backend/demo/target/viva-mais-api-0.1.0-SNAPSHOT.jar > /tmp/viva-api.log 2>&1 &
         env:
           DATABASE_URL: jdbc:postgresql://localhost:5432/vivamais
           DATABASE_USER: vivamais

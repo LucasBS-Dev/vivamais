@@ -14,34 +14,6 @@ importers:
 
   .:
     dependencies:
-      tesseract.js:
-        specifier: 7.0.0
-        version: 7.0.0
-    devDependencies:
-      '@playwright/test':
-        specifier: 1.56.1
-        version: 1.56.1
-      eslint:
-        specifier: 9.39.1
-        version: 9.39.1(jiti@2.7.0)
-      openapi-typescript:
-        specifier: 7.10.1
-        version: 7.10.1(typescript@5.9.3)
-      prettier:
-        specifier: 3.6.2
-        version: 3.6.2
-      typescript:
-        specifier: 5.9.3
-        version: 5.9.3
-      typescript-eslint:
-        specifier: 8.46.1
-        version: 8.46.1(eslint@9.39.1(jiti@2.7.0))(typescript@5.9.3)
-      vitest:
-        specifier: 4.1.11
-        version: 4.1.11(@types/node@24.7.2)(jsdom@27.0.0)(vite@7.3.7(@types/node@24.7.2)(jiti@2.7.0)(lightningcss@1.33.0)(terser@5.51.2)(yaml@2.9.1))
-
-  apps/mobile:
-    dependencies:
       '@expo/metro-runtime':
         specifier: 57.0.17
         version: 57.0.17(@expo/log-box@57.0.4)(expo@57.0.21)(react-dom@19.2.3(react@19.2.3))(react-native@0.86.3(@babel/core@7.29.7)(@react-native/metro-config@0.86.3(@babel/core@7.29.7))(@types/react@19.2.2)(react@19.2.3))(react@19.2.3)
@@ -49,10 +21,10 @@ importers:
         specifier: 5.90.5
         version: 5.90.5(react@19.2.3)
       '@viva/contracts':
-        specifier: file:../../packages/contracts
+        specifier: file:./packages/contracts
         version: file:packages/contracts
       '@viva/design-tokens':
-        specifier: file:../../packages/design-tokens
+        specifier: file:./packages/design-tokens
         version: file:packages/design-tokens
       expo:
         specifier: 57.0.21
@@ -111,13 +83,40 @@ importers:
       react-native-worklets:
         specifier: 0.10.1
         version: 0.10.1(@babel/core@7.29.7)(@react-native/metro-config@0.86.3(@babel/core@7.29.7))(react-native@0.86.3(@babel/core@7.29.7)(@react-native/metro-config@0.86.3(@babel/core@7.29.7))(@types/react@19.2.2)(react@19.2.3))(react@19.2.3)
+      tesseract.js:
+        specifier: 7.0.0
+        version: 7.0.0
     devDependencies:
+      '@playwright/test':
+        specifier: 1.56.1
+        version: 1.56.1
       '@react-native/metro-config':
         specifier: 0.86.3
         version: 0.86.3(@babel/core@7.29.7)
       '@types/react':
         specifier: 19.2.2
         version: 19.2.2
+      eslint:
+        specifier: 9.39.1
+        version: 9.39.1(jiti@2.7.0)
+      openapi-typescript:
+        specifier: 7.10.1
+        version: 7.10.1(typescript@5.9.3)
+      prettier:
+        specifier: 3.6.2
+        version: 3.6.2
+      typescript:
+        specifier: 5.9.3
+        version: 5.9.3
+      typescript-eslint:
+        specifier: 8.46.1
+        version: 8.46.1(eslint@9.39.1(jiti@2.7.0))(typescript@5.9.3)
+      vitest:
+        specifier: 4.1.11
+        version: 4.1.11(@types/node@24.7.2)(jsdom@27.0.0)(vite@7.3.7(@types/node@24.7.2)(jiti@2.7.0)(lightningcss@1.33.0)(terser@5.51.2)(yaml@2.9.1))
+
+  packages/contracts:
+    devDependencies:
       typescript:
         specifier: 5.9.3
         version: 5.9.3
@@ -125,17 +124,23 @@ importers:
         specifier: 4.1.11
         version: 4.1.11(@types/node@24.7.2)(jsdom@27.0.0)(vite@7.3.7(@types/node@24.7.2)(jiti@2.7.0)(lightningcss@1.33.0)(terser@5.51.2)(yaml@2.9.1))
 
-  apps/web:
+  packages/design-tokens:
+    devDependencies:
+      typescript:
+        specifier: 5.9.3
+        version: 5.9.3
+
+  web:
     dependencies:
       '@viva/contracts':
-        specifier: file:../../packages/contracts
+        specifier: file:../packages/contracts
         version: file:packages/contracts
       '@viva/design-tokens':
-        specifier: file:../../packages/design-tokens
+        specifier: file:../packages/design-tokens
         version: file:packages/design-tokens
       next:
         specifier: 16.4.2
-        version: 16.4.2(@playwright/test@1.56.1)(@types/node@24.7.2)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        version: 16.4.2(@babel/core@7.29.7)(@playwright/test@1.56.1)(@types/node@24.7.2)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react:
         specifier: 19.2.3
         version: 19.2.3
@@ -176,21 +181,6 @@ importers:
       vitest:
         specifier: 4.1.11
         version: 4.1.11(@types/node@24.7.2)(jsdom@27.0.0)(vite@7.3.7(@types/node@24.7.2)(jiti@2.7.0)(lightningcss@1.33.0)(terser@5.51.2)(yaml@2.9.1))
-
-  packages/contracts:
-    devDependencies:
-      typescript:
-        specifier: 5.9.3
-        version: 5.9.3
-      vitest:
-        specifier: 4.1.11
-        version: 4.1.11(@types/node@24.7.2)(jsdom@27.0.0)(vite@7.3.7(@types/node@24.7.2)(jiti@2.7.0)(lightningcss@1.33.0)(terser@5.51.2)(yaml@2.9.1))
-
-  packages/design-tokens:
-    devDependencies:
-      typescript:
-        specifier: 5.9.3
-        version: 5.9.3
 
 packages:
 
@@ -8354,7 +8344,7 @@ snapshots:
     dependencies:
       content-type: 2.1.0
 
-  next@16.4.2(@playwright/test@1.56.1)(@types/node@24.7.2)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+  next@16.4.2(@babel/core@7.29.7)(@playwright/test@1.56.1)(@types/node@24.7.2)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
       '@next/env': 16.4.2
       '@swc/helpers': 0.5.23
@@ -8363,7 +8353,7 @@ snapshots:
       postcss: 8.5.23
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-      styled-jsx: 5.1.6(react@19.2.3)
+      styled-jsx: 5.1.6(@babel/core@7.29.7)(react@19.2.3)
     optionalDependencies:
       '@next/swc-darwin-arm64': 16.4.2
       '@next/swc-darwin-x64': 16.4.2
@@ -9026,10 +9016,12 @@ snapshots:
 
   structured-headers@0.4.1: {}
 
-  styled-jsx@5.1.6(react@19.2.3):
+  styled-jsx@5.1.6(@babel/core@7.29.7)(react@19.2.3):
     dependencies:
       client-only: 0.0.1
       react: 19.2.3
+    optionalDependencies:
+      '@babel/core': 7.29.7
 
   styleq@0.1.3: {}
 
