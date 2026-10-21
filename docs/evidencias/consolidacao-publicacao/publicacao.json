@@ -1,0 +1,19 @@
+{
+  "push": "confirmado",
+  "fechamento": "Commit documental seguinte; hash exato no Git e comprovante privado .local/publicacao/resultado.json",
+  "ci": "Consultar Actions pelo SHA; aprovação não presumida",
+  "publicadoEm": "2026-10-21T00:25:40.4871877-03:00",
+  "commitConteudo": "54c92a34bf0c5054a428e6d56277d2257124e30d",
+  "branch": "main",
+  "forcePush": false,
+  "conferidoPor": "git ls-remote e API GitHub trees recursiva",
+  "deploy": false,
+  "urlCommit": "https://github.com/joaosoares03/vivamais/commit/54c92a34bf0c5054a428e6d56277d2257124e30d",
+  "repositorio": "https://github.com/joaosoares03/vivamais.git",
+  "arvore": {
+    "Privados": 0,
+    "Arquivos": 913,
+    "Migracoes": 9
+  },
+  "visibilidadeAlterada": false
+}

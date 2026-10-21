@@ -1,8 +1,9 @@
 # Progresso Viva+
 
-## Publicação pendente por acesso às credenciais — 21/10/2026
+Publicação confirmada em 2026-10-21T00:25:40.4871877-03:00, main, conteúdo 54c92a34bf0c5054a428e6d56277d2257124e30d. Componentes/manuais/privados conferidos no remoto; detalhes em RELATORIO_TRANSFERENCIA_E_PUBLICACAO. Git fonte publicado; implantação/lojas/produção e CI verde não presumidos.
 
-Código e documentação consolidados no commit local74113d2, com74Java/69frontend/17E2E e builds/scans aprovados no limite indicado; auditoria mantém2altos. O push não foi realizado: Git/GCM na sandbox recebe Acesso negado ao enumerar credenciaisWindows(0x5). Preparados infra/publicar-github-revisado.ps1 e docs/PUBLICACAO_GITHUB.md para um comando no PowerShell normal, sem compartilhar segredo. O script publica/verifica o conteúdo revisado e fecha relatório/progresso em commit documental separado. Remoto ainda b460643 na última conferência. Não declarar entrega publicada antes da confirmação. Banco e trabalho preservados.
+## Histórico anterior à confirmação da publicação
+
 
 ## Consolidação e transferência técnica — 20/10/2026
 

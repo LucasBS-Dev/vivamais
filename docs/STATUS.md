@@ -1,8 +1,8 @@
 # Estado atual — cadastro, SMS e interface — 20/10/2026
 
-## Próximo passo obrigatório de publicação — 21/10/2026
+Publicação confirmada em 2026-10-21T00:25:40.4871877-03:00, main, conteúdo 54c92a34bf0c5054a428e6d56277d2257124e30d. Componentes/manuais/privados conferidos no remoto; detalhes em RELATORIO_TRANSFERENCIA_E_PUBLICACAO. Git fonte publicado; implantação/lojas/produção e CI verde não presumidos.
 
-Fonte/documentação locais commitados em74113d2; push bloqueado por acesso ao Gerenciador de Credenciais do Windows na sandbox(0x5),não por divergência remota. Executar infra/publicar-github-revisado.ps1 no PowerShell normal com o hash revisado atual conforme PUBLICACAO_GITHUB.md. Script confere conteúdo/árvore remota e fecha relatório/progresso. Ainda não afirmar publicação ou CI verde. Não pedir senha/token no chat; preservar V1–V9,banco e alterações.
+## Histórico anterior à confirmação da publicação
 
 
 ## Consolidação e transferência técnica — 20/10/2026

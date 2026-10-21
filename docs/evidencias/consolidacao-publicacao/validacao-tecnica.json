@@ -95,11 +95,11 @@
     "OWASP/NVD local completo"
   ],
   "publicacao": {
-    "commitConteudoLocal": "74113d2a5005c7ad19ef00836d8abefb2b9a4641",
-    "estado": "Bloqueado pelo acesso ao Gerenciador de Credenciais na sandbox",
-    "procedimento": "PUBLICACAO_GITHUB.md; executar Publicar-VivaMais.cmd fora da sandbox",
-    "motivo": "CredEnumerate 0x5 Acesso negado",
-    "remotoUltimoConfirmado": "b460643ccb569d2bdfa7698a1d93b0068fce286b"
+    "estado": "Fonte publicado",
+    "commitConteudo": "54c92a34bf0c5054a428e6d56277d2257124e30d",
+    "deploy": false,
+    "confirmadoEm": "2026-10-21T00:25:40.4871877-03:00",
+    "ci": "Verificar Actions; não presumir aprovação"
   },
   "totalTabelas": 33,
   "seguranca": {
