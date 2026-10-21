@@ -76,6 +76,7 @@ Atualizado para a consolidação do fonte em20/10/2026. Os documentos de transfe
 - [Manual completo de testes para desenvolvedores](MANUAL_COMPLETO_TESTES_DESENVOLVEDOR.md) — MANUAL_COMPLETO_TESTES_DESENVOLVEDOR.md
 - [Plano de implementação — referência consolidada](PLANO_IMPLEMENTACAO_PENDENCIAS.md) — PLANO_IMPLEMENTACAO_PENDENCIAS.md
 - [Próxima execução — após cadastro/SMS/interface validado](PROXIMA_EXECUCAO.md) — PROXIMA_EXECUCAO.md
+- [Publicação revisada do fonte no GitHub](PUBLICACAO_GITHUB.md) — PUBLICACAO_GITHUB.md
 - [Estado atual — cadastro, SMS e interface — 20/10/2026](STATUS.md) — STATUS.md
 
 ### Relatórios e evidências datadas

@@ -1,5 +1,9 @@
 # Progresso Viva+
 
+## Publicação pendente por acesso às credenciais — 21/10/2026
+
+Código e documentação consolidados no commit local74113d2, com74Java/69frontend/17E2E e builds/scans aprovados no limite indicado; auditoria mantém2altos. O push não foi realizado: Git/GCM na sandbox recebe Acesso negado ao enumerar credenciaisWindows(0x5). Preparados infra/publicar-github-revisado.ps1 e docs/PUBLICACAO_GITHUB.md para um comando no PowerShell normal, sem compartilhar segredo. O script publica/verifica o conteúdo revisado e fecha relatório/progresso em commit documental separado. Remoto ainda b460643 na última conferência. Não declarar entrega publicada antes da confirmação. Banco e trabalho preservados.
+
 ## Consolidação e transferência técnica — 20/10/2026
 
 Pedido atual autoriza commit/push de fonte em origin/main após segurança/integridade, sem deployment,visibilidade,force push ou reescrita. Criados manual técnico,inventário32grupos,rastreio,ambiente do zero,testes,banco/API,padrões/índice e plano canônico;40pendências ampliadas. Testes novos:74Java,69frontend,17E2E,tipagem/lint,Next/Expoall e contratos aprovados;2altos mantidos. Gitleaks/segredos e privilégios JDBC auditados; role local superusuária/BYPASSRLS registrada em P01/G01,sem alterar banco. Estado de commit/push/CI e provas em [RELATORIO_TRANSFERENCIA_E_PUBLICACAO](docs/RELATORIO_TRANSFERENCIA_E_PUBLICACAO.md). Exercícios/IA continuam com outro dev.

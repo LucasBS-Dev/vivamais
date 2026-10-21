@@ -1,5 +1,5 @@
 {
-  "geradoEm": "2026-10-21T03:05:33.694Z",
+  "geradoEm": "2026-10-21T03:22:22.855Z",
   "escopo": "Lista candidata antes do primeiro commit; exclui este próprio manifesto, não substitui árvore Git",
   "arquivos": [
     {
@@ -52,7 +52,7 @@
     },
     {
       "caminho": "PROGRESSO.md",
-      "bytes": 30941
+      "bytes": 31650
     },
     {
       "caminho": "PROMPT_CODEX_PADRONIZACAO_E_FIDELIDADE_VIVA_MAIS.md",
@@ -61,6 +61,10 @@
     {
       "caminho": "PROMPT_CODEX_VIVA_MAIS.md",
       "bytes": 24695
+    },
+    {
+      "caminho": "Publicar-VivaMais.cmd",
+      "bytes": 499
     },
     {
       "caminho": "README.md",
@@ -928,7 +932,7 @@
     },
     {
       "caminho": "docs/INDICE_DOCUMENTACAO.md",
-      "bytes": 10170
+      "bytes": 10262
     },
     {
       "caminho": "docs/INVENTARIO_COMPLETO_FUNCIONALIDADES.md",
@@ -976,7 +980,11 @@
     },
     {
       "caminho": "docs/PROXIMA_EXECUCAO.md",
-      "bytes": 8170
+      "bytes": 8707
+    },
+    {
+      "caminho": "docs/PUBLICACAO_GITHUB.md",
+      "bytes": 3502
     },
     {
       "caminho": "docs/REFATORACAO_VISUAL_E_ESTRUTURAL.md",
@@ -984,7 +992,7 @@
     },
     {
       "caminho": "docs/RELATORIO_TRANSFERENCIA_E_PUBLICACAO.md",
-      "bytes": 10141
+      "bytes": 11129
     },
     {
       "caminho": "docs/REQUISITOS.md",
@@ -992,7 +1000,7 @@
     },
     {
       "caminho": "docs/STATUS.md",
-      "bytes": 16200
+      "bytes": 16737
     },
     {
       "caminho": "docs/TRANSFERENCIA_DEV_EXERCICIOS.md",
@@ -1196,7 +1204,7 @@
     },
     {
       "caminho": "docs/evidencias/consolidacao-publicacao/validacao-tecnica.json",
-      "bytes": 3748
+      "bytes": 3951
     },
     {
       "caminho": "docs/evidencias/profissionalizacao/COMPARACAO_VISUAL.md",
@@ -2477,6 +2485,10 @@
     {
       "caminho": "infra/preparar-build-web.mjs",
       "bytes": 1536
+    },
+    {
+      "caminho": "infra/publicar-github-revisado.ps1",
+      "bytes": 11023
     },
     {
       "caminho": "infra/railway.toml",

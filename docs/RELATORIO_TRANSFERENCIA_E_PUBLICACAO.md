@@ -5,7 +5,7 @@ Consolidação autorizada pelo proprietário em [pedido integral](product/PEDIDO
 ## Publicação
 
 <!-- PUBLICACAO_INICIO -->
-Repositório de destino: [joaosoares03/vivamais](https://github.com/joaosoares03/vivamais), origin HTTPS, branch main. Fetch inicial confirmou HEAD e origin/main em b460643, sem divergência; histórico inclui99c7295. Stage inicialmente vazio. Sem repositório aninhado ou submódulo acidental. Commit/push serão registrados após a revisão final; este parágrafo não afirma publicação antecipada.
+**Push bloqueado pelo ambiente, ainda não publicado.** Consolidação local commitada em `74113d2a5005c7ad19ef00836d8abefb2b9a4641`. Destino autorizado: [joaosoares03/vivamais](https://github.com/joaosoares03/vivamais), origin HTTPS, main. Remoto permaneceu em b460643 na conferência após a tentativa. O Git falhou ao iniciar sh/credential-manager; chamada nativa confirmou `Failed to enumerate credentials [0x5] / Acesso negado` ao Gerenciador de Credenciais do Windows. Não indica senha errada nem trabalho remoto incompatível. Não houve force push, reescrita, mudança de visibilidade ou descarte. Conclusão local em21/10/2026; publicação depende de executar o [procedimento preparado](PUBLICACAO_GITHUB.md) em PowerShell normal do usuário. O script confere o HEAD revisado, faz push e registra/verifica a publicação e seu fechamento documental. Nenhum token/senha precisa ser enviado ao chat. Estado do CI remoto não foi observado como aprovado.
 <!-- PUBLICACAO_FIM -->
 
 ## O que foi consolidado
@@ -57,7 +57,7 @@ Parcial ou bloqueado: notificações/SecureStore/SQLCipher/câmera físicos,cach
 | Gitleaks8.30.1 | Histórico e candidato examinados,sem achados; revisão final registrada no JSON |
 | Segredos conhecidos |5valores privados comparados em memória,sem ocorrência no conteúdo revisado; valores nunca no relatório |
 
-Logs completos ficam privadamente em work/transferencia-*.log; não enviados. As contagens/status extraídos sem corpos estão no JSON público. Falhas intermediárias de documentação: links com parênteses corrigidos por encoding; nenhum teste funcional foi removido para passar. O CI foi ajustado para gerar senhas efêmeras mascaradas de banco/contas em vez de literal de senha de banco; execução Docker/Linux é verificação remota separada dos testes Windows.
+Logs completos ficam privadamente em work/transferencia-*.log; não enviados. As contagens/status extraídos sem corpos estão no JSON público. Falhas intermediárias corrigidas: links com parênteses, separador de tabela e resolução do parser YAML. A revisão do stage retirou somente a saída temporária de ajuda do terminal, preservada localmente e ignorada. Espaços de contexto do patch pnpm são preservados com atributo whitespace específico em patches/*.patch; não se alterou seu hash nem se suprimiu auditoria. Nenhum teste funcional foi removido para passar. O CI foi ajustado para gerar senhas efêmeras mascaradas de banco/contas em vez de literal de senha de banco; execução Docker/Linux é verificação remota separada dos testes Windows. O novo publicador PowerShell recebeu validação de sintaxe e pré-verificação local; seu push real continua bloqueado nesta sandbox.
 
 ## Evidência anterior e verificações não executadas
 

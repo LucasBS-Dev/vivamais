@@ -1,5 +1,10 @@
 # Próxima execução — após cadastro/SMS/interface validado
 
+## Próximo passo obrigatório de publicação — 21/10/2026
+
+Fonte/documentação locais commitados em74113d2; push bloqueado por acesso ao Gerenciador de Credenciais do Windows na sandbox(0x5),não por divergência remota. Executar infra/publicar-github-revisado.ps1 no PowerShell normal com o hash revisado atual conforme PUBLICACAO_GITHUB.md. Script confere conteúdo/árvore remota e fecha relatório/progresso. Ainda não afirmar publicação ou CI verde. Não pedir senha/token no chat; preservar V1–V9,banco e alterações.
+
+
 ## Consolidação e transferência técnica — 20/10/2026
 
 Pedido atual autoriza commit/push de fonte em origin/main após segurança/integridade, sem deployment,visibilidade,force push ou reescrita. Criados manual técnico,inventário32grupos,rastreio,ambiente do zero,testes,banco/API,padrões/índice e plano canônico;40pendências ampliadas. Testes novos:74Java,69frontend,17E2E,tipagem/lint,Next/Expoall e contratos aprovados;2altos mantidos. Gitleaks/segredos e privilégios JDBC auditados; role local superusuária/BYPASSRLS registrada em P01/G01,sem alterar banco. Estado de commit/push/CI e provas em [RELATORIO_TRANSFERENCIA_E_PUBLICACAO](RELATORIO_TRANSFERENCIA_E_PUBLICACAO.md). Exercícios/IA continuam com outro dev.
