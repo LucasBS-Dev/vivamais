@@ -27,16 +27,15 @@ export function Modulos({
               <Icone name="lock" size={18} />
             </span>
             <h3>{nomesModulos[modulo.key]}</h3>
-            <span className="phase-label">Fase {modulo.phase}</span>
           </div>
           <p className="module-status">
             {modulo.status === "AVAILABLE"
-              ? "Disponível na demonstração"
+              ? "Disponível"
               : modulo.status === "BLOCKED_PENDING_CLINICAL_APPROVAL"
                 ? "Aguarda validação clínica"
                 : modulo.status === "BLOCKED_PENDING_HARDWARE_SPEC"
-                  ? "Aguarda especificação do hardware"
-                  : "Implementação planejada"}
+                  ? "Integração com aparelho indisponível"
+                  : "Indisponível no momento"}
           </p>
           <p>{modulo.reason}</p>
         </article>

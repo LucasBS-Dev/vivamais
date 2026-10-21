@@ -1,0 +1,95 @@
+{
+  "api": {
+    "resultado": "APROVADO",
+    "login": true,
+    "isolamentoFoto": true,
+    "fotoDecifrada": true,
+    "bytesFotografia": 14826
+  },
+  "dataUtc": "2026-10-20T04:53:26.8309980Z",
+  "chaveSeparada": true,
+  "bancoIsolado": "viva_restore_20261020_741a2726",
+  "chaveOriginalSemLeituraPublica": true,
+  "permissoesRestritas": true,
+  "objetosEChaveOriginaisPreservados": true,
+  "bancoPrincipalPreservado": true,
+  "integridade": {
+    "migracoes": [
+      {
+        "versao": "1",
+        "checksum": -1368017363,
+        "sucesso": true
+      },
+      {
+        "versao": "2",
+        "checksum": 210440661,
+        "sucesso": true
+      },
+      {
+        "versao": "3",
+        "checksum": -448033155,
+        "sucesso": true
+      },
+      {
+        "versao": "4",
+        "checksum": -184423166,
+        "sucesso": true
+      },
+      {
+        "versao": "5",
+        "checksum": -499465854,
+        "sucesso": true
+      },
+      {
+        "versao": "6",
+        "checksum": 1934766386,
+        "sucesso": true
+      },
+      {
+        "versao": "7",
+        "checksum": -961018968,
+        "sucesso": true
+      }
+    ],
+    "contagens": {
+      "account_activation": 82,
+      "activity_record": 45,
+      "audit_event": 3977,
+      "auth_session": 312,
+      "blood_pressure_reading": 189,
+      "consent_or_legal_basis_record": 0,
+      "consultation": 20,
+      "device": 10,
+      "device_configuration": 10,
+      "file_download_grant": 3,
+      "file_object": 52,
+      "flyway_schema_history": 7,
+      "food_analysis_attempt": 0,
+      "meal_photo": 36,
+      "medication_plan": 53,
+      "medication_plan_history": 0,
+      "medication_schedule": 96,
+      "medication_self_report": 27,
+      "organization": 2,
+      "patient": 96,
+      "patient_professional_assignment": 96,
+      "physical_activity_profile": 23,
+      "preferencia_conta": 4,
+      "pressure_ocr_document": 16,
+      "printed_diary_entry": 10,
+      "professional": 2,
+      "sync_operation": 281,
+      "user_account": 88
+    },
+    "tabelasProtegidas": 27
+  },
+  "resultado": "APROVADO",
+  "cifra": {
+    "algoritmo": "AES-256-GCM",
+    "sha256": "dd94acd5d55442e04e83592e14ee9f46bb2e053e8f4774f7f32a5ec721eb18e1",
+    "bytes": 4044028,
+    "objetos": 52,
+    "autenticidade": true,
+    "adulteracaoRecusada": true
+  }
+}

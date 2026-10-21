@@ -12,7 +12,7 @@
     "typecheck": "pnpm -r typecheck && pnpm typecheck:mobile",
     "test": "pnpm -r test && pnpm test:mobile",
     "build:web": "pnpm --filter @viva/web build",
-    "contracts:generate": "openapi-typescript backend/demo/openapi.json -o packages/contracts/src/generated.ts && node infra/sync-shared.mjs",
+    "contracts:generate": "openapi-typescript backend/demo/openapi.json -o packages/contracts/src/generated.ts && prettier --write packages/contracts/src/generated.ts && node infra/sync-shared.mjs",
     "format:check": "prettier --check \"{app,components,contexts,hooks,services,web,packages}/**/*.{ts,tsx,css}\"",
     "lint": "eslint app components contexts hooks services web packages tests/mobile",
     "test:e2e": "playwright test",

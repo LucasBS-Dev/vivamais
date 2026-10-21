@@ -1,4 +1,11 @@
 import type { components } from "./generated";
+export {
+  validarCpf,
+  normalizarCelularBrasileiro,
+  mascararCelularBrasileiro,
+  formatarCelularBrasileiro,
+  type DadosPessoaisPaciente,
+} from "./cadastro";
 export type { components, paths, operations } from "./generated";
 export type UsuarioSessao = components["schemas"]["Usuario"];
 export type PapelUsuario = UsuarioSessao["role"];
@@ -13,3 +20,4 @@ export interface ProblemaApi {
   detail: string;
 }
 // Os tipos de domínio são derivados do OpenAPI; os campos JSON existentes mantêm compatibilidade.
+export * from "./acessoPaciente";

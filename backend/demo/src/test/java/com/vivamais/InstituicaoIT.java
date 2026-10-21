@@ -31,7 +31,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.testcontainers.containers.PostgreSQLContainer;
 
 @SpringBootTest
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc(print=org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrint.NONE)
 @ActiveProfiles("bootstrap")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class InstituicaoIT {
@@ -80,6 +80,7 @@ class InstituicaoIT {
     }
     private String entrar(String name) throws Exception { return loginEmail(name+"@demo.vivamais.invalid"); }
     private String loginEmail(String email) throws Exception {
+        if(jdbc.queryForObject("SELECT count(*) FROM user_account WHERE email=? AND role='PATIENT'",Integer.class,email)>0) return ApoioAcessoPaciente.sessaoAutorizada(mvc,mapper,jdbc,email);
         var resposta=mvc.perform(post("/api/v1/auth/login").contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(new ModelosApi.SolicitacaoAcesso(email,PASSWORD))))
                 .andExpect(status().isOk()).andExpect(jsonPath("$.user.organizationId").exists()).andReturn();

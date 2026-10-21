@@ -124,14 +124,18 @@ export function criarTransporte(
           : {}),
         signal: controlador.signal,
         redirect: "error",
-        credentials: "omit",
+        credentials: analisado.pathname.startsWith("/auth/paciente/")
+          ? "include"
+          : "omit",
         cache: "no-store",
       });
       if (!resposta.ok) {
         // Do not surface arbitrary provider text, account existence or clinical payloads in errors.
         const mensagem =
           resposta.status === 401
-            ? "Acesso não autorizado. Confira suas credenciais ou entre novamente."
+            ? analisado.pathname.startsWith("/auth/paciente/")
+              ? "Não foi possível verificar seu acesso. Confira os dados e o código atual ou procure sua equipe."
+              : "Acesso não autorizado. Confira suas credenciais ou entre novamente."
             : resposta.status === 403
               ? "Sua conta não tem permissão para esta ação."
               : resposta.status === 429
@@ -146,7 +150,7 @@ export function criarTransporte(
       throw new ErroApi(
         controlador.signal.aborted
           ? "A conexão demorou demais. Tente novamente."
-          : "Não foi possível conectar à API. Verifique sua conexão e tente novamente.",
+          : "Não foi possível conectar ao serviço. Verifique sua conexão e tente novamente.",
         0,
       );
     } finally {

@@ -1,6 +1,13 @@
+import { Text } from "../components/TextoAcessivel";
 import { useState } from "react";
 import { Redirect, router } from "expo-router";
-import { Text, TextInput, View } from "react-native";
+import { TextInput, View } from "react-native";
+import {
+  validarCpf,
+  formatarCpf,
+  formatarNascimento,
+  interpretarNascimento,
+} from "@viva/contracts";
 import { useAutenticacao } from "../hooks/useAutenticacao";
 import {
   MarcaViva,
@@ -9,132 +16,130 @@ import {
   Carregando,
   Tela,
 } from "../components/ElementosInterface";
-import { estilos as s } from "../components/estilos";
-
+import { estilos as e } from "../components/estilos";
 export default function Acesso() {
-  const {
-    sessao: sessao,
-    restaurando: restaurando,
-    aviso: aviso,
-    entrar: entrar,
-  } = useAutenticacao();
-  const [email, setEmail] = useState("");
-  const [senha, definirSenha] = useState("");
-  const [ocupado, definirOcupado] = useState(false);
-  const [erro, definirErro] = useState<string | null>(null);
-
-  async function submit() {
-    if (!email.trim() || !senha) {
-      definirErro("Informe seu e-mail e sua senha.");
+  const { sessao, restaurando, aviso, entrar } = useAutenticacao();
+  const [cpf, definirCpf] = useState(""),
+    [nascimento, definirNascimento] = useState("");
+  const [ocupado, definirOcupado] = useState(false),
+    [erro, definirErro] = useState<string | null>(null);
+  async function realizarAcesso() {
+    if (ocupado) return;
+    if (cpf.replace(/\D/g, "").length !== 11 || !validarCpf(cpf)) {
+      definirErro("Confira o CPF. Digite os 11 números.");
       return;
     }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-      definirErro("Confira o formato do seu e-mail.");
+    const data = interpretarNascimento(nascimento);
+    if (!data) {
+      definirErro("Confira sua data de nascimento: dia, mês e ano.");
       return;
     }
     definirOcupado(true);
     definirErro(null);
     try {
-      await entrar(email, senha);
-      definirSenha("");
-    } catch (failure) {
+      const autorizado = await entrar(cpf, data);
+      definirCpf("");
+      definirNascimento("");
+      router.replace(autorizado ? "/inicio" : "/ativar-conta");
+    } catch (falha) {
       definirErro(
-        failure instanceof Error
-          ? failure.message
+        falha instanceof Error
+          ? falha.message
           : "Não foi possível entrar. Tente novamente.",
       );
     } finally {
       definirOcupado(false);
     }
   }
-
   if (restaurando)
     return (
       <Tela>
-        <MarcaViva />
-        <Carregando />
+        <MarcaViva grande />
+        <Carregando rotulo="Verificando seu acesso…" />
       </Tela>
     );
   if (sessao) return <Redirect href="/inicio" />;
   return (
     <Tela>
-      <MarcaViva />
-      <View style={s.section}>
-        <Text style={s.title} accessibilityRole="header">
-          Vamos entrar?
-        </Text>
-        <Text style={s.body}>
-          Use seu e-mail e sua senha. Sua conta é individual.
-        </Text>
+      <View style={{ alignItems: "center", marginTop: 12 }}>
+        <MarcaViva grande largura={120} />
       </View>
-      {aviso && (
-        <View style={s.notice}>
-          <Text style={s.body} accessibilityLiveRegion="polite">
-            {aviso}
-          </Text>
-        </View>
+      <Text accessibilityRole="header" style={e.title}>
+        Entrar no Viva+
+      </Text>
+      <Text style={e.body}>Informe seu CPF e sua data de nascimento.</Text>
+      {!!aviso && (
+        <Text accessibilityRole="alert" style={e.body}>
+          {aviso}
+        </Text>
       )}
-      <View style={s.card}>
-        <View style={s.section}>
-          <Text style={s.label}>E-mail</Text>
+      <View style={e.card}>
+        <View style={e.section}>
+          <Text style={e.label}>CPF</Text>
           <TextInput
-            testID="email-input"
-            accessibilityLabel="E-mail"
-            value={email}
-            onChangeText={setEmail}
-            style={s.field}
-            autoComplete="email"
-            keyboardType="email-address"
-            autoCapitalize="none"
+            testID="cpf-input"
+            accessibilityLabel="CPF"
+            value={cpf}
+            onChangeText={(v) => definirCpf(formatarCpf(v))}
+            style={[e.field, { fontSize: 22, minHeight: 58 }]}
+            keyboardType="number-pad"
+            inputMode="numeric"
+            maxLength={14}
+            autoComplete="off"
             autoCorrect={false}
             editable={!ocupado}
-            textContentType="username"
-            placeholder="seu.nome@exemplo.org"
+            placeholder="000.000.000-00"
             placeholderTextColor="#526b78"
           />
         </View>
-        <View style={s.section}>
-          <Text style={s.label}>Senha</Text>
+        <View style={e.section}>
+          <Text style={e.label}>Data de nascimento</Text>
           <TextInput
-            testID="password-input"
-            accessibilityLabel="Senha"
-            value={senha}
-            onChangeText={definirSenha}
-            style={s.field}
-            autoComplete="current-password"
-            autoCapitalize="none"
+            testID="nascimento-input"
+            accessibilityLabel="Data de nascimento"
+            accessibilityHint="Digite dois números para o dia, dois para o mês e quatro para o ano."
+            value={nascimento}
+            onChangeText={(v) => definirNascimento(formatarNascimento(v))}
+            style={[e.field, { fontSize: 22, minHeight: 58 }]}
+            keyboardType="number-pad"
+            inputMode="numeric"
+            maxLength={10}
+            autoComplete="off"
             autoCorrect={false}
-            secureTextEntry
             editable={!ocupado}
-            textContentType="password"
+            placeholder="DD/MM/AAAA"
+            placeholderTextColor="#526b78"
             onSubmitEditing={() => {
-              if (!ocupado) void submit();
+              void realizarAcesso();
             }}
             returnKeyType="go"
           />
         </View>
         {erro && <MensagemErro mensagem={erro} />}
         <Botao
-          rotulo="Entrar"
+          rotulo="ENTRAR"
           testID="login-button"
           ocupado={ocupado}
           onPress={() => {
-            void submit();
+            void realizarAcesso();
           }}
         />
       </View>
+      <View style={e.notice}>
+        <Text style={e.body}>
+          Primeiro acesso ou aparelho novo? Depois de tocar em ENTRAR, informe o
+          código de 4 números recebido da sua equipe. Você não precisa criar
+          senha.
+        </Text>
+      </View>
       <Botao
         secundario
-        rotulo="Ativar conta ou usar código de recuperação"
-        onPress={() => router.push("/ativar-conta")}
+        rotulo="Como faço meu cadastro?"
+        onPress={() => router.push("/cadastro")}
       />
-      <Text style={s.muted}>
-        Precisa de um código? Procure o profissional responsável pela
-        demonstração. O portal emite recuperação assistida com confirmação de
-        identidade pela equipe.
-      </Text>
-      <Text style={s.small}>
-        Somente contas de teste. Não envie informações de saúde reais.
+      <Text style={e.small}>
+        Não compartilhe seu código de ativação. A equipe confirma sua identidade
+        antes de emitir um novo código.
       </Text>
     </Tela>
   );

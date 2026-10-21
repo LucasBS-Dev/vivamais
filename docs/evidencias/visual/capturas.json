@@ -1,0 +1,180 @@
+{
+  "executadoEm": "2026-10-17T20:10:20.197Z",
+  "origem": "Navegador Chromium com Java/PostgreSQL reais e contas sintéticas exclusivas do ensaio",
+  "capturas": [
+    {
+      "tela": "web_01_login_profissional",
+      "arquivo": "web_01_login_profissional.png"
+    },
+    {
+      "tela": "web_02_painel_inicial",
+      "arquivo": "web_02_painel_inicial.png"
+    },
+    {
+      "tela": "web_03_cadastro_paciente",
+      "arquivo": "web_03_cadastro_paciente.png"
+    },
+    {
+      "tela": "web_04_perfil_paciente",
+      "arquivo": "web_04_perfil_paciente.png"
+    },
+    {
+      "tela": "web_05_historico_pressao",
+      "arquivo": "web_05_historico_pressao.png"
+    },
+    {
+      "tela": "web_06_medicamentos",
+      "arquivo": "web_06_medicamentos.png"
+    },
+    {
+      "tela": "web_07_alimentacao",
+      "arquivo": "web_07_alimentacao.png"
+    },
+    {
+      "tela": "web_08_atividade_fisica",
+      "arquivo": "web_08_atividade_fisica.png"
+    },
+    {
+      "tela": "web_12_historico_consultas",
+      "arquivo": "web_12_historico_consultas.png"
+    },
+    {
+      "tela": "web_11_resumo_consulta",
+      "arquivo": "web_11_resumo_consulta.png"
+    },
+    {
+      "tela": "web_09_configuracao_pulseira",
+      "arquivo": "web_09_configuracao_pulseira.png"
+    },
+    {
+      "tela": "web_10_registro_diario",
+      "arquivo": "web_10_registro_diario.png"
+    },
+    {
+      "tela": "extra_web_lista_pacientes",
+      "arquivo": "extra_web_lista_pacientes.png"
+    },
+    {
+      "tela": "app_01_boas_vindas",
+      "arquivo": "app_01_boas_vindas.png"
+    },
+    {
+      "tela": "extra_cadastro_aplicativo",
+      "arquivo": "extra_cadastro_aplicativo.png"
+    },
+    {
+      "tela": "extra_ativacao_aplicativo",
+      "arquivo": "extra_ativacao_aplicativo.png"
+    },
+    {
+      "tela": "app_02_acesso_cpf",
+      "arquivo": "app_02_acesso_cpf.png"
+    },
+    {
+      "tela": "app_03_pagina_inicial",
+      "arquivo": "app_03_pagina_inicial.png"
+    },
+    {
+      "tela": "atividade_01_inicio_atividade",
+      "arquivo": "atividade_01_inicio_atividade.png"
+    },
+    {
+      "tela": "app_04_pressao_entrada",
+      "arquivo": "app_04_pressao_entrada.png"
+    },
+    {
+      "tela": "app_05_pressao_digitacao",
+      "arquivo": "app_05_pressao_digitacao.png"
+    },
+    {
+      "tela": "app_06_pressao_foto",
+      "arquivo": "app_06_pressao_foto.png"
+    },
+    {
+      "tela": "app_07_pressao_resultado",
+      "arquivo": "app_07_pressao_resultado.png"
+    },
+    {
+      "tela": "app_08_pressao_historico",
+      "arquivo": "app_08_pressao_historico.png"
+    },
+    {
+      "tela": "app_09_medicamentos",
+      "arquivo": "app_09_medicamentos.png"
+    },
+    {
+      "tela": "app_11_alimentacao_foto",
+      "arquivo": "app_11_alimentacao_foto.png"
+    },
+    {
+      "tela": "app_12_alimentacao_resultado",
+      "arquivo": "app_12_alimentacao_resultado.png"
+    },
+    {
+      "tela": "atividade_02_entrada",
+      "arquivo": "atividade_02_entrada.png"
+    },
+    {
+      "tela": "atividade_03_como_esta_hoje",
+      "arquivo": "atividade_03_como_esta_hoje.png"
+    },
+    {
+      "tela": "atividade_04_verificacao_pressao",
+      "arquivo": "atividade_04_verificacao_pressao.png"
+    },
+    {
+      "tela": "atividade_05_suas_informacoes",
+      "arquivo": "atividade_05_suas_informacoes.png"
+    },
+    {
+      "tela": "atividade_06_atividade_hoje",
+      "arquivo": "atividade_06_atividade_hoje.png"
+    },
+    {
+      "tela": "atividade_07_passo_a_passo",
+      "arquivo": "atividade_07_passo_a_passo.png"
+    },
+    {
+      "tela": "atividade_08_video_demonstrativo",
+      "arquivo": "atividade_08_video_demonstrativo.png"
+    },
+    {
+      "tela": "atividade_09_alternativa_mais_leve",
+      "arquivo": "atividade_09_alternativa_mais_leve.png"
+    },
+    {
+      "tela": "atividade_10_registro_atividade",
+      "arquivo": "atividade_10_registro_atividade.png"
+    },
+    {
+      "tela": "atividade_11_historico_atividades",
+      "arquivo": "atividade_11_historico_atividades.png"
+    },
+    {
+      "tela": "atividade_12_orientacoes",
+      "arquivo": "atividade_12_orientacoes.png"
+    },
+    {
+      "tela": "extra_perfil_paciente",
+      "arquivo": "extra_perfil_paciente.png"
+    },
+    {
+      "tela": "extra_configuracoes_aplicativo",
+      "arquivo": "extra_configuracoes_aplicativo.png"
+    },
+    {
+      "tela": "extra_lembretes_aplicativo",
+      "arquivo": "extra_lembretes_aplicativo.png"
+    },
+    {
+      "tela": "extra_ilustracoes_atividades",
+      "arquivo": "extra_ilustracoes_atividades.png"
+    }
+  ],
+  "naoCapturada": [
+    {
+      "tela": "app_10_notificacao_medicamento",
+      "motivo": "Notificação nativa exige Android/iOS; navegador não comprova entrega/aparência do SO."
+    }
+  ]
+}

@@ -29,25 +29,25 @@ export default async function PaginaPainel() {
       numero: resumo.patientCount,
       rotulo: "Pacientes cadastrados",
       icone: "people",
-      cor: "#0090ed",
+      cor: "indicador-azul",
     },
     {
       numero: resumo.appCount,
       rotulo: "Usam o aplicativo",
       icone: "phone",
-      cor: "#00a25a",
+      cor: "indicador-verde",
     },
     {
       numero: resumo.diaryCount,
       rotulo: "Usam pulseira e diário",
       icone: "book",
-      cor: "#ff9a12",
+      cor: "indicador-laranja",
     },
     {
       numero: resumo.consultasSemana,
       rotulo: "Consultas esta semana",
       icone: "grid",
-      cor: "#b548ee",
+      cor: "indicador-roxo",
     },
   ] as const;
   return (
@@ -68,7 +68,7 @@ export default async function PaginaPainel() {
       >
         {indicadores.map((indicador) => (
           <article className="indicador-painel" key={indicador.rotulo}>
-            <span style={{ color: indicador.cor }}>
+            <span className={indicador.cor}>
               <Icone name={indicador.icone} size={32} />
             </span>
             <div>
@@ -83,7 +83,7 @@ export default async function PaginaPainel() {
           <h2>Pacientes disponíveis</h2>
           <Link href="/pacientes">Ver todos</Link>
         </div>
-        <div style={{ overflowX: "auto" }}>
+        <div className="tabela-responsiva">
           <table className="care-table tabela-recentes">
             <thead>
               <tr>

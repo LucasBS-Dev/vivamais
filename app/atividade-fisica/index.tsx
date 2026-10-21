@@ -1,20 +1,21 @@
+import { Text } from "../../components/TextoAcessivel";
 import { router } from "expo-router";
-import { Image, Text, View } from "react-native";
+import { Image, View } from "react-native";
 import { Tela, Botao } from "../../components/ElementosInterface";
 import { BarraNavegacao } from "../../components/BarraNavegacao";
 import { estilos as e } from "../../components/estilos";
 export default function EntradaAtividade() {
   return (
-    <Tela>
+    <Tela rodape={<BarraNavegacao />}>
       <Text style={e.title} accessibilityRole="header">
         Atividade Física
       </Text>
       <Image
-        source={require("../../assets/images/idosos-atividade.png")}
+        source={require("../../assets/images/individuais/02_personagens/idosos_atividade_fisica.png")}
         style={{
           width: "100%",
           height: 230,
-          resizeMode: "cover",
+          resizeMode: "contain",
           borderRadius: 12,
         }}
         accessibilityLabel="Ilustração de idosos em movimento"
@@ -41,7 +42,21 @@ export default function EntradaAtividade() {
         rotulo="Registrar atividade realizada"
         onPress={() => router.push("/atividade-fisica/registro")}
       />
-      <BarraNavegacao />
+      <Botao
+        secundario
+        rotulo="Ver minha semana de atividades"
+        onPress={() => router.push("/atividade-fisica/historico")}
+      />
+      <Botao
+        secundario
+        rotulo="Ilustrações das atividades"
+        onPress={() => router.push("/atividade-fisica/ilustracoes")}
+      />
+      <Botao
+        secundario
+        rotulo="Mensagens e orientações da atividade"
+        onPress={() => router.push("/atividade-fisica/orientacoes")}
+      />
     </Tela>
   );
 }

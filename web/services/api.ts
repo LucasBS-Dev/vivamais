@@ -58,7 +58,7 @@ export async function requisicaoApi<T>(
   } catch {
     throw new ErroApi(
       503,
-      "Não foi possível conectar à API. Verifique a conexão e tente novamente.",
+      "Não foi possível conectar ao serviço. Verifique a conexão e tente novamente.",
     );
   }
   if (!resposta.ok) {
@@ -76,7 +76,7 @@ export async function requisicaoApi<T>(
     throw new ErroApi(
       resposta.status,
       details[resposta.status] ||
-        "A API não pôde concluir esta solicitação. Tente novamente.",
+        "Não foi possível concluir esta solicitação. Tente novamente.",
     );
   }
   if (resposta.status === 204) return undefined as T;

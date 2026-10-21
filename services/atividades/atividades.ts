@@ -1,10 +1,11 @@
-import type { components } from "@viva/contracts";
+import type { components, DadosPessoaisPaciente } from "@viva/contracts";
 import type { RequisicaoPaciente } from "../pacientes/pacientes";
+import { calcularIdade } from "./idade";
 export async function buscarDadosAtividade(
   requisicao: RequisicaoPaciente,
   idPaciente: string,
 ) {
-  const [perfil, medicoes] = await Promise.all([
+  const [perfil, medicoes, pessoais] = await Promise.all([
     requisicao<{
       mobility: string;
       balance: string;
@@ -14,9 +15,13 @@ export async function buscarDadosAtividade(
     requisicao<{ items: components["schemas"]["RegistroPressao"][] }>(
       `/patients/${idPaciente}/readings?size=1`,
     ),
+    requisicao<DadosPessoaisPaciente>(
+      `/pacientes/${idPaciente}/dados-pessoais`,
+    ),
   ]);
   const ultima = medicoes.items[0];
   return {
+    idade: calcularIdade(pessoais.dataNascimento),
     perfil: perfil
       ? {
           mobilidade: perfil.mobility,

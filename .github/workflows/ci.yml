@@ -55,21 +55,22 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   browser:
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:17.9-alpine
-        env:
-          POSTGRES_DB: vivamais
-          POSTGRES_USER: vivamais
-          POSTGRES_PASSWORD: ci-isolated-synthetic-only
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd "pg_isready -U vivamais"
-          --health-interval 5s
-          --health-retries 20
     steps:
       - uses: actions/checkout@v4
+      - name: Start isolated PostgreSQL with an ephemeral credential
+        run: |
+          senhaBanco=$(openssl rand -hex 24)
+          echo "::add-mask::$senhaBanco"
+          echo "DATABASE_PASSWORD=$senhaBanco" >> "$GITHUB_ENV"
+          POSTGRES_PASSWORD="$senhaBanco" docker run --detach --name viva-postgres \
+            --publish 127.0.0.1:5432:5432 \
+            --env POSTGRES_DB=vivamais --env POSTGRES_USER=vivamais \
+            --env POSTGRES_PASSWORD postgres:17.9-alpine
+          for i in $(seq 1 60); do
+            docker exec viva-postgres pg_isready -U vivamais -d vivamais && exit 0
+            sleep 2
+          done
+          exit 1
       - uses: pnpm/action-setup@v4
         with:
           version: 10.28.2
@@ -86,18 +87,27 @@ jobs:
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm export:mobile
       - name: Generate ephemeral bootstrap credential
-        run: echo "E2E_PASSWORD=$(openssl rand -hex 24)" >> "$GITHUB_ENV"
+        run: |
+          senhaContas=$(openssl rand -hex 24)
+          echo "::add-mask::$senhaContas"
+          echo "E2E_PASSWORD=$senhaContas" >> "$GITHUB_ENV"
       - name: Build API
         run: bash mvnw --batch-mode --no-transfer-progress -DskipTests package
         working-directory: backend/demo
+      - name: Install real OCR for browser flows
+        run: sudo apt-get update && sudo apt-get install -y tesseract-ocr tesseract-ocr-eng
       - name: Start synthetic API
         run: java -jar backend/demo/target/viva-mais-api-0.1.0-SNAPSHOT.jar > /tmp/viva-api.log 2>&1 &
         env:
           DATABASE_URL: jdbc:postgresql://localhost:5432/vivamais
           DATABASE_USER: vivamais
-          DATABASE_PASSWORD: ci-isolated-synthetic-only
+          DATABASE_PASSWORD: ${{ env.DATABASE_PASSWORD }}
           SPRING_PROFILES_ACTIVE: bootstrap
           DEMO_BOOTSTRAP_PASSWORD: ${{ env.E2E_PASSWORD }}
+          SMS_PROVIDER: LOCAL
+          SMS_LOCAL_TEST_ENABLED: true
+          SMS_REAL_AUTHORIZED: false
+          APP_ENV: test
       - name: Wait for API
         run: for i in $(seq 1 60); do curl --fail --silent http://localhost:8080/actuator/health && exit 0; sleep 2; done; exit 1
       - run: pnpm test:e2e

@@ -66,7 +66,8 @@ export default async function PaginaPacientes({
             )}
           </form>
           <p className="form-hint">
-            A busca considera somente os pacientes autorizados pela API.
+            A busca considera somente os pacientes que sua conta pode
+            acompanhar.
           </p>
         </div>
         <ListaPacientes

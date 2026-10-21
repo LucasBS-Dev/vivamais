@@ -2,3 +2,5 @@
 *.cmd text eol=crlf
 *.docx -text
 *.png -text
+# Espaços de contexto fazem parte da sintaxe do patch e do hash do pnpm.
+patches/*.patch -whitespace

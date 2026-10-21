@@ -2,7 +2,7 @@
 [build]
 builder = "DOCKERFILE"
 dockerfilePath = "Dockerfile"
-watchPatterns = ["/services/api/**"]
+watchPatterns = ["/backend/demo/**", "/infra/railway.toml"]
 
 [deploy]
 healthcheckPath = "/actuator/health"

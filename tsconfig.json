@@ -18,8 +18,7 @@
     "hooks/**/*.ts",
     "services/**/*.ts",
     "tests/mobile/**/*.ts",
-    "app.config.ts",
-    "expo-env.d.ts"
+    "app.config.ts"
   ],
   "exclude": [
     "node_modules",

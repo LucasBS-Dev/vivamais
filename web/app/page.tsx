@@ -1,6 +1,11 @@
 import { MarcaViva } from "@/components/Icones";
 import { FormularioAcesso } from "@/components/FormularioAcesso";
 import { RodapePublico } from "@/components/RodapePublico";
+import { enderecoAplicativo } from "@/services/enderecos";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { ErroApi, requisicaoApi, SESSION_COOKIE } from "@/services/api";
+import type { UsuarioSessao } from "@viva/contracts";
 
 const erros: Record<string, string> = {
   dados: "Confira seu e-mail e preencha a senha para continuar.",
@@ -10,7 +15,7 @@ const erros: Record<string, string> = {
     "Esta plataforma é destinada à equipe profissional. Pacientes devem usar o aplicativo Viva+.",
   limite: "Muitas tentativas de acesso. Aguarde um pouco e tente novamente.",
   conexao:
-    "Não foi possível conectar à API do projeto. Verifique a conexão e tente novamente.",
+    "Não foi possível conectar ao serviço. Verifique a conexão e tente novamente.",
 };
 
 export default async function PaginaAcesso({
@@ -19,6 +24,17 @@ export default async function PaginaAcesso({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const busca = await searchParams;
+  const token = (await cookies()).get(SESSION_COOKIE)?.value;
+  if (token) {
+    let usuario: UsuarioSessao | null = null;
+    try {
+      usuario = await requisicaoApi<UsuarioSessao>("/auth/me", { token });
+    } catch (falha) {
+      if (!(falha instanceof ErroApi)) throw falha;
+    }
+    if (usuario && usuario.role !== "PATIENT") redirect("/painel");
+  }
+  const aplicativo = enderecoAplicativo();
   const erro = typeof busca.erro === "string" ? erros[busca.erro] : undefined;
   const mensagemSessao =
     busca.sessao === "expirada"
@@ -32,7 +48,7 @@ export default async function PaginaAcesso({
     <>
       <main id="conteudo" className="acesso-viva">
         <section className="apresentacao-acesso" aria-label="Sobre o Viva+">
-          <MarcaViva />
+          <MarcaViva grande />
           <p className="subtitulo-marca">Plataforma Profissional</p>
           <p className="chamada-acesso">
             Acompanhamento do cuidado
@@ -41,7 +57,7 @@ export default async function PaginaAcesso({
           </p>
           <img
             className="ilustracao-profissionais"
-            src="/images/profissionais.png"
+            src="/images/individuais/02_personagens/profissionais_de_saude.png"
             alt="Ilustração de dois profissionais de saúde"
             width={414}
             height={296}
@@ -67,16 +83,34 @@ export default async function PaginaAcesso({
           {busca.saida === "local" && (
             <p role="status" className="aviso-acesso">
               Sessão removida do navegador. A revogação remota aguarda
-              confirmação da API.
+              confirmação do serviço.
             </p>
           )}
           <FormularioAcesso />
+          {aplicativo && (
+            <div className="acesso-paciente">
+              <strong>Você é paciente?</strong>
+              <p>
+                Abra o aplicativo para ativar sua conta e acessar seus
+                registros.
+              </p>
+              <a href={aplicativo} className="button button-secondary">
+                Abrir aplicativo do paciente
+              </a>
+            </div>
+          )}
+          <p className="form-hint">
+            O cadastro de pacientes é feito após o acesso profissional em
+            Cadastrar paciente.
+          </p>
           <a className="recuperar-senha" href="/suporte">
             Esqueci minha senha
           </a>
-          <p className="nota-demonstracao">
-            Demonstração acadêmica · Use somente contas sintéticas.
-          </p>
+          {process.env.APP_ENV !== "production" && (
+            <p className="nota-demonstracao">
+              Ambiente de desenvolvimento · Use somente dados fictícios.
+            </p>
+          )}
         </section>
       </main>
       <RodapePublico />

@@ -1,4 +1,5 @@
 "use client";
+import { useClientePronto } from "../hooks/useClientePronto";
 import { useCallback, useEffect, useState } from "react";
 import { consultarDominio } from "../services/dominio";
 type Profissional = { id: string; displayName: string };
@@ -8,6 +9,7 @@ export function VinculosPaciente({
 }: {
   patientId: string;
 }) {
+  const pronto = useClientePronto();
   const [profissionais, definirProfissionais] = useState<Profissional[]>([]),
     [vinculados, definirVinculados] = useState<Vinculo[]>([]),
     [erro, definirErro] = useState(""),
@@ -66,7 +68,7 @@ export function VinculosPaciente({
             {link.displayName}{" "}
             <button
               className="button button-secondary"
-              disabled={ocupado}
+              disabled={!pronto || ocupado}
               onClick={() => {
                 void alterarVinculo(link.professionalId, true);
               }}
@@ -78,6 +80,7 @@ export function VinculosPaciente({
       </ul>
       {!vinculados.length && <p>Nenhum vínculo profissional cadastrado.</p>}
       <form
+        method="post"
         className="care-form"
         onSubmit={(e) => {
           e.preventDefault();
@@ -109,7 +112,7 @@ export function VinculosPaciente({
               ))}
           </select>
         </label>
-        <button className="button button-primary" disabled={ocupado}>
+        <button className="button button-primary" disabled={!pronto || ocupado}>
           Autorizar vínculo
         </button>
       </form>

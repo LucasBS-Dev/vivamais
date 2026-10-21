@@ -1,5 +1,6 @@
+import { Text } from "../../components/TextoAcessivel";
 import { Redirect, router, useLocalSearchParams } from "expo-router";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { useAutenticacao } from "../../hooks/useAutenticacao";
 import { useResultadoPressao } from "../../hooks/useResultadoPressao";
 import {
@@ -22,7 +23,9 @@ export default function ResultadoPressao() {
       <Text style={[e.title, { fontSize: 23 }]} accessibilityRole="header">
         Minha Pressão
       </Text>
-      {resultado.isPending ? (
+      {!parametros.id || !parametros.paciente ? (
+        <MensagemErro mensagem="Registre uma medição ou consulte seu histórico para ver os valores salvos." />
+      ) : resultado.isPending ? (
         <Carregando />
       ) : resultado.isError ? (
         <MensagemErro mensagem="Não foi possível consultar o registro. Verifique sua conexão." />
@@ -77,7 +80,7 @@ export default function ResultadoPressao() {
             {resultado.data.pendente && (
               <Text style={e.small}>
                 Não feche a aba do navegador enquanto houver envio pendente. O
-                resultado será atualizado após confirmação da API.
+                resultado será atualizado após a confirmação do envio.
               </Text>
             )}
           </>

@@ -1,4 +1,5 @@
 "use client";
+import { useClientePronto } from "../hooks/useClientePronto";
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { consultarDominio } from "../services/dominio";
 type Refeicao = {
@@ -20,6 +21,7 @@ export function RefeicoesPaciente({
 }: {
   patientId: string;
 }) {
+  const pronto = useClientePronto();
   const [refeicoes, definirRefeicoes] = useState<Refeicao[]>([]),
     [pagina, definirPagina] = useState(0),
     [total, definirTotal] = useState(0),
@@ -85,43 +87,51 @@ export function RefeicoesPaciente({
     <section className="panel padded spaced">
       <h2>Alimentação e fotos privadas</h2>
       <p>
-        Somente fotos sintéticas nesta demo. A imagem não mede nutrientes.
-        Análise por IA permanece indisponível até configurar um serviço e
-        aprovar seus critérios.
+        Envie uma foto da refeição. A imagem não mede nutrientes. Análise por IA
+        permanece indisponível até configurar um serviço e aprovar seus
+        critérios.
       </p>
       {erro && <p role="alert">{erro}</p>}
       {aviso && <p role="status">{aviso}</p>}
-      <form className="care-form" onSubmit={salvar}>
-        <label>
-          Foto da refeição (PNG/JPEG, até 2 MB)
-          <input
-            name="file"
-            type="file"
-            accept="image/png,image/jpeg"
-            required
-          />
-        </label>
-        <label>
-          Data e hora da refeição
-          <input
-            type="datetime-local"
-            name="occurredAt"
-            required
-            defaultValue={new Date(
-              Date.now() - new Date().getTimezoneOffset() * 60000,
-            )
-              .toISOString()
-              .slice(0, 16)}
-          />
-        </label>
-        <label>
-          Observações
-          <textarea name="notes" maxLength={2000} />
-        </label>
-        <button className="button button-primary" disabled={ocupado}>
-          {ocupado ? "Enviando foto…" : "Salvar refeição e foto"}
-        </button>
-      </form>
+      <details className="adicionar-foto">
+        <summary className="button button-secondary">
+          Adicionar foto de refeição
+        </summary>
+        <form method="post" className="care-form" onSubmit={salvar}>
+          <label>
+            Foto da refeição (PNG/JPEG, até 2 MB)
+            <input
+              name="file"
+              type="file"
+              accept="image/png,image/jpeg"
+              required
+            />
+          </label>
+          <label>
+            Data e hora da refeição
+            <input
+              type="datetime-local"
+              name="occurredAt"
+              required
+              defaultValue={new Date(
+                Date.now() - new Date().getTimezoneOffset() * 60000,
+              )
+                .toISOString()
+                .slice(0, 16)}
+            />
+          </label>
+          <label>
+            Observações
+            <textarea name="notes" maxLength={2000} />
+          </label>
+          <button
+            className="button button-primary"
+            disabled={!pronto || ocupado}
+          >
+            {ocupado ? "Enviando foto…" : "Salvar refeição e foto"}
+          </button>
+        </form>
+      </details>
       <div className="care-grid">
         {refeicoes.map((meal) => (
           <article key={meal.id} className="care-record">
@@ -129,8 +139,8 @@ export function RefeicoesPaciente({
               src={`/api/photos/${meal.fileId}`}
               width={300}
               height={220}
-              style={{ objectFit: "contain", maxWidth: "100%" }}
-              alt="Foto privada de refeição sintética"
+              className="foto-refeicao-privada"
+              alt="Foto privada da refeição"
             />
             <p>
               {new Date(meal.occurredAt).toLocaleString("pt-BR", {

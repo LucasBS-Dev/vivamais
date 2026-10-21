@@ -1,0 +1,718 @@
+[
+  {
+    "category": "01_logos",
+    "name": "icone_do_aplicativo",
+    "filename": "assets/01_logos/icone_do_aplicativo.png",
+    "width": 573,
+    "height": 651,
+    "source": "prancha",
+    "source_crop": [
+      224,
+      26,
+      407,
+      235
+    ]
+  },
+  {
+    "category": "02_personagens",
+    "name": "profissionais_de_saude",
+    "filename": "assets/02_personagens/profissionais_de_saude.png",
+    "width": 1089,
+    "height": 816,
+    "source": "prancha",
+    "source_crop": [
+      416,
+      15,
+      771,
+      279
+    ]
+  },
+  {
+    "category": "02_personagens",
+    "name": "idosos_atividade_fisica",
+    "filename": "assets/02_personagens/idosos_atividade_fisica.png",
+    "width": 945,
+    "height": 849,
+    "source": "prancha",
+    "source_crop": [
+      769,
+      2,
+      1076,
+      277
+    ]
+  },
+  {
+    "category": "02_personagens",
+    "name": "idosa_exercicio_sentado",
+    "filename": "assets/02_personagens/idosa_exercicio_sentado.png",
+    "width": 579,
+    "height": 801,
+    "source": "prancha",
+    "source_crop": [
+      1077,
+      20,
+      1262,
+      279
+    ]
+  },
+  {
+    "category": "02_personagens",
+    "name": "idosa_perfil",
+    "filename": "assets/02_personagens/idosa_perfil.png",
+    "width": 519,
+    "height": 606,
+    "source": "prancha",
+    "source_crop": [
+      8,
+      330,
+      173,
+      524
+    ]
+  },
+  {
+    "category": "02_personagens",
+    "name": "idoso_perfil",
+    "filename": "assets/02_personagens/idoso_perfil.png",
+    "width": 609,
+    "height": 603,
+    "source": "prancha",
+    "source_crop": [
+      170,
+      331,
+      365,
+      524
+    ]
+  },
+  {
+    "category": "03_exercicios",
+    "name": "bracos_sentado",
+    "filename": "assets/03_exercicios/bracos_sentado.png",
+    "width": 582,
+    "height": 609,
+    "source": "prancha",
+    "source_crop": [
+      360,
+      329,
+      546,
+      524
+    ]
+  },
+  {
+    "category": "03_exercicios",
+    "name": "ombros",
+    "filename": "assets/03_exercicios/ombros.png",
+    "width": 651,
+    "height": 624,
+    "source": "prancha",
+    "source_crop": [
+      549,
+      325,
+      758,
+      525
+    ]
+  },
+  {
+    "category": "03_exercicios",
+    "name": "pes_sentado",
+    "filename": "assets/03_exercicios/pes_sentado.png",
+    "width": 519,
+    "height": 597,
+    "source": "prancha",
+    "source_crop": [
+      757,
+      332,
+      922,
+      523
+    ]
+  },
+  {
+    "category": "03_exercicios",
+    "name": "caminhada_leve",
+    "filename": "assets/03_exercicios/caminhada_leve.png",
+    "width": 465,
+    "height": 603,
+    "source": "prancha",
+    "source_crop": [
+      929,
+      331,
+      1076,
+      524
+    ]
+  },
+  {
+    "category": "03_exercicios",
+    "name": "alongamento_leve",
+    "filename": "assets/03_exercicios/alongamento_leve.png",
+    "width": 519,
+    "height": 603,
+    "source": "prancha",
+    "source_crop": [
+      1091,
+      332,
+      1256,
+      525
+    ]
+  },
+  {
+    "category": "04_objetos",
+    "name": "aparelho_pressao_arterial",
+    "filename": "assets/04_objetos/aparelho_pressao_arterial.png",
+    "width": 753,
+    "height": 516,
+    "source": "prancha",
+    "source_crop": [
+      0,
+      572,
+      243,
+      736
+    ]
+  },
+  {
+    "category": "04_objetos",
+    "name": "pulseira_pulso_em_dia",
+    "filename": "assets/04_objetos/pulseira_pulso_em_dia.png",
+    "width": 714,
+    "height": 525,
+    "source": "prancha",
+    "source_crop": [
+      250,
+      570,
+      480,
+      737
+    ]
+  },
+  {
+    "category": "04_objetos",
+    "name": "medicamentos",
+    "filename": "assets/04_objetos/medicamentos.png",
+    "width": 561,
+    "height": 462,
+    "source": "prancha",
+    "source_crop": [
+      487,
+      587,
+      666,
+      733
+    ]
+  },
+  {
+    "category": "04_objetos",
+    "name": "refeicao_saudavel",
+    "filename": "assets/04_objetos/refeicao_saudavel.png",
+    "width": 888,
+    "height": 519,
+    "source": "prancha",
+    "source_crop": [
+      672,
+      572,
+      960,
+      737
+    ]
+  },
+  {
+    "category": "04_objetos",
+    "name": "copo_de_agua",
+    "filename": "assets/04_objetos/copo_de_agua.png",
+    "width": 378,
+    "height": 474,
+    "source": "prancha",
+    "source_crop": [
+      964,
+      585,
+      1082,
+      735
+    ]
+  },
+  {
+    "category": "04_objetos",
+    "name": "tenis_caminhada",
+    "filename": "assets/04_objetos/tenis_caminhada.png",
+    "width": 588,
+    "height": 489,
+    "source": "prancha",
+    "source_crop": [
+      1082,
+      578,
+      1270,
+      733
+    ]
+  },
+  {
+    "category": "05_menu",
+    "name": "minha_pressao",
+    "filename": "assets/05_menu/minha_pressao.png",
+    "width": 360,
+    "height": 387,
+    "source": "prancha",
+    "source_crop": [
+      4,
+      784,
+      116,
+      905
+    ]
+  },
+  {
+    "category": "05_menu",
+    "name": "meus_medicamentos",
+    "filename": "assets/05_menu/meus_medicamentos.png",
+    "width": 360,
+    "height": 381,
+    "source": "prancha",
+    "source_crop": [
+      120,
+      785,
+      232,
+      904
+    ]
+  },
+  {
+    "category": "05_menu",
+    "name": "minha_alimentacao",
+    "filename": "assets/05_menu/minha_alimentacao.png",
+    "width": 360,
+    "height": 387,
+    "source": "prancha",
+    "source_crop": [
+      237,
+      784,
+      349,
+      905
+    ]
+  },
+  {
+    "category": "05_menu",
+    "name": "atividade_fisica",
+    "filename": "assets/05_menu/atividade_fisica.png",
+    "width": 366,
+    "height": 381,
+    "source": "prancha",
+    "source_crop": [
+      353,
+      785,
+      467,
+      904
+    ]
+  },
+  {
+    "category": "05_menu",
+    "name": "meu_historico",
+    "filename": "assets/05_menu/meu_historico.png",
+    "width": 372,
+    "height": 387,
+    "source": "prancha",
+    "source_crop": [
+      470,
+      784,
+      586,
+      905
+    ]
+  },
+  {
+    "category": "05_menu",
+    "name": "area_profissional",
+    "filename": "assets/05_menu/area_profissional.png",
+    "width": 363,
+    "height": 381,
+    "source": "prancha",
+    "source_crop": [
+      587,
+      785,
+      700,
+      904
+    ]
+  },
+  {
+    "category": "05_menu",
+    "name": "lembretes",
+    "filename": "assets/05_menu/lembretes.png",
+    "width": 354,
+    "height": 387,
+    "source": "prancha",
+    "source_crop": [
+      704,
+      784,
+      814,
+      905
+    ]
+  },
+  {
+    "category": "05_menu",
+    "name": "configuracoes",
+    "filename": "assets/05_menu/configuracoes.png",
+    "width": 363,
+    "height": 387,
+    "source": "prancha",
+    "source_crop": [
+      817,
+      784,
+      930,
+      905
+    ]
+  },
+  {
+    "category": "06_humor",
+    "name": "estou_bem",
+    "filename": "assets/06_humor/estou_bem.png",
+    "width": 204,
+    "height": 204,
+    "source": "prancha",
+    "source_crop": [
+      977,
+      806,
+      1035,
+      864
+    ]
+  },
+  {
+    "category": "06_humor",
+    "name": "um_pouco_cansado",
+    "filename": "assets/06_humor/um_pouco_cansado.png",
+    "width": 216,
+    "height": 204,
+    "source": "prancha",
+    "source_crop": [
+      1070,
+      806,
+      1132,
+      864
+    ]
+  },
+  {
+    "category": "06_humor",
+    "name": "tontura_ou_mal_estar",
+    "filename": "assets/06_humor/tontura_ou_mal_estar.png",
+    "width": 213,
+    "height": 204,
+    "source": "prancha",
+    "source_crop": [
+      1175,
+      806,
+      1236,
+      864
+    ]
+  },
+  {
+    "category": "08_cards",
+    "name": "medicao_da_pressao",
+    "filename": "assets/08_cards/medicao_da_pressao.png",
+    "width": 525,
+    "height": 426,
+    "source": "prancha",
+    "source_crop": [
+      10,
+      1057,
+      177,
+      1191
+    ]
+  },
+  {
+    "category": "08_cards",
+    "name": "lembrete_medicamento",
+    "filename": "assets/08_cards/lembrete_medicamento.png",
+    "width": 510,
+    "height": 420,
+    "source": "prancha",
+    "source_crop": [
+      198,
+      1058,
+      360,
+      1190
+    ]
+  },
+  {
+    "category": "08_cards",
+    "name": "registro_alimentacao",
+    "filename": "assets/08_cards/registro_alimentacao.png",
+    "width": 477,
+    "height": 429,
+    "source": "prancha",
+    "source_crop": [
+      385,
+      1056,
+      536,
+      1191
+    ]
+  },
+  {
+    "category": "08_cards",
+    "name": "atividade_fisica",
+    "filename": "assets/08_cards/atividade_fisica.png",
+    "width": 534,
+    "height": 423,
+    "source": "prancha",
+    "source_crop": [
+      554,
+      1058,
+      724,
+      1191
+    ]
+  },
+  {
+    "category": "08_cards",
+    "name": "acompanhamento_evolucao",
+    "filename": "assets/08_cards/acompanhamento_evolucao.png",
+    "width": 555,
+    "height": 426,
+    "source": "prancha",
+    "source_crop": [
+      741,
+      1058,
+      918,
+      1192
+    ]
+  },
+  {
+    "category": "08_cards",
+    "name": "planejamento_cuidado",
+    "filename": "assets/08_cards/planejamento_cuidado.png",
+    "width": 495,
+    "height": 429,
+    "source": "prancha",
+    "source_crop": [
+      938,
+      1056,
+      1095,
+      1191
+    ]
+  },
+  {
+    "category": "08_cards",
+    "name": "seguranca_dados",
+    "filename": "assets/08_cards/seguranca_dados.png",
+    "width": 468,
+    "height": 429,
+    "source": "prancha",
+    "source_crop": [
+      1118,
+      1056,
+      1266,
+      1191
+    ]
+  },
+  {
+    "category": "07_acoes",
+    "name": "lembrete",
+    "filename": "assets/07_acoes/lembrete.png",
+    "width": 210,
+    "height": 168,
+    "source": "prancha",
+    "source_crop": [
+      9,
+      953,
+      69,
+      999
+    ]
+  },
+  {
+    "category": "07_acoes",
+    "name": "confirmado",
+    "filename": "assets/07_acoes/confirmado.png",
+    "width": 207,
+    "height": 168,
+    "source": "prancha",
+    "source_crop": [
+      79,
+      953,
+      138,
+      999
+    ]
+  },
+  {
+    "category": "07_acoes",
+    "name": "nao_realizado",
+    "filename": "assets/07_acoes/nao_realizado.png",
+    "width": 207,
+    "height": 168,
+    "source": "prancha",
+    "source_crop": [
+      152,
+      953,
+      211,
+      999
+    ]
+  },
+  {
+    "category": "07_acoes",
+    "name": "calendario",
+    "filename": "assets/07_acoes/calendario.png",
+    "width": 210,
+    "height": 168,
+    "source": "prancha",
+    "source_crop": [
+      222,
+      953,
+      282,
+      999
+    ]
+  },
+  {
+    "category": "07_acoes",
+    "name": "horario",
+    "filename": "assets/07_acoes/horario.png",
+    "width": 207,
+    "height": 168,
+    "source": "prancha",
+    "source_crop": [
+      297,
+      953,
+      356,
+      999
+    ]
+  },
+  {
+    "category": "07_acoes",
+    "name": "grafico",
+    "filename": "assets/07_acoes/grafico.png",
+    "width": 207,
+    "height": 168,
+    "source": "prancha",
+    "source_crop": [
+      372,
+      953,
+      431,
+      999
+    ]
+  },
+  {
+    "category": "07_acoes",
+    "name": "foto",
+    "filename": "assets/07_acoes/foto.png",
+    "width": 207,
+    "height": 168,
+    "source": "prancha",
+    "source_crop": [
+      454,
+      953,
+      513,
+      999
+    ]
+  },
+  {
+    "category": "07_acoes",
+    "name": "enviar",
+    "filename": "assets/07_acoes/enviar.png",
+    "width": 210,
+    "height": 168,
+    "source": "prancha",
+    "source_crop": [
+      531,
+      953,
+      591,
+      999
+    ]
+  },
+  {
+    "category": "07_acoes",
+    "name": "editar",
+    "filename": "assets/07_acoes/editar.png",
+    "width": 210,
+    "height": 168,
+    "source": "prancha",
+    "source_crop": [
+      605,
+      953,
+      665,
+      999
+    ]
+  },
+  {
+    "category": "07_acoes",
+    "name": "excluir",
+    "filename": "assets/07_acoes/excluir.png",
+    "width": 207,
+    "height": 168,
+    "source": "prancha",
+    "source_crop": [
+      676,
+      953,
+      735,
+      999
+    ]
+  },
+  {
+    "category": "07_acoes",
+    "name": "baixar",
+    "filename": "assets/07_acoes/baixar.png",
+    "width": 210,
+    "height": 168,
+    "source": "prancha",
+    "source_crop": [
+      743,
+      953,
+      803,
+      999
+    ]
+  },
+  {
+    "category": "07_acoes",
+    "name": "sincronizar",
+    "filename": "assets/07_acoes/sincronizar.png",
+    "width": 210,
+    "height": 168,
+    "source": "prancha",
+    "source_crop": [
+      830,
+      953,
+      890,
+      999
+    ]
+  },
+  {
+    "category": "07_acoes",
+    "name": "sem_internet",
+    "filename": "assets/07_acoes/sem_internet.png",
+    "width": 210,
+    "height": 168,
+    "source": "prancha",
+    "source_crop": [
+      913,
+      953,
+      973,
+      999
+    ]
+  },
+  {
+    "category": "07_acoes",
+    "name": "alerta",
+    "filename": "assets/07_acoes/alerta.png",
+    "width": 207,
+    "height": 168,
+    "source": "prancha",
+    "source_crop": [
+      1013,
+      953,
+      1072,
+      999
+    ]
+  },
+  {
+    "category": "07_acoes",
+    "name": "informacao",
+    "filename": "assets/07_acoes/informacao.png",
+    "width": 207,
+    "height": 168,
+    "source": "prancha",
+    "source_crop": [
+      1111,
+      953,
+      1170,
+      999
+    ]
+  },
+  {
+    "category": "01_logos",
+    "name": "logo_viva_mais_com_slogan",
+    "filename": "assets/01_logos/logo_viva_mais_com_slogan.png",
+    "width": 1536,
+    "height": 1024,
+    "source": "pacote_anterior_alta_resolucao"
+  },
+  {
+    "category": "01_logos",
+    "name": "logo_viva_mais_sem_slogan",
+    "filename": "assets/01_logos/logo_viva_mais_sem_slogan.png",
+    "width": 1278,
+    "height": 1230,
+    "source": "pacote_anterior_alta_resolucao"
+  }
+]

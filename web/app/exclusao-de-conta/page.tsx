@@ -7,14 +7,14 @@ export default function AccountDeletionPage() {
       <div className="notice">
         <p>
           O fluxo institucional de solicitação de exclusão está pendente. Esta
-          página é um rascunho e não envia nem registra solicitações.
+          página não envia nem registra solicitações.
         </p>
       </div>
-      <h2>Durante a demonstração</h2>
+      <h2>Como interromper o acesso</h2>
       <p>
-        Se você recebeu uma conta sintética e deseja interromper o acesso, fale
-        diretamente com a pessoa responsável pela demonstração usando o contato
-        já conhecido. Encerre também a sessão pelo botão “Sair”.
+        Se deseja interromper seu acesso, fale com a equipe que forneceu sua
+        conta pelo contato já conhecido. Encerre também a sessão pelo botão
+        “Sair”.
       </p>
       <h2>Antes da publicação</h2>
       <p>
@@ -28,7 +28,7 @@ export default function AccountDeletionPage() {
         Contas, dados de acompanhamento e eventos de auditoria têm finalidades
         distintas. Regras de retenção e eventuais obrigações legais precisam de
         avaliação institucional e jurídica. A aplicação não executa apagamento
-        clínico automático nesta fase.
+        clínico automático nesta versão.
       </p>
       <p>
         Consulte também <Link href="/privacidade">privacidade</Link> e{" "}

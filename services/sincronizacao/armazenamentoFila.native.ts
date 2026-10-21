@@ -28,7 +28,7 @@ async function abrirBanco() {
       if (!cipher || !Object.values(cipher).some(Boolean)) {
         await db.closeAsync();
         throw new Error(
-          "Este build não possui armazenamento criptografado. Use o build de desenvolvimento com SQLCipher.",
+          "Esta instalação não oferece armazenamento protegido. Solicite à equipe a versão compatível antes de registrar dados sem conexão.",
         );
       }
       await db.execAsync(

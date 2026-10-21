@@ -1,0 +1,40 @@
+{
+  "executadoEm": "2026-10-20T21:01:11.404Z",
+  "medidas": [
+    {
+      "largura": 1366,
+      "altura": 900,
+      "densidade": 2,
+      "rolagemHorizontal": false,
+      "proporcaoLogoPreservada": true
+    },
+    {
+      "largura": 1440,
+      "altura": 900,
+      "densidade": 2,
+      "rolagemHorizontal": false,
+      "proporcaoLogoPreservada": true
+    },
+    {
+      "largura": 1920,
+      "altura": 1080,
+      "densidade": 2,
+      "rolagemHorizontal": false,
+      "proporcaoLogoPreservada": true
+    },
+    {
+      "largura": 768,
+      "altura": 1024,
+      "densidade": 2,
+      "rolagemHorizontal": false,
+      "proporcaoLogoPreservada": true
+    },
+    {
+      "largura": 390,
+      "altura": 844,
+      "densidade": 2,
+      "rolagemHorizontal": false,
+      "proporcaoLogoPreservada": true
+    }
+  ]
+}

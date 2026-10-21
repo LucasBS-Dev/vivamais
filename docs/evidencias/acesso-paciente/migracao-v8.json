@@ -1,0 +1,12 @@
+{
+  "executadoEm": "2026-10-20T17:39:47.9651257Z",
+  "objetosChaveAnterioresPreservados": true,
+  "snapshotCifradoPrivado": true,
+  "chaveHmacSemLeituraPublica": true,
+  "contagensClinicasPreservadas": true,
+  "migrationsV1V7Preservadas": true,
+  "tabelas": 32,
+  "tabelasRls": 31,
+  "quantidadeTabelasConferidas": 11,
+  "migracoesAplicadas": 8
+}

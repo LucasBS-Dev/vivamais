@@ -3,11 +3,18 @@ import { expect, test } from "@playwright/test";
 test("acesso anônimo não abre o portal nem a lista de pacientes", async ({
   page,
 }) => {
-  for (const path of ["/painel", "/pacientes"]) {
+  for (const path of [
+    "/painel",
+    "/pacientes",
+    "/pacientes/novo",
+    "/consultas",
+    "/relatorios",
+    "/configuracoes",
+  ]) {
     await page.goto(path);
     await expect(page).toHaveURL(/\/\?sessao=necessaria$/);
     await expect(
-      page.getByRole("heading", { name: "Bem-vindo de volta" }),
+      page.getByRole("heading", { name: "Acesso do Profissional" }),
     ).toBeVisible();
     await expect(page.getByLabel("Senha", { exact: true })).toHaveAttribute(
       "type",
@@ -16,7 +23,7 @@ test("acesso anônimo não abre o portal nem a lista de pacientes", async ({
   }
 });
 
-test("rotas públicas explicitam rascunhos e não simulam envio de exclusão", async ({
+test("rotas públicas informam pendências e não simulam envio de exclusão", async ({
   page,
 }) => {
   for (const [path, heading] of [
@@ -29,15 +36,14 @@ test("rotas públicas explicitam rascunhos e não simulam envio de exclusão", a
       page.getByRole("heading", { name: heading, exact: true }),
     ).toBeVisible();
     await expect(
-      page.getByText("DEMONSTRAÇÃO ACADÊMICA · RASCUNHO", { exact: true }),
+      page.getByText("INFORMAÇÕES DO SERVIÇO", { exact: true }),
     ).toBeVisible();
   }
   await expect(page.locator("form")).toHaveCount(0);
   await expect(
-    page.getByText(
-      "Esta página é um rascunho e não envia nem registra solicitações.",
-      { exact: false },
-    ),
+    page.getByText("Esta página não envia nem registra solicitações.", {
+      exact: false,
+    }),
   ).toBeVisible();
 });
 
@@ -88,13 +94,14 @@ test("profissional entra, consulta dados reais autorizados e encerra a sessão",
     page.getByRole("heading", { name: "Pacientes disponíveis" }),
   ).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "Próximas etapas do cuidado" }),
+    page.getByLabel("Pacientes autorizados", { exact: true }),
   ).toBeVisible();
   const cookie = (await context.cookies()).find(
     (value) => value.name === "viva_session",
   );
   expect(cookie?.httpOnly).toBe(true);
   expect(cookie?.sameSite).toBe("Strict");
+  if (process.env.E2E_PRODUCTION === "true") expect(cookie?.secure).toBe(true);
   expect(
     await page.evaluate(() => document.cookie.includes("viva_session")),
   ).toBe(false);
@@ -115,7 +122,13 @@ test("profissional entra, consulta dados reais autorizados e encerra a sessão",
     page.getByText("Acesso autorizado", { exact: true }),
   ).toBeVisible();
   await expect(
-    page.getByRole("heading", {name:"Histórico da pressão",exact:true}),
+    page.getByRole("tab", { name: "Visão geral", exact: true }),
+  ).toHaveAttribute("aria-selected", "true");
+  await page
+    .getByRole("tab", { name: "Pressão arterial", exact: true })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "Histórico da pressão", exact: true }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Sair", exact: true }).click();
   await expect(page).toHaveURL(/\/\?saida=confirmada$/);

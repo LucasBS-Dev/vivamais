@@ -21,9 +21,9 @@ export function DocumentoPublico({
         </Link>
       </header>
       <main id="conteudo" className="public-document">
-        <span className="phase-pill">DEMONSTRAÇÃO ACADÊMICA · RASCUNHO</span>
+        <span className="phase-pill">INFORMAÇÕES DO SERVIÇO</span>
         <h1>{title}</h1>
-        <p className="document-date">Atualizado em 16 de outubro de 2026</p>
+        <p className="document-date">Atualizado em 20 de outubro de 2026</p>
         {children}
       </main>
       <RodapePublico />

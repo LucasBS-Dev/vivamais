@@ -1,11 +1,13 @@
+import { Text } from "./TextoAcessivel";
 import { Redirect, router } from "expo-router";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, View } from "react-native";
 import { useAutenticacao } from "../hooks/useAutenticacao";
 import { useRoteiroAtividade } from "../hooks/useRoteiroAtividade";
 import { useDadosAtividade } from "../hooks/useDadosAtividade";
 import { Tela, Botao, Carregando, MensagemErro } from "./ElementosInterface";
 import { BarraNavegacao } from "./BarraNavegacao";
 import { estilos as e } from "./estilos";
+import { IlustracaoViva } from "./IlustracoesViva";
 type Etapa =
   | "sentimento"
   | "pressao"
@@ -58,12 +60,25 @@ export function RoteiroAtividade({ etapa }: { etapa: Etapa }) {
         minHeight: 70,
       }}
     >
-      <Text style={{ fontSize: 30, color: "#008d53" }}>{icone}</Text>
+      {etapa === "sentimento" ? (
+        <IlustracaoViva
+          nome={
+            rotulo === "Estou bem"
+              ? "bem"
+              : rotulo === "Estou um pouco cansado"
+                ? "cansado"
+                : "mal"
+          }
+          tamanho={40}
+        />
+      ) : (
+        <Text style={{ fontSize: 30, color: "#008d53" }}>{icone}</Text>
+      )}
       <Text style={[e.body, { flex: 1 }]}>{rotulo}</Text>
     </Pressable>
   );
   return (
-    <Tela>
+    <Tela rodape={<BarraNavegacao />}>
       <Pressable
         accessibilityRole="button"
         accessibilityLabel="Voltar à atividade física"
@@ -118,6 +133,7 @@ export function RoteiroAtividade({ etapa }: { etapa: Etapa }) {
           </View>
           <Botao
             rotulo="Continuar"
+            desabilitado={!roteiro.estadoInformado}
             onPress={() => {
               if (roteiro.estadoInformado)
                 router.push("/atividade-fisica/verificacao-pressao");
@@ -168,6 +184,7 @@ export function RoteiroAtividade({ etapa }: { etapa: Etapa }) {
           </View>
           <Botao
             rotulo="Continuar"
+            desabilitado={roteiro.pressaoVerificada === null}
             onPress={() => {
               if (roteiro.pressaoVerificada !== null)
                 router.push("/atividade-fisica/suas-informacoes");
@@ -187,6 +204,10 @@ export function RoteiroAtividade({ etapa }: { etapa: Etapa }) {
             <MensagemErro mensagem="Não foi possível consultar o perfil funcional." />
           )}
           {[
+            [
+              "Idade",
+              dados.data?.idade == null ? null : `${dados.data.idade} anos`,
+            ],
             ["Mobilidade", dados.data?.perfil?.mobilidade],
             ["Equilíbrio", dados.data?.perfil?.equilibrio],
             ["Restrições", dados.data?.perfil?.restricoes],
@@ -270,7 +291,6 @@ export function RoteiroAtividade({ etapa }: { etapa: Etapa }) {
           />
         </>
       )}
-      <BarraNavegacao />
     </Tela>
   );
 }

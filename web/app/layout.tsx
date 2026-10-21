@@ -7,8 +7,7 @@ import "./globals.css";
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: { default: "Viva+ | Plataforma profissional", template: "%s | Viva+" },
-  description:
-    "Plataforma profissional Viva+ / Pulso em Dia. Demonstração acadêmica com dados sintéticos.",
+  description: "Viva+ / Pulso em Dia. Plataforma de acompanhamento de saúde.",
   robots: { index: false, follow: false },
 };
 

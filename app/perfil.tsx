@@ -1,6 +1,7 @@
+import { Text } from "../components/TextoAcessivel";
 import { useEffect, useState } from "react";
 import { Redirect, router } from "expo-router";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import type { Paciente } from "@viva/contracts";
 import { useAutenticacao } from "../hooks/useAutenticacao";
 import {
@@ -11,6 +12,7 @@ import {
   Tela,
 } from "../components/ElementosInterface";
 import { estilos as s } from "../components/estilos";
+import { ContatoPaciente } from "../components/ContatoPaciente";
 export default function Perfil() {
   const {
     sessao: sessao,
@@ -53,7 +55,7 @@ export default function Perfil() {
       {erro && <MensagemErro mensagem={erro} />}
       <View style={s.card}>
         <Text style={s.title}>{sessao.usuario.nomeExibicao}</Text>
-        <Text style={s.body}>{sessao.usuario.email}</Text>
+        {sessao.usuario.papel !== 'PATIENT' && <Text style={s.body}>{sessao.usuario.email}</Text>}
         <Text style={s.body}>
           Modalidade:{" "}
           {paciente
@@ -63,6 +65,7 @@ export default function Perfil() {
             : "Não consultada"}
         </Text>
       </View>
+      {paciente && <ContatoPaciente idPaciente={paciente.id} />}
       <View style={s.card}>
         <Text style={s.title}>Perfil informado pela equipe</Text>
         {perfil ? (
@@ -91,6 +94,11 @@ export default function Perfil() {
       <Botao
         rotulo="Voltar ao início"
         onPress={() => router.dismissTo("/inicio")}
+      />
+      <Botao
+        secundario
+        rotulo="Configurações e acessibilidade"
+        onPress={() => router.push("/configuracoes")}
       />
     </Tela>
   );

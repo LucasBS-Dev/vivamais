@@ -33,7 +33,7 @@ public class AutenticacaoService {
         var buscarCredenciais = repositorio.buscarCredenciais(requisicao.email().trim().toLowerCase(Locale.ROOT));
         String hash = buscarCredenciais.map(InstituicaoRepository.Credenciais::hashSenha).orElse(hashAlternativo);
         boolean confere = requisicao.senha().getBytes(StandardCharsets.UTF_8).length <= 72 && codificadorSenhas.matches(requisicao.senha(), hash);
-        if (!confere || buscarCredenciais.isEmpty()) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Credenciais inválidas.");
+        if (!confere || buscarCredenciais.isEmpty() || buscarCredenciais.orElseThrow().usuario().papel()==Papel.PATIENT) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Credenciais inválidas.");
         var usuario = buscarCredenciais.orElseThrow().usuario();
         String token = codificadorTokens.issue();
         Instant agora=Instant.now(), expiraEm=agora.plus(propriedades.sessionDuration());
@@ -43,6 +43,7 @@ public class AutenticacaoService {
     }
     @Transactional
     public void sair(SessaoAutenticada principalAutenticado) {
+        repositorio.desativarRenovacaoPaciente(principalAutenticado.idSessao());
         repositorio.revogarSessao(principalAutenticado.idSessao());
         repositorio.auditar(principalAutenticado.usuario(), "SESSION_REVOKED", "auth_session", principalAutenticado.idSessao());
     }

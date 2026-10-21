@@ -1,6 +1,6 @@
-# API da fundação Viva+
+# API Viva+
 
-Java 21, Spring Boot 3.5.16, Spring Security, JDBC parametrizado, PostgreSQL 17 e Flyway. Somente demonstração com dados sintéticos. Esta etapa implementa sessões, clínicas, vínculos e autorização; os módulos clínicos estão explicitamente pendentes.
+Java 21, Spring Boot 3.5.16, Spring Security, JDBC parametrizado, PostgreSQL 17 e Flyway. Somente demonstração com dados sintéticos. Implementa identidade, cadastro/ativação/recuperação assistida, pressão idempotente/OCR confirmado, medicamentos/autorrelatos, diário, atividade, consultas, arquivos privados e porta de pulseira com simulador explícito. Estado e testes atuais em ../../docs/STATUS.md.
 
 ## Executar
 
@@ -23,7 +23,7 @@ Migrações executam antes de iniciar. Saúde pública mínima: `GET /actuator/h
 
 Defina `DEMO_BOOTSTRAP_PASSWORD` localmente (mínimo 12 caracteres, máximo 72 bytes UTF-8) e execute **uma vez** com `SPRING_PROFILES_ACTIVE=bootstrap`. A API exige `app.demo-only=true` e todas as tabelas iniciais restringem a demo a dados sintéticos. Depois reinicie sem esse perfil e remova a senha de bootstrap do ambiente de execução.
 
-As contas são `admin.a@demo.vivamais.invalid`, `profissional.a@demo.vivamais.invalid`, `paciente.a@demo.vivamais.invalid` e os equivalentes com `.b`. Cada clínica tem paciente com app e paciente de diário sem conta, ambos vinculados ao profissional da própria clínica. O perfil é idempotente e **não altera senhas existentes**. Não existe senha padrão nem autoinscrição. Ativação e recuperação externa de conta ficam pendentes de provedor; a operação acadêmica provisiona credenciais por canal institucional seguro.
+As contas são `admin.a@demo.vivamais.invalid`, `profissional.a@demo.vivamais.invalid`, `paciente.a@demo.vivamais.invalid` e os equivalentes com `.b`. Cada clínica tem paciente com app e paciente de diário sem conta, ambos vinculados ao profissional da própria clínica. O perfil é idempotente e **não altera senhas existentes**. Não existe senha padrão nem autoinscrição. Contas novas são cadastradas pelo profissional e ativadas com código de uso único. Recuperação assistida exige reautenticação profissional, emite novo código e revoga sessões. Entrega automática por e-mail/SMS não foi integrada.
 
 ## Contrato implementado
 
@@ -58,4 +58,15 @@ Corpos de requisições mutáveis têm limite de 8 KiB no stream antes da desser
 
 ## Operação
 
-Pool inicial máximo de quatro conexões; container sem root e JRE 21 com heap proporcional à memória. Medir startup/RSS/latência na instância Railway antes de escolher limite. Saúde não prova restauração; runbooks e checklist de publicação estão na documentação principal. Retenção, recuperação de senha, rotatividade de credenciais, sessão/inventário administrativo e purga programada de sessões expiradas ainda requerem a fase operacional. O schema evita CPF/endereço e dados clínicos nesta entrega.
+Pool inicial máximo de quatro conexões; container sem root e JRE 21 com heap proporcional à memória. Medir startup/RSS/latência na instância Railway antes de escolher limite. Saúde não prova restauração; runbooks e checklist de publicação estão na documentação principal. Retenção, entrega automática de recuperação por e-mail/SMS, rotatividade de credenciais, sessão/inventário administrativo e purga programada de sessões expiradas ainda requerem a fase operacional. O schema usa somente dados sintéticos e evita coleta de CPF/endereço sem necessidade institucional definida.
+
+
+## Estado após padronização e retomada
+
+Fontes Java estão em com.vivamais/{config,controller,dto,model,repositories,security,service}. Nomes principais em português; aliases JsonProperty preservam os campos JSON consumidos por versões existentes. Tabelas/colunas e V1–V4 preservadas; V5 habilita RLS nas 26 tabelas do sistema e revoga acesso direto dos clientes. O histórico técnico do Flyway fica fora do ALTER para não bloquear o próprio migrador. A autorização da API proprietária continua obrigatória por recurso.
+
+verify desta retomada: 5 unitários + 18 integrações PostgreSQL reais, sem falhas/erros/skips, incluindo Tesseract real, arquivos cifrados e acesso cruzado. SQLCipher/notificações/distribuição mobile e fornecedores remotos exigem ensaios próprios. FILES_DIRECTORY precisa apontar para objetos e chave preservados. Não substituir essa chave por outra vazia após a movimentação de pastas.
+
+## Estado verificado em 19–20/10/2026
+
+Guia de execução Windows e roteiros completos em ../../docs/GUIA_COMPLETO_EXECUCAO_LOCAL_WINDOWS.md. Java21.0.10/Maven3.9.11/PostgreSQL17.9:5unitários+21integrações passaram sem skips. GET de perfil funcional ou pulseira ainda não cadastrados retorna204 (em vez de200vazio); quando presente permanece200, com mesma autorização. V1–V6 preservadas. Dados demográficos opcionais da V6 são exclusivamente fictícios. OCR/fotos privadas já implementados; não interpretar as descrições históricas da fundação como estado atual.

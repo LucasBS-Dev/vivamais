@@ -1,0 +1,355 @@
+ M .env.example
+ M .github/workflows/ci.yml
+ M AGENTS.md
+ M CHANGELOG.md
+ M PROGRESSO.md
+ M README.md
+ M app/+not-found.tsx
+ M app/_layout.tsx
+ M app/acesso.tsx
+ M app/ativar-conta.tsx
+ M app/atividade-fisica/historico.tsx
+ M app/atividade-fisica/index.tsx
+ M app/atividade-fisica/orientacoes.tsx
+ M app/historico/index.tsx
+ M app/index.tsx
+ M app/inicio.tsx
+ M app/module/[key].tsx
+ M app/perfil.tsx
+ M app/pressao/digitar.tsx
+ M app/pressao/foto.tsx
+ M app/pressao/index.tsx
+ M app/pressao/resultado.tsx
+ M backend/demo/README.md
+ M backend/demo/openapi.json
+ M backend/demo/src/main/java/com/vivamais/controller/ArquivoPrivadoController.java
+ M backend/demo/src/main/java/com/vivamais/controller/CuidadoController.java
+ M backend/demo/src/main/java/com/vivamais/dto/ModelosCuidado.java
+ M backend/demo/src/main/java/com/vivamais/service/ArquivoPrivadoService.java
+ M backend/demo/src/main/java/com/vivamais/service/CuidadoService.java
+ M backend/demo/src/main/resources/db/migration/V5__bloquear_acesso_direto_cliente.sql
+ M backend/demo/src/test/java/com/vivamais/CuidadoIT.java
+ M components/BarraNavegacao.tsx
+ M components/ElementosInterface.tsx
+ M components/FluxoFotografia.tsx
+ M components/GraficoPressao.tsx
+ M components/RoteiroAtividade.tsx
+ M components/TelaCuidado.tsx
+ M contexts/ContextoAutenticacao.tsx
+ M docs/DEPENDENCIAS_SEGURANCA.md
+ M docs/FIDELIDADE_VISUAL.md
+ M docs/REQUISITOS.md
+ M docs/STATUS.md
+ M docs/architecture/ADR-001.md
+ M docs/operations/BACKUP_RESTORE.md
+ M docs/operations/DEPLOY.md
+ M infra/capturar-telas.mjs
+ M infra/railway.toml
+ M infra/sync-shared.mjs
+ M package.json
+ M packages/contracts/src/generated.ts
+ M packages/contracts/src/index.ts
+ M playwright.config.ts
+ M tests/e2e/care.spec.ts
+ M tests/e2e/foundation.spec.ts
+ M tests/e2e/mobile-care.spec.ts
+ M tests/e2e/mobile-web.spec.ts
+ M tests/e2e/portugues-pressao.spec.ts
+ M web/app/(portal)/layout.tsx
+ M web/app/(portal)/pacientes/[id]/page.tsx
+ M web/app/api/domain/[...path]/route.ts
+ M web/app/globals.css
+ M web/app/page.tsx
+ M web/components/CadastroPaciente.tsx
+ M web/components/CuidadoPaciente.tsx
+ M web/components/Icones.tsx
+ M web/components/RefeicoesPaciente.tsx
+ M web/components/VinculosPaciente.tsx
+ M web/next-env.d.ts
+ M web/next.config.ts
+?? app/alimentacao/_layout.tsx
+?? app/alimentacao/resultado.tsx
+?? app/atividade-fisica/_layout.tsx
+?? app/atividade-fisica/ilustracoes.tsx
+?? app/cadastro.tsx
+?? app/configuracoes.tsx
+?? app/lembretes.tsx
+?? app/medicamentos/_layout.tsx
+?? app/mensagens.tsx
+?? app/pressao/_layout.tsx
+?? assets/images/individuais/01_logos/icone_do_aplicativo.png
+?? assets/images/individuais/01_logos/logo_viva_mais_com_slogan.png
+?? assets/images/individuais/01_logos/logo_viva_mais_sem_slogan.png
+?? assets/images/individuais/02_personagens/idosa_exercicio_sentado.png
+?? assets/images/individuais/02_personagens/idosa_perfil.png
+?? assets/images/individuais/02_personagens/idoso_perfil.png
+?? assets/images/individuais/02_personagens/idosos_atividade_fisica.png
+?? assets/images/individuais/02_personagens/profissionais_de_saude.png
+?? assets/images/individuais/03_exercicios/alongamento_leve.png
+?? assets/images/individuais/03_exercicios/bracos_sentado.png
+?? assets/images/individuais/03_exercicios/caminhada_leve.png
+?? assets/images/individuais/03_exercicios/ombros.png
+?? assets/images/individuais/03_exercicios/pes_sentado.png
+?? assets/images/individuais/04_objetos/aparelho_pressao_arterial.png
+?? assets/images/individuais/04_objetos/copo_de_agua.png
+?? assets/images/individuais/04_objetos/medicamentos.png
+?? assets/images/individuais/04_objetos/pulseira_pulso_em_dia.png
+?? assets/images/individuais/04_objetos/refeicao_saudavel.png
+?? assets/images/individuais/04_objetos/tenis_caminhada.png
+?? assets/images/individuais/05_menu/area_profissional.png
+?? assets/images/individuais/05_menu/atividade_fisica.png
+?? assets/images/individuais/05_menu/configuracoes.png
+?? assets/images/individuais/05_menu/lembretes.png
+?? assets/images/individuais/05_menu/meu_historico.png
+?? assets/images/individuais/05_menu/meus_medicamentos.png
+?? assets/images/individuais/05_menu/minha_alimentacao.png
+?? assets/images/individuais/05_menu/minha_pressao.png
+?? assets/images/individuais/06_humor/estou_bem.png
+?? assets/images/individuais/06_humor/tontura_ou_mal_estar.png
+?? assets/images/individuais/06_humor/um_pouco_cansado.png
+?? assets/images/individuais/07_acoes/alerta.png
+?? assets/images/individuais/07_acoes/baixar.png
+?? assets/images/individuais/07_acoes/calendario.png
+?? assets/images/individuais/07_acoes/confirmado.png
+?? assets/images/individuais/07_acoes/editar.png
+?? assets/images/individuais/07_acoes/enviar.png
+?? assets/images/individuais/07_acoes/excluir.png
+?? assets/images/individuais/07_acoes/foto.png
+?? assets/images/individuais/07_acoes/grafico.png
+?? assets/images/individuais/07_acoes/horario.png
+?? assets/images/individuais/07_acoes/informacao.png
+?? assets/images/individuais/07_acoes/lembrete.png
+?? assets/images/individuais/07_acoes/nao_realizado.png
+?? assets/images/individuais/07_acoes/sem_internet.png
+?? assets/images/individuais/07_acoes/sincronizar.png
+?? assets/images/individuais/08_cards/acompanhamento_evolucao.png
+?? assets/images/individuais/08_cards/atividade_fisica.png
+?? assets/images/individuais/08_cards/lembrete_medicamento.png
+?? assets/images/individuais/08_cards/medicao_da_pressao.png
+?? assets/images/individuais/08_cards/planejamento_cuidado.png
+?? assets/images/individuais/08_cards/registro_alimentacao.png
+?? assets/images/individuais/08_cards/seguranca_dados.png
+?? backend/demo/src/main/java/com/vivamais/controller/DadosPessoaisController.java
+?? backend/demo/src/main/java/com/vivamais/service/DadosPessoaisService.java
+?? backend/demo/src/main/resources/db/migration/V6__dados_pessoais_paciente.sql
+?? components/ContatoPaciente.tsx
+?? components/HistoricoAtividades.tsx
+?? components/IconeNavegacao.tsx
+?? components/IlustracoesViva.tsx
+?? components/ImagemPrivada.tsx
+?? components/LayoutProtegido.tsx
+?? components/TextoAcessivel.tsx
+?? contexts/ContextoPreferencias.tsx
+?? docs/COMO_NAVEGAR.md
+?? docs/PROXIMA_EXECUCAO.md
+?? docs/evidencias/RECURSOS_52_2026-10-17.json
+?? docs/evidencias/RETOMADA_2026-10-17.md
+?? docs/evidencias/TELAS_NAVEGAVEIS_2026-10-17.md
+?? docs/evidencias/visual/app_01_boas_vindas.png
+?? docs/evidencias/visual/app_02_acesso_cpf.png
+?? docs/evidencias/visual/app_03_pagina_inicial.png
+?? docs/evidencias/visual/app_04_pressao_entrada.png
+?? docs/evidencias/visual/app_05_pressao_digitacao.png
+?? docs/evidencias/visual/app_06_pressao_foto.png
+?? docs/evidencias/visual/app_07_pressao_resultado.png
+?? docs/evidencias/visual/app_08_pressao_historico.png
+?? docs/evidencias/visual/app_09_medicamentos.png
+?? docs/evidencias/visual/app_11_alimentacao_foto.png
+?? docs/evidencias/visual/app_12_alimentacao_resultado.png
+?? docs/evidencias/visual/atividade_01_inicio_atividade.png
+?? docs/evidencias/visual/atividade_02_entrada.png
+?? docs/evidencias/visual/atividade_03_como_esta_hoje.png
+?? docs/evidencias/visual/atividade_04_verificacao_pressao.png
+?? docs/evidencias/visual/atividade_05_suas_informacoes.png
+?? docs/evidencias/visual/atividade_06_atividade_hoje.png
+?? docs/evidencias/visual/atividade_07_passo_a_passo.png
+?? docs/evidencias/visual/atividade_08_video_demonstrativo.png
+?? docs/evidencias/visual/atividade_09_alternativa_mais_leve.png
+?? docs/evidencias/visual/atividade_10_registro_atividade.png
+?? docs/evidencias/visual/atividade_11_historico_atividades.png
+?? docs/evidencias/visual/atividade_12_orientacoes.png
+?? docs/evidencias/visual/capturas.json
+?? docs/evidencias/visual/comparacoes/app_01_boas_vindas.png
+?? docs/evidencias/visual/comparacoes/app_02_acesso_cpf.png
+?? docs/evidencias/visual/comparacoes/app_03_pagina_inicial.png
+?? docs/evidencias/visual/comparacoes/app_04_pressao_entrada.png
+?? docs/evidencias/visual/comparacoes/app_05_pressao_digitacao.png
+?? docs/evidencias/visual/comparacoes/app_06_pressao_foto.png
+?? docs/evidencias/visual/comparacoes/app_07_pressao_resultado.png
+?? docs/evidencias/visual/comparacoes/app_08_pressao_historico.png
+?? docs/evidencias/visual/comparacoes/app_09_medicamentos.png
+?? docs/evidencias/visual/comparacoes/app_11_alimentacao_foto.png
+?? docs/evidencias/visual/comparacoes/app_12_alimentacao_resultado.png
+?? docs/evidencias/visual/comparacoes/atividade_01_inicio_atividade.png
+?? docs/evidencias/visual/comparacoes/atividade_02_entrada.png
+?? docs/evidencias/visual/comparacoes/atividade_03_como_esta_hoje.png
+?? docs/evidencias/visual/comparacoes/atividade_04_verificacao_pressao.png
+?? docs/evidencias/visual/comparacoes/atividade_05_suas_informacoes.png
+?? docs/evidencias/visual/comparacoes/atividade_06_atividade_hoje.png
+?? docs/evidencias/visual/comparacoes/atividade_07_passo_a_passo.png
+?? docs/evidencias/visual/comparacoes/atividade_08_video_demonstrativo.png
+?? docs/evidencias/visual/comparacoes/atividade_09_alternativa_mais_leve.png
+?? docs/evidencias/visual/comparacoes/atividade_10_registro_atividade.png
+?? docs/evidencias/visual/comparacoes/atividade_11_historico_atividades.png
+?? docs/evidencias/visual/comparacoes/atividade_12_orientacoes.png
+?? docs/evidencias/visual/comparacoes/painel_app.png
+?? docs/evidencias/visual/comparacoes/painel_atividade.png
+?? docs/evidencias/visual/comparacoes/painel_web.png
+?? docs/evidencias/visual/comparacoes/web_01_login_profissional.png
+?? docs/evidencias/visual/comparacoes/web_02_painel_inicial.png
+?? docs/evidencias/visual/comparacoes/web_03_cadastro_paciente.png
+?? docs/evidencias/visual/comparacoes/web_04_perfil_paciente.png
+?? docs/evidencias/visual/comparacoes/web_05_historico_pressao.png
+?? docs/evidencias/visual/comparacoes/web_06_medicamentos.png
+?? docs/evidencias/visual/comparacoes/web_07_alimentacao.png
+?? docs/evidencias/visual/comparacoes/web_08_atividade_fisica.png
+?? docs/evidencias/visual/comparacoes/web_09_configuracao_pulseira.png
+?? docs/evidencias/visual/comparacoes/web_10_registro_diario.png
+?? docs/evidencias/visual/comparacoes/web_11_resumo_consulta.png
+?? docs/evidencias/visual/comparacoes/web_12_historico_consultas.png
+?? docs/evidencias/visual/extra_ativacao_aplicativo.png
+?? docs/evidencias/visual/extra_cadastro_aplicativo.png
+?? docs/evidencias/visual/extra_configuracoes_aplicativo.png
+?? docs/evidencias/visual/extra_ilustracoes_atividades.png
+?? docs/evidencias/visual/extra_lembretes_aplicativo.png
+?? docs/evidencias/visual/extra_perfil_paciente.png
+?? docs/evidencias/visual/extra_web_lista_pacientes.png
+?? docs/evidencias/visual/web_01_login_profissional.png
+?? docs/evidencias/visual/web_02_painel_inicial.png
+?? docs/evidencias/visual/web_03_cadastro_paciente.png
+?? docs/evidencias/visual/web_04_perfil_paciente.png
+?? docs/evidencias/visual/web_05_historico_pressao.png
+?? docs/evidencias/visual/web_06_medicamentos.png
+?? docs/evidencias/visual/web_07_alimentacao.png
+?? docs/evidencias/visual/web_08_atividade_fisica.png
+?? docs/evidencias/visual/web_09_configuracao_pulseira.png
+?? docs/evidencias/visual/web_10_registro_diario.png
+?? docs/evidencias/visual/web_11_resumo_consulta.png
+?? docs/evidencias/visual/web_12_historico_consultas.png
+?? docs/historico/STATUS_FUNDACAO_2026-10-16.md
+?? docs/product/PEDIDO_TELAS_52_RECURSOS_2026-10-17.md
+?? hooks/usePainelPaciente.ts
+?? hooks/useResultadoRefeicao.ts
+?? infra/comparar-telas.py
+?? infra/verificar-restauracao.mjs
+?? packages/contracts/src/cadastro.ts
+?? referencias_codex/imagens_individuais/LEIA-ME.md
+?? referencias_codex/imagens_individuais/PREVIA_GERAL.jpg
+?? referencias_codex/imagens_individuais/assets/01_logos/icone_do_aplicativo.png
+?? referencias_codex/imagens_individuais/assets/01_logos/logo_viva_mais_com_slogan.png
+?? referencias_codex/imagens_individuais/assets/01_logos/logo_viva_mais_sem_slogan.png
+?? referencias_codex/imagens_individuais/assets/02_personagens/idosa_exercicio_sentado.png
+?? referencias_codex/imagens_individuais/assets/02_personagens/idosa_perfil.png
+?? referencias_codex/imagens_individuais/assets/02_personagens/idoso_perfil.png
+?? referencias_codex/imagens_individuais/assets/02_personagens/idosos_atividade_fisica.png
+?? referencias_codex/imagens_individuais/assets/02_personagens/profissionais_de_saude.png
+?? referencias_codex/imagens_individuais/assets/03_exercicios/alongamento_leve.png
+?? referencias_codex/imagens_individuais/assets/03_exercicios/bracos_sentado.png
+?? referencias_codex/imagens_individuais/assets/03_exercicios/caminhada_leve.png
+?? referencias_codex/imagens_individuais/assets/03_exercicios/ombros.png
+?? referencias_codex/imagens_individuais/assets/03_exercicios/pes_sentado.png
+?? referencias_codex/imagens_individuais/assets/04_objetos/aparelho_pressao_arterial.png
+?? referencias_codex/imagens_individuais/assets/04_objetos/copo_de_agua.png
+?? referencias_codex/imagens_individuais/assets/04_objetos/medicamentos.png
+?? referencias_codex/imagens_individuais/assets/04_objetos/pulseira_pulso_em_dia.png
+?? referencias_codex/imagens_individuais/assets/04_objetos/refeicao_saudavel.png
+?? referencias_codex/imagens_individuais/assets/04_objetos/tenis_caminhada.png
+?? referencias_codex/imagens_individuais/assets/05_menu/area_profissional.png
+?? referencias_codex/imagens_individuais/assets/05_menu/atividade_fisica.png
+?? referencias_codex/imagens_individuais/assets/05_menu/configuracoes.png
+?? referencias_codex/imagens_individuais/assets/05_menu/lembretes.png
+?? referencias_codex/imagens_individuais/assets/05_menu/meu_historico.png
+?? referencias_codex/imagens_individuais/assets/05_menu/meus_medicamentos.png
+?? referencias_codex/imagens_individuais/assets/05_menu/minha_alimentacao.png
+?? referencias_codex/imagens_individuais/assets/05_menu/minha_pressao.png
+?? referencias_codex/imagens_individuais/assets/06_humor/estou_bem.png
+?? referencias_codex/imagens_individuais/assets/06_humor/tontura_ou_mal_estar.png
+?? referencias_codex/imagens_individuais/assets/06_humor/um_pouco_cansado.png
+?? referencias_codex/imagens_individuais/assets/07_acoes/alerta.png
+?? referencias_codex/imagens_individuais/assets/07_acoes/baixar.png
+?? referencias_codex/imagens_individuais/assets/07_acoes/calendario.png
+?? referencias_codex/imagens_individuais/assets/07_acoes/confirmado.png
+?? referencias_codex/imagens_individuais/assets/07_acoes/editar.png
+?? referencias_codex/imagens_individuais/assets/07_acoes/enviar.png
+?? referencias_codex/imagens_individuais/assets/07_acoes/excluir.png
+?? referencias_codex/imagens_individuais/assets/07_acoes/foto.png
+?? referencias_codex/imagens_individuais/assets/07_acoes/grafico.png
+?? referencias_codex/imagens_individuais/assets/07_acoes/horario.png
+?? referencias_codex/imagens_individuais/assets/07_acoes/informacao.png
+?? referencias_codex/imagens_individuais/assets/07_acoes/lembrete.png
+?? referencias_codex/imagens_individuais/assets/07_acoes/nao_realizado.png
+?? referencias_codex/imagens_individuais/assets/07_acoes/sem_internet.png
+?? referencias_codex/imagens_individuais/assets/07_acoes/sincronizar.png
+?? referencias_codex/imagens_individuais/assets/08_cards/acompanhamento_evolucao.png
+?? referencias_codex/imagens_individuais/assets/08_cards/atividade_fisica.png
+?? referencias_codex/imagens_individuais/assets/08_cards/lembrete_medicamento.png
+?? referencias_codex/imagens_individuais/assets/08_cards/medicao_da_pressao.png
+?? referencias_codex/imagens_individuais/assets/08_cards/planejamento_cuidado.png
+?? referencias_codex/imagens_individuais/assets/08_cards/registro_alimentacao.png
+?? referencias_codex/imagens_individuais/assets/08_cards/seguranca_dados.png
+?? referencias_codex/imagens_individuais/manifesto.json
+?? services/alimentacao/refeicoes.ts
+?? services/atividades/periodos.ts
+?? services/enderecosAcesso.ts
+?? tests/e2e/acesso-navegacao.spec.ts
+?? web/components/CamposDadosPessoais.tsx
+?? web/components/DadosPessoaisPaciente.tsx
+?? web/components/GraficoPressao.tsx
+?? web/components/TabelaCuidado.tsx
+?? web/components/VisaoGeralPaciente.tsx
+?? web/hooks/useClientePronto.ts
+?? web/hooks/useResumoCuidados.ts
+?? web/public/images/individuais/01_logos/icone_do_aplicativo.png
+?? web/public/images/individuais/01_logos/logo_viva_mais_com_slogan.png
+?? web/public/images/individuais/01_logos/logo_viva_mais_sem_slogan.png
+?? web/public/images/individuais/02_personagens/idosa_exercicio_sentado.png
+?? web/public/images/individuais/02_personagens/idosa_perfil.png
+?? web/public/images/individuais/02_personagens/idoso_perfil.png
+?? web/public/images/individuais/02_personagens/idosos_atividade_fisica.png
+?? web/public/images/individuais/02_personagens/profissionais_de_saude.png
+?? web/public/images/individuais/03_exercicios/alongamento_leve.png
+?? web/public/images/individuais/03_exercicios/bracos_sentado.png
+?? web/public/images/individuais/03_exercicios/caminhada_leve.png
+?? web/public/images/individuais/03_exercicios/ombros.png
+?? web/public/images/individuais/03_exercicios/pes_sentado.png
+?? web/public/images/individuais/04_objetos/aparelho_pressao_arterial.png
+?? web/public/images/individuais/04_objetos/copo_de_agua.png
+?? web/public/images/individuais/04_objetos/medicamentos.png
+?? web/public/images/individuais/04_objetos/pulseira_pulso_em_dia.png
+?? web/public/images/individuais/04_objetos/refeicao_saudavel.png
+?? web/public/images/individuais/04_objetos/tenis_caminhada.png
+?? web/public/images/individuais/05_menu/area_profissional.png
+?? web/public/images/individuais/05_menu/atividade_fisica.png
+?? web/public/images/individuais/05_menu/configuracoes.png
+?? web/public/images/individuais/05_menu/lembretes.png
+?? web/public/images/individuais/05_menu/meu_historico.png
+?? web/public/images/individuais/05_menu/meus_medicamentos.png
+?? web/public/images/individuais/05_menu/minha_alimentacao.png
+?? web/public/images/individuais/05_menu/minha_pressao.png
+?? web/public/images/individuais/06_humor/estou_bem.png
+?? web/public/images/individuais/06_humor/tontura_ou_mal_estar.png
+?? web/public/images/individuais/06_humor/um_pouco_cansado.png
+?? web/public/images/individuais/07_acoes/alerta.png
+?? web/public/images/individuais/07_acoes/baixar.png
+?? web/public/images/individuais/07_acoes/calendario.png
+?? web/public/images/individuais/07_acoes/confirmado.png
+?? web/public/images/individuais/07_acoes/editar.png
+?? web/public/images/individuais/07_acoes/enviar.png
+?? web/public/images/individuais/07_acoes/excluir.png
+?? web/public/images/individuais/07_acoes/foto.png
+?? web/public/images/individuais/07_acoes/grafico.png
+?? web/public/images/individuais/07_acoes/horario.png
+?? web/public/images/individuais/07_acoes/informacao.png
+?? web/public/images/individuais/07_acoes/lembrete.png
+?? web/public/images/individuais/07_acoes/nao_realizado.png
+?? web/public/images/individuais/07_acoes/sem_internet.png
+?? web/public/images/individuais/07_acoes/sincronizar.png
+?? web/public/images/individuais/08_cards/acompanhamento_evolucao.png
+?? web/public/images/individuais/08_cards/atividade_fisica.png
+?? web/public/images/individuais/08_cards/lembrete_medicamento.png
+?? web/public/images/individuais/08_cards/medicao_da_pressao.png
+?? web/public/images/individuais/08_cards/planejamento_cuidado.png
+?? web/public/images/individuais/08_cards/registro_alimentacao.png
+?? web/public/images/individuais/08_cards/seguranca_dados.png
+?? web/services/enderecos.ts
+?? web/services/resumoPaciente.ts

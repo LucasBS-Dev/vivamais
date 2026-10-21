@@ -1,9 +1,17 @@
 "use client";
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
-import type { Paciente } from "@viva/contracts";
+import {
+  validarCpf,
+  normalizarCelularBrasileiro,
+  type Paciente,
+} from "@viva/contracts";
+import { useClientePronto } from "../hooks/useClientePronto";
+import { CamposDadosPessoais } from "./CamposDadosPessoais";
+import { AtivacaoPaciente } from "./AtivacaoPaciente";
 
 export function CadastroPaciente() {
+  const pronto = useClientePronto();
   const [modality, definirModalidadePaciente] = useState("APP");
   const [ocupado, definirOcupado] = useState(false);
   const [erro, definirErro] = useState("");
@@ -17,6 +25,21 @@ export function CadastroPaciente() {
     definirOcupado(true);
     definirErro("");
     const formulario = new FormData(event.currentTarget);
+    const telefone = normalizarCelularBrasileiro(
+      String(formulario.get("telefone") ?? ""),
+    );
+    if (!telefone) {
+      definirErro(
+        "Informe um celular válido com DDD e nove números, começando por 9.",
+      );
+      definirOcupado(false);
+      return;
+    }
+    if (!validarCpf(String(formulario.get("cpf") ?? ""))) {
+      definirErro("Confira o CPF informado.");
+      definirOcupado(false);
+      return;
+    }
     try {
       const resposta = await fetch("/api/domain/patients", {
         method: "POST",
@@ -24,7 +47,12 @@ export function CadastroPaciente() {
         body: JSON.stringify({
           displayName: formulario.get("displayName"),
           modality,
-          email: modality === "APP" ? formulario.get("email") : null,
+          email: formulario.get("email") || null,
+          cpf: formulario.get("cpf"),
+          dataNascimento: formulario.get("dataNascimento") || null,
+          telefone,
+          sexo: formulario.get("sexo"),
+          endereco: formulario.get("endereco"),
         }),
       });
       const dados = await resposta.json();
@@ -47,23 +75,8 @@ export function CadastroPaciente() {
           {resultado.patient.displayName} foi salvo e está disponível para a sua
           conta.
         </p>
-        {resultado.activationToken && (
-          <div className="notice">
-            <div>
-              <strong>Ativação do aplicativo</strong>
-              <p>
-                Entregue este código à pessoa de teste por canal seguro. Ele
-                expira em 24 horas e é exibido somente agora. No aplicativo,
-                escolha Ativar conta e defina a senha.
-              </p>
-              <textarea
-                readOnly
-                aria-label="Código de ativação"
-                value={resultado.activationToken}
-              />
-              <p>Não envie o código ao chat ou a serviços públicos.</p>
-            </div>
-          </div>
+        {resultado.patient.modality === "APP" && (
+          <AtivacaoPaciente idPaciente={resultado.patient.id} />
         )}
         <Link
           className="button button-primary"
@@ -77,39 +90,25 @@ export function CadastroPaciente() {
     <section className="panel padded">
       <h1>Cadastrar novo paciente</h1>
       <p className="form-hint">
-        Use somente pessoas fictícias nesta demonstração.
+        Preencha os dados do paciente e escolha a modalidade de acompanhamento.
       </p>
-      <form onSubmit={submit}>
+      <form method="post" onSubmit={submit}>
         <div className="cadastro-paciente">
           <div className="dados-pessoais">
             <h2>Dados pessoais</h2>
+            <CamposDadosPessoais
+              cadastro
+              obrigatoriosAcesso={modality === "APP"}
+            />
             <label>
-              Nome completo *
+              E-mail de contato (opcional)
               <input
-                name="displayName"
-                required
-                maxLength={160}
-                placeholder="Digite o nome completo"
-                aria-label="Nome completo"
+                name="email"
+                type="email"
+                maxLength={254}
+                placeholder="nome@exemplo.org"
               />
             </label>
-            {modality === "APP" && (
-              <label>
-                E-mail de ativação
-                <input
-                  name="email"
-                  type="email"
-                  required
-                  maxLength={254}
-                  placeholder="nome@exemplo.org"
-                />
-              </label>
-            )}
-            <p className="form-hint">
-              Identificação por e-mail e código de ativação. Não coletamos CPF,
-              telefone ou endereço nesta demo sem necessidade institucional
-              definida.
-            </p>
           </div>
           <div className="cartao-modalidade">
             <h2>Modalidade de acompanhamento</h2>
@@ -150,7 +149,10 @@ export function CadastroPaciente() {
         </div>
         {erro && <p role="alert">{erro}</p>}
         <div className="cadastro-acoes">
-          <button className="button button-primary" disabled={ocupado}>
+          <button
+            className="button button-primary"
+            disabled={!pronto || ocupado}
+          >
             {ocupado ? "Salvando…" : "Salvar paciente"}
           </button>
         </div>

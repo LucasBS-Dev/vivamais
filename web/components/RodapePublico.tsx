@@ -3,7 +3,7 @@ import Link from "next/link";
 export function RodapePublico() {
   return (
     <footer className="public-footer">
-      <span>Viva+ · Demonstração acadêmica</span>
+      <span>Viva+ · Acompanhamento de saúde</span>
       <nav aria-label="Informações públicas">
         <Link href="/privacidade">Privacidade</Link>
         <Link href="/suporte">Suporte</Link>

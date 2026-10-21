@@ -1,10 +1,13 @@
+import { Text } from "./TextoAcessivel";
 import { router, usePathname } from "expo-router";
-import { Pressable, Text, View, Image } from "react-native";
-const imagens = {inicio:require('../assets/images/navegacao-inicio.png'),lembretes:require('../assets/images/navegacao-lembretes.png'),mensagens:require('../assets/images/navegacao-mensagens.png'),perfil:require('../assets/images/navegacao-perfil.png')};
+import { Pressable, View } from "react-native";
+import { IconeNavegacao } from "./IconeNavegacao";
 export function BarraNavegacao() {
   const caminho = usePathname();
   return (
     <View
+      testID="barra-navegacao"
+      accessibilityLabel="Navegação principal"
       style={{
         flexDirection: "row",
         justifyContent: "space-around",
@@ -15,24 +18,31 @@ export function BarraNavegacao() {
       }}
     >
       {[
-        { rota: "/inicio", icone: imagens.inicio, rotulo: "Início" },
-        { rota: "/medicamentos", icone: imagens.lembretes, rotulo: "Lembretes" },
+        { rota: "/inicio", icone: "inicio" as const, rotulo: "Início" },
         {
-          rota: "/atividade-fisica/orientacoes",
-          icone: imagens.mensagens,
+          rota: "/lembretes",
+          icone: "lembretes" as const,
+          rotulo: "Lembretes",
+        },
+        {
+          rota: "/mensagens",
+          icone: "mensagens" as const,
           rotulo: "Mensagens",
         },
-        { rota: "/perfil", icone: imagens.perfil, rotulo: "Perfil" },
+        { rota: "/perfil", icone: "perfil" as const, rotulo: "Perfil" },
       ].map((item) => (
         <Pressable
           key={item.rota}
           accessibilityRole="button"
           accessibilityLabel={item.rotulo}
-          accessibilityState={{selected:caminho===item.rota}}
+          accessibilityState={{ selected: caminho === item.rota }}
           onPress={() => router.navigate(item.rota)}
           style={{ alignItems: "center", minWidth: 64, minHeight: 48 }}
         >
-          <Image source={item.icone} style={{width:26,height:26,resizeMode:'contain'}} accessible={false}/>
+          <IconeNavegacao
+            nome={item.icone}
+            cor={caminho === item.rota ? "#006cba" : "#607b95"}
+          />
           <Text style={{ fontSize: 12, color: "#003366" }}>{item.rotulo}</Text>
         </Pressable>
       ))}

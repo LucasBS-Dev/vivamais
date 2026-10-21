@@ -26,7 +26,8 @@ import org.springframework.http.HttpStatus;
 @Service
 @Transactional
 public class CuidadoService {
- public Map<String,Object> buscarRegistroPressao(UUID idPaciente,UUID idRegistro,Usuario ator){autorizarPaciente(idPaciente,ator);var registros=consultarLinhas("SELECT * FROM blood_pressure_reading WHERE patient_id=? AND id=?",idPaciente,idRegistro);if(registros.isEmpty())throw error(404,"Registro não encontrado.");instituicoes.auditar(ator,"REGISTRO_PRESSAO_CONSULTADO","blood_pressure_reading",idRegistro);return registros.getFirst();}
+ public Map<String,Object> buscarRegistroPressao(UUID idPaciente,UUID idRegistro,Usuario ator){autorizarPaciente(idPaciente,ator);var registros=consultarLinhas("SELECT r.*,(SELECT u.display_name FROM user_account u WHERE u.id=r.author_id) AS author_name FROM blood_pressure_reading r WHERE patient_id=? AND id=?",idPaciente,idRegistro);if(registros.isEmpty())throw error(404,"Registro não encontrado.");instituicoes.auditar(ator,"REGISTRO_PRESSAO_CONSULTADO","blood_pressure_reading",idRegistro);return registros.getFirst();}
+ @org.springframework.beans.factory.annotation.Value("${app.ambiente:development}") private String ambiente;
  private final JdbcTemplate db; private final InstituicaoRepository instituicoes; private final ObjectMapper json;
  private final CodificadorToken codificadorTokens; private final PasswordEncoder codificadorSenhas;
  public CuidadoService(JdbcTemplate db,InstituicaoRepository instituicoes,ObjectMapper json,CodificadorToken codificadorTokens,PasswordEncoder codificadorSenhas) {
@@ -63,7 +64,7 @@ public class CuidadoService {
  public Pagina<Map<String,Object>> paginar(String table,UUID paciente,int paginar,int size) {
   if(!Set.of("blood_pressure_reading","activity_record","printed_diary_entry","consultation").contains(table))throw new IllegalArgumentException();
   validarPaginacao(paginar,size);long total=db.queryForObject("SELECT count(*) FROM "+table+" WHERE patient_id=?",Long.class,paciente);
-  return new Pagina<>(consultarLinhas("SELECT * FROM "+table+" WHERE patient_id=? ORDER BY created_at DESC,id DESC LIMIT ? OFFSET ?",paciente,size,(long)paginar*size),total,paginar,size);
+  return new Pagina<>(consultarLinhas("SELECT r.*,u.display_name AS author_name FROM "+table+" r JOIN user_account u ON u.id=r.author_id WHERE r.patient_id=? ORDER BY r."+(table.equals("blood_pressure_reading")?"measured_at":"occurred_at")+" DESC,r.id DESC LIMIT ? OFFSET ?",paciente,size,(long)paginar*size),total,paginar,size);
  }
  private void validarPaginacao(int paginar,int size){if(paginar<0||paginar>100000||size<1||size>100)throw error(400,"Paginação inválida.");}
  public Pagina<Paciente> search(Usuario ator,String query,int paginar,int size){
@@ -76,37 +77,20 @@ public class CuidadoService {
  }
  public PacienteCadastrado cadastrarPaciente(CadastroPaciente entrada,Usuario ator){
   exigirProfissional(ator);UUID id=UUID.randomUUID(),account=null;
+  if(entrada.nomeExibicao().trim().isBlank())throw error(400,"Informe o nome completo.");
+  String cpf=DadosPessoaisService.normalizarCpf(entrada.cpf()),telefone=DadosPessoaisService.normalizarTelefone(entrada.telefone()),sexo=DadosPessoaisService.validarSexo(entrada.sexo());
+  if(telefone==null)throw error(400,"Informe um celular válido com DDD para cadastrar o paciente.");
+  DadosPessoaisService.validarNascimento(entrada.dataNascimento());
   if(entrada.modalidade().equals("APP")){
-   if(entrada.email()==null||entrada.email().isBlank())throw error(400,"E-mail é necessário para ativar o aplicativo.");
+   if(cpf==null || entrada.dataNascimento()==null)throw error(400,"Informe CPF e data de nascimento para o aplicativo.");
    account=UUID.randomUUID();
-   db.update("INSERT INTO user_account(id,organization_id,email,display_name,password_hash,role,enabled) VALUES(?,?,?,?,?,'PATIENT',false)",account,ator.idUnidade(),entrada.email().trim().toLowerCase(Locale.ROOT),entrada.nomeExibicao().trim(),codificadorSenhas.encode(codificadorTokens.issue()));
+   db.update("INSERT INTO user_account(id,organization_id,email,display_name,password_hash,role,enabled) VALUES(?,?,?,?,?,'PATIENT',false)",account,ator.idUnidade(),account+"@paciente.vivamais.invalid",entrada.nomeExibicao().trim(),codificadorSenhas.encode(codificadorTokens.issue()));
   }
   db.update("INSERT INTO patient(id,organization_id,user_account_id,display_name,modality) VALUES(?,?,?,?,?)",id,ator.idUnidade(),account,entrada.nomeExibicao().trim(),entrada.modalidade());
+  db.update("UPDATE patient SET cpf=?,data_nascimento=?,telefone=?,email_contato=?,sexo=?,endereco=? WHERE id=?",cpf,entrada.dataNascimento(),telefone,DadosPessoaisService.textoOpcional(entrada.email()),sexo,DadosPessoaisService.textoOpcional(entrada.endereco()),id);
   if(ator.papel()==Papel.PROFESSIONAL)db.update("INSERT INTO patient_professional_assignment(patient_id,professional_id,organization_id) VALUES(?,?,?)",id,ator.id(),ator.idUnidade());
   instituicoes.auditar(ator,"PATIENT_CREATED","patient",id);
-  CodigoAcesso code=account==null?null:issueCode(account);
-  return new PacienteCadastrado(new Paciente(id,entrada.nomeExibicao().trim(),entrada.modalidade(),ator.idUnidade()),code==null?null:code.codigoAtivacao(),code==null?null:code.expiraEm());
- }
- private CodigoAcesso issueCode(UUID account){
-  db.update("UPDATE account_activation SET used_at=now() WHERE user_account_id=? AND used_at IS NULL",account);
-  String token=codificadorTokens.issue();Instant expires=Instant.now().plus(Duration.ofHours(24));
-  db.update("INSERT INTO account_activation(id,user_account_id,token_hash,expires_at) VALUES(?,?,?,?)",UUID.randomUUID(),account,codificadorTokens.hash(token),ts(expires));
-  return new CodigoAcesso(token,expires);
- }
- public void ativarConta(AtivacaoConta entrada){
-  if(entrada.senha().getBytes(StandardCharsets.UTF_8).length>72)throw error(400,"A senha excede o tamanho permitido.");
-  var encontrado=db.queryForList("SELECT user_account_id FROM account_activation WHERE token_hash=? AND used_at IS NULL AND expires_at>now() FOR UPDATE",codificadorTokens.hash(entrada.token()));
-  if(encontrado.isEmpty())throw error(400,"Código inválido ou expirado.");UUID account=(UUID)encontrado.getFirst().get("user_account_id");
-  db.update("UPDATE user_account SET password_hash=?,enabled=true WHERE id=?",codificadorSenhas.encode(entrada.senha()),account);
-  db.update("UPDATE account_activation SET used_at=now() WHERE token_hash=?",codificadorTokens.hash(entrada.token()));
-  db.update("UPDATE auth_session SET revoked_at=now() WHERE user_account_id=? AND revoked_at IS NULL",account);
-  var usuario=instituicoes.buscarCredenciais(db.queryForObject("SELECT email FROM user_account WHERE id=?",String.class,account)).orElseThrow().usuario();instituicoes.auditar(usuario,"ACCOUNT_ACTIVATED","user_account",account);
- }
- public CodigoAcesso reset(UUID paciente,ConfirmacaoSenha entrada,Usuario ator){
-  exigirProfissional(ator);autorizarPaciente(paciente,ator);var own=instituicoes.buscarCredenciais(ator.email()).orElseThrow();
-  if(entrada.senha().getBytes(StandardCharsets.UTF_8).length>72||!codificadorSenhas.matches(entrada.senha(),own.hashSenha()))throw error(401,"Confirme sua senha atual.");
-  UUID account=db.queryForObject("SELECT user_account_id FROM patient WHERE id=?",UUID.class,paciente);if(account==null)throw error(409,"A modalidade de diário não possui conta de aplicativo.");
-  db.update("UPDATE auth_session SET revoked_at=now() WHERE user_account_id=? AND revoked_at IS NULL",account);instituicoes.auditar(ator,"PATIENT_ACCESS_RESET","patient",paciente);return issueCode(account);
+  return new PacienteCadastrado(new Paciente(id,entrada.nomeExibicao().trim(),entrada.modalidade(),ator.idUnidade()),null,null);
  }
  public void autorizarVinculo(UUID paciente,UUID exigirProfissional,Usuario ator){
   if(ator.papel()!=Papel.ADMIN)throw error(403,"Somente administrador atribui vínculos.");autorizarPaciente(paciente,ator);
@@ -130,7 +114,7 @@ public class CuidadoService {
   String where=" WHERE patient_id=?";List<Object> args=new ArrayList<>();args.add(paciente);
   if(from!=null){where+=" AND measured_at>=?";args.add(ts(from));}if(to!=null){where+=" AND measured_at<=?";args.add(ts(to));}
   long total=db.queryForObject("SELECT count(*) FROM blood_pressure_reading"+where,Long.class,args.toArray());args.add(size);args.add((long)paginar*size);
-  var items=consultarLinhas("SELECT * FROM blood_pressure_reading"+where+" ORDER BY measured_at DESC,id DESC LIMIT ? OFFSET ?",args.toArray()).stream().map(linha->json.convertValue(linha,RegistroPressao.class)).toList();
+  var items=consultarLinhas("SELECT r.*,(SELECT u.display_name FROM user_account u WHERE u.id=r.author_id) AS author_name FROM blood_pressure_reading r"+where+" ORDER BY measured_at DESC,id DESC LIMIT ? OFFSET ?",args.toArray()).stream().map(linha->json.convertValue(linha,RegistroPressao.class)).toList();
   instituicoes.auditar(ator,"READINGS_VIEWED","patient",paciente);return new Pagina<>(items,total,paginar,size);
  }
  public RegistroPressao salvarRegistroPressao(UUID paciente,EntradaRegistroPressao entrada,Usuario ator){
@@ -144,10 +128,10 @@ public class CuidadoService {
   }
   var resultado=executarIdempotente(entrada.id(),paciente,ator,"READING",entrada,()->{
    db.update("INSERT INTO blood_pressure_reading(id,patient_id,author_id,systolic,diastolic,pulse,measured_at,source,ocr_document_id) VALUES(?,?,?,?,?,?,?,?,?)",entrada.id(),paciente,ator.id(),entrada.sistolica(),entrada.diastolica(),entrada.pulso(),ts(entrada.dataMedicao()),entrada.source(),entrada.idDocumentoOcr());
-   return one("SELECT * FROM blood_pressure_reading WHERE id=?",entrada.id());
+   return one("SELECT r.*,(SELECT u.display_name FROM user_account u WHERE u.id=r.author_id) AS author_name FROM blood_pressure_reading r WHERE id=?",entrada.id());
   });return json.convertValue(resultado,RegistroPressao.class);
  }
- public List<Map<String,Object>> listarMedicamentos(UUID paciente,Usuario ator){autorizarPaciente(paciente,ator);return consultarLinhas("SELECT m.*,coalesce((SELECT jsonb_agg(to_char(s.local_time,'HH24:MI') ORDER BY s.local_time) FROM medication_schedule s WHERE s.plan_id=m.id),'[]'::jsonb) schedules FROM medication_plan m WHERE patient_id=? ORDER BY created_at DESC,id",paciente);}
+ public List<Map<String,Object>> listarMedicamentos(UUID paciente,Usuario ator){autorizarPaciente(paciente,ator);return consultarLinhas("SELECT m.*,(SELECT u.display_name FROM user_account u WHERE u.id=m.author_id) AS author_name,coalesce((SELECT jsonb_agg(to_char(s.local_time,'HH24:MI') ORDER BY s.local_time) FROM medication_schedule s WHERE s.plan_id=m.id),'[]'::jsonb) schedules FROM medication_plan m WHERE patient_id=? ORDER BY created_at DESC,id",paciente);}
  public Map<String,Object> salvarMedicamento(UUID paciente,UUID plan,EntradaMedicamento entrada,Usuario ator){
   exigirProfissional(ator);autorizarPaciente(paciente,ator);if(entrada.fimVigencia()!=null&&entrada.fimVigencia().isBefore(entrada.inicioVigencia()))throw error(400,"Vigência inválida.");
   try{ZoneId.of(entrada.fusoHorario());}catch(Exception e){throw error(400,"Fuso horário inválido.");}
@@ -165,7 +149,7 @@ public class CuidadoService {
   instituicoes.auditar(ator,"MEDICATION_PLAN_SAVED","medication_plan",id);return listarMedicamentos(paciente,ator).stream().filter(m->m.get("id").equals(id.toString())).findFirst().orElseThrow();
  }
  public UUID buscarPacientePlano(UUID plan,Usuario ator){UUID paciente=db.query("SELECT patient_id FROM medication_plan WHERE id=?",(rs,n)->rs.getObject(1,UUID.class),plan).stream().findFirst().orElseThrow(()->error(404,"Plano não encontrado."));autorizarPaciente(paciente,ator);return paciente;}
- public List<Map<String,Object>> listarHistoricoMedicamento(UUID plan,Usuario ator){buscarPacientePlano(plan,ator);return consultarLinhas("SELECT version,snapshot,changed_by,changed_at FROM medication_plan_history WHERE plan_id=? ORDER BY version DESC",plan);}
+ public List<Map<String,Object>> listarHistoricoMedicamento(UUID plan,Usuario ator){buscarPacientePlano(plan,ator);return consultarLinhas("SELECT h.version,h.snapshot,h.changed_by,h.changed_at,u.display_name AS author_name FROM medication_plan_history h JOIN user_account u ON u.id=h.changed_by WHERE h.plan_id=? ORDER BY h.version DESC",plan);}
  public List<Map<String,Object>> listarHorariosMedicamentos(UUID paciente,LocalDate date,Usuario ator){
   List<Map<String,Object>> events=new ArrayList<>();for(var plan:listarMedicamentos(paciente,ator)){
    LocalDate start=LocalDate.parse(plan.get("startsOn").toString());Object end=plan.get("endsOn");if(date.isBefore(start)||(end!=null&&date.isAfter(LocalDate.parse(end.toString()))))continue;
@@ -184,9 +168,25 @@ public class CuidadoService {
    db.update("INSERT INTO medication_self_report(id,patient_id,plan_id,author_id,scheduled_at,reported_at,status,source) VALUES(?,?,?,?,?,?,?,?)",entrada.id(),paciente,entrada.idPlano(),ator.id(),ts(entrada.horarioProgramado()),ts(entrada.dataAutorrelato()),entrada.status(),ator.papel()==Papel.PATIENT?"SELF_REPORT":"PROFESSIONAL_TRANSCRIPTION");return one("SELECT * FROM medication_self_report WHERE id=?",entrada.id());
   });
  }
- public Map<String,Object> perfilAtividade(UUID paciente,Usuario ator){autorizarPaciente(paciente,ator);var encontrado=consultarLinhas("SELECT * FROM physical_activity_profile WHERE patient_id=?",paciente);if(encontrado.isEmpty())return null;encontrado.getFirst().put("personalizationStatus","BLOCKED_PENDING_CLINICAL_APPROVAL");return encontrado.getFirst();}
+ public Map<String,Object> perfilAtividade(UUID paciente,Usuario ator){autorizarPaciente(paciente,ator);var encontrado=consultarLinhas("SELECT p.*,u.display_name AS author_name FROM physical_activity_profile p JOIN user_account u ON u.id=p.author_id WHERE p.patient_id=?",paciente);if(encontrado.isEmpty())return null;encontrado.getFirst().put("personalizationStatus","BLOCKED_PENDING_CLINICAL_APPROVAL");return encontrado.getFirst();}
  public Map<String,Object> perfilAtividade(UUID paciente,PerfilAtividade entrada,Usuario ator){exigirProfissional(ator);autorizarPaciente(paciente,ator);db.update("INSERT INTO physical_activity_profile(patient_id,mobility,balance,restrictions,professional_guidance,author_id) VALUES(?,?,?,?,?,?) ON CONFLICT(patient_id) DO UPDATE SET mobility=excluded.mobility,balance=excluded.balance,restrictions=excluded.restrictions,professional_guidance=excluded.professional_guidance,author_id=excluded.author_id,updated_at=now()",paciente,entrada.mobilidade(),entrada.equilibrio(),entrada.restricoes(),entrada.orientacoesProfissionais(),ator.id());instituicoes.auditar(ator,"ACTIVITY_PROFILE_SAVED","patient",paciente);return perfilAtividade(paciente,ator);}
  public Map<String,Object> registrarAtividade(UUID paciente,EntradaAtividade entrada,Usuario ator){validarHorario(entrada.occurredAt());return executarIdempotente(entrada.id(),paciente,ator,"ACTIVITY",entrada,()->{db.update("INSERT INTO activity_record(id,patient_id,author_id,type,duration_minutes,occurred_at,notes,feeling) VALUES(?,?,?,?,?,?,?,?)",entrada.id(),paciente,ator.id(),entrada.type(),entrada.duracaoMinutos(),ts(entrada.occurredAt()),Objects.toString(entrada.observacoes(),""),entrada.estadoInformado());return one("SELECT * FROM activity_record WHERE id=?",entrada.id());});}
+ public Pagina<Map<String,Object>> listarAtividades(UUID paciente,Usuario ator,int pagina,int tamanho,Instant inicio,Instant fim){
+  autorizarPaciente(paciente,ator);validarPaginacao(pagina,tamanho);
+  if(inicio!=null&&fim!=null&&!inicio.isBefore(fim))throw error(400,"Confira o período informado.");
+  String filtro=" WHERE patient_id=?";List<Object> argumentos=new ArrayList<>();argumentos.add(paciente);
+  if(inicio!=null){filtro+=" AND occurred_at>=?";argumentos.add(ts(inicio));}if(fim!=null){filtro+=" AND occurred_at<?";argumentos.add(ts(fim));}
+  long total=db.queryForObject("SELECT count(*) FROM activity_record"+filtro,Long.class,argumentos.toArray());
+  argumentos.add(tamanho);argumentos.add((long)pagina*tamanho);
+  return new Pagina<>(consultarLinhas("SELECT r.*,(SELECT u.display_name FROM user_account u WHERE u.id=r.author_id) AS author_name FROM activity_record r"+filtro+" ORDER BY occurred_at DESC,id DESC LIMIT ? OFFSET ?",argumentos.toArray()),total,pagina,tamanho);
+ }
+ public Map<String,Object> resumirSemanaAtividades(UUID paciente,LocalDate inicio,Usuario ator){
+  autorizarPaciente(paciente,ator);if(inicio.getDayOfWeek()!=DayOfWeek.MONDAY)throw error(400,"A semana deve iniciar na segunda-feira.");
+  ZoneId fuso=ZoneId.of("America/Sao_Paulo");LocalDate fim=inicio.plusDays(7);
+  var dias=consultarLinhas("SELECT (occurred_at AT TIME ZONE 'America/Sao_Paulo')::date AS data,sum(duration_minutes) AS minutos,count(*) AS registros FROM activity_record WHERE patient_id=? AND occurred_at>=? AND occurred_at<? GROUP BY 1 ORDER BY 1",paciente,ts(inicio.atStartOfDay(fuso).toInstant()),ts(fim.atStartOfDay(fuso).toInstant()));
+  long minutos=dias.stream().mapToLong(dia->((Number)dia.get("minutos")).longValue()).sum(),registros=dias.stream().mapToLong(dia->((Number)dia.get("registros")).longValue()).sum();
+  return Map.of("inicio",inicio.toString(),"fimExclusivo",fim.toString(),"dias",dias,"totalMinutos",minutos,"totalRegistros",registros);
+ }
  public Map<String,Object> diario(UUID paciente,EntradaDiario entrada,Usuario ator){
   exigirProfissional(ator);validarHorario(entrada.occurredAt());if((entrada.sistolica()==null)!=(entrada.diastolica()==null))throw error(400,"Informe os dois valores da pressão.");
   return executarIdempotente(entrada.id(),paciente,ator,"DIARY",entrada,()->{db.update("INSERT INTO printed_diary_entry(id,patient_id,author_id,occurred_at,systolic,diastolic,pulse,medication_report,notes) VALUES(?,?,?,?,?,?,?,?,?)",entrada.id(),paciente,ator.id(),ts(entrada.occurredAt()),entrada.sistolica(),entrada.diastolica(),entrada.pulso(),Objects.toString(entrada.medicationReport(),""),Objects.toString(entrada.observacoes(),""));
@@ -196,7 +196,7 @@ public class CuidadoService {
  public Map<String,Object> pulseira(UUID paciente,Usuario ator){autorizarPaciente(paciente,ator);return consultarLinhas("SELECT * FROM device WHERE patient_id=?",paciente).stream().findFirst().orElse(null);}
  public Map<String,Object> pulseira(UUID paciente,EntradaPulseira entrada,Usuario ator){exigirProfissional(ator);if(!autorizarPaciente(paciente,ator).modalidade().equals("BRACELET_DIARY"))throw error(409,"Paciente não está na modalidade pulseira + diário.");db.update("INSERT INTO device(id,patient_id,author_id,label,serial_number) VALUES(?,?,?,?,?) ON CONFLICT(patient_id) DO UPDATE SET label=excluded.label,serial_number=excluded.serial_number,author_id=excluded.author_id",UUID.randomUUID(),paciente,ator.id(),entrada.identificacao(),entrada.numeroSerie());instituicoes.auditar(ator,"DEVICE_SAVED","patient",paciente);return pulseira(paciente,ator);}
  public List<Map<String,Object>> listarConfiguracoes(UUID paciente,Usuario ator){autorizarPaciente(paciente,ator);return consultarLinhas("SELECT c.* FROM device_configuration c JOIN device d ON d.id=c.device_id WHERE d.patient_id=? ORDER BY c.created_at DESC",paciente);}
- public Map<String,Object> configurar(UUID paciente,EntradaConfiguracaoPulseira entrada,Usuario ator){exigirProfissional(ator);var pulseira=pulseira(paciente,ator);if(pulseira==null)throw error(409,"Cadastre a pulseira primeiro.");UUID id=UUID.randomUUID();var adaptador=entrada.adaptador().equals("SIMULATED")?AdaptadorPulseira.developmentSimulator():AdaptadorPulseira.unavailableHardware();var resultado=adaptador.configurar(entrada.horarios());db.update("INSERT INTO device_configuration(id,device_id,schedules,status,simulated,adapter,message,author_id) VALUES(?,?,?::jsonb,?,?,?,?,?)",id,UUID.fromString(pulseira.get("id").toString()),encode(entrada.horarios()),resultado.status(),resultado.simulado(),entrada.adaptador(),resultado.message(),ator.id());instituicoes.auditar(ator,"DEVICE_CONFIGURATION_CREATED","device",UUID.fromString(pulseira.get("id").toString()));return one("SELECT * FROM device_configuration WHERE id=?",id);}
- public Map<String,Object> resumirConsulta(UUID paciente,Usuario ator){exigirProfissional(ator);Map<String,Object> out=new LinkedHashMap<>();out.put("patient",autorizarPaciente(paciente,ator));out.put("generatedAt",Instant.now().toString());out.put("readings",listarRegistrosPressao(paciente,ator,0,20,null,null).items());out.put("medications",listarMedicamentos(paciente,ator));for(String[] pair:new String[][]{{"activities","activity_record"},{"diary","printed_diary_entry"},{"consultations","consultation"}})out.put(pair[0],paginar(pair[1],paciente,0,20).items());out.put("functionalProfile",perfilAtividade(paciente,ator));out.put("medicationEvents",listarHorariosMedicamentos(paciente,LocalDate.now(ZoneId.of("America/Sao_Paulo")),ator));out.put("meals",consultarLinhas("SELECT id,occurred_at,notes,analysis_status,assessment FROM meal_photo WHERE patient_id=? ORDER BY occurred_at DESC LIMIT 20",paciente));instituicoes.auditar(ator,"CONSULTATION_SUMMARY_VIEWED","patient",paciente);return out;}
+ public Map<String,Object> configurar(UUID paciente,EntradaConfiguracaoPulseira entrada,Usuario ator){exigirProfissional(ator);if(entrada.adaptador().equals("SIMULATED")&&!Set.of("development","test").contains(ambiente))throw error(409,"Simulador disponível somente no ambiente de desenvolvimento.");var pulseira=pulseira(paciente,ator);if(pulseira==null)throw error(409,"Cadastre a pulseira primeiro.");UUID id=UUID.randomUUID();var adaptador=entrada.adaptador().equals("SIMULATED")?AdaptadorPulseira.developmentSimulator():AdaptadorPulseira.unavailableHardware();var resultado=adaptador.configurar(entrada.horarios());db.update("INSERT INTO device_configuration(id,device_id,schedules,status,simulated,adapter,message,author_id) VALUES(?,?,?::jsonb,?,?,?,?,?)",id,UUID.fromString(pulseira.get("id").toString()),encode(entrada.horarios()),resultado.status(),resultado.simulado(),entrada.adaptador(),resultado.message(),ator.id());instituicoes.auditar(ator,"DEVICE_CONFIGURATION_CREATED","device",UUID.fromString(pulseira.get("id").toString()));return one("SELECT * FROM device_configuration WHERE id=?",id);}
+ public Map<String,Object> resumirConsulta(UUID paciente,Usuario ator){exigirProfissional(ator);Map<String,Object> out=new LinkedHashMap<>();out.put("patient",autorizarPaciente(paciente,ator));out.put("generatedAt",Instant.now().toString());out.put("totais",one("SELECT (SELECT count(*) FROM meal_photo WHERE patient_id=?) AS refeicoes,(SELECT count(*) FROM activity_record WHERE patient_id=?) AS atividades,(SELECT count(*) FROM consultation WHERE patient_id=?) AS consultas,(SELECT count(*) FROM blood_pressure_reading WHERE patient_id=?) AS pressoes",paciente,paciente,paciente,paciente));out.put("readings",listarRegistrosPressao(paciente,ator,0,20,null,null).items());out.put("medications",listarMedicamentos(paciente,ator));for(String[] pair:new String[][]{{"activities","activity_record"},{"diary","printed_diary_entry"},{"consultations","consultation"}})out.put(pair[0],paginar(pair[1],paciente,0,20).items());out.put("functionalProfile",perfilAtividade(paciente,ator));out.put("medicationEvents",listarHorariosMedicamentos(paciente,LocalDate.now(ZoneId.of("America/Sao_Paulo")),ator));out.put("meals",consultarLinhas("SELECT id,occurred_at,notes,analysis_status,assessment FROM meal_photo WHERE patient_id=? ORDER BY occurred_at DESC LIMIT 20",paciente));instituicoes.auditar(ator,"CONSULTATION_SUMMARY_VIEWED","patient",paciente);return out;}
  public Map<String,Object> exportarResumo(UUID paciente,Usuario ator){var resultado=resumirConsulta(paciente,ator);instituicoes.auditar(ator,"PATIENT_SUMMARY_EXPORTED","patient",paciente);return resultado;}
 }

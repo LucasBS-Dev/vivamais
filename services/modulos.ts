@@ -43,7 +43,7 @@ export const acoesPrincipais: {
 ];
 
 export function nomeEstadoModulo(estadoResposta: string): string {
-  if (estadoResposta === "AVAILABLE") return "Disponível na demonstração";
+  if (estadoResposta === "AVAILABLE") return "Disponível";
   if (estadoResposta === "NOT_STARTED") return "Ainda não iniciado";
   if (estadoResposta === "BLOCKED_PENDING_CLINICAL_APPROVAL")
     return "Aguarda aprovação clínica";

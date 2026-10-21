@@ -1,0 +1,15 @@
+{
+  "dataUtc": "2026-10-20T15:22:19.739Z",
+  "verificacoes": [
+    {
+      "tela": "configuracoes",
+      "largura": 390,
+      "rolagemHorizontalPagina": false
+    },
+    {
+      "tela": "consultas",
+      "largura": 390,
+      "rolagemHorizontalPagina": false
+    }
+  ]
+}

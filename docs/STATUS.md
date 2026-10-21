@@ -1,42 +1,118 @@
-# Estado da entrega em 16 de outubro de 2026
+# Estado atual — cadastro, SMS e interface — 20/10/2026
 
-Somente Fase 0 e fundação da Fase 1 autorizadas nesta iteração. Código em apps/web, apps/mobile, services/api e packages; documentos originais preservados. Nenhum recurso pago/externo, publicação em lojas ou hardware real criado.
+## Consolidação e transferência técnica — 20/10/2026
 
-| Item | Estado | Evidência ou pendência |
+Pedido atual autoriza commit/push de fonte em origin/main após segurança/integridade, sem deployment,visibilidade,force push ou reescrita. Criados manual técnico,inventário32grupos,rastreio,ambiente do zero,testes,banco/API,padrões/índice e plano canônico;40pendências ampliadas. Testes novos:74Java,69frontend,17E2E,tipagem/lint,Next/Expoall e contratos aprovados;2altos mantidos. Gitleaks/segredos e privilégios JDBC auditados; role local superusuária/BYPASSRLS registrada em P01/G01,sem alterar banco. Estado de commit/push/CI e provas em [RELATORIO_TRANSFERENCIA_E_PUBLICACAO](RELATORIO_TRANSFERENCIA_E_PUBLICACAO.md). Exercícios/IA continuam com outro dev.
+
+## Histórico anterior à consolidação
+
+Corrigidos barra compartilhada/rolagem/safe area estrutural e indicador de demonstração separado (development/test/preview); logo original de alta resolução e Configurações responsivas com preferências preservadas. Celular obrigatório em novos cadastros, DDD/E.164, CPF estrutural/duplicado e troca assistida com reautenticação/revogação. SMS desacoplado, Twilio preparado e caixa LOCAL cifrada; nenhum SMS real ou consulta oficial de CPF executados. Portal/API não exibem código. V9 aplicada: 33 tabelas/32 RLS; fontes V1–V8, conteúdo de 30 tabelas e 66 arquivos anteriores conferidos sem perda antes dos novos E2E.
+
+Validação desta entrega: 74 testes Java (22+52), 69 frontend (40 app+29 web), 17 E2E em 1,4 minuto, TypeScript/lint, Next e Expo web/Android/iOS aprovados. Portal em 1366/1440/1920/768/390 px e DPR2, app em 320/375/430 px; 12 rotas com barra fora da rolagem. Auditoria pnpm 10.28.2: 922 dependências, 0 críticos/2 altos/0 moderados, exit1; produção continua bloqueada. Não houve ensaio físico/APK/IPA/operadora/CI remota, stage/commit/push ou publicação.
+
+[Relatório final](evidencias/CORRECOES_CADASTRO_SMS_INTERFACE_2026-10-20.md) · [Guia local](CADASTRO_E_ATIVACAO_SMS.md) · [Levantamento completo](LEVANTAMENTO_COMPLETO_PENDENCIAS.md) · [Plano técnico](PLANO_IMPLEMENTACAO_PENDENCIAS.md). V1–V9 imutáveis.
+
+## Histórico anterior à revisão de SMS
+
+# Estado atual — acesso do paciente sem senha — 20/10/2026
+
+Fluxo implementado e validado localmente: CPF/nascimento identificam; aparelho autorizado ou código de quatro números é obrigatório. Sem senha do paciente. V8 aplicada preservando V1–V7 e registros; profissionais mantêm o método anterior. [Guia de teste/migração](ACESSO_PACIENTE_SEM_SENHA.md) · [Relatório, arquivos e sete capturas](evidencias/ACESSO_PACIENTE_2026-10-20.md).
+
+Validação desta alteração: 48 Java (8 unitários + 40 integrações), 58 frontend (30 app + 28 web), 14 E2E finais aprovados; TypeScript/lint, Next e exports Expo web/Android/iOS aprovados. V8: 32 tabelas/31 RLS. Snapshot antes da migração e restauração V8 cifrada em banco isolado passaram, incluindo nova chave HMAC, foto antiga e revogação de credenciais no clone.
+
+Contas antigas sem CPF/nascimento precisam complementação autorizada antes de ativar. E-mail é só contato opcional, compartilhável. Sem ensaio físico/APK/IPA/publicação; dois altos de dependências e revisões institucionais permanecem. Exercícios e IA preservados, sem novas funcionalidades delegadas. Stage/código anterior preservados; sem commit/push.
+
+## Histórico preservado
+
+# Estado atual — profissionalização e transferência —20/10/2026
+
+[Fechamento desta retomada](evidencias/RETOMADA_E_TRANSFERENCIA_2026-10-20.md) e [manual geral para o próximo desenvolvedor](MANUAL_CONTINUIDADE_DESENVOLVIMENTO.md). Quatro manuais obrigatórios entregues; exercícios e IA reservados ao outro desenvolvedor, sem novas funcionalidades específicas nesta retomada.
+
+Rodada anterior conferida:31 Java,40 frontend,13 E2E; Next/Expo all e restoreV1–V7 aprovados. Nesta retomada:5 E2E dirigidos+1após CSS,2 testes de configuração+2de preferências e novo build Next aprovados.52 capturas/35 pares/3 painéis+2 cenas de portal 390 px; checagem estrutural sem ocorrências. APP_ENV preview preservado. Servidores/banco existentes reiniciados pelos scripts, com health e acesso validados.
+
+Auditoria atual repetida:0 críticos/2 altos/0 moderados,exit1. Produção permanece bloqueada; sem publicação/commit/push/stage/descarte. V1–V7 preservadas, nenhuma nova migração. Pendências e responsabilidades separadas nos manuais/matriz. O histórico abaixo contém números de etapas anteriores e não deve ser tratado como estado atual.
+
+## Histórico preservado
+
+# Estado atual — 20/10/2026
+
+Execução Windows preparada e validada: [guia completo](GUIA_COMPLETO_EXECUCAO_LOCAL_WINDOWS.md), [manual de telas](GUIA_TESTES_TODAS_AS_TELAS.md), [checklist](CHECKLIST_TESTES_MANUAIS.md), [inventário](INVENTARIO_TELAS.md) e [relatório/evidências](evidencias/EXECUCAO_LOCAL_2026-10-19.md). O atalho Iniciar-VivaMais.cmd permite iniciar os serviços locais sem depender dos processos anteriores.
+
+Retomada19–20/10: banco existente17.9/55432/viva com SCRAM, Java 21 selecionado; iniciação/encerramento/reinício dos três serviços conferidos; contagens clínicas e objetos/chave preservados. API GET opcional agora204, idade real, orientações acessíveis, resultado sem ids e melhorias de períodos no portal implementados. V1–V6 não editadas nesta etapa.
+
+Validação: Java 5+21=26; app 15+web23=38;12 E2E em produção e 7após reinício; TS/lint, Next e export Expo Android/iOS/web passaram. 52 capturas,35 pares/3 painéis,49fontes de tela e 60itens classificados. Notificação/aparelhos não ensaiados; funções clínicas/fornecedores/rótulos institucionais parciais estão explícitos. Auditoria permanece0 críticos/2 altos/2 moderados/exit1; não afirmar CI remota verde ou projeto inteiro concluído.
+
+Próximas tarefas em PROXIMA_EXECUCAO.md. Nenhum commit/push/stage/descarte ou publicação. O histórico abaixo foi preservado e contém estados/pendências que já foram resolvidos nesta etapa.
+
+## Histórico de 17/10
+
+# Estado atual — Viva+ — 17/10/2026
+
+O percurso de cadastro/ativação → Home → módulos → perfil/histórico está implementado e verificado no navegador com Java/PostgreSQL. Aplicativo: http://127.0.0.1:8081. Portal profissional: http://127.0.0.1:3000. São acessos distintos. [Como navegar](COMO_NAVEGAR.md) e [evidências completas](evidencias/TELAS_NAVEGAVEIS_2026-10-17.md).
+
+| Área | Lote de telas verificado | Limites |
 |---|---|---|
-| Fase 0 descoberta e decisões | DONE | DOCX inteiro, 13 seções e 3 anexos; requisitos, MVP, ADR, backlog, decisões e custos |
-| Fundação executável F1 | DONE | Java 21 + PostgreSQL 17.9 real, web e Expo conectados à API; sem mocks de domínio |
-| Autenticação e isolamento | DONE | Senha BCrypt 12, sessão opaca/hash, revogação/expiração, clínica/vínculo e auditoria |
-| Migrations/contratos | DONE | V1 aplicada em banco vazio e schemas de testes; OpenAPI obtido por endpoint autenticado; TS gerado |
-| CI/configuração da hospedagem | IN_PROGRESS | Workflows e configs preparados; não executados em GitHub/Vercel/Railway/Supabase/EAS |
-| Segurança de dependências | BLOCKED | Sem críticos após atualização; 2 altos e 2 moderados transitivos, auditoria exit 1; ver DEPENDENCIAS_SEGURANCA |
-| F2 pressão ponta a ponta e cadastro | NOT_STARTED | Próxima prioridade; UI não oferece fluxo fictício |
-| F3 medicamentos/diário | NOT_STARTED | Inclui vigência, autorrelato e notificações locais futuras |
-| F4 offline/OCR/fotos privadas | NOT_STARTED | Fila, retry e armazenamento/OCR ainda indisponíveis |
-| F5 alimentação/atividade | BLOCKED | Conteúdo e critérios dependem validação clínica, além da implementação futura |
-| F6 consultas/pulseira | NOT_STARTED | Integração real BLOCKED por especificação hardware; simulador futuro será identificado |
-| F7 operação e lojas | NOT_STARTED | Contas, links finais, privacidade, build nativo, restore e revisão pendentes |
-| Dados reais e recomendação clínica personalizada | BLOCKED | Revisões institucional, clínica, jurídica e de privacidade |
+| Cadastro | CPF opcional/dígitos/unicidade por clínica, nascimento, telefone, contato, sexo/endereço, modalidade, vínculo/código; edição profissional versionada | Pessoas fictícias; contato não troca login; sem CPF isolado como credencial |
+| Acesso e Home | Cadastro/ativação destacado, mostrar senha, retorno ao painel com cookie, quatro módulos/atalhos, resumo real e barra fora da rolagem | Preview Expo web mantém sessão em memória; recarregar exige novo acesso |
+| Perfil e configurações | Consulta/edição do telefone, orientação da equipe, lembretes existentes, texto ampliado e saída | Preferência dura enquanto app aberto; notificações dependem de SO/build |
+| Atividade | Ilustrações/seleção para registrar o que já foi realizado, conclusão ou fila/reenvio e semana com minutos completos; mês/todos e paginação | Sem prescrição/vídeo aprovado; idade ainda não exibida na etapa |
+| Módulos preservados | Pressão/confirmação/OCR, medicamentos/autorrelatos, fotos privadas, diário, consultas/resumo/exportação e isolamento | Provedor alimentar, hardware e material clínico continuam indisponíveis |
+| Recursos/visual | 52 PNG preservados e conferidos; 42 capturas reais, 35 pares e três painéis comparados | Matriz registra diferenças; notificação nativa sem captura; não são 36 telas idênticas |
 
-## Verificações executadas
+V6 aditiva aplicada ao banco existente e schemas vazios. V1–V5 não receberam novas edições neste lote. Patient mantém RLS/revogações da V5 e escopo por organização/vínculo na API. Banco, conexão, chave e objetos privados preservados. Nenhum stage/commit/push/reset/clean ou repositório aninhado foi criado.
 
-- `pnpm install`: concluído com pnpm 10.28.2. Windows sandbox inicialmente negou symlinks; pacotes locais usam injeção/cópia com dedupeInjectedDeps=false e sync-shared, sem exigir mudança de privilégio do usuário. Resolução do lockfile também executada.
-- `pnpm typecheck`: quatro projetos TypeScript passaram. Após gerar tipos OpenAPI, tsc foi repetido nos consumidores afetados e passou.
-- `pnpm lint`: ESLint passou. Uma instalação interrompida deixou balanced-match de major incorreta em node_modules; a cópia local esperada foi restaurada sem alterar fonte/lockfile. Não confundir isso com vulnerabilidade corrigida.
-- Web: Vitest 4.1.11, **19 testes em 4 arquivos passaram**. Mobile: Vitest 4.1.11, **9 testes em 2 arquivos passaram**. O comando geral `pnpm test` também passou. Pool threads evita rename de arquivo temporário proibido nesta sandbox.
-- Backend: Maven Wrapper/Java 21, `verify` com **5 unitários + 10 de integração PostgreSQL reais passaram**, sem falhas, erros ou skips. Usa banco externo exclusivo de testes na porta 55432, role viva, schema UUID isolado; Testcontainers/Docker não foi executado.
-- Next: build de produção com `next build --webpack` passou. Turbopack encontrou falha de IPC/PostCSS neste ambiente; foi adotado Webpack suportado, sem substituir Next.
-- Expo: export web final passou, 839 módulos, bundle aproximado de 1,2 MB e idioma pt-BR. Nenhum build Android/iOS assinado nem Maestro/dispositivo físico executado.
-- Playwright Chromium: **4 E2E profissionais passaram**, com API Java/PostgreSQL reais: acesso anônimo, rotas públicas, CSRF e login → painel → lista → ficha → logoff. Teste real encontrou Origin=null em formulário devido a Referrer-Policy=no-referrer; corrigido para same-origin, mantendo rejeição CSRF.
-- Dois testes adicionais do Expo web passaram: servidor estático seguro e paciente com a API real, incluindo login, identidade, quatro ações, módulo planejado, logout 204 e token revogado retornando 401. **A execução final conjunta teve 6 E2E aprovados em 11,0 s, sem skips.** Isso não representa teste Android/iOS nativo.
-- `node infra/check-demo.mjs http://127.0.0.1:8080 http://127.0.0.1:3000`: health e 4 rotas web retornaram HTTP 200.
-- Runtime API fora de bootstrap: health UP, login, contagens de 2 pacientes (1 app + 1 diário) e logout 204 verificados. Startup medido de 4,121 s com Java 21/Xmx384m em Windows local; isso não prevê RSS nem custo Railway. RSS/CPU faturados ainda não medidos.
-- `pnpm audit --audit-level high`: **exit 1**, 0 críticos/2 altos/2 moderados. OWASP Java e gitleaks preparados, não executados; não declarar CI integralmente verde.
+Validações: Java 5 unitários + 20 integrações sem falhas/erros/skips; frontend 13 mobile + 19 web; TypeScript/lint; 11 E2E em produção local (57,9 s) e 4 E2E finais após ajustes de ícones/export (10,8 s), sem skips. Next build e export Expo Android/iOS/web com bytecode Hermes passaram. Não houve APK/IPA ou ensaio físico. Restrição de escrita da sandbox resolvida com diretórios .next preparados/modo local e TEMP/TMP gravável, sem alteração de stack/dependências.
 
-## Como repetir e continuar
+Seis contas principais receberam nova senha aleatória após diagnóstico indevido de teste; BCrypt, revogação e login/logout conferidos. Valor somente no arquivo privado local.
 
-Comandos exatos e env em README.md/.env.example e READMEs dos apps/API. Docker Compose preparado mas não executado, pois Docker não está instalado. As migrações foram verificadas em PostgreSQL 17.9 portátil real, acessível somente por loopback e com dados sintéticos. Banco portátil, logs, credenciais efêmeras e ferramentas usados nos ensaios ficam fora do pacote de fonte.
+Pendências: diferenças de FIDELIDADE_VISUAL.md, agregação de sete dias/atalhos no portal, idade/autoria/nomenclatura auxiliares; conteúdo clínico/vídeo, hardware, credenciais de fornecedores/lojas e ensaios físicos. Auditoria anterior permanece em 2 altos/2 moderados; CI remota/OWASP/gitleaks não executados. Nenhum custo/deploy. Hospedagem Vercel/Railway/Supabase/EAS preservada. Projeto/fases inteiros não declarados concluídos.
 
-Antes de publicação: fornecer contas/segredos pelos painéis seguros dos fornecedores, escolher identificadores definitivos e contato institucional, revisar alertas transitivos, política, base legal, retenção e termos, testar backup/restauração e dispositivos. Suporte/exclusão públicos são rascunhos, ainda sem recebimento de pedidos reais. Nenhuma senha/token deve ser enviado no chat.
+## Histórico anterior preservado
 
-Próximo passo priorizado: Fase 2, ativação e cadastro autorizado → pressão manual → histórico/gráfico, persistidos na mesma API, com testes de acesso cruzado e auditoria. Os demais requisitos continuam no backlog.
+O registro abaixo descreve a retomada anterior, antes das correções de cadastro/semana e do pedido das 52 imagens. Pendências resolvidas acima não devem ser reimplementadas.
+
+### Estado registrado antes do novo lote de telas
+
+Escopo atual: continuar Fases 1–7 e a correção interrompida de estrutura, nomenclatura e fidelidade aos 36 protótipos. O documento antigo da fundação foi preservado em historico/STATUS_FUNDACAO_2026-10-16.md. Ele não descreve o estado atual.
+
+Estrutura existente preservada: Expo em app/components/contexts/hooks/services/assets; Next em web; API Java 21/Spring Boot/PostgreSQL em backend/demo. Não foram recriados apps/mobile, apps/web ou services/api. Diretórios antigos ignorados com dados privados não foram apagados. Git iniciou esta retomada limpo, em b460643; nenhum stage, commit ou operação remota nesta retomada. O hash 99c7295 mencionado nos registros anteriores é histórico da execução anterior e não está disponível no Git atual.
+
+| Área | Estado demonstrável | Limite atual |
+|---|---|---|
+| Identidade, clínicas e vínculos | Sessões revogáveis, BCrypt, BFF HttpOnly/CSRF, autorização por recurso e auditoria | Somente contas sintéticas |
+| Cadastro e pressão | Cadastro profissional, ativação e recuperação assistida, registro confirmado, UUID idempotente, histórico e resultado consultado na API | CPF inicial da referência não implementado; e-mail/senha preservados |
+| Medicamentos e diário | Planos/versionamento, horários, autorrelatos e transcrição profissional persistidos | Entrega nativa dos lembretes ainda não ensaiada |
+| Fila e fotos | Fila protegida nativa implementada; navegador em memória; arquivos cifrados/privados e OCR Tesseract real | SQLCipher/SecureStore exigem build e teste físico; Supabase externo sem credenciais |
+| Alimentação | Upload, histórico e autorização reais | Sem análise inventada; provedor/critérios aprovados ausentes |
+| Atividade física | Perfil, roteiro em etapas e registros voluntários conectados | Exercícios personalizados, vídeo e regras clínicas aguardam aprovação/material |
+| Consultas e pulseira | APIs, formulários, resumo/exportação e simulador explícito | Protocolo/aparelho real ausentes |
+| Estrutura e português | Reorganização existente preservada; principais classes/DTOs/hooks em português e compatibilidade JSON/SQL | Revisão de auxiliares/comentários ainda não integral; não afirmar 100% |
+| Fidelidade visual | Login, painel, cadastro, início, pressão, fotos e ficha em ajustes com componentes reais | Matriz por tela em FIDELIDADE_VISUAL.md; não afirmar 36 telas idênticas |
+| Operação | Backup restaurado em banco isolado; API confirmou login, isolamento e decifração de foto antiga | Docker, fornecedores, lojas e aparelhos não testados/publicados |
+
+### Correção concreta da interrupção
+
+V5 estava incompleta: tentava ALTER na tabela técnica flyway_schema_history, bloqueada pelo próprio migrador. A operação foi retirada antes de qualquer aplicação bem-sucedida. As 26 tabelas do sistema recebem RLS e revogação de privilégios diretos; V1–V4 não foram alteradas. A tabela técnica do Flyway não faz parte dessa alteração de RLS.
+
+A V5 foi aplicada de fato no banco sintético existente, na cópia restaurada e em schemas de teste vazios. Teste SET ROLE demonstrou zero pacientes visíveis mesmo com SELECT concedido e negou acesso a user_account. A API proprietária continua aplicando autorização por clínica/vínculo.
+
+### Validação desta retomada
+
+- Java 21/Maven verify: **5 unitários + 18 integrações PostgreSQL, zero falhas/erros/skips**, incluindo OCR real e isolamento do resultado de pressão. Log local privado: work/java-retomada-verify.log.
+- TypeScript app/web/contratos/tokens e ESLint passaram. Repetição final web e 19 unitários passou após o build de produção.
+- Vitest: **13 mobile e 19 web passaram**, usando o CLI instalado em cada pacote. A tentativa com CLI Vitest da raiz no pacote web encontrou duas instâncias; a execução correta passou sem mudar testes para contornar a falha.
+- Build final Next/Webpack passou com CLI de web (16 rotas). Export Expo web final passou. A sandbox exigiu pré-criar diretórios de saída; não houve mudança de stack nem alteração funcional para contornar o compilador.
+- Restore: banco viva_restore_20261017, login novo, foto cifrada antiga decifrada (14826 bytes) e acesso cruzado 403. Script infra/verificar-restauracao.mjs. Dump e chave fora do Git/pacote. Este teste não valida um provedor externo.
+- Playwright: 10 E2E passaram na versão final em desenvolvimento e 10 passaram no build de produção local (48,3 s), sem skips. Incluem cadastro/ativação, consulta persistida por UI/API, cookie Secure/HttpOnly, CSRF, isolamento, respostas atrasadas entre abas, fila/reenvio, OCR real, resultado de refeição e atividade voluntária.
+
+Hospedagem econômica preservada: Vercel Hobby, Railway Hobby, Supabase Free e EAS. Nenhum custo, publicação ou alteração remota executado. Antes de qualquer publicação continuam necessárias credenciais, revisão dos bloqueios reais, ensaios nativos e as aprovações indicadas.
+
+### Último lote concluído/verificado
+
+Resultado de alimentação separado em app/alimentacao/resultado.tsx com GET autorizado /api/v1/refeicoes/{idRefeicao}; paciente/profissional autorizado passam e outra clínica/ID inexistente recebem 403. Contrato OpenAPI regenerado e geração repetida sem diferença de conteúdo. Script de sincronização de pacotes corrigido para cópias, links e arquivos ligados pelo pnpm, sem sobrescrever um arquivo com ele mesmo.
+
+Tabelas de medicamentos, diário, atividades e consultas reais; formulários abrem pelas respectivas ações. Consulta criada pela UI foi relida no BFF dentro do navegador. Resposta atrasada de pressão não substitui dados de medicamentos. Gráficos vermelho/azul com eixos/datas, medicamentos compactos e histórico de pressão com detalhes expansíveis.
+
+35 capturas finais foram feitas no portal de produção local e Expo web, comparadas nos três painéis; diferenças de cada uma das 36 referências em FIDELIDADE_VISUAL.md. Permanecem incompletos o cadastro demográfico/edição, etapa CPF, composição de conclusão e visão semanal de atividade, identificadores auxiliares e ajustes visuais. Não declarar todas as fases/protótipos concluídos. Notificação/SQLCipher/câmera física, critérios/vídeo, hardware e fornecedores exigem os ensaios/definições já descritos.
+
+Auditoria JS repetida: 0 críticos, 2 altos e 2 moderados; exit 1 mantido. CI remota, OWASP e gitleaks não executados nesta retomada. Nenhum ignore de vulnerabilidade, commit, push ou publicação foi realizado.

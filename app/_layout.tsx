@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ProvedorAutenticacao } from "../contexts/ContextoAutenticacao";
 import { ProvedorAtividade } from "../contexts/ContextoAtividade";
+import { ProvedorPreferencias } from "../contexts/ContextoPreferencias";
 
 export default function LayoutPrincipal() {
   const [client] = useState(
@@ -18,13 +19,15 @@ export default function LayoutPrincipal() {
       <QueryClientProvider client={client}>
         <ProvedorAutenticacao>
           <ProvedorAtividade>
-            <StatusBar style="dark" />
-            <Stack
-              screenOptions={{
-                headerShown: false,
-                contentStyle: { backgroundColor: "#f3f7f8" },
-              }}
-            />
+            <ProvedorPreferencias>
+              <StatusBar style="dark" />
+              <Stack
+                screenOptions={{
+                  headerShown: false,
+                  contentStyle: { backgroundColor: "#f3f7f8" },
+                }}
+              />
+            </ProvedorPreferencias>
           </ProvedorAtividade>
         </ProvedorAutenticacao>
       </QueryClientProvider>

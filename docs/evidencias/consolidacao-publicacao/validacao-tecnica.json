@@ -1,0 +1,148 @@
+{
+  "executadoEm": "2026-10-21T03:05:33.313Z",
+  "escopo": "Consolidação local e publicação de fonte; não liberação produtiva",
+  "java": {
+    "testes": 74,
+    "falhas": 0,
+    "erros": 0,
+    "ignorados": 0
+  },
+  "frontend": {
+    "app": 40,
+    "portal": 29,
+    "total": 69
+  },
+  "e2e": {
+    "testes": 17,
+    "aprovado": true
+  },
+  "installFrozen": true,
+  "tipagem": true,
+  "lint": true,
+  "buildNext": true,
+  "expoWebAndroidIos": true,
+  "contratosGerados": true,
+  "tabelasRls": 32,
+  "politicasDiretas": 0,
+  "roleLocal": {
+    "superusuario": true,
+    "bypassRls": true,
+    "criaRoles": true,
+    "criaBanco": true
+  },
+  "auditoria": {
+    "pnpm": "10.28.2",
+    "dependencias": 922,
+    "vulnerabilidades": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 2,
+      "critical": 0
+    },
+    "exit": 1
+  },
+  "provas": [
+    {
+      "arquivoPrivado": "transferencia-java.log",
+      "sha256": "ce601c7c140d501aeafa95eff5a4cec10ff854a7da35b331df57ad218a0c569c"
+    },
+    {
+      "arquivoPrivado": "transferencia-frontend.log",
+      "sha256": "202783e95348147f56bb21319a289cda8eb2238e74e895a0ff8f6b19fb3f339b"
+    },
+    {
+      "arquivoPrivado": "transferencia-e2e.log",
+      "sha256": "b41e45dc73b5048679e5fac86118b73cdcbcc51070cf905771a5d4d4efcf58ae"
+    },
+    {
+      "arquivoPrivado": "transferencia-next.log",
+      "sha256": "5ed20f370d2382011b31e0703cebee005c157f4d3706b33494dc56b9841e7f62"
+    },
+    {
+      "arquivoPrivado": "transferencia-expo-web.log",
+      "sha256": "d7dd3f8b1ca6ccf69d45f8ac1ae1f5fe743c71b3a169d642677ca9d338237b0f"
+    },
+    {
+      "arquivoPrivado": "transferencia-expo-all.log",
+      "sha256": "502dc354c67d0a4622ffe93b677793a628c95ad0279c932ea0777bce9e47ee45"
+    },
+    {
+      "arquivoPrivado": "transferencia-typecheck.log",
+      "sha256": "bd53c55aa6cd106c0ad7b6ab07072c83413733f2ee38675a3b83a3b18709daf2"
+    },
+    {
+      "arquivoPrivado": "transferencia-lint.log",
+      "sha256": "1e6c132509494b5f6667c6843024ea87fbb0d4e824abd30766574b9ec50d0727"
+    },
+    {
+      "arquivoPrivado": "transferencia-install.log",
+      "sha256": "5987bfdb69dae6ab1d0360e8699ec26a6365603d78ceff58979470baa02b9328"
+    },
+    {
+      "arquivoPrivado": "transferencia-contratos.log",
+      "sha256": "2cde8442ff30b35cbb5cd9ef22dcc2250a4f5d5a5658b1007596cc45dea6ba6a"
+    }
+  ],
+  "naoExecutados": [
+    "Operadora SMS real",
+    "Consulta oficial CPF",
+    "Android/iOS físicos",
+    "APK/AAB/IPA",
+    "Deploy/lojas",
+    "Docker local",
+    "Novo restore completo V9",
+    "OWASP/NVD local completo"
+  ],
+  "publicacao": "A registrar após push verificado; consulte relatório",
+  "totalTabelas": 33,
+  "seguranca": {
+    "scanner": "Gitleaks8.30.1",
+    "commitsHistoricos": 2,
+    "achadosHistorico": 0,
+    "achadosCandidato": 0,
+    "limites": "Conteúdo textual e compactados suportados em profundidade5,decode3; não é certificação universal",
+    "segredosConhecidos": 5,
+    "blobsHistoricos": 415,
+    "ocorrenciasConhecidas": 0,
+    "repositoriosAninhados": [],
+    "arquivosPrivadosCandidatos": [],
+    "submodulos": [],
+    "achadosBlobsHistoricos": 0,
+    "conferenciaRedundanteHistorico": "Gitleaks sobre os 415 blobs completos, além do scan dos dois commits"
+  },
+  "documentacao": {
+    "documentos": 64,
+    "links": 811,
+    "linksInvalidos": [],
+    "utf8Invalidos": [],
+    "modulos": 32,
+    "pendencias": 40,
+    "pacotes": 21,
+    "endpointOperacoes": 58,
+    "workflowYamlValido": true
+  },
+  "integridade": {
+    "migracoesV1V9FontesPreservadas": true,
+    "openapiIgualServidor": true,
+    "normalizacaoOpenapi": "Apenas servers automático ignorado",
+    "sessaoConferenciaRevogada": true
+  },
+  "servicos": [
+    {
+      "nome": "API",
+      "status": 200
+    },
+    {
+      "nome": "Portal",
+      "status": 200
+    },
+    {
+      "nome": "App",
+      "status": 200
+    }
+  ],
+  "gitFsckAprovado": true,
+  "diffCachedCheckAprovado": true,
+  "excecaoWhitespace": "Somente patches/*.patch: espaços de contexto fazem parte da sintaxe/hash pnpm; código normal continua verificado"
+}

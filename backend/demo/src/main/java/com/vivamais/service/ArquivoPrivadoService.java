@@ -64,6 +64,12 @@ public class ArquivoPrivadoService {
   var existente=cuidados.consultarLinhas("SELECT * FROM meal_photo WHERE file_id=?",arquivo);if(!existente.isEmpty())return existente.getFirst();UUID id=UUID.randomUUID();db.update("INSERT INTO meal_photo(id,patient_id,file_id,author_id,occurred_at,notes) VALUES(?,?,?,?,?,?)",id,paciente,arquivo,ator.id(),java.sql.Timestamp.from(occurredAt),Objects.toString(observacoes,""));instituicoes.auditar(ator,"MEAL_CREATED","meal_photo",id);return cuidados.consultarLinhas("SELECT * FROM meal_photo WHERE id=?",id).getFirst();
  }
  public ModelosCuidado.Pagina<Map<String,Object>> listarRefeicoes(UUID paciente,int paginar,int size,Usuario ator){cuidados.autorizarPaciente(paciente,ator);if(paginar<0||paginar>100000||size<1||size>100)throw CuidadoService.error(400,"Paginação inválida.");return new ModelosCuidado.Pagina<>(cuidados.consultarLinhas("SELECT * FROM meal_photo WHERE patient_id=? ORDER BY occurred_at DESC,id DESC LIMIT ? OFFSET ?",paciente,size,(long)paginar*size),db.queryForObject("SELECT count(*) FROM meal_photo WHERE patient_id=?",Long.class,paciente),paginar,size);}
+ public Map<String,Object> buscarRefeicao(UUID idRefeicao,Usuario ator){
+  var encontrados=cuidados.consultarLinhas("SELECT * FROM meal_photo WHERE id=?",idRefeicao);
+  if(encontrados.isEmpty())throw CuidadoService.error(403,"Refeição não autorizada.");
+  var refeicao=encontrados.getFirst();cuidados.autorizarPaciente(UUID.fromString(refeicao.get("patientId").toString()),ator);
+  instituicoes.auditar(ator,"MEAL_VIEWED","meal_photo",idRefeicao);return refeicao;
+ }
  public Map<String,Object> analisarAlimentacao(UUID registrarRefeicao,Usuario ator)throws Exception{
   var encontrado=cuidados.consultarLinhas("SELECT m.*,f.object_key FROM meal_photo m JOIN file_object f ON f.id=m.file_id WHERE m.id=?",registrarRefeicao);if(encontrado.isEmpty())throw CuidadoService.error(403,"Refeição não autorizada.");var linha=encontrado.getFirst();cuidados.autorizarPaciente(UUID.fromString(linha.get("patientId").toString()),ator);
   if(!alimentacao.enabled())return Map.of("status","UNAVAILABLE","providerCalled",false,"message","Análise automatizada indisponível. Critérios e serviço precisam de configuração e revisão clínica.","educationalAlternative","Leve a foto à equipe de saúde para conversar sobre a refeição. A foto, sozinha, não mede sódio, gordura, porções ou nutrientes.");

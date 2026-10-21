@@ -1,0 +1,71 @@
+{
+  "executadoEm": "2026-10-20T21:01:15.950Z",
+  "medidas": [
+    {
+      "rota": "inicio",
+      "barraForaDaRolagem": true,
+      "sobreposicao": false
+    },
+    {
+      "rota": "mensagens",
+      "barraForaDaRolagem": true,
+      "sobreposicao": false
+    },
+    {
+      "rota": "atividade-fisica",
+      "barraForaDaRolagem": true,
+      "sobreposicao": false
+    },
+    {
+      "rota": "atividade-fisica/historico",
+      "barraForaDaRolagem": true,
+      "sobreposicao": false
+    },
+    {
+      "rota": "atividade-fisica/orientacoes",
+      "barraForaDaRolagem": true,
+      "sobreposicao": false
+    },
+    {
+      "rota": "atividade-fisica/como-esta-hoje",
+      "barraForaDaRolagem": true,
+      "sobreposicao": false
+    },
+    {
+      "rota": "atividade-fisica/verificacao-pressao",
+      "barraForaDaRolagem": true,
+      "sobreposicao": false
+    },
+    {
+      "rota": "atividade-fisica/suas-informacoes",
+      "barraForaDaRolagem": true,
+      "sobreposicao": false
+    },
+    {
+      "rota": "atividade-fisica/atividade-hoje",
+      "barraForaDaRolagem": true,
+      "sobreposicao": false
+    },
+    {
+      "rota": "atividade-fisica/passo-a-passo",
+      "barraForaDaRolagem": true,
+      "sobreposicao": false
+    },
+    {
+      "rota": "atividade-fisica/video",
+      "barraForaDaRolagem": true,
+      "sobreposicao": false
+    },
+    {
+      "rota": "atividade-fisica/alternativa",
+      "barraForaDaRolagem": true,
+      "sobreposicao": false
+    }
+  ],
+  "largurasPequenas": [
+    320,
+    375,
+    430
+  ],
+  "ensaioFisico": false
+}

@@ -1,11 +1,12 @@
+import { Text } from "../../components/TextoAcessivel";
 import { router } from "expo-router";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { Tela, Botao } from "../../components/ElementosInterface";
 import { BarraNavegacao } from "../../components/BarraNavegacao";
 import { estilos as e } from "../../components/estilos";
 export default function OrientacoesAtividade() {
   return (
-    <Tela>
+    <Tela rodape={<BarraNavegacao />}>
       <Text style={e.title} accessibilityRole="header">
         Mensagens e orientações
       </Text>
@@ -31,7 +32,6 @@ export default function OrientacoesAtividade() {
         </Text>
       </View>
       <Botao rotulo="Meu Perfil" onPress={() => router.push("/perfil")} />
-      <BarraNavegacao />
     </Tela>
   );
 }

@@ -3,6 +3,8 @@ import type { ExpoConfig } from "expo/config";
 const enderecoApi =
   process.env.EXPO_PUBLIC_API_BASE_URL ?? "http://127.0.0.1:8080";
 const appEnvironment = process.env.APP_ENV ?? "development";
+if (!["development", "test", "preview", "production"].includes(appEnvironment))
+  throw new Error("APP_ENV inválido.");
 
 // Expo evaluates this config in Node without recursively transpiling TypeScript imports.
 function enderecoLocal(nomeServidor: string): boolean {
@@ -20,7 +22,9 @@ function enderecoLocal(nomeServidor: string): boolean {
     return true;
   if (
     servidor.includes(":") &&
-    (servidor.startsWith("fc") || servidor.startsWith("fd") || servidor.startsWith("fe80:"))
+    (servidor.startsWith("fc") ||
+      servidor.startsWith("fd") ||
+      servidor.startsWith("fe80:"))
   )
     return true;
   const partesData = servidor.split(".").map(Number);
@@ -97,9 +101,9 @@ const config: ExpoConfig = {
       "expo-image-picker",
       {
         photosPermission:
-          "Selecione uma foto sintética para registrar a refeição ou o visor do aparelho.",
+          "Selecione uma foto da refeição ou do visor do aparelho.",
         cameraPermission:
-          "Fotografe o visor de um aparelho ou uma refeição sintética.",
+          "Fotografe o visor do aparelho de pressão ou sua refeição.",
         microphonePermission: false,
       },
     ],

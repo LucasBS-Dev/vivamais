@@ -1,5 +1,6 @@
+import { Text } from "../../components/TextoAcessivel";
 import { router } from "expo-router";
-import { Text } from "react-native";
+import {} from "react-native";
 import {
   Tela,
   Botao,
@@ -37,7 +38,7 @@ export default function FotoPressao() {
           }
         />
       ) : (
-        <MensagemErro mensagem="Conecte-se à API para enviar a foto privada." />
+        <MensagemErro mensagem="Confira a conexão para enviar sua foto com privacidade." />
       )}
       <Botao
         secundario

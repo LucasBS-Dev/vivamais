@@ -1,0 +1,422 @@
+{
+  "quantidade": 52,
+  "semReamostragem": true,
+  "arquivos": [
+    {
+      "arquivo": "01_logos/icone_do_aplicativo.png",
+      "largura": 573,
+      "altura": 651,
+      "sha256": "6c83a1b47339e8dba8c6f47255c5d3af4c0d7771cba37bcec9ec2aa816aa6293",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "01_logos/logo_viva_mais_com_slogan.png",
+      "largura": 1536,
+      "altura": 1024,
+      "sha256": "a6c619a5de1b97d944b5af11427000b210d0a844ab06d7bba6507940708afca8",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "01_logos/logo_viva_mais_sem_slogan.png",
+      "largura": 1278,
+      "altura": 1230,
+      "sha256": "442a8ac4ac5d1feda2198754ae3061af80759f3e93f60f6e178a5184abe9f71a",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "02_personagens/idosa_exercicio_sentado.png",
+      "largura": 579,
+      "altura": 801,
+      "sha256": "0414338886cb61948edd79bcdd8aaa4b691bb0f9914bcf372765160e99a0517b",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "02_personagens/idosa_perfil.png",
+      "largura": 519,
+      "altura": 606,
+      "sha256": "599b4d1130aef7db50e351ccbbf0b13fafcaff6c8d89a2e0c6e6d15f9a047418",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "02_personagens/idosos_atividade_fisica.png",
+      "largura": 945,
+      "altura": 849,
+      "sha256": "741d4a704d3010cbc5acc1a2d8ce3cc8e72873c79955373d68592d710c44d219",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "02_personagens/idoso_perfil.png",
+      "largura": 609,
+      "altura": 603,
+      "sha256": "62b0c06a433948974f83b7ac0c3dfbbf34ee1d0b64e6f51b8feb1190f6b2c5b7",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "02_personagens/profissionais_de_saude.png",
+      "largura": 1089,
+      "altura": 816,
+      "sha256": "dade959a892469042f389ac05b6fa967655d8264a26aa2e5c07018ecf2e4ee8a",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "03_exercicios/alongamento_leve.png",
+      "largura": 519,
+      "altura": 603,
+      "sha256": "918952cf5877e231a3821967afb25d1d34f95c053b72fa295f823aa72a9ab446",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "03_exercicios/bracos_sentado.png",
+      "largura": 582,
+      "altura": 609,
+      "sha256": "deb7f4928f6dd19f96c60e59b3e8ea48b061ae7e02fa1694838e81a8b5265050",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "03_exercicios/caminhada_leve.png",
+      "largura": 465,
+      "altura": 603,
+      "sha256": "74090a0c3726f685d8cc74dcdf3baf946a74f7ef876af366d7166c8b7240c823",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "03_exercicios/ombros.png",
+      "largura": 651,
+      "altura": 624,
+      "sha256": "aac05400bda479756f26b18f42f5ab978a761245594194c2fa0dc7b5fa7bf200",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "03_exercicios/pes_sentado.png",
+      "largura": 519,
+      "altura": 597,
+      "sha256": "208ebffbb54e80890dd7b1fc3dc8ad962f0c86684d67a328b44a777e4a4ba46f",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "04_objetos/aparelho_pressao_arterial.png",
+      "largura": 753,
+      "altura": 516,
+      "sha256": "618f39d116844b587835a217d5b8e6c588a7e88373e0b907591c83b2edd5289b",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "04_objetos/copo_de_agua.png",
+      "largura": 378,
+      "altura": 474,
+      "sha256": "dd00863dc8b2aa9e8c207daae35cb107a4f2dc79969028e93a73ee6b548e1e2c",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "04_objetos/medicamentos.png",
+      "largura": 561,
+      "altura": 462,
+      "sha256": "27481d29aece4d527fa5a42b77130684f3e86e0b6f79e6628a1f86cf3b81b474",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "04_objetos/pulseira_pulso_em_dia.png",
+      "largura": 714,
+      "altura": 525,
+      "sha256": "0bdb586c160a37620511229e3c932641e03d435ec971c4b65d3fff012774926c",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "04_objetos/refeicao_saudavel.png",
+      "largura": 888,
+      "altura": 519,
+      "sha256": "e9edecca60f4fcb726bda66ec18b1c8c686c4396524e2b5d956c6e4c1987bc8e",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "04_objetos/tenis_caminhada.png",
+      "largura": 588,
+      "altura": 489,
+      "sha256": "da246326e6980adb856c0828b0090bbbcce2834aee3e8a5b2df1b69c517e229c",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "05_menu/area_profissional.png",
+      "largura": 363,
+      "altura": 381,
+      "sha256": "a374ef584df2b33ca838956a503e94189994a48fff598456f97b36eac337a4a4",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "05_menu/atividade_fisica.png",
+      "largura": 366,
+      "altura": 381,
+      "sha256": "8b58a96ed505812d28b27aec06eccacbfb69672fc607d9b79766a70aa65e9ddc",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "05_menu/configuracoes.png",
+      "largura": 363,
+      "altura": 387,
+      "sha256": "911a6f91e08f36fe8e69589227f8d027c59402ef6140be65e380603a4bfc9a4b",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "05_menu/lembretes.png",
+      "largura": 354,
+      "altura": 387,
+      "sha256": "11dd999f526a7610b539cb112ec49eeba4a684ada8ddeec46ba7f1ded4c5aca3",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "05_menu/meus_medicamentos.png",
+      "largura": 360,
+      "altura": 381,
+      "sha256": "6866aa29a82cbf08787271b363412b6e082bcfd99db2822eb2e076fb7e04beb0",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "05_menu/meu_historico.png",
+      "largura": 372,
+      "altura": 387,
+      "sha256": "b1eb2d76353ce8777e5053a1ebad0e442a0b2a184d62ad7c0e0f522169f4522c",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "05_menu/minha_alimentacao.png",
+      "largura": 360,
+      "altura": 387,
+      "sha256": "a54f204083717010ff19c7608fa95d3a754a57a531fe60882780d9822b23c57c",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "05_menu/minha_pressao.png",
+      "largura": 360,
+      "altura": 387,
+      "sha256": "c4db006c2d012e720a466fc0b29cd286665c4b27060eb60c6f3df73d50b20b42",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "06_humor/estou_bem.png",
+      "largura": 204,
+      "altura": 204,
+      "sha256": "f2b7d5cbed98cc8cfe734c33f1f9371c509405dc39e1ebfdc0834f01002e964b",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "06_humor/tontura_ou_mal_estar.png",
+      "largura": 213,
+      "altura": 204,
+      "sha256": "19625c3ed63c5a6a26feceee192f2899fac71f5ec07d791d9b750b519f2a398e",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "06_humor/um_pouco_cansado.png",
+      "largura": 216,
+      "altura": 204,
+      "sha256": "d2d800177ec815d46da9cd690c105477c3ea7f624c7fa0c7046b3b2b0fd8a0c6",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "07_acoes/alerta.png",
+      "largura": 207,
+      "altura": 168,
+      "sha256": "4ed4b83f21051540a5efda9a5edf8933d4fd6c628dace97c041eef511703a854",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "07_acoes/baixar.png",
+      "largura": 210,
+      "altura": 168,
+      "sha256": "7f7548e0337d8ff27b249ad7ecd778db3a52f774c8f90bcf9d9cf494b819eeed",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "07_acoes/calendario.png",
+      "largura": 210,
+      "altura": 168,
+      "sha256": "ea67f266d487b9a511d7b59429f55e8efc09a104623b13185adddebdea7fb305",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "07_acoes/confirmado.png",
+      "largura": 207,
+      "altura": 168,
+      "sha256": "0277c8ae2cee1c79ce90639819898998c81486e008ed5d87d73b343cc98dce10",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "07_acoes/editar.png",
+      "largura": 210,
+      "altura": 168,
+      "sha256": "f1b31facbbc41bd95404adcbca1dc0f0dfc8a58679891b7f906bc6038579afee",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "07_acoes/enviar.png",
+      "largura": 210,
+      "altura": 168,
+      "sha256": "90f57917e6500ba167f9cf824bcd8829a19e2dc6f1f9cbb5bb3b42efffe685f2",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "07_acoes/excluir.png",
+      "largura": 207,
+      "altura": 168,
+      "sha256": "d2cb6b60c114ab2e1b4ade91e16a99de8f726b5b8332a963d472513fdbcd2809",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "07_acoes/foto.png",
+      "largura": 207,
+      "altura": 168,
+      "sha256": "aec62e0e3b2af71bfacacd2fdf3b185c5363dd4c6c4cc25461d94b211781a61b",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "07_acoes/grafico.png",
+      "largura": 207,
+      "altura": 168,
+      "sha256": "841cffb2c914005796960acd9eff5876ff639ab4f4198cc0f67ce3a3af6abb7d",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "07_acoes/horario.png",
+      "largura": 207,
+      "altura": 168,
+      "sha256": "8ef907dcdf614c8d6a0d771590254681b0bde933b31e4057988d2b2a8805d338",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "07_acoes/informacao.png",
+      "largura": 207,
+      "altura": 168,
+      "sha256": "b82ba3daf14680388e1e4120c9d808f396796fea54a9a7985dd81116c6cc3062",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "07_acoes/lembrete.png",
+      "largura": 210,
+      "altura": 168,
+      "sha256": "076923a4391489abb6b192b6c287f59e73743c8d351350a7149ad21021554889",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "07_acoes/nao_realizado.png",
+      "largura": 207,
+      "altura": 168,
+      "sha256": "7cb447c67a8bc17b46d9c31639b2ebf4798b6680f82ad174776865a4e2e712af",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "07_acoes/sem_internet.png",
+      "largura": 210,
+      "altura": 168,
+      "sha256": "178df3d3c54c71d2dde26e4db660832328a469d0488a24e3fc5facdf53120f3d",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "07_acoes/sincronizar.png",
+      "largura": 210,
+      "altura": 168,
+      "sha256": "431fd8c106feef0b65ad57a4b7862bc613a68426d7c49399d42d51efea26cd58",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "08_cards/acompanhamento_evolucao.png",
+      "largura": 555,
+      "altura": 426,
+      "sha256": "a04beb378104c622b89d38efadc2b9e7769abb462e1d0af588253aa12eb4d78c",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "08_cards/atividade_fisica.png",
+      "largura": 534,
+      "altura": 423,
+      "sha256": "bde48f4d0b1e50eda7f771dc63fec5207487f44909181b6ba2103642df3a916c",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "08_cards/lembrete_medicamento.png",
+      "largura": 510,
+      "altura": 420,
+      "sha256": "140212a8b979484a88f3302519000b3248a7ad16788cd3920623cea896a3601b",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "08_cards/medicao_da_pressao.png",
+      "largura": 525,
+      "altura": 426,
+      "sha256": "477453590f80fd2f76f53e4d10739805c35a50133e3fb9ef8c7c0de1a9f5d692",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "08_cards/planejamento_cuidado.png",
+      "largura": 495,
+      "altura": 429,
+      "sha256": "33230d0b1095dceb685fe5d368dfbf3ac7184491888b9e1b765dbd7099defea9",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "08_cards/registro_alimentacao.png",
+      "largura": 477,
+      "altura": 429,
+      "sha256": "396ddcc294e7338402f3696db758e7a6af12f65f76b0d63e1f81b2e5bbab1d2e",
+      "mobileIgual": true,
+      "portalIgual": true
+    },
+    {
+      "arquivo": "08_cards/seguranca_dados.png",
+      "largura": 468,
+      "altura": 429,
+      "sha256": "7f19f47ade9a1c0a365cfc5c304576a9f02d655780ebf0e7f14c9c02d8dcd256",
+      "mobileIgual": true,
+      "portalIgual": true
+    }
+  ]
+}

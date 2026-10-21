@@ -1,0 +1,3653 @@
+{
+  "geradoEm": "2026-10-21T03:05:33.694Z",
+  "escopo": "Lista candidata antes do primeiro commit; exclui este próprio manifesto, não substitui árvore Git",
+  "arquivos": [
+    {
+      "caminho": ".easignore",
+      "bytes": 117
+    },
+    {
+      "caminho": ".env.example",
+      "bytes": 2310
+    },
+    {
+      "caminho": ".gitattributes",
+      "bytes": 166
+    },
+    {
+      "caminho": ".github/workflows/ci.yml",
+      "bytes": 4239
+    },
+    {
+      "caminho": ".gitignore",
+      "bytes": 574
+    },
+    {
+      "caminho": ".maestro/login.yaml",
+      "bytes": 831
+    },
+    {
+      "caminho": ".npmrc",
+      "bytes": 192
+    },
+    {
+      "caminho": "AGENTS.md",
+      "bytes": 6323
+    },
+    {
+      "caminho": "CHANGELOG.md",
+      "bytes": 5681
+    },
+    {
+      "caminho": "CONTRIBUTING.md",
+      "bytes": 2202
+    },
+    {
+      "caminho": "Iniciar-VivaMais.cmd",
+      "bytes": 659
+    },
+    {
+      "caminho": "LEIA_PRIMEIRO.md",
+      "bytes": 1943
+    },
+    {
+      "caminho": "PROGRESSO.md",
+      "bytes": 30941
+    },
+    {
+      "caminho": "PROMPT_CODEX_PADRONIZACAO_E_FIDELIDADE_VIVA_MAIS.md",
+      "bytes": 21776
+    },
+    {
+      "caminho": "PROMPT_CODEX_VIVA_MAIS.md",
+      "bytes": 24695
+    },
+    {
+      "caminho": "README.md",
+      "bytes": 7598
+    },
+    {
+      "caminho": "app.config.ts",
+      "bytes": 3368
+    },
+    {
+      "caminho": "app.json",
+      "bytes": 65
+    },
+    {
+      "caminho": "app/+not-found.tsx",
+      "bytes": 536
+    },
+    {
+      "caminho": "app/_layout.tsx",
+      "bytes": 1239
+    },
+    {
+      "caminho": "app/acesso.tsx",
+      "bytes": 4655
+    },
+    {
+      "caminho": "app/activate.tsx",
+      "bytes": 192
+    },
+    {
+      "caminho": "app/alimentacao/_layout.tsx",
+      "bytes": 79
+    },
+    {
+      "caminho": "app/alimentacao/index.tsx",
+      "bytes": 142
+    },
+    {
+      "caminho": "app/alimentacao/resultado.tsx",
+      "bytes": 5012
+    },
+    {
+      "caminho": "app/ativar-conta.tsx",
+      "bytes": 5804
+    },
+    {
+      "caminho": "app/atividade-fisica/_layout.tsx",
+      "bytes": 79
+    },
+    {
+      "caminho": "app/atividade-fisica/alternativa.tsx",
+      "bytes": 166
+    },
+    {
+      "caminho": "app/atividade-fisica/atividade-hoje.tsx",
+      "bytes": 164
+    },
+    {
+      "caminho": "app/atividade-fisica/como-esta-hoje.tsx",
+      "bytes": 165
+    },
+    {
+      "caminho": "app/atividade-fisica/historico.tsx",
+      "bytes": 159
+    },
+    {
+      "caminho": "app/atividade-fisica/ilustracoes.tsx",
+      "bytes": 2372
+    },
+    {
+      "caminho": "app/atividade-fisica/index.tsx",
+      "bytes": 2163
+    },
+    {
+      "caminho": "app/atividade-fisica/orientacoes.tsx",
+      "bytes": 1491
+    },
+    {
+      "caminho": "app/atividade-fisica/passo-a-passo.tsx",
+      "bytes": 161
+    },
+    {
+      "caminho": "app/atividade-fisica/registro.tsx",
+      "bytes": 153
+    },
+    {
+      "caminho": "app/atividade-fisica/suas-informacoes.tsx",
+      "bytes": 166
+    },
+    {
+      "caminho": "app/atividade-fisica/verificacao-pressao.tsx",
+      "bytes": 162
+    },
+    {
+      "caminho": "app/atividade-fisica/video.tsx",
+      "bytes": 160
+    },
+    {
+      "caminho": "app/cadastro.tsx",
+      "bytes": 1921
+    },
+    {
+      "caminho": "app/configuracoes.tsx",
+      "bytes": 5531
+    },
+    {
+      "caminho": "app/historico/index.tsx",
+      "bytes": 1504
+    },
+    {
+      "caminho": "app/history.tsx",
+      "bytes": 189
+    },
+    {
+      "caminho": "app/home.tsx",
+      "bytes": 186
+    },
+    {
+      "caminho": "app/index.tsx",
+      "bytes": 2941
+    },
+    {
+      "caminho": "app/inicio.tsx",
+      "bytes": 10694
+    },
+    {
+      "caminho": "app/lembretes.tsx",
+      "bytes": 551
+    },
+    {
+      "caminho": "app/login.tsx",
+      "bytes": 186
+    },
+    {
+      "caminho": "app/medicamentos/_layout.tsx",
+      "bytes": 79
+    },
+    {
+      "caminho": "app/medicamentos/index.tsx",
+      "bytes": 150
+    },
+    {
+      "caminho": "app/mensagens.tsx",
+      "bytes": 1975
+    },
+    {
+      "caminho": "app/module/[key].tsx",
+      "bytes": 4117
+    },
+    {
+      "caminho": "app/perfil.tsx",
+      "bytes": 3481
+    },
+    {
+      "caminho": "app/pressao/_layout.tsx",
+      "bytes": 79
+    },
+    {
+      "caminho": "app/pressao/digitar.tsx",
+      "bytes": 5814
+    },
+    {
+      "caminho": "app/pressao/foto.tsx",
+      "bytes": 1490
+    },
+    {
+      "caminho": "app/pressao/historico.tsx",
+      "bytes": 174
+    },
+    {
+      "caminho": "app/pressao/index.tsx",
+      "bytes": 2535
+    },
+    {
+      "caminho": "app/pressao/resultado.tsx",
+      "bytes": 3578
+    },
+    {
+      "caminho": "app/profile.tsx",
+      "bytes": 186
+    },
+    {
+      "caminho": "assets/images/icone-alimentacao.png",
+      "bytes": 239
+    },
+    {
+      "caminho": "assets/images/icone-atividade.png",
+      "bytes": 301
+    },
+    {
+      "caminho": "assets/images/icone-medicamentos.png",
+      "bytes": 296
+    },
+    {
+      "caminho": "assets/images/icone-pressao.png",
+      "bytes": 314
+    },
+    {
+      "caminho": "assets/images/idosos-atividade.png",
+      "bytes": 52141
+    },
+    {
+      "caminho": "assets/images/idosos-boas-vindas.png",
+      "bytes": 58196
+    },
+    {
+      "caminho": "assets/images/individuais/01_logos/icone_do_aplicativo.png",
+      "bytes": 159999
+    },
+    {
+      "caminho": "assets/images/individuais/01_logos/logo_viva_mais_com_slogan.png",
+      "bytes": 716819
+    },
+    {
+      "caminho": "assets/images/individuais/01_logos/logo_viva_mais_sem_slogan.png",
+      "bytes": 853771
+    },
+    {
+      "caminho": "assets/images/individuais/02_personagens/idosa_exercicio_sentado.png",
+      "bytes": 362411
+    },
+    {
+      "caminho": "assets/images/individuais/02_personagens/idosa_perfil.png",
+      "bytes": 231487
+    },
+    {
+      "caminho": "assets/images/individuais/02_personagens/idoso_perfil.png",
+      "bytes": 250070
+    },
+    {
+      "caminho": "assets/images/individuais/02_personagens/idosos_atividade_fisica.png",
+      "bytes": 479411
+    },
+    {
+      "caminho": "assets/images/individuais/02_personagens/profissionais_de_saude.png",
+      "bytes": 571740
+    },
+    {
+      "caminho": "assets/images/individuais/03_exercicios/alongamento_leve.png",
+      "bytes": 223580
+    },
+    {
+      "caminho": "assets/images/individuais/03_exercicios/bracos_sentado.png",
+      "bytes": 232338
+    },
+    {
+      "caminho": "assets/images/individuais/03_exercicios/caminhada_leve.png",
+      "bytes": 272910
+    },
+    {
+      "caminho": "assets/images/individuais/03_exercicios/ombros.png",
+      "bytes": 225541
+    },
+    {
+      "caminho": "assets/images/individuais/03_exercicios/pes_sentado.png",
+      "bytes": 227764
+    },
+    {
+      "caminho": "assets/images/individuais/04_objetos/aparelho_pressao_arterial.png",
+      "bytes": 246893
+    },
+    {
+      "caminho": "assets/images/individuais/04_objetos/copo_de_agua.png",
+      "bytes": 116173
+    },
+    {
+      "caminho": "assets/images/individuais/04_objetos/medicamentos.png",
+      "bytes": 187500
+    },
+    {
+      "caminho": "assets/images/individuais/04_objetos/pulseira_pulso_em_dia.png",
+      "bytes": 276562
+    },
+    {
+      "caminho": "assets/images/individuais/04_objetos/refeicao_saudavel.png",
+      "bytes": 539250
+    },
+    {
+      "caminho": "assets/images/individuais/04_objetos/tenis_caminhada.png",
+      "bytes": 255074
+    },
+    {
+      "caminho": "assets/images/individuais/05_menu/area_profissional.png",
+      "bytes": 99764
+    },
+    {
+      "caminho": "assets/images/individuais/05_menu/atividade_fisica.png",
+      "bytes": 79045
+    },
+    {
+      "caminho": "assets/images/individuais/05_menu/configuracoes.png",
+      "bytes": 81049
+    },
+    {
+      "caminho": "assets/images/individuais/05_menu/lembretes.png",
+      "bytes": 53697
+    },
+    {
+      "caminho": "assets/images/individuais/05_menu/meu_historico.png",
+      "bytes": 66764
+    },
+    {
+      "caminho": "assets/images/individuais/05_menu/meus_medicamentos.png",
+      "bytes": 88621
+    },
+    {
+      "caminho": "assets/images/individuais/05_menu/minha_alimentacao.png",
+      "bytes": 76732
+    },
+    {
+      "caminho": "assets/images/individuais/05_menu/minha_pressao.png",
+      "bytes": 74698
+    },
+    {
+      "caminho": "assets/images/individuais/06_humor/estou_bem.png",
+      "bytes": 39512
+    },
+    {
+      "caminho": "assets/images/individuais/06_humor/tontura_ou_mal_estar.png",
+      "bytes": 39555
+    },
+    {
+      "caminho": "assets/images/individuais/06_humor/um_pouco_cansado.png",
+      "bytes": 31887
+    },
+    {
+      "caminho": "assets/images/individuais/07_acoes/alerta.png",
+      "bytes": 21462
+    },
+    {
+      "caminho": "assets/images/individuais/07_acoes/baixar.png",
+      "bytes": 13018
+    },
+    {
+      "caminho": "assets/images/individuais/07_acoes/calendario.png",
+      "bytes": 29886
+    },
+    {
+      "caminho": "assets/images/individuais/07_acoes/confirmado.png",
+      "bytes": 26003
+    },
+    {
+      "caminho": "assets/images/individuais/07_acoes/editar.png",
+      "bytes": 15114
+    },
+    {
+      "caminho": "assets/images/individuais/07_acoes/enviar.png",
+      "bytes": 18663
+    },
+    {
+      "caminho": "assets/images/individuais/07_acoes/excluir.png",
+      "bytes": 17780
+    },
+    {
+      "caminho": "assets/images/individuais/07_acoes/foto.png",
+      "bytes": 24168
+    },
+    {
+      "caminho": "assets/images/individuais/07_acoes/grafico.png",
+      "bytes": 23365
+    },
+    {
+      "caminho": "assets/images/individuais/07_acoes/horario.png",
+      "bytes": 31351
+    },
+    {
+      "caminho": "assets/images/individuais/07_acoes/informacao.png",
+      "bytes": 22868
+    },
+    {
+      "caminho": "assets/images/individuais/07_acoes/lembrete.png",
+      "bytes": 16769
+    },
+    {
+      "caminho": "assets/images/individuais/07_acoes/nao_realizado.png",
+      "bytes": 24153
+    },
+    {
+      "caminho": "assets/images/individuais/07_acoes/sem_internet.png",
+      "bytes": 32470
+    },
+    {
+      "caminho": "assets/images/individuais/07_acoes/sincronizar.png",
+      "bytes": 25579
+    },
+    {
+      "caminho": "assets/images/individuais/08_cards/acompanhamento_evolucao.png",
+      "bytes": 88215
+    },
+    {
+      "caminho": "assets/images/individuais/08_cards/atividade_fisica.png",
+      "bytes": 217811
+    },
+    {
+      "caminho": "assets/images/individuais/08_cards/lembrete_medicamento.png",
+      "bytes": 102919
+    },
+    {
+      "caminho": "assets/images/individuais/08_cards/medicao_da_pressao.png",
+      "bytes": 167912
+    },
+    {
+      "caminho": "assets/images/individuais/08_cards/planejamento_cuidado.png",
+      "bytes": 93709
+    },
+    {
+      "caminho": "assets/images/individuais/08_cards/registro_alimentacao.png",
+      "bytes": 152467
+    },
+    {
+      "caminho": "assets/images/individuais/08_cards/seguranca_dados.png",
+      "bytes": 75139
+    },
+    {
+      "caminho": "assets/images/logo-viva-verde.png",
+      "bytes": 10342
+    },
+    {
+      "caminho": "assets/images/logo-viva.png",
+      "bytes": 13069
+    },
+    {
+      "caminho": "assets/images/navegacao-inicio.png",
+      "bytes": 957
+    },
+    {
+      "caminho": "assets/images/navegacao-lembretes.png",
+      "bytes": 836
+    },
+    {
+      "caminho": "assets/images/navegacao-mensagens.png",
+      "bytes": 696
+    },
+    {
+      "caminho": "assets/images/navegacao-perfil.png",
+      "bytes": 458
+    },
+    {
+      "caminho": "assets/images/profissionais.png",
+      "bytes": 43993
+    },
+    {
+      "caminho": "assets/images/refeicao-exemplo.png",
+      "bytes": 81499
+    },
+    {
+      "caminho": "assets/images/visor-exemplo.png",
+      "bytes": 67321
+    },
+    {
+      "caminho": "backend/demo/.dockerignore",
+      "bytes": 34
+    },
+    {
+      "caminho": "backend/demo/.mvn/wrapper/maven-wrapper.properties",
+      "bytes": 259
+    },
+    {
+      "caminho": "backend/demo/CARE_API.md",
+      "bytes": 4516
+    },
+    {
+      "caminho": "backend/demo/Dockerfile",
+      "bytes": 735
+    },
+    {
+      "caminho": "backend/demo/README.md",
+      "bytes": 8115
+    },
+    {
+      "caminho": "backend/demo/mvnw",
+      "bytes": 11790
+    },
+    {
+      "caminho": "backend/demo/mvnw.cmd",
+      "bytes": 8481
+    },
+    {
+      "caminho": "backend/demo/openapi.json",
+      "bytes": 65701
+    },
+    {
+      "caminho": "backend/demo/pom.xml",
+      "bytes": 3049
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/AplicacaoVivaMais.java",
+      "bytes": 771
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/config/ConfiguracaoAmbiente.java",
+      "bytes": 1855
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/config/ConfiguracaoOpenApi.java",
+      "bytes": 3863
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/config/ConfiguracaoSeguranca.java",
+      "bytes": 4945
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/config/ConfiguracaoSms.java",
+      "bytes": 2002
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/config/DadosDemonstracao.java",
+      "bytes": 4341
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/config/PropriedadesAplicacao.java",
+      "bytes": 553
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/config/TratadorExcecoesApi.java",
+      "bytes": 4759
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/controller/AcessoPacienteController.java",
+      "bytes": 4612
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/controller/ArquivoPrivadoController.java",
+      "bytes": 3736
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/controller/CuidadoController.java",
+      "bytes": 11861
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/controller/DadosPessoaisController.java",
+      "bytes": 1462
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/controller/InstituicaoController.java",
+      "bytes": 6216
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/controller/PreferenciasController.java",
+      "bytes": 2499
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/dto/ModelosAcessoPaciente.java",
+      "bytes": 1682
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/dto/ModelosApi.java",
+      "bytes": 2789
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/dto/ModelosCuidado.java",
+      "bytes": 7706
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/model/ModalidadeAcompanhamento.java",
+      "bytes": 179
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/repositories/InstituicaoRepository.java",
+      "bytes": 6035
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/security/CodificadorToken.java",
+      "bytes": 1120
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/security/FiltroLimiteRequisicao.java",
+      "bytes": 3826
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/security/FiltroTokenAcesso.java",
+      "bytes": 1955
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/security/LimitadorTentativasAcesso.java",
+      "bytes": 2348
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/security/ProtecaoAcessoPaciente.java",
+      "bytes": 2621
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/service/AcessoPacienteService.java",
+      "bytes": 19293
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/service/AdaptadorPulseira.java",
+      "bytes": 1061
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/service/ArmazenamentoArquivos.java",
+      "bytes": 4945
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/service/ArquivoPrivadoService.java",
+      "bytes": 13604
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/service/AutenticacaoService.java",
+      "bytes": 2891
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/service/CuidadoService.java",
+      "bytes": 29247
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/service/DadosPessoaisService.java",
+      "bytes": 7986
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/service/ProvedorAnaliseAlimentacao.java",
+      "bytes": 405
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/service/ProvedorAnaliseAlimentacaoHttp.java",
+      "bytes": 3743
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/service/ProvedorOcr.java",
+      "bytes": 357
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/service/ReconhecedorTesseract.java",
+      "bytes": 1756
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/service/sms/EnvioSmsTwilio.java",
+      "bytes": 4493
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/service/sms/ServicoEnvioSms.java",
+      "bytes": 863
+    },
+    {
+      "caminho": "backend/demo/src/main/java/com/vivamais/service/sms/SmsLocalDesenvolvimento.java",
+      "bytes": 3433
+    },
+    {
+      "caminho": "backend/demo/src/main/resources/application.yml",
+      "bytes": 2386
+    },
+    {
+      "caminho": "backend/demo/src/main/resources/db/migration/V1__foundation.sql",
+      "bytes": 4153
+    },
+    {
+      "caminho": "backend/demo/src/main/resources/db/migration/V2__care.sql",
+      "bytes": 5397
+    },
+    {
+      "caminho": "backend/demo/src/main/resources/db/migration/V3__private_files.sql",
+      "bytes": 1741
+    },
+    {
+      "caminho": "backend/demo/src/main/resources/db/migration/V4__analysis_budget.sql",
+      "bytes": 354
+    },
+    {
+      "caminho": "backend/demo/src/main/resources/db/migration/V5__bloquear_acesso_direto_cliente.sql",
+      "bytes": 1426
+    },
+    {
+      "caminho": "backend/demo/src/main/resources/db/migration/V6__dados_pessoais_paciente.sql",
+      "bytes": 680
+    },
+    {
+      "caminho": "backend/demo/src/main/resources/db/migration/V7__preferencias_conta.sql",
+      "bytes": 794
+    },
+    {
+      "caminho": "backend/demo/src/main/resources/db/migration/V8__acesso_paciente_sem_senha.sql",
+      "bytes": 2399
+    },
+    {
+      "caminho": "backend/demo/src/main/resources/db/migration/V9__envio_sms_ativacao.sql",
+      "bytes": 1602
+    },
+    {
+      "caminho": "backend/demo/src/test/java/com/vivamais/AcessoPacienteIT.java",
+      "bytes": 20417
+    },
+    {
+      "caminho": "backend/demo/src/test/java/com/vivamais/ApoioAcessoPaciente.java",
+      "bytes": 2813
+    },
+    {
+      "caminho": "backend/demo/src/test/java/com/vivamais/CadastroSmsIT.java",
+      "bytes": 14500
+    },
+    {
+      "caminho": "backend/demo/src/test/java/com/vivamais/ConfiguracaoAmbienteTest.java",
+      "bytes": 1474
+    },
+    {
+      "caminho": "backend/demo/src/test/java/com/vivamais/ConfiguracaoSmsTest.java",
+      "bytes": 1223
+    },
+    {
+      "caminho": "backend/demo/src/test/java/com/vivamais/CuidadoIT.java",
+      "bytes": 29108
+    },
+    {
+      "caminho": "backend/demo/src/test/java/com/vivamais/InstituicaoIT.java",
+      "bytes": 14280
+    },
+    {
+      "caminho": "backend/demo/src/test/java/com/vivamais/ValidacaoCadastroTest.java",
+      "bytes": 1459
+    },
+    {
+      "caminho": "backend/demo/src/test/java/com/vivamais/security/CodificadorTokenTest.java",
+      "bytes": 856
+    },
+    {
+      "caminho": "backend/demo/src/test/java/com/vivamais/security/LimitadorTentativasAcessoTest.java",
+      "bytes": 2212
+    },
+    {
+      "caminho": "backend/demo/src/test/java/com/vivamais/service/sms/EnvioSmsTwilioTest.java",
+      "bytes": 2937
+    },
+    {
+      "caminho": "components/BarraNavegacao.tsx",
+      "bytes": 1593
+    },
+    {
+      "caminho": "components/ContatoPaciente.tsx",
+      "bytes": 2227
+    },
+    {
+      "caminho": "components/ElementosInterface.tsx",
+      "bytes": 4066
+    },
+    {
+      "caminho": "components/FluxoFotografia.tsx",
+      "bytes": 12060
+    },
+    {
+      "caminho": "components/GraficoPressao.tsx",
+      "bytes": 5977
+    },
+    {
+      "caminho": "components/HistoricoAtividades.tsx",
+      "bytes": 9137
+    },
+    {
+      "caminho": "components/IconeModulo.tsx",
+      "bytes": 590
+    },
+    {
+      "caminho": "components/IconeNavegacao.tsx",
+      "bytes": 3123
+    },
+    {
+      "caminho": "components/IlustracoesViva.tsx",
+      "bytes": 1832
+    },
+    {
+      "caminho": "components/ImagemPrivada.tsx",
+      "bytes": 1529
+    },
+    {
+      "caminho": "components/LayoutProtegido.tsx",
+      "bytes": 650
+    },
+    {
+      "caminho": "components/RoteiroAtividade.tsx",
+      "bytes": 9810
+    },
+    {
+      "caminho": "components/TelaCuidado.tsx",
+      "bytes": 35005
+    },
+    {
+      "caminho": "components/TextoAcessivel.tsx",
+      "bytes": 601
+    },
+    {
+      "caminho": "components/estilos.ts",
+      "bytes": 3588
+    },
+    {
+      "caminho": "compose.yaml",
+      "bytes": 1505
+    },
+    {
+      "caminho": "contexts/ContextoAtividade.tsx",
+      "bytes": 1146
+    },
+    {
+      "caminho": "contexts/ContextoAutenticacao.tsx",
+      "bytes": 11762
+    },
+    {
+      "caminho": "contexts/ContextoPreferencias.tsx",
+      "bytes": 3114
+    },
+    {
+      "caminho": "docs/ACESSO_PACIENTE_SEM_SENHA.md",
+      "bytes": 14797
+    },
+    {
+      "caminho": "docs/ARQUITETURA_BANCO_DADOS.md",
+      "bytes": 50511
+    },
+    {
+      "caminho": "docs/ARQUIVOS.md",
+      "bytes": 5622
+    },
+    {
+      "caminho": "docs/BACKLOG.md",
+      "bytes": 1898
+    },
+    {
+      "caminho": "docs/CADASTRO_E_ATIVACAO_SMS.md",
+      "bytes": 12976
+    },
+    {
+      "caminho": "docs/CATALOGO_API_E_ROTAS.md",
+      "bytes": 17964
+    },
+    {
+      "caminho": "docs/CHECKLIST_TESTES_MANUAIS.md",
+      "bytes": 14133
+    },
+    {
+      "caminho": "docs/COMO_FORAM_IMPLEMENTADAS_AS_FUNCIONALIDADES.md",
+      "bytes": 52465
+    },
+    {
+      "caminho": "docs/COMO_NAVEGAR.md",
+      "bytes": 4883
+    },
+    {
+      "caminho": "docs/CONSULTA_OFICIAL_CPF.md",
+      "bytes": 5453
+    },
+    {
+      "caminho": "docs/CUSTOS.md",
+      "bytes": 4359
+    },
+    {
+      "caminho": "docs/DECISOES_PENDENTES.md",
+      "bytes": 2413
+    },
+    {
+      "caminho": "docs/DEPENDENCIAS_SEGURANCA.md",
+      "bytes": 12282
+    },
+    {
+      "caminho": "docs/FIDELIDADE_VISUAL.md",
+      "bytes": 21823
+    },
+    {
+      "caminho": "docs/GUIA_COMPLETO_AMBIENTE_DESENVOLVIMENTO.md",
+      "bytes": 14380
+    },
+    {
+      "caminho": "docs/GUIA_COMPLETO_EXECUCAO_LOCAL_WINDOWS.md",
+      "bytes": 32479
+    },
+    {
+      "caminho": "docs/GUIA_TESTES_TODAS_AS_TELAS.md",
+      "bytes": 31955
+    },
+    {
+      "caminho": "docs/INDICE_DOCUMENTACAO.md",
+      "bytes": 10170
+    },
+    {
+      "caminho": "docs/INVENTARIO_COMPLETO_FUNCIONALIDADES.md",
+      "bytes": 47647
+    },
+    {
+      "caminho": "docs/INVENTARIO_TELAS.md",
+      "bytes": 30473
+    },
+    {
+      "caminho": "docs/LEVANTAMENTO_COMPLETO_PENDENCIAS.md",
+      "bytes": 43219
+    },
+    {
+      "caminho": "docs/MANUAL_COMPLETO_TESTES_DESENVOLVEDOR.md",
+      "bytes": 18434
+    },
+    {
+      "caminho": "docs/MANUAL_CONTINUIDADE_DESENVOLVIMENTO.md",
+      "bytes": 26719
+    },
+    {
+      "caminho": "docs/MANUAL_TECNICO_COMPLETO_VIVAMAIS.md",
+      "bytes": 16959
+    },
+    {
+      "caminho": "docs/MATRIZ_RESPONSABILIDADES_DESENVOLVIMENTO.md",
+      "bytes": 17481
+    },
+    {
+      "caminho": "docs/MVP.md",
+      "bytes": 2006
+    },
+    {
+      "caminho": "docs/PADROES_DESENVOLVIMENTO_VIVAMAIS.md",
+      "bytes": 9458
+    },
+    {
+      "caminho": "docs/PLANO_IMPLEMENTACAO_PENDENCIAS.md",
+      "bytes": 413
+    },
+    {
+      "caminho": "docs/PLANO_TECNICO_CONTINUIDADE_DESENVOLVIMENTO.md",
+      "bytes": 63649
+    },
+    {
+      "caminho": "docs/PROXIMA_EXECUCAO.md",
+      "bytes": 8170
+    },
+    {
+      "caminho": "docs/REFATORACAO_VISUAL_E_ESTRUTURAL.md",
+      "bytes": 3738
+    },
+    {
+      "caminho": "docs/RELATORIO_TRANSFERENCIA_E_PUBLICACAO.md",
+      "bytes": 10141
+    },
+    {
+      "caminho": "docs/REQUISITOS.md",
+      "bytes": 6036
+    },
+    {
+      "caminho": "docs/STATUS.md",
+      "bytes": 16200
+    },
+    {
+      "caminho": "docs/TRANSFERENCIA_DEV_EXERCICIOS.md",
+      "bytes": 21341
+    },
+    {
+      "caminho": "docs/TRANSFERENCIA_DEV_INTELIGENCIA_ARTIFICIAL.md",
+      "bytes": 25439
+    },
+    {
+      "caminho": "docs/architecture/ADR-001.md",
+      "bytes": 6302
+    },
+    {
+      "caminho": "docs/architecture/PRIVACIDADE_SEGURANCA.md",
+      "bytes": 1918
+    },
+    {
+      "caminho": "docs/evidencias/ACESSO_PACIENTE_2026-10-20.md",
+      "bytes": 14673
+    },
+    {
+      "caminho": "docs/evidencias/ARQUIVOS_EXECUCAO_LOCAL_2026-10-20.txt",
+      "bytes": 1494
+    },
+    {
+      "caminho": "docs/evidencias/ARQUIVOS_TELAS_2026-10-17.txt",
+      "bytes": 19715
+    },
+    {
+      "caminho": "docs/evidencias/CORRECOES_CADASTRO_SMS_INTERFACE_2026-10-20.md",
+      "bytes": 14498
+    },
+    {
+      "caminho": "docs/evidencias/EXECUCAO_LOCAL_2026-10-19.md",
+      "bytes": 13205
+    },
+    {
+      "caminho": "docs/evidencias/PROFISSIONALIZACAO_VIVAMAIS_2026-10-20.md",
+      "bytes": 9726
+    },
+    {
+      "caminho": "docs/evidencias/RECURSOS_52_2026-10-17.json",
+      "bytes": 12676
+    },
+    {
+      "caminho": "docs/evidencias/RETOMADA_2026-10-17.md",
+      "bytes": 12094
+    },
+    {
+      "caminho": "docs/evidencias/RETOMADA_E_TRANSFERENCIA_2026-10-20.md",
+      "bytes": 11552
+    },
+    {
+      "caminho": "docs/evidencias/TELAS_NAVEGAVEIS_2026-10-17.md",
+      "bytes": 9044
+    },
+    {
+      "caminho": "docs/evidencias/acesso-paciente/acesso_paciente.png",
+      "bytes": 44185
+    },
+    {
+      "caminho": "docs/evidencias/acesso-paciente/ativacao_paciente.png",
+      "bytes": 48214
+    },
+    {
+      "caminho": "docs/evidencias/acesso-paciente/backup-restauracao-v8.json",
+      "bytes": 2764
+    },
+    {
+      "caminho": "docs/evidencias/acesso-paciente/cadastro_profissional.png",
+      "bytes": 179476
+    },
+    {
+      "caminho": "docs/evidencias/acesso-paciente/capturas.json",
+      "bytes": 893
+    },
+    {
+      "caminho": "docs/evidencias/acesso-paciente/configuracoes_paciente.png",
+      "bytes": 52497
+    },
+    {
+      "caminho": "docs/evidencias/acesso-paciente/emissao_profissional.png",
+      "bytes": 170703
+    },
+    {
+      "caminho": "docs/evidencias/acesso-paciente/estado_ativado_portal.png",
+      "bytes": 169690
+    },
+    {
+      "caminho": "docs/evidencias/acesso-paciente/inicio_paciente.png",
+      "bytes": 52659
+    },
+    {
+      "caminho": "docs/evidencias/acesso-paciente/migracao-v8.json",
+      "bytes": 359
+    },
+    {
+      "caminho": "docs/evidencias/acesso-paciente/validacao-final.json",
+      "bytes": 3350
+    },
+    {
+      "caminho": "docs/evidencias/backup-restauracao-2026-10-20.json",
+      "bytes": 2420
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/acesso/acesso_paciente.png",
+      "bytes": 43411
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/acesso/ativacao_paciente.png",
+      "bytes": 44345
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/acesso/cadastro_profissional.png",
+      "bytes": 191659
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/acesso/capturas.json",
+      "bytes": 893
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/acesso/configuracoes_paciente.png",
+      "bytes": 48445
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/acesso/emissao_profissional.png",
+      "bytes": 180016
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/acesso/estado_ativado_portal.png",
+      "bytes": 206015
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/acesso/inicio_paciente.png",
+      "bytes": 50380
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/app_atividade_320.png",
+      "bytes": 29266
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/app_atividade_375.png",
+      "bytes": 35030
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/app_atividade_430.png",
+      "bytes": 99780
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/arquivos-desta-execucao.json",
+      "bytes": 4234
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/inventario-tecnico.json",
+      "bytes": 9975
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/migracao-v9.json",
+      "bytes": 492
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/navegacao-responsiva.json",
+      "bytes": 1558
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/portal-responsivo.json",
+      "bytes": 821
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/portal_configuracoes_1366.png",
+      "bytes": 516333
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/portal_configuracoes_1440.png",
+      "bytes": 519746
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/portal_configuracoes_1920.png",
+      "bytes": 574029
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/portal_configuracoes_390.png",
+      "bytes": 341008
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/portal_configuracoes_768.png",
+      "bytes": 357904
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/referencia_print_app.png",
+      "bytes": 74376
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/referencia_print_portal.png",
+      "bytes": 256467
+    },
+    {
+      "caminho": "docs/evidencias/cadastro-sms-interface/validacao-final.json",
+      "bytes": 5536
+    },
+    {
+      "caminho": "docs/evidencias/consolidacao-publicacao/validacao-tecnica.json",
+      "bytes": 3748
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/COMPARACAO_VISUAL.md",
+      "bytes": 12961
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/app_01_boas_vindas.png",
+      "bytes": 106472
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/app_02_acesso_cpf.png",
+      "bytes": 34030
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/app_03_pagina_inicial.png",
+      "bytes": 50615
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/app_04_pressao_entrada.png",
+      "bytes": 26409
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/app_05_pressao_digitacao.png",
+      "bytes": 33877
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/app_06_pressao_foto.png",
+      "bytes": 108928
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/app_07_pressao_resultado.png",
+      "bytes": 29522
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/app_08_pressao_historico.png",
+      "bytes": 38480
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/app_09_medicamentos.png",
+      "bytes": 47996
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/app_11_alimentacao_foto.png",
+      "bytes": 183328
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/app_12_alimentacao_resultado.png",
+      "bytes": 130439
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/atividade_01_inicio_atividade.png",
+      "bytes": 50615
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/atividade_02_entrada.png",
+      "bytes": 103123
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/atividade_03_como_esta_hoje.png",
+      "bytes": 36065
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/atividade_04_verificacao_pressao.png",
+      "bytes": 34557
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/atividade_05_suas_informacoes.png",
+      "bytes": 33996
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/atividade_06_atividade_hoje.png",
+      "bytes": 43106
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/atividade_07_passo_a_passo.png",
+      "bytes": 42274
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/atividade_08_video_demonstrativo.png",
+      "bytes": 39331
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/atividade_09_alternativa_mais_leve.png",
+      "bytes": 42188
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/atividade_10_registro_atividade.png",
+      "bytes": 37725
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/atividade_11_historico_atividades.png",
+      "bytes": 47388
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/atividade_12_orientacoes.png",
+      "bytes": 46169
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/capturas.json",
+      "bytes": 14628
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/app_01_boas_vindas.png",
+      "bytes": 258071
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/app_02_acesso_cpf.png",
+      "bytes": 177598
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/app_03_pagina_inicial.png",
+      "bytes": 211564
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/app_04_pressao_entrada.png",
+      "bytes": 212705
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/app_05_pressao_digitacao.png",
+      "bytes": 210324
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/app_06_pressao_foto.png",
+      "bytes": 247806
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/app_07_pressao_resultado.png",
+      "bytes": 179998
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/app_08_pressao_historico.png",
+      "bytes": 213586
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/app_09_medicamentos.png",
+      "bytes": 224829
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/app_11_alimentacao_foto.png",
+      "bytes": 304084
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/app_12_alimentacao_resultado.png",
+      "bytes": 263719
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/atividade_01_inicio_atividade.png",
+      "bytes": 209167
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/atividade_02_entrada.png",
+      "bytes": 281303
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/atividade_03_como_esta_hoje.png",
+      "bytes": 210156
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/atividade_04_verificacao_pressao.png",
+      "bytes": 204877
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/atividade_05_suas_informacoes.png",
+      "bytes": 213067
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/atividade_06_atividade_hoje.png",
+      "bytes": 253205
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/atividade_07_passo_a_passo.png",
+      "bytes": 240078
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/atividade_08_video_demonstrativo.png",
+      "bytes": 254909
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/atividade_09_alternativa_mais_leve.png",
+      "bytes": 255587
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/atividade_10_registro_atividade.png",
+      "bytes": 217229
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/atividade_11_historico_atividades.png",
+      "bytes": 223742
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/atividade_12_orientacoes.png",
+      "bytes": 230840
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/painel_app.png",
+      "bytes": 2501862
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/painel_atividade.png",
+      "bytes": 2756952
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/painel_web.png",
+      "bytes": 2538599
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/web_01_login_profissional.png",
+      "bytes": 265181
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/web_02_painel_inicial.png",
+      "bytes": 242074
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/web_03_cadastro_paciente.png",
+      "bytes": 246963
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/web_04_perfil_paciente.png",
+      "bytes": 285734
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/web_05_historico_pressao.png",
+      "bytes": 279658
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/web_06_medicamentos.png",
+      "bytes": 276654
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/web_07_alimentacao.png",
+      "bytes": 242338
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/web_08_atividade_fisica.png",
+      "bytes": 201052
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/web_09_configuracao_pulseira.png",
+      "bytes": 212126
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/web_10_registro_diario.png",
+      "bytes": 163889
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/web_11_resumo_consulta.png",
+      "bytes": 160771
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/comparacoes/web_12_historico_consultas.png",
+      "bytes": 175148
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/extra_ativacao_aplicativo.png",
+      "bytes": 40990
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/extra_cadastro_aplicativo.png",
+      "bytes": 57304
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/extra_configuracoes_aplicativo.png",
+      "bytes": 47188
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/extra_historico_geral.png",
+      "bytes": 38941
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/extra_ilustracoes_atividades.png",
+      "bytes": 92724
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/extra_lembretes_aplicativo.png",
+      "bytes": 50357
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/extra_orientacoes_atividade.png",
+      "bytes": 39096
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/extra_perfil_paciente.png",
+      "bytes": 49650
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/extra_web_autorrelatos_semana.png",
+      "bytes": 177636
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/extra_web_configuracoes.png",
+      "bytes": 149319
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/extra_web_configuracoes_390.png",
+      "bytes": 124309
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/extra_web_consultas.png",
+      "bytes": 310676
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/extra_web_consultas_390.png",
+      "bytes": 136710
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/extra_web_editar_cadastro.png",
+      "bytes": 207363
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/extra_web_exclusao.png",
+      "bytes": 84569
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/extra_web_lista_pacientes.png",
+      "bytes": 147064
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/extra_web_privacidade.png",
+      "bytes": 129334
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/extra_web_relatorios.png",
+      "bytes": 311827
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/extra_web_suporte.png",
+      "bytes": 84595
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/responsividade.json",
+      "bytes": 273
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/validacao-final.json",
+      "bytes": 2187
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/web_01_login_profissional.png",
+      "bytes": 311625
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/web_02_painel_inicial.png",
+      "bytes": 155883
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/web_03_cadastro_paciente.png",
+      "bytes": 148153
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/web_04_perfil_paciente.png",
+      "bytes": 156754
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/web_05_historico_pressao.png",
+      "bytes": 144638
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/web_06_medicamentos.png",
+      "bytes": 150864
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/web_07_alimentacao.png",
+      "bytes": 238316
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/web_08_atividade_fisica.png",
+      "bytes": 144701
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/web_09_configuracao_pulseira.png",
+      "bytes": 147513
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/web_10_registro_diario.png",
+      "bytes": 142445
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/web_11_resumo_consulta.png",
+      "bytes": 141145
+    },
+    {
+      "caminho": "docs/evidencias/profissionalizacao/web_12_historico_consultas.png",
+      "bytes": 140982
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/LEIA-ME.md",
+      "bytes": 2385
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/app_01_boas_vindas.png",
+      "bytes": 106472
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/app_02_acesso_cpf.png",
+      "bytes": 34030
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/app_03_pagina_inicial.png",
+      "bytes": 50615
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/app_04_pressao_entrada.png",
+      "bytes": 23986
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/app_05_pressao_digitacao.png",
+      "bytes": 33877
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/app_06_pressao_foto.png",
+      "bytes": 106870
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/app_07_pressao_resultado.png",
+      "bytes": 27039
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/app_08_pressao_historico.png",
+      "bytes": 38439
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/app_09_medicamentos.png",
+      "bytes": 45962
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/app_11_alimentacao_foto.png",
+      "bytes": 183303
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/app_12_alimentacao_resultado.png",
+      "bytes": 130400
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/atividade_01_inicio_atividade.png",
+      "bytes": 50615
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/atividade_02_entrada.png",
+      "bytes": 103123
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/atividade_03_como_esta_hoje.png",
+      "bytes": 36065
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/atividade_04_verificacao_pressao.png",
+      "bytes": 34511
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/atividade_05_suas_informacoes.png",
+      "bytes": 33996
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/atividade_06_atividade_hoje.png",
+      "bytes": 43106
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/atividade_07_passo_a_passo.png",
+      "bytes": 42274
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/atividade_08_video_demonstrativo.png",
+      "bytes": 36919
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/atividade_09_alternativa_mais_leve.png",
+      "bytes": 39799
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/atividade_10_registro_atividade.png",
+      "bytes": 35922
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/atividade_11_historico_atividades.png",
+      "bytes": 47465
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/atividade_12_orientacoes.png",
+      "bytes": 43731
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/capturas.json",
+      "bytes": 5736
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/app_01_boas_vindas.png",
+      "bytes": 258071
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/app_02_acesso_cpf.png",
+      "bytes": 177598
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/app_03_pagina_inicial.png",
+      "bytes": 211564
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/app_04_pressao_entrada.png",
+      "bytes": 207240
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/app_05_pressao_digitacao.png",
+      "bytes": 210324
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/app_06_pressao_foto.png",
+      "bytes": 244092
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/app_07_pressao_resultado.png",
+      "bytes": 174440
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/app_08_pressao_historico.png",
+      "bytes": 213609
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/app_09_medicamentos.png",
+      "bytes": 220172
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/app_11_alimentacao_foto.png",
+      "bytes": 304725
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/app_12_alimentacao_resultado.png",
+      "bytes": 263789
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/atividade_01_inicio_atividade.png",
+      "bytes": 209167
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/atividade_02_entrada.png",
+      "bytes": 281303
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/atividade_03_como_esta_hoje.png",
+      "bytes": 210156
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/atividade_04_verificacao_pressao.png",
+      "bytes": 204954
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/atividade_05_suas_informacoes.png",
+      "bytes": 213067
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/atividade_06_atividade_hoje.png",
+      "bytes": 253205
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/atividade_07_passo_a_passo.png",
+      "bytes": 240078
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/atividade_08_video_demonstrativo.png",
+      "bytes": 249354
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/atividade_09_alternativa_mais_leve.png",
+      "bytes": 250082
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/atividade_10_registro_atividade.png",
+      "bytes": 213948
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/atividade_11_historico_atividades.png",
+      "bytes": 223822
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/atividade_12_orientacoes.png",
+      "bytes": 225491
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/painel_app.png",
+      "bytes": 2483438
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/painel_atividade.png",
+      "bytes": 2736533
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/painel_web.png",
+      "bytes": 2549644
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/web_01_login_profissional.png",
+      "bytes": 265135
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/web_02_painel_inicial.png",
+      "bytes": 242416
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/web_03_cadastro_paciente.png",
+      "bytes": 245947
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/web_04_perfil_paciente.png",
+      "bytes": 285430
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/web_05_historico_pressao.png",
+      "bytes": 279504
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/web_06_medicamentos.png",
+      "bytes": 276449
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/web_07_alimentacao.png",
+      "bytes": 242747
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/web_08_atividade_fisica.png",
+      "bytes": 200863
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/web_09_configuracao_pulseira.png",
+      "bytes": 213901
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/web_10_registro_diario.png",
+      "bytes": 164327
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/web_11_resumo_consulta.png",
+      "bytes": 160850
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/comparacoes/web_12_historico_consultas.png",
+      "bytes": 175579
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/extra_ativacao_aplicativo.png",
+      "bytes": 38531
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/extra_cadastro_aplicativo.png",
+      "bytes": 57291
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/extra_configuracoes_aplicativo.png",
+      "bytes": 46565
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/extra_historico_geral.png",
+      "bytes": 38941
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/extra_ilustracoes_atividades.png",
+      "bytes": 92878
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/extra_lembretes_aplicativo.png",
+      "bytes": 50357
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/extra_orientacoes_atividade.png",
+      "bytes": 39096
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/extra_perfil_paciente.png",
+      "bytes": 49612
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/extra_web_autorrelatos_semana.png",
+      "bytes": 177611
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/extra_web_configuracoes.png",
+      "bytes": 134730
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/extra_web_consultas.png",
+      "bytes": 228875
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/extra_web_editar_cadastro.png",
+      "bytes": 208311
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/extra_web_exclusao.png",
+      "bytes": 87236
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/extra_web_lista_pacientes.png",
+      "bytes": 147024
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/extra_web_privacidade.png",
+      "bytes": 114358
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/extra_web_relatorios.png",
+      "bytes": 229836
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/extra_web_suporte.png",
+      "bytes": 84417
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/inventario.json",
+      "bytes": 34720
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/recursos/visor-sintetico.png",
+      "bytes": 15599
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/reinicio.json",
+      "bytes": 253
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/web_01_login_profissional.png",
+      "bytes": 311604
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/web_02_painel_inicial.png",
+      "bytes": 155627
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/web_03_cadastro_paciente.png",
+      "bytes": 148069
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/web_04_perfil_paciente.png",
+      "bytes": 156984
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/web_05_historico_pressao.png",
+      "bytes": 144679
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/web_06_medicamentos.png",
+      "bytes": 150655
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/web_07_alimentacao.png",
+      "bytes": 239279
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/web_08_atividade_fisica.png",
+      "bytes": 144701
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/web_09_configuracao_pulseira.png",
+      "bytes": 148745
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/web_10_registro_diario.png",
+      "bytes": 142830
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/web_11_resumo_consulta.png",
+      "bytes": 141194
+    },
+    {
+      "caminho": "docs/evidencias/testes-manuais/web_12_historico_consultas.png",
+      "bytes": 141390
+    },
+    {
+      "caminho": "docs/evidencias/visual/app-inicio-expo-web.png",
+      "bytes": 44527
+    },
+    {
+      "caminho": "docs/evidencias/visual/app_01_boas_vindas.png",
+      "bytes": 106472
+    },
+    {
+      "caminho": "docs/evidencias/visual/app_02_acesso_cpf.png",
+      "bytes": 34623
+    },
+    {
+      "caminho": "docs/evidencias/visual/app_03_pagina_inicial.png",
+      "bytes": 50615
+    },
+    {
+      "caminho": "docs/evidencias/visual/app_04_pressao_entrada.png",
+      "bytes": 23986
+    },
+    {
+      "caminho": "docs/evidencias/visual/app_05_pressao_digitacao.png",
+      "bytes": 33877
+    },
+    {
+      "caminho": "docs/evidencias/visual/app_06_pressao_foto.png",
+      "bytes": 106870
+    },
+    {
+      "caminho": "docs/evidencias/visual/app_07_pressao_resultado.png",
+      "bytes": 26695
+    },
+    {
+      "caminho": "docs/evidencias/visual/app_08_pressao_historico.png",
+      "bytes": 38294
+    },
+    {
+      "caminho": "docs/evidencias/visual/app_09_medicamentos.png",
+      "bytes": 45962
+    },
+    {
+      "caminho": "docs/evidencias/visual/app_11_alimentacao_foto.png",
+      "bytes": 183303
+    },
+    {
+      "caminho": "docs/evidencias/visual/app_12_alimentacao_resultado.png",
+      "bytes": 130260
+    },
+    {
+      "caminho": "docs/evidencias/visual/atividade_01_inicio_atividade.png",
+      "bytes": 50615
+    },
+    {
+      "caminho": "docs/evidencias/visual/atividade_02_entrada.png",
+      "bytes": 103123
+    },
+    {
+      "caminho": "docs/evidencias/visual/atividade_03_como_esta_hoje.png",
+      "bytes": 36065
+    },
+    {
+      "caminho": "docs/evidencias/visual/atividade_04_verificacao_pressao.png",
+      "bytes": 34363
+    },
+    {
+      "caminho": "docs/evidencias/visual/atividade_05_suas_informacoes.png",
+      "bytes": 35237
+    },
+    {
+      "caminho": "docs/evidencias/visual/atividade_06_atividade_hoje.png",
+      "bytes": 43106
+    },
+    {
+      "caminho": "docs/evidencias/visual/atividade_07_passo_a_passo.png",
+      "bytes": 42274
+    },
+    {
+      "caminho": "docs/evidencias/visual/atividade_08_video_demonstrativo.png",
+      "bytes": 36919
+    },
+    {
+      "caminho": "docs/evidencias/visual/atividade_09_alternativa_mais_leve.png",
+      "bytes": 39799
+    },
+    {
+      "caminho": "docs/evidencias/visual/atividade_10_registro_atividade.png",
+      "bytes": 35771
+    },
+    {
+      "caminho": "docs/evidencias/visual/atividade_11_historico_atividades.png",
+      "bytes": 47385
+    },
+    {
+      "caminho": "docs/evidencias/visual/atividade_12_orientacoes.png",
+      "bytes": 43731
+    },
+    {
+      "caminho": "docs/evidencias/visual/capturas.json",
+      "bytes": 4746
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/app_01_boas_vindas.png",
+      "bytes": 258071
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/app_02_acesso_cpf.png",
+      "bytes": 178209
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/app_03_pagina_inicial.png",
+      "bytes": 211564
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/app_04_pressao_entrada.png",
+      "bytes": 207240
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/app_05_pressao_digitacao.png",
+      "bytes": 210324
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/app_06_pressao_foto.png",
+      "bytes": 244092
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/app_07_pressao_resultado.png",
+      "bytes": 173812
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/app_08_pressao_historico.png",
+      "bytes": 213333
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/app_09_medicamentos.png",
+      "bytes": 220172
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/app_11_alimentacao_foto.png",
+      "bytes": 304725
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/app_12_alimentacao_resultado.png",
+      "bytes": 263573
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/atividade_01_inicio_atividade.png",
+      "bytes": 209167
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/atividade_02_entrada.png",
+      "bytes": 281303
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/atividade_03_como_esta_hoje.png",
+      "bytes": 210156
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/atividade_04_verificacao_pressao.png",
+      "bytes": 204701
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/atividade_05_suas_informacoes.png",
+      "bytes": 214525
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/atividade_06_atividade_hoje.png",
+      "bytes": 253205
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/atividade_07_passo_a_passo.png",
+      "bytes": 240078
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/atividade_08_video_demonstrativo.png",
+      "bytes": 249354
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/atividade_09_alternativa_mais_leve.png",
+      "bytes": 250082
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/atividade_10_registro_atividade.png",
+      "bytes": 213708
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/atividade_11_historico_atividades.png",
+      "bytes": 223646
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/atividade_12_orientacoes.png",
+      "bytes": 225491
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/painel_app.png",
+      "bytes": 2482849
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/painel_atividade.png",
+      "bytes": 2737776
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/painel_web.png",
+      "bytes": 2547235
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/web_01_login_profissional.png",
+      "bytes": 265506
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/web_02_painel_inicial.png",
+      "bytes": 241714
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/web_03_cadastro_paciente.png",
+      "bytes": 245947
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/web_04_perfil_paciente.png",
+      "bytes": 285339
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/web_05_historico_pressao.png",
+      "bytes": 273290
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/web_06_medicamentos.png",
+      "bytes": 281944
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/web_07_alimentacao.png",
+      "bytes": 242788
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/web_08_atividade_fisica.png",
+      "bytes": 200824
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/web_09_configuracao_pulseira.png",
+      "bytes": 213799
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/web_10_registro_diario.png",
+      "bytes": 164287
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/web_11_resumo_consulta.png",
+      "bytes": 160794
+    },
+    {
+      "caminho": "docs/evidencias/visual/comparacoes/web_12_historico_consultas.png",
+      "bytes": 175537
+    },
+    {
+      "caminho": "docs/evidencias/visual/extra_ativacao_aplicativo.png",
+      "bytes": 39709
+    },
+    {
+      "caminho": "docs/evidencias/visual/extra_cadastro_aplicativo.png",
+      "bytes": 57291
+    },
+    {
+      "caminho": "docs/evidencias/visual/extra_configuracoes_aplicativo.png",
+      "bytes": 46468
+    },
+    {
+      "caminho": "docs/evidencias/visual/extra_ilustracoes_atividades.png",
+      "bytes": 92878
+    },
+    {
+      "caminho": "docs/evidencias/visual/extra_lembretes_aplicativo.png",
+      "bytes": 50357
+    },
+    {
+      "caminho": "docs/evidencias/visual/extra_perfil_paciente.png",
+      "bytes": 49587
+    },
+    {
+      "caminho": "docs/evidencias/visual/extra_web_lista_pacientes.png",
+      "bytes": 146826
+    },
+    {
+      "caminho": "docs/evidencias/visual/web-cadastro.png",
+      "bytes": 126111
+    },
+    {
+      "caminho": "docs/evidencias/visual/web-login.png",
+      "bytes": 321093
+    },
+    {
+      "caminho": "docs/evidencias/visual/web-painel.png",
+      "bytes": 164127
+    },
+    {
+      "caminho": "docs/evidencias/visual/web_01_login_profissional.png",
+      "bytes": 312880
+    },
+    {
+      "caminho": "docs/evidencias/visual/web_02_painel_inicial.png",
+      "bytes": 154933
+    },
+    {
+      "caminho": "docs/evidencias/visual/web_03_cadastro_paciente.png",
+      "bytes": 148069
+    },
+    {
+      "caminho": "docs/evidencias/visual/web_04_perfil_paciente.png",
+      "bytes": 156639
+    },
+    {
+      "caminho": "docs/evidencias/visual/web_05_historico_pressao.png",
+      "bytes": 140086
+    },
+    {
+      "caminho": "docs/evidencias/visual/web_06_medicamentos.png",
+      "bytes": 159569
+    },
+    {
+      "caminho": "docs/evidencias/visual/web_07_alimentacao.png",
+      "bytes": 239199
+    },
+    {
+      "caminho": "docs/evidencias/visual/web_08_atividade_fisica.png",
+      "bytes": 144695
+    },
+    {
+      "caminho": "docs/evidencias/visual/web_09_configuracao_pulseira.png",
+      "bytes": 148990
+    },
+    {
+      "caminho": "docs/evidencias/visual/web_10_registro_diario.png",
+      "bytes": 142784
+    },
+    {
+      "caminho": "docs/evidencias/visual/web_11_resumo_consulta.png",
+      "bytes": 141229
+    },
+    {
+      "caminho": "docs/evidencias/visual/web_12_historico_consultas.png",
+      "bytes": 141308
+    },
+    {
+      "caminho": "docs/historico/STATUS_FUNDACAO_2026-10-16.md",
+      "bytes": 5742
+    },
+    {
+      "caminho": "docs/mobile/EXECUCAO.md",
+      "bytes": 5050
+    },
+    {
+      "caminho": "docs/operations/BACKUP_RESTORE.md",
+      "bytes": 6750
+    },
+    {
+      "caminho": "docs/operations/DEPLOY.md",
+      "bytes": 3814
+    },
+    {
+      "caminho": "docs/operations/HOSPEDAGEM_DEMO.md",
+      "bytes": 5185
+    },
+    {
+      "caminho": "docs/operations/LOJAS.md",
+      "bytes": 1642
+    },
+    {
+      "caminho": "docs/product/ESPECIFICACAO_EXTRAIDA.txt",
+      "bytes": 20666
+    },
+    {
+      "caminho": "docs/product/Especificacao_Viva_Mais_Pulso_em_Dia_com_Interfaces.docx",
+      "bytes": 5218480
+    },
+    {
+      "caminho": "docs/product/PEDIDO_ACESSO_PACIENTE_2026-10-20.md",
+      "bytes": 10249
+    },
+    {
+      "caminho": "docs/product/PEDIDO_CADASTRO_SMS_INTERFACE_2026-10-20.md",
+      "bytes": 22654
+    },
+    {
+      "caminho": "docs/product/PEDIDO_EXECUCAO_LOCAL_2026-10-19.md",
+      "bytes": 16769
+    },
+    {
+      "caminho": "docs/product/PEDIDO_PROFISSIONALIZACAO_2026-10-20.md",
+      "bytes": 21295
+    },
+    {
+      "caminho": "docs/product/PEDIDO_PUBLICACAO_TRANSFERENCIA_2026-10-20.md",
+      "bytes": 29791
+    },
+    {
+      "caminho": "docs/product/PEDIDO_TELAS_52_RECURSOS_2026-10-17.md",
+      "bytes": 12756
+    },
+    {
+      "caminho": "docs/product/PEDIDO_TRANSFERENCIA_DEV_2026-10-20.md",
+      "bytes": 22683
+    },
+    {
+      "caminho": "docs/product/anexos/image1.png",
+      "bytes": 1795255
+    },
+    {
+      "caminho": "docs/product/anexos/image2.png",
+      "bytes": 1849997
+    },
+    {
+      "caminho": "docs/product/anexos/image3.png",
+      "bytes": 1884230
+    },
+    {
+      "caminho": "eas.json",
+      "bytes": 520
+    },
+    {
+      "caminho": "eslint.config.mjs",
+      "bytes": 673
+    },
+    {
+      "caminho": "hooks/useAutenticacao.ts",
+      "bytes": 347
+    },
+    {
+      "caminho": "hooks/useDadosAtividade.ts",
+      "bytes": 571
+    },
+    {
+      "caminho": "hooks/usePainelPaciente.ts",
+      "bytes": 1463
+    },
+    {
+      "caminho": "hooks/useResultadoPressao.ts",
+      "bytes": 1619
+    },
+    {
+      "caminho": "hooks/useResultadoRefeicao.ts",
+      "bytes": 501
+    },
+    {
+      "caminho": "hooks/useResumoPaciente.ts",
+      "bytes": 492
+    },
+    {
+      "caminho": "hooks/useRoteiroAtividade.ts",
+      "bytes": 282
+    },
+    {
+      "caminho": "hooks/useSalvarPressao.ts",
+      "bytes": 2967
+    },
+    {
+      "caminho": "infra/ambiente-local.ps1",
+      "bytes": 7397
+    },
+    {
+      "caminho": "infra/caixa-sms-local.cjs",
+      "bytes": 2314
+    },
+    {
+      "caminho": "infra/caixa-sms-local.d.cts",
+      "bytes": 171
+    },
+    {
+      "caminho": "infra/capturar-telas.mjs",
+      "bytes": 23266
+    },
+    {
+      "caminho": "infra/check-demo.mjs",
+      "bytes": 1203
+    },
+    {
+      "caminho": "infra/cifrar-backup.mjs",
+      "bytes": 3965
+    },
+    {
+      "caminho": "infra/comparar-telas.py",
+      "bytes": 2587
+    },
+    {
+      "caminho": "infra/cost-estimate.mjs",
+      "bytes": 691
+    },
+    {
+      "caminho": "infra/encerrar-local.ps1",
+      "bytes": 2414
+    },
+    {
+      "caminho": "infra/ensaiar-backup-local.ps1",
+      "bytes": 8957
+    },
+    {
+      "caminho": "infra/executar-local.ps1",
+      "bytes": 5541
+    },
+    {
+      "caminho": "infra/iniciar-local.ps1",
+      "bytes": 5155
+    },
+    {
+      "caminho": "infra/inventariar-telas.mjs",
+      "bytes": 20672
+    },
+    {
+      "caminho": "infra/load-env.ps1",
+      "bytes": 686
+    },
+    {
+      "caminho": "infra/ocr-worker.mjs",
+      "bytes": 618
+    },
+    {
+      "caminho": "infra/preparar-build-web.mjs",
+      "bytes": 1536
+    },
+    {
+      "caminho": "infra/railway.toml",
+      "bytes": 361
+    },
+    {
+      "caminho": "infra/sanitizar-diagnosticos.mjs",
+      "bytes": 1143
+    },
+    {
+      "caminho": "infra/serve-mobile-preview.mjs",
+      "bytes": 3449
+    },
+    {
+      "caminho": "infra/sync-shared.mjs",
+      "bytes": 1387
+    },
+    {
+      "caminho": "infra/validar-interface-local.ps1",
+      "bytes": 2800
+    },
+    {
+      "caminho": "infra/verificar-dependencias.mjs",
+      "bytes": 1090
+    },
+    {
+      "caminho": "infra/verificar-portal-estreito.mjs",
+      "bytes": 2453
+    },
+    {
+      "caminho": "infra/verificar-restauracao.mjs",
+      "bytes": 2770
+    },
+    {
+      "caminho": "package.json",
+      "bytes": 2466
+    },
+    {
+      "caminho": "packages/contracts/package.json",
+      "bytes": 383
+    },
+    {
+      "caminho": "packages/contracts/src/acessoPaciente.ts",
+      "bytes": 2001
+    },
+    {
+      "caminho": "packages/contracts/src/cadastro.ts",
+      "bytes": 2362
+    },
+    {
+      "caminho": "packages/contracts/src/generated.ts",
+      "bytes": 99227
+    },
+    {
+      "caminho": "packages/contracts/src/index.ts",
+      "bytes": 917
+    },
+    {
+      "caminho": "packages/contracts/tsconfig.json",
+      "bytes": 153
+    },
+    {
+      "caminho": "packages/design-tokens/package.json",
+      "bytes": 255
+    },
+    {
+      "caminho": "packages/design-tokens/src/index.ts",
+      "bytes": 493
+    },
+    {
+      "caminho": "packages/design-tokens/tsconfig.json",
+      "bytes": 153
+    },
+    {
+      "caminho": "patches/query-string@7.1.3.patch",
+      "bytes": 538
+    },
+    {
+      "caminho": "playwright.config.ts",
+      "bytes": 1082
+    },
+    {
+      "caminho": "pnpm-lock.yaml",
+      "bytes": 354426
+    },
+    {
+      "caminho": "pnpm-workspace.yaml",
+      "bytes": 413
+    },
+    {
+      "caminho": "referencias_codex/AgendAqui-main.zip",
+      "bytes": 1247390
+    },
+    {
+      "caminho": "referencias_codex/ESTRUTURA_ALVO.md",
+      "bytes": 1422
+    },
+    {
+      "caminho": "referencias_codex/MAPA_TELAS.md",
+      "bytes": 2029
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/LEIA-ME.md",
+      "bytes": 1587
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/PREVIA_GERAL.jpg",
+      "bytes": 470279
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/01_logos/icone_do_aplicativo.png",
+      "bytes": 159999
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/01_logos/logo_viva_mais_com_slogan.png",
+      "bytes": 716819
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/01_logos/logo_viva_mais_sem_slogan.png",
+      "bytes": 853771
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/02_personagens/idosa_exercicio_sentado.png",
+      "bytes": 362411
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/02_personagens/idosa_perfil.png",
+      "bytes": 231487
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/02_personagens/idoso_perfil.png",
+      "bytes": 250070
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/02_personagens/idosos_atividade_fisica.png",
+      "bytes": 479411
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/02_personagens/profissionais_de_saude.png",
+      "bytes": 571740
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/03_exercicios/alongamento_leve.png",
+      "bytes": 223580
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/03_exercicios/bracos_sentado.png",
+      "bytes": 232338
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/03_exercicios/caminhada_leve.png",
+      "bytes": 272910
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/03_exercicios/ombros.png",
+      "bytes": 225541
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/03_exercicios/pes_sentado.png",
+      "bytes": 227764
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/04_objetos/aparelho_pressao_arterial.png",
+      "bytes": 246893
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/04_objetos/copo_de_agua.png",
+      "bytes": 116173
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/04_objetos/medicamentos.png",
+      "bytes": 187500
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/04_objetos/pulseira_pulso_em_dia.png",
+      "bytes": 276562
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/04_objetos/refeicao_saudavel.png",
+      "bytes": 539250
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/04_objetos/tenis_caminhada.png",
+      "bytes": 255074
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/05_menu/area_profissional.png",
+      "bytes": 99764
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/05_menu/atividade_fisica.png",
+      "bytes": 79045
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/05_menu/configuracoes.png",
+      "bytes": 81049
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/05_menu/lembretes.png",
+      "bytes": 53697
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/05_menu/meu_historico.png",
+      "bytes": 66764
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/05_menu/meus_medicamentos.png",
+      "bytes": 88621
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/05_menu/minha_alimentacao.png",
+      "bytes": 76732
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/05_menu/minha_pressao.png",
+      "bytes": 74698
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/06_humor/estou_bem.png",
+      "bytes": 39512
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/06_humor/tontura_ou_mal_estar.png",
+      "bytes": 39555
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/06_humor/um_pouco_cansado.png",
+      "bytes": 31887
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/07_acoes/alerta.png",
+      "bytes": 21462
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/07_acoes/baixar.png",
+      "bytes": 13018
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/07_acoes/calendario.png",
+      "bytes": 29886
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/07_acoes/confirmado.png",
+      "bytes": 26003
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/07_acoes/editar.png",
+      "bytes": 15114
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/07_acoes/enviar.png",
+      "bytes": 18663
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/07_acoes/excluir.png",
+      "bytes": 17780
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/07_acoes/foto.png",
+      "bytes": 24168
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/07_acoes/grafico.png",
+      "bytes": 23365
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/07_acoes/horario.png",
+      "bytes": 31351
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/07_acoes/informacao.png",
+      "bytes": 22868
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/07_acoes/lembrete.png",
+      "bytes": 16769
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/07_acoes/nao_realizado.png",
+      "bytes": 24153
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/07_acoes/sem_internet.png",
+      "bytes": 32470
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/07_acoes/sincronizar.png",
+      "bytes": 25579
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/08_cards/acompanhamento_evolucao.png",
+      "bytes": 88215
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/08_cards/atividade_fisica.png",
+      "bytes": 217811
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/08_cards/lembrete_medicamento.png",
+      "bytes": 102919
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/08_cards/medicao_da_pressao.png",
+      "bytes": 167912
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/08_cards/planejamento_cuidado.png",
+      "bytes": 93709
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/08_cards/registro_alimentacao.png",
+      "bytes": 152467
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/assets/08_cards/seguranca_dados.png",
+      "bytes": 75139
+    },
+    {
+      "caminho": "referencias_codex/imagens_individuais/manifesto.json",
+      "bytes": 13226
+    },
+    {
+      "caminho": "referencias_codex/prototipos/01_app_paciente.png",
+      "bytes": 1625417
+    },
+    {
+      "caminho": "referencias_codex/prototipos/02_plataforma_profissional.png",
+      "bytes": 1684680
+    },
+    {
+      "caminho": "referencias_codex/prototipos/03_atividade_fisica.png",
+      "bytes": 1713187
+    },
+    {
+      "caminho": "referencias_codex/telas/app_01_boas_vindas.png",
+      "bytes": 150327
+    },
+    {
+      "caminho": "referencias_codex/telas/app_02_acesso_cpf.png",
+      "bytes": 109737
+    },
+    {
+      "caminho": "referencias_codex/telas/app_03_pagina_inicial.png",
+      "bytes": 126695
+    },
+    {
+      "caminho": "referencias_codex/telas/app_04_pressao_entrada.png",
+      "bytes": 131347
+    },
+    {
+      "caminho": "referencias_codex/telas/app_05_pressao_digitacao.png",
+      "bytes": 126992
+    },
+    {
+      "caminho": "referencias_codex/telas/app_06_pressao_foto.png",
+      "bytes": 135865
+    },
+    {
+      "caminho": "referencias_codex/telas/app_07_pressao_resultado.png",
+      "bytes": 111992
+    },
+    {
+      "caminho": "referencias_codex/telas/app_08_pressao_historico.png",
+      "bytes": 123711
+    },
+    {
+      "caminho": "referencias_codex/telas/app_09_medicamentos.png",
+      "bytes": 122134
+    },
+    {
+      "caminho": "referencias_codex/telas/app_10_notificacao_medicamento.png",
+      "bytes": 123937
+    },
+    {
+      "caminho": "referencias_codex/telas/app_11_alimentacao_foto.png",
+      "bytes": 164819
+    },
+    {
+      "caminho": "referencias_codex/telas/app_12_alimentacao_resultado.png",
+      "bytes": 130465
+    },
+    {
+      "caminho": "referencias_codex/telas/atividade_01_inicio_atividade.png",
+      "bytes": 123815
+    },
+    {
+      "caminho": "referencias_codex/telas/atividade_02_entrada.png",
+      "bytes": 160065
+    },
+    {
+      "caminho": "referencias_codex/telas/atividade_03_como_esta_hoje.png",
+      "bytes": 127546
+    },
+    {
+      "caminho": "referencias_codex/telas/atividade_04_verificacao_pressao.png",
+      "bytes": 125995
+    },
+    {
+      "caminho": "referencias_codex/telas/atividade_05_suas_informacoes.png",
+      "bytes": 127592
+    },
+    {
+      "caminho": "referencias_codex/telas/atividade_06_atividade_hoje.png",
+      "bytes": 147754
+    },
+    {
+      "caminho": "referencias_codex/telas/atividade_07_passo_a_passo.png",
+      "bytes": 134898
+    },
+    {
+      "caminho": "referencias_codex/telas/atividade_08_video_demonstrativo.png",
+      "bytes": 149260
+    },
+    {
+      "caminho": "referencias_codex/telas/atividade_09_alternativa_mais_leve.png",
+      "bytes": 147137
+    },
+    {
+      "caminho": "referencias_codex/telas/atividade_10_registro_atividade.png",
+      "bytes": 136693
+    },
+    {
+      "caminho": "referencias_codex/telas/atividade_11_historico_atividades.png",
+      "bytes": 130438
+    },
+    {
+      "caminho": "referencias_codex/telas/atividade_12_orientacoes.png",
+      "bytes": 140938
+    },
+    {
+      "caminho": "referencias_codex/telas/web_01_login_profissional.png",
+      "bytes": 143538
+    },
+    {
+      "caminho": "referencias_codex/telas/web_02_painel_inicial.png",
+      "bytes": 157088
+    },
+    {
+      "caminho": "referencias_codex/telas/web_03_cadastro_paciente.png",
+      "bytes": 151643
+    },
+    {
+      "caminho": "referencias_codex/telas/web_04_perfil_paciente.png",
+      "bytes": 195570
+    },
+    {
+      "caminho": "referencias_codex/telas/web_05_historico_pressao.png",
+      "bytes": 176370
+    },
+    {
+      "caminho": "referencias_codex/telas/web_06_medicamentos.png",
+      "bytes": 168428
+    },
+    {
+      "caminho": "referencias_codex/telas/web_07_alimentacao.png",
+      "bytes": 139538
+    },
+    {
+      "caminho": "referencias_codex/telas/web_08_atividade_fisica.png",
+      "bytes": 109581
+    },
+    {
+      "caminho": "referencias_codex/telas/web_09_configuracao_pulseira.png",
+      "bytes": 126279
+    },
+    {
+      "caminho": "referencias_codex/telas/web_10_registro_diario.png",
+      "bytes": 92513
+    },
+    {
+      "caminho": "referencias_codex/telas/web_11_resumo_consulta.png",
+      "bytes": 86425
+    },
+    {
+      "caminho": "referencias_codex/telas/web_12_historico_consultas.png",
+      "bytes": 77223
+    },
+    {
+      "caminho": "services/alimentacao/refeicoes.ts",
+      "bytes": 1545
+    },
+    {
+      "caminho": "services/ambiente.ts",
+      "bytes": 384
+    },
+    {
+      "caminho": "services/api.ts",
+      "bytes": 388
+    },
+    {
+      "caminho": "services/atividades/atividades.ts",
+      "bytes": 1269
+    },
+    {
+      "caminho": "services/atividades/idade.ts",
+      "bytes": 654
+    },
+    {
+      "caminho": "services/atividades/periodos.ts",
+      "bytes": 779
+    },
+    {
+      "caminho": "services/autenticacao/armazenamentoSessao.ts",
+      "bytes": 1191
+    },
+    {
+      "caminho": "services/autenticacao/contratoSessao.ts",
+      "bytes": 1665
+    },
+    {
+      "caminho": "services/autenticacao/dispositivoPaciente.ts",
+      "bytes": 1355
+    },
+    {
+      "caminho": "services/autenticacao/tiposAutenticacao.ts",
+      "bytes": 670
+    },
+    {
+      "caminho": "services/enderecosAcesso.ts",
+      "bytes": 339
+    },
+    {
+      "caminho": "services/lembretes/calculoLembretes.ts",
+      "bytes": 2934
+    },
+    {
+      "caminho": "services/lembretes/lembretes.native.ts",
+      "bytes": 2131
+    },
+    {
+      "caminho": "services/lembretes/lembretes.ts",
+      "bytes": 348
+    },
+    {
+      "caminho": "services/modulos.ts",
+      "bytes": 1431
+    },
+    {
+      "caminho": "services/pacientes/identificacaoPaciente.native.ts",
+      "bytes": 438
+    },
+    {
+      "caminho": "services/pacientes/identificacaoPaciente.ts",
+      "bytes": 258
+    },
+    {
+      "caminho": "services/pacientes/pacientes.ts",
+      "bytes": 245
+    },
+    {
+      "caminho": "services/pressao/registrosPressao.ts",
+      "bytes": 677
+    },
+    {
+      "caminho": "services/sincronizacao/armazenamentoFila.native.ts",
+      "bytes": 2547
+    },
+    {
+      "caminho": "services/sincronizacao/armazenamentoFila.ts",
+      "bytes": 644
+    },
+    {
+      "caminho": "services/sincronizacao/filaRegistros.ts",
+      "bytes": 286
+    },
+    {
+      "caminho": "services/sincronizacao/regrasSincronizacao.ts",
+      "bytes": 3529
+    },
+    {
+      "caminho": "services/transporteApi.ts",
+      "bytes": 5191
+    },
+    {
+      "caminho": "tests/e2e/acesso-navegacao.spec.ts",
+      "bytes": 10807
+    },
+    {
+      "caminho": "tests/e2e/acesso-paciente.spec.ts",
+      "bytes": 8538
+    },
+    {
+      "caminho": "tests/e2e/apoio-acesso-paciente.ts",
+      "bytes": 5149
+    },
+    {
+      "caminho": "tests/e2e/cadastro-sms.spec.ts",
+      "bytes": 3347
+    },
+    {
+      "caminho": "tests/e2e/care.spec.ts",
+      "bytes": 7282
+    },
+    {
+      "caminho": "tests/e2e/execucao-local.spec.ts",
+      "bytes": 7503
+    },
+    {
+      "caminho": "tests/e2e/foundation.spec.ts",
+      "bytes": 5001
+    },
+    {
+      "caminho": "tests/e2e/interface-responsiva.spec.ts",
+      "bytes": 7789
+    },
+    {
+      "caminho": "tests/e2e/mobile-care.spec.ts",
+      "bytes": 9690
+    },
+    {
+      "caminho": "tests/e2e/mobile-web.spec.ts",
+      "bytes": 6210
+    },
+    {
+      "caminho": "tests/e2e/portugues-pressao.spec.ts",
+      "bytes": 7296
+    },
+    {
+      "caminho": "tests/e2e/preferencias.spec.ts",
+      "bytes": 5128
+    },
+    {
+      "caminho": "tests/fixtures/pressure-display.png",
+      "bytes": 15599
+    },
+    {
+      "caminho": "tests/mobile/acesso-paciente.test.ts",
+      "bytes": 1711
+    },
+    {
+      "caminho": "tests/mobile/ambiente.test.ts",
+      "bytes": 837
+    },
+    {
+      "caminho": "tests/mobile/api-core.test.ts",
+      "bytes": 5597
+    },
+    {
+      "caminho": "tests/mobile/app-config.test.ts",
+      "bytes": 1113
+    },
+    {
+      "caminho": "tests/mobile/cadastro.test.ts",
+      "bytes": 1687
+    },
+    {
+      "caminho": "tests/mobile/care-core.test.ts",
+      "bytes": 3611
+    },
+    {
+      "caminho": "tests/mobile/dispositivo-paciente.test.ts",
+      "bytes": 2532
+    },
+    {
+      "caminho": "tests/mobile/idade.test.ts",
+      "bytes": 682
+    },
+    {
+      "caminho": "tsconfig.json",
+      "bytes": 529
+    },
+    {
+      "caminho": "vitest.mobile.config.ts",
+      "bytes": 155
+    },
+    {
+      "caminho": "web/AGENTS.md",
+      "bytes": 679
+    },
+    {
+      "caminho": "web/README.md",
+      "bytes": 3896
+    },
+    {
+      "caminho": "web/app/(portal)/configuracoes/page.tsx",
+      "bytes": 2450
+    },
+    {
+      "caminho": "web/app/(portal)/consultas/page.tsx",
+      "bytes": 719
+    },
+    {
+      "caminho": "web/app/(portal)/layout.tsx",
+      "bytes": 3214
+    },
+    {
+      "caminho": "web/app/(portal)/pacientes/[id]/page.tsx",
+      "bytes": 3236
+    },
+    {
+      "caminho": "web/app/(portal)/pacientes/novo/page.tsx",
+      "bytes": 142
+    },
+    {
+      "caminho": "web/app/(portal)/pacientes/page.tsx",
+      "bytes": 3459
+    },
+    {
+      "caminho": "web/app/(portal)/painel/page.tsx",
+      "bytes": 4599
+    },
+    {
+      "caminho": "web/app/(portal)/relatorios/page.tsx",
+      "bytes": 758
+    },
+    {
+      "caminho": "web/app/api/domain/[...path]/route.ts",
+      "bytes": 5426
+    },
+    {
+      "caminho": "web/app/api/logout/route.test.ts",
+      "bytes": 1998
+    },
+    {
+      "caminho": "web/app/api/logout/route.ts",
+      "bytes": 1276
+    },
+    {
+      "caminho": "web/app/api/photos/[id]/route.ts",
+      "bytes": 1510
+    },
+    {
+      "caminho": "web/app/api/session/route.test.ts",
+      "bytes": 3632
+    },
+    {
+      "caminho": "web/app/api/session/route.ts",
+      "bytes": 3897
+    },
+    {
+      "caminho": "web/app/error.tsx",
+      "bytes": 596
+    },
+    {
+      "caminho": "web/app/exclusao-de-conta/page.tsx",
+      "bytes": 1616
+    },
+    {
+      "caminho": "web/app/globals.css",
+      "bytes": 47625
+    },
+    {
+      "caminho": "web/app/layout.tsx",
+      "bytes": 1222
+    },
+    {
+      "caminho": "web/app/loading.tsx",
+      "bytes": 267
+    },
+    {
+      "caminho": "web/app/not-found.tsx",
+      "bytes": 483
+    },
+    {
+      "caminho": "web/app/page.tsx",
+      "bytes": 4411
+    },
+    {
+      "caminho": "web/app/privacidade/page.tsx",
+      "bytes": 2810
+    },
+    {
+      "caminho": "web/app/suporte/page.tsx",
+      "bytes": 1568
+    },
+    {
+      "caminho": "web/components/AtivacaoPaciente.test.tsx",
+      "bytes": 4354
+    },
+    {
+      "caminho": "web/components/AtivacaoPaciente.tsx",
+      "bytes": 6918
+    },
+    {
+      "caminho": "web/components/CadastroPaciente.tsx",
+      "bytes": 5373
+    },
+    {
+      "caminho": "web/components/CamposDadosPessoais.tsx",
+      "bytes": 3844
+    },
+    {
+      "caminho": "web/components/CuidadoPaciente.tsx",
+      "bytes": 39792
+    },
+    {
+      "caminho": "web/components/DadosPessoaisPaciente.tsx",
+      "bytes": 6765
+    },
+    {
+      "caminho": "web/components/DocumentoPublico.tsx",
+      "bytes": 843
+    },
+    {
+      "caminho": "web/components/FormularioAcesso.test.tsx",
+      "bytes": 1061
+    },
+    {
+      "caminho": "web/components/FormularioAcesso.tsx",
+      "bytes": 1966
+    },
+    {
+      "caminho": "web/components/GraficoPressao.tsx",
+      "bytes": 4327
+    },
+    {
+      "caminho": "web/components/Icones.tsx",
+      "bytes": 2589
+    },
+    {
+      "caminho": "web/components/ListaPacientes.tsx",
+      "bytes": 1692
+    },
+    {
+      "caminho": "web/components/MenuPortal.tsx",
+      "bytes": 1415
+    },
+    {
+      "caminho": "web/components/Modulos.tsx",
+      "bytes": 1400
+    },
+    {
+      "caminho": "web/components/PreferenciasPortal.test.tsx",
+      "bytes": 2195
+    },
+    {
+      "caminho": "web/components/PreferenciasPortal.tsx",
+      "bytes": 4558
+    },
+    {
+      "caminho": "web/components/RefeicoesPaciente.tsx",
+      "bytes": 7185
+    },
+    {
+      "caminho": "web/components/RodapePublico.tsx",
+      "bytes": 415
+    },
+    {
+      "caminho": "web/components/TabelaCuidado.tsx",
+      "bytes": 6101
+    },
+    {
+      "caminho": "web/components/VinculosPaciente.tsx",
+      "bytes": 3916
+    },
+    {
+      "caminho": "web/components/VisaoGeralPaciente.tsx",
+      "bytes": 2718
+    },
+    {
+      "caminho": "web/hooks/useClientePronto.ts",
+      "bytes": 296
+    },
+    {
+      "caminho": "web/hooks/useResumoCuidados.ts",
+      "bytes": 730
+    },
+    {
+      "caminho": "web/next-env.d.ts",
+      "bytes": 288
+    },
+    {
+      "caminho": "web/next.config.ts",
+      "bytes": 1941
+    },
+    {
+      "caminho": "web/package-lock.json",
+      "bytes": 128427
+    },
+    {
+      "caminho": "web/package.json",
+      "bytes": 889
+    },
+    {
+      "caminho": "web/postcss.config.mjs",
+      "bytes": 60
+    },
+    {
+      "caminho": "web/proxy.ts",
+      "bytes": 1016
+    },
+    {
+      "caminho": "web/public/images/idosos-atividade.png",
+      "bytes": 52141
+    },
+    {
+      "caminho": "web/public/images/idosos-boas-vindas.png",
+      "bytes": 58196
+    },
+    {
+      "caminho": "web/public/images/individuais/01_logos/icone_do_aplicativo.png",
+      "bytes": 159999
+    },
+    {
+      "caminho": "web/public/images/individuais/01_logos/logo_viva_mais_com_slogan.png",
+      "bytes": 716819
+    },
+    {
+      "caminho": "web/public/images/individuais/01_logos/logo_viva_mais_sem_slogan.png",
+      "bytes": 853771
+    },
+    {
+      "caminho": "web/public/images/individuais/02_personagens/idosa_exercicio_sentado.png",
+      "bytes": 362411
+    },
+    {
+      "caminho": "web/public/images/individuais/02_personagens/idosa_perfil.png",
+      "bytes": 231487
+    },
+    {
+      "caminho": "web/public/images/individuais/02_personagens/idoso_perfil.png",
+      "bytes": 250070
+    },
+    {
+      "caminho": "web/public/images/individuais/02_personagens/idosos_atividade_fisica.png",
+      "bytes": 479411
+    },
+    {
+      "caminho": "web/public/images/individuais/02_personagens/profissionais_de_saude.png",
+      "bytes": 571740
+    },
+    {
+      "caminho": "web/public/images/individuais/03_exercicios/alongamento_leve.png",
+      "bytes": 223580
+    },
+    {
+      "caminho": "web/public/images/individuais/03_exercicios/bracos_sentado.png",
+      "bytes": 232338
+    },
+    {
+      "caminho": "web/public/images/individuais/03_exercicios/caminhada_leve.png",
+      "bytes": 272910
+    },
+    {
+      "caminho": "web/public/images/individuais/03_exercicios/ombros.png",
+      "bytes": 225541
+    },
+    {
+      "caminho": "web/public/images/individuais/03_exercicios/pes_sentado.png",
+      "bytes": 227764
+    },
+    {
+      "caminho": "web/public/images/individuais/04_objetos/aparelho_pressao_arterial.png",
+      "bytes": 246893
+    },
+    {
+      "caminho": "web/public/images/individuais/04_objetos/copo_de_agua.png",
+      "bytes": 116173
+    },
+    {
+      "caminho": "web/public/images/individuais/04_objetos/medicamentos.png",
+      "bytes": 187500
+    },
+    {
+      "caminho": "web/public/images/individuais/04_objetos/pulseira_pulso_em_dia.png",
+      "bytes": 276562
+    },
+    {
+      "caminho": "web/public/images/individuais/04_objetos/refeicao_saudavel.png",
+      "bytes": 539250
+    },
+    {
+      "caminho": "web/public/images/individuais/04_objetos/tenis_caminhada.png",
+      "bytes": 255074
+    },
+    {
+      "caminho": "web/public/images/individuais/05_menu/area_profissional.png",
+      "bytes": 99764
+    },
+    {
+      "caminho": "web/public/images/individuais/05_menu/atividade_fisica.png",
+      "bytes": 79045
+    },
+    {
+      "caminho": "web/public/images/individuais/05_menu/configuracoes.png",
+      "bytes": 81049
+    },
+    {
+      "caminho": "web/public/images/individuais/05_menu/lembretes.png",
+      "bytes": 53697
+    },
+    {
+      "caminho": "web/public/images/individuais/05_menu/meu_historico.png",
+      "bytes": 66764
+    },
+    {
+      "caminho": "web/public/images/individuais/05_menu/meus_medicamentos.png",
+      "bytes": 88621
+    },
+    {
+      "caminho": "web/public/images/individuais/05_menu/minha_alimentacao.png",
+      "bytes": 76732
+    },
+    {
+      "caminho": "web/public/images/individuais/05_menu/minha_pressao.png",
+      "bytes": 74698
+    },
+    {
+      "caminho": "web/public/images/individuais/06_humor/estou_bem.png",
+      "bytes": 39512
+    },
+    {
+      "caminho": "web/public/images/individuais/06_humor/tontura_ou_mal_estar.png",
+      "bytes": 39555
+    },
+    {
+      "caminho": "web/public/images/individuais/06_humor/um_pouco_cansado.png",
+      "bytes": 31887
+    },
+    {
+      "caminho": "web/public/images/individuais/07_acoes/alerta.png",
+      "bytes": 21462
+    },
+    {
+      "caminho": "web/public/images/individuais/07_acoes/baixar.png",
+      "bytes": 13018
+    },
+    {
+      "caminho": "web/public/images/individuais/07_acoes/calendario.png",
+      "bytes": 29886
+    },
+    {
+      "caminho": "web/public/images/individuais/07_acoes/confirmado.png",
+      "bytes": 26003
+    },
+    {
+      "caminho": "web/public/images/individuais/07_acoes/editar.png",
+      "bytes": 15114
+    },
+    {
+      "caminho": "web/public/images/individuais/07_acoes/enviar.png",
+      "bytes": 18663
+    },
+    {
+      "caminho": "web/public/images/individuais/07_acoes/excluir.png",
+      "bytes": 17780
+    },
+    {
+      "caminho": "web/public/images/individuais/07_acoes/foto.png",
+      "bytes": 24168
+    },
+    {
+      "caminho": "web/public/images/individuais/07_acoes/grafico.png",
+      "bytes": 23365
+    },
+    {
+      "caminho": "web/public/images/individuais/07_acoes/horario.png",
+      "bytes": 31351
+    },
+    {
+      "caminho": "web/public/images/individuais/07_acoes/informacao.png",
+      "bytes": 22868
+    },
+    {
+      "caminho": "web/public/images/individuais/07_acoes/lembrete.png",
+      "bytes": 16769
+    },
+    {
+      "caminho": "web/public/images/individuais/07_acoes/nao_realizado.png",
+      "bytes": 24153
+    },
+    {
+      "caminho": "web/public/images/individuais/07_acoes/sem_internet.png",
+      "bytes": 32470
+    },
+    {
+      "caminho": "web/public/images/individuais/07_acoes/sincronizar.png",
+      "bytes": 25579
+    },
+    {
+      "caminho": "web/public/images/individuais/08_cards/acompanhamento_evolucao.png",
+      "bytes": 88215
+    },
+    {
+      "caminho": "web/public/images/individuais/08_cards/atividade_fisica.png",
+      "bytes": 217811
+    },
+    {
+      "caminho": "web/public/images/individuais/08_cards/lembrete_medicamento.png",
+      "bytes": 102919
+    },
+    {
+      "caminho": "web/public/images/individuais/08_cards/medicao_da_pressao.png",
+      "bytes": 167912
+    },
+    {
+      "caminho": "web/public/images/individuais/08_cards/planejamento_cuidado.png",
+      "bytes": 93709
+    },
+    {
+      "caminho": "web/public/images/individuais/08_cards/registro_alimentacao.png",
+      "bytes": 152467
+    },
+    {
+      "caminho": "web/public/images/individuais/08_cards/seguranca_dados.png",
+      "bytes": 75139
+    },
+    {
+      "caminho": "web/public/images/logo-viva-verde.png",
+      "bytes": 10342
+    },
+    {
+      "caminho": "web/public/images/logo-viva.png",
+      "bytes": 13069
+    },
+    {
+      "caminho": "web/public/images/profissionais.png",
+      "bytes": 43993
+    },
+    {
+      "caminho": "web/public/images/refeicao-exemplo.png",
+      "bytes": 81499
+    },
+    {
+      "caminho": "web/public/images/visor-exemplo.png",
+      "bytes": 67321
+    },
+    {
+      "caminho": "web/services/api.ts",
+      "bytes": 3754
+    },
+    {
+      "caminho": "web/services/dominio.ts",
+      "bytes": 586
+    },
+    {
+      "caminho": "web/services/enderecos.ts",
+      "bytes": 310
+    },
+    {
+      "caminho": "web/services/periodosCuidados.test.ts",
+      "bytes": 2046
+    },
+    {
+      "caminho": "web/services/periodosCuidados.ts",
+      "bytes": 1500
+    },
+    {
+      "caminho": "web/services/resumoPaciente.ts",
+      "bytes": 2859
+    },
+    {
+      "caminho": "web/services/validacoes.test.ts",
+      "bytes": 2882
+    },
+    {
+      "caminho": "web/services/validacoes.ts",
+      "bytes": 1767
+    },
+    {
+      "caminho": "web/test/setup.ts",
+      "bytes": 43
+    },
+    {
+      "caminho": "web/tsconfig.json",
+      "bytes": 699
+    },
+    {
+      "caminho": "web/vitest.config.ts",
+      "bytes": 297
+    }
+  ],
+  "privadosExcluidos": [
+    "work fora do repositório",
+    ".local",
+    "node_modules",
+    ".next",
+    "dist",
+    "target",
+    "pg-data",
+    "backups",
+    "senhas/chaves/envelopesSMS/logsbrutos"
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "executadoEm": "2026-10-20T18:24:03.064Z",
+  "escopo": "Conferência local final; resultados funcionais comprovados nos relatórios e logs privados, sem nova execução integral nesta conferência",
+  "git": {
+    "arquivosNoStage": 0,
+    "diffCheckAprovado": true,
+    "repositoriosAninhados": [],
+    "commitOuPushExecutado": false
+  },
+  "integridade": {
+    "documentosConferidos": 19,
+    "linksLocaisConferidos": 191,
+    "linksInvalidos": [],
+    "utf8Invalidos": [],
+    "capturas": [
+      {
+        "tela": "cadastro_profissional",
+        "largura": 1280,
+        "altura": 911,
+        "pngValido": true,
+        "rolagemHorizontal": false
+      },
+      {
+        "tela": "emissao_profissional",
+        "largura": 1280,
+        "altura": 1047,
+        "pngValido": true,
+        "rolagemHorizontal": false
+      },
+      {
+        "tela": "acesso_paciente",
+        "largura": 390,
+        "altura": 844,
+        "pngValido": true,
+        "rolagemHorizontal": false
+      },
+      {
+        "tela": "ativacao_paciente",
+        "largura": 390,
+        "altura": 844,
+        "pngValido": true,
+        "rolagemHorizontal": false
+      },
+      {
+        "tela": "inicio_paciente",
+        "largura": 390,
+        "altura": 844,
+        "pngValido": true,
+        "rolagemHorizontal": false
+      },
+      {
+        "tela": "estado_ativado_portal",
+        "largura": 1280,
+        "altura": 1047,
+        "pngValido": true,
+        "rolagemHorizontal": false
+      },
+      {
+        "tela": "configuracoes_paciente",
+        "largura": 390,
+        "altura": 844,
+        "pngValido": true,
+        "rolagemHorizontal": false
+      }
+    ],
+    "openapiIgualAoServidor": true,
+    "openapiAutenticado": true,
+    "normalizacaoOpenapi": "Endereço automático de servers ignorado; schemas, paths e demais metadados comparados"
+  },
+  "dadosSensiveis": {
+    "segredosConhecidosConferidos": 4,
+    "arquivosTextuaisConferidos": 343,
+    "arquivosComOcorrencias": [],
+    "observacao": "Busca dos segredos locais conhecidos; não é uma auditoria universal de dados pessoais"
+  },
+  "testes": {
+    "java": {
+      "testes": 48,
+      "falhas": 0,
+      "erros": 0,
+      "ignorados": 0
+    },
+    "frontendApp": 30,
+    "frontendPortal": 28,
+    "e2e": 14,
+    "buildNextAprovado": true,
+    "exportExpoWebAndroidIosAprovado": true,
+    "tipagemELintAprovados": true,
+    "provasJava": [
+      "auth-paciente-java-contato-final.log",
+      "auth-paciente-isolamento-final.log"
+    ],
+    "provaE2e": "auth-paciente-e2e-final.log"
+  },
+  "banco": {
+    "evidenciaMigracao": "migracao-v8.json",
+    "migrationsV1V7Preservadas": true,
+    "contagensClinicasPreservadas": true,
+    "tabelas": 32,
+    "tabelasRls": 31,
+    "evidenciaRestauracao": "backup-restauracao-v8.json",
+    "restauracao": "APROVADO"
+  },
+  "servicos": [
+    {
+      "servico": "API",
+      "url": "http://127.0.0.1:8080/actuator/health",
+      "status": 200
+    },
+    {
+      "servico": "Portal",
+      "url": "http://127.0.0.1:3000/",
+      "status": 200
+    },
+    {
+      "servico": "Aplicativo web",
+      "url": "http://127.0.0.1:8081/acesso",
+      "status": 200
+    }
+  ],
+  "limites": {
+    "ensaioFisicoNativo": false,
+    "publicacaoExecutada": false,
+    "producaoLiberada": false,
+    "alertasAltosGeraisJaRegistrados": 2
+  },
+  "aprovado": true
+}

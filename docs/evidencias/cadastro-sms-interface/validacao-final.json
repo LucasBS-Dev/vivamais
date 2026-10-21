@@ -1,0 +1,214 @@
+{
+  "executadoEm": "2026-10-20T21:12:08.557Z",
+  "escopo": "Conferência final de integridade e proveniência dos testes locais; não é certificação de segurança/produção",
+  "git": {
+    "stageAtual": 0,
+    "stageInicial": 0,
+    "diffCheck": true,
+    "repositoriosAninhados": [],
+    "commitPushPublicacao": false
+  },
+  "documentacao": {
+    "documentos": 27,
+    "linksLocais": 333,
+    "linksInvalidos": [],
+    "utf8Invalidos": [],
+    "pendencias": 40,
+    "idsPendenciasUnicos": 40,
+    "escoposValidados": 14,
+    "pacotesTecnicos": 21,
+    "aspectosTecnicos": 273
+  },
+  "segredosConhecidos": {
+    "quantidade": 5,
+    "arquivosTextuaisConferidos": 370,
+    "arquivosComOcorrencias": [],
+    "limite": "Não substitui scanner universal; não compara todos os possíveis dados pessoais"
+  },
+  "testes": {
+    "java": {
+      "testes": 74,
+      "falhas": 0,
+      "erros": 0,
+      "ignorados": 0
+    },
+    "frontendApp": 40,
+    "frontendPortal": 29,
+    "e2e": 17,
+    "provaMaven": "sms-java-validado.log",
+    "provaE2e": "sms-e2e-completo-final.log",
+    "e2eAprovado": true,
+    "tipagemELint": true,
+    "buildNext": true,
+    "exportExpoWebAndroidIos": true
+  },
+  "preservacao": {
+    "fontesV1V8": true,
+    "recursoV9IgualAoBuild": true,
+    "banco": "migracao-v9.json",
+    "logoOriginalPreservado": true
+  },
+  "visual": {
+    "capturas": [
+      {
+        "arquivo": "docs\\evidencias\\cadastro-sms-interface\\app_atividade_320.png",
+        "largura": 320,
+        "altura": 568,
+        "png": true
+      },
+      {
+        "arquivo": "docs\\evidencias\\cadastro-sms-interface\\app_atividade_375.png",
+        "largura": 375,
+        "altura": 667,
+        "png": true
+      },
+      {
+        "arquivo": "docs\\evidencias\\cadastro-sms-interface\\app_atividade_430.png",
+        "largura": 430,
+        "altura": 932,
+        "png": true
+      },
+      {
+        "arquivo": "docs\\evidencias\\cadastro-sms-interface\\portal_configuracoes_1366.png",
+        "largura": 2732,
+        "altura": 1858,
+        "png": true
+      },
+      {
+        "arquivo": "docs\\evidencias\\cadastro-sms-interface\\portal_configuracoes_1440.png",
+        "largura": 2880,
+        "altura": 1858,
+        "png": true
+      },
+      {
+        "arquivo": "docs\\evidencias\\cadastro-sms-interface\\portal_configuracoes_1920.png",
+        "largura": 3840,
+        "altura": 2160,
+        "png": true
+      },
+      {
+        "arquivo": "docs\\evidencias\\cadastro-sms-interface\\portal_configuracoes_390.png",
+        "largura": 780,
+        "altura": 3536,
+        "png": true
+      },
+      {
+        "arquivo": "docs\\evidencias\\cadastro-sms-interface\\portal_configuracoes_768.png",
+        "largura": 1536,
+        "altura": 3134,
+        "png": true
+      },
+      {
+        "arquivo": "docs\\evidencias\\cadastro-sms-interface\\referencia_print_app.png",
+        "largura": 500,
+        "altura": 861,
+        "png": true
+      },
+      {
+        "arquivo": "docs\\evidencias\\cadastro-sms-interface\\referencia_print_portal.png",
+        "largura": 1865,
+        "altura": 919,
+        "png": true
+      },
+      {
+        "arquivo": "docs/evidencias/cadastro-sms-interface/acesso/acesso_paciente.png",
+        "largura": 390,
+        "altura": 844,
+        "png": true
+      },
+      {
+        "arquivo": "docs/evidencias/cadastro-sms-interface/acesso/ativacao_paciente.png",
+        "largura": 390,
+        "altura": 844,
+        "png": true
+      },
+      {
+        "arquivo": "docs/evidencias/cadastro-sms-interface/acesso/cadastro_profissional.png",
+        "largura": 1280,
+        "altura": 911,
+        "png": true
+      },
+      {
+        "arquivo": "docs/evidencias/cadastro-sms-interface/acesso/configuracoes_paciente.png",
+        "largura": 390,
+        "altura": 844,
+        "png": true
+      },
+      {
+        "arquivo": "docs/evidencias/cadastro-sms-interface/acesso/emissao_profissional.png",
+        "largura": 1280,
+        "altura": 926,
+        "png": true
+      },
+      {
+        "arquivo": "docs/evidencias/cadastro-sms-interface/acesso/estado_ativado_portal.png",
+        "largura": 1280,
+        "altura": 1075,
+        "png": true
+      },
+      {
+        "arquivo": "docs/evidencias/cadastro-sms-interface/acesso/inicio_paciente.png",
+        "largura": 390,
+        "altura": 844,
+        "png": true
+      }
+    ],
+    "largurasPortal": [
+      1366,
+      1440,
+      1920,
+      768,
+      390
+    ],
+    "densidadePortal": 2,
+    "rotasComBarra": 12,
+    "largurasPequenas": [
+      320,
+      375,
+      430
+    ],
+    "semRolagemHorizontal": true
+  },
+  "auditoria": {
+    "pnpm": "10.28.2",
+    "dependencias": 922,
+    "vulnerabilidades": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 2,
+      "critical": 0
+    },
+    "exit": 1,
+    "javaNvdCiRemota": "Pendente"
+  },
+  "servicos": [
+    {
+      "nome": "API",
+      "url": "http://127.0.0.1:8080/actuator/health",
+      "status": 200
+    },
+    {
+      "nome": "Portal",
+      "url": "http://127.0.0.1:3000/",
+      "status": 200
+    },
+    {
+      "nome": "App web",
+      "url": "http://127.0.0.1:8081/acesso",
+      "status": 200
+    }
+  ],
+  "limites": {
+    "smsRealEnviado": false,
+    "consultaOficialCpf": false,
+    "ensaioFisico": false,
+    "apkIpa": false,
+    "producaoLiberada": false
+  },
+  "aprovadoNoEscopoLocal": true,
+  "openapi": {
+    "contratoIgualAoServidor": true,
+    "normalizacao": "Endereço automático servers ignorado; consulta autenticada e sessão revogada"
+  }
+}

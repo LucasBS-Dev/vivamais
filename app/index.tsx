@@ -1,5 +1,6 @@
+import { Text } from "../components/TextoAcessivel";
 import { Redirect } from "expo-router";
-import { Text, View } from "react-native";
+import { Image, View } from "react-native";
 import { useAutenticacao } from "../hooks/useAutenticacao";
 import {
   MarcaViva,
@@ -21,35 +22,75 @@ export default function BoasVindas() {
     );
   if (sessao) return <Redirect href="/inicio" />;
   return (
-    <Tela>
-      <MarcaViva />
-      <View style={[s.accentCard, { paddingVertical: 40, marginTop: 24 }]}>
-        <Text style={s.eyebrow}>SEU CUIDADO, MAIS PERTO</Text>
-        <Text style={s.display} accessibilityRole="header">
-          Bem-vindo ao{"\n"}Viva+
-        </Text>
-        <Text style={s.body}>
-          Um espaço simples para acompanhar seu cuidado com a equipe de saúde.
+    <Tela compacta>
+      <View style={{ alignItems: "center", marginTop: 20 }}>
+        <MarcaViva variante="verde" grande largura={145} />
+        <Text
+          style={[
+            s.body,
+            { textAlign: "center", color: "#005d4b", marginTop: 8 },
+          ]}
+        >
+          Sua saúde{"\n"}no seu dia a dia
         </Text>
       </View>
-      <View style={s.section}>
-        <Text style={s.title} accessibilityRole="header">
-          Um passo de cada vez
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "flex-end",
+          justifyContent: "center",
+          gap: 4,
+        }}
+      >
+        <Image
+          source={require("../assets/images/individuais/02_personagens/idoso_perfil.png")}
+          accessibilityLabel="Ilustração de um idoso"
+          style={{ width: "48%", height: 170, resizeMode: "contain" }}
+        />
+        <Image
+          source={require("../assets/images/individuais/02_personagens/idosa_perfil.png")}
+          accessibilityLabel="Ilustração de uma idosa"
+          style={{
+            width: "48%",
+            height: 170,
+            resizeMode: "contain",
+            marginBottom: 0,
+          }}
+        />
+      </View>
+      <View style={[s.card, { padding: 20, borderRadius: 24, gap: 10 }]}>
+        <Text
+          style={[
+            s.title,
+            { textAlign: "center", fontSize: 24, lineHeight: 30 },
+          ]}
+          accessibilityRole="header"
+        >
+          Vamos cuidar{"\n"}da sua saúde juntos!
         </Text>
-        <Text style={s.body}>
-          Entre com a conta de teste fornecida pela instituição para conhecer a
-          demonstração.
+        <Text
+          style={[
+            s.body,
+            { textAlign: "center", fontSize: 18, lineHeight: 25 },
+          ]}
+        >
+          Registre sua pressão, seus medicamentos, sua alimentação e pratique
+          atividades físicas com a orientação da sua equipe.
         </Text>
+        <Botao
+          rotulo="Começar"
+          onPress={() => router.push("/acesso")}
+          testID="start-button"
+        />
       </View>
       <Botao
-        rotulo="Começar"
-        onPress={() => router.push("/acesso")}
-        testID="start-button"
+        secundario
+        rotulo="Cadastrar ou ativar minha conta"
+        onPress={() => router.push("/cadastro")}
       />
       <Text style={s.small}>
-        Demonstração acadêmica • Somente dados sintéticos. Registros
-        sincronizados com sua equipe. Este aplicativo não oferece diagnóstico ou
-        atendimento de emergência.
+        O Viva+ ajuda a organizar seus registros para o acompanhamento pela sua
+        equipe. Não oferece diagnóstico ou atendimento de emergência.
       </Text>
     </Tela>
   );

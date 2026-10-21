@@ -41,6 +41,8 @@ public class InstituicaoRepository {
         return jdbc.query("""
                 SELECT u.*, s.id AS session_id FROM auth_session s JOIN user_account u ON u.id=s.user_account_id
                 WHERE s.token_hash=? AND s.expires_at > now() AND s.revoked_at IS NULL AND u.enabled=true
+                  AND (u.role<>'PATIENT' OR EXISTS(SELECT 1 FROM dispositivo_acesso_paciente d
+                    WHERE d.id=s.id_dispositivo_paciente AND d.id_usuario=u.id AND d.revogado_em IS NULL AND d.expira_em>now()))
                 """, (rs, linha) -> new SessaoAutenticada(usuario(rs), rs.getObject("session_id", UUID.class)), hash)
                 .stream().findFirst();
     }
@@ -51,6 +53,12 @@ public class InstituicaoRepository {
         return id;
     }
     public void revogarSessao(UUID id) { jdbc.update("UPDATE auth_session SET revoked_at=now() WHERE id=? AND revoked_at IS NULL", id); }
+    public Optional<Usuario> buscarUsuario(UUID id) {
+        return jdbc.query("SELECT * FROM user_account WHERE id=? AND enabled=true",(rs,n)->usuario(rs),id).stream().findFirst();
+    }
+    public void desativarRenovacaoPaciente(UUID sessao) {
+        jdbc.update("UPDATE dispositivo_acesso_paciente SET manter_sessao=false WHERE id=(SELECT id_dispositivo_paciente FROM auth_session WHERE id=?)",sessao);
+    }
     public void auditar(Usuario ator, String action, String resourceType, UUID resourceId) {
         jdbc.update("INSERT INTO audit_event(id,organization_id,actor_id,action,resource_type,resource_id) VALUES(?,?,?,?,?,?)",
                 UUID.randomUUID(), ator.idUnidade(), ator.id(), action, resourceType, resourceId);

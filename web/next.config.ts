@@ -1,6 +1,40 @@
 import type { NextConfig } from "next";
 
+const ambiente = process.env.APP_ENV ?? "development";
+if (!["development", "test", "production"].includes(ambiente))
+  throw new Error("APP_ENV inválido.");
+if (ambiente === "production") {
+  for (const valor of [
+    process.env.API_BASE_URL,
+    process.env.NEXT_PUBLIC_APLICATIVO_URL,
+  ]) {
+    if (!valor)
+      throw new Error(
+        "Produção exige endereços explícitos de API e aplicativo.",
+      );
+    const endereco = new URL(valor);
+    if (
+      endereco.protocol !== "https:" ||
+      endereco.username ||
+      endereco.password ||
+      ["localhost", "127.0.0.1", "[::1]"].includes(endereco.hostname)
+    )
+      throw new Error(
+        "Produção exige endereços HTTPS sem credenciais e fora do host local.",
+      );
+  }
+  if (
+    process.env.SPRING_PROFILES_ACTIVE?.split(",").includes("bootstrap") ||
+    process.env.DEMO_BOOTSTRAP_PASSWORD
+  )
+    throw new Error(
+      "Bootstrap não pode estar configurado no portal de produção.",
+    );
+}
+
 const nextConfig: NextConfig = {
+  // Somente para a sandbox Windows: permite preparar diretórios de saída antes do build.
+  cleanDistDir: process.env.VIVA_BUILD_DIRETORIOS_PREPARADOS !== "1",
   poweredByHeader: false,
   transpilePackages: ["@viva/contracts", "@viva/design-tokens"],
   async headers() {

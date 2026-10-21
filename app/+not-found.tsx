@@ -1,5 +1,6 @@
+import { Text } from "../components/TextoAcessivel";
 import { router } from "expo-router";
-import { Text } from "react-native";
+import {} from "react-native";
 import { MarcaViva, Botao, Tela } from "../components/ElementosInterface";
 import { estilos as s } from "../components/estilos";
 export default function NotFound() {

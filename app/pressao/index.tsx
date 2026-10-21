@@ -1,17 +1,23 @@
+import { Text } from "../../components/TextoAcessivel";
 import { router } from "expo-router";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, View } from "react-native";
 import { Tela } from "../../components/ElementosInterface";
 import { estilos as e } from "../../components/estilos";
 export default function EntradaPressao() {
   return (
     <Tela>
-      <Pressable
-        accessibilityRole="button"
-        accessibilityLabel="Voltar ao início"
-        onPress={() => router.dismissTo("/inicio")}
-      >
-        <Text style={e.title}>‹　Minha Pressão</Text>
-      </Pressable>
+      <View style={{ flexDirection: "row", alignItems: "center", gap: 16 }}>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Voltar ao início"
+          onPress={() => router.dismissTo("/inicio")}
+        >
+          <Text style={e.title}>‹</Text>
+        </Pressable>
+        <Text style={[e.title, { fontSize: 23 }]} accessibilityRole="header">
+          Minha Pressão
+        </Text>
+      </View>
       <View style={e.section}>
         <Text style={e.body}>
           Registre sua pressão de hoje. Você pode digitar os valores ou tirar

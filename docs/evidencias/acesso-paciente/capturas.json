@@ -1,0 +1,41 @@
+{
+  "executadoEm": "2026-10-20T17:57:42.749Z",
+  "origem": "Percurso E2E real com Java/PostgreSQL; dados sinteticos e segredos ocultos",
+  "capturas": [
+    {
+      "tela": "cadastro_profissional",
+      "largura": 1280,
+      "rolagemHorizontal": false
+    },
+    {
+      "tela": "emissao_profissional",
+      "largura": 1280,
+      "rolagemHorizontal": false
+    },
+    {
+      "tela": "acesso_paciente",
+      "largura": 390,
+      "rolagemHorizontal": false
+    },
+    {
+      "tela": "ativacao_paciente",
+      "largura": 390,
+      "rolagemHorizontal": false
+    },
+    {
+      "tela": "inicio_paciente",
+      "largura": 390,
+      "rolagemHorizontal": false
+    },
+    {
+      "tela": "estado_ativado_portal",
+      "largura": 1280,
+      "rolagemHorizontal": false
+    },
+    {
+      "tela": "configuracoes_paciente",
+      "largura": 390,
+      "rolagemHorizontal": false
+    }
+  ]
+}

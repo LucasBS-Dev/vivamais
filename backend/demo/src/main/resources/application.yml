@@ -45,6 +45,7 @@ management:
       probes:
         enabled: true
 app:
+  ambiente: ${APP_ENV:development}
   demo-only: true
   cors-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000,http://127.0.0.1:3000,http://localhost:8081,http://127.0.0.1:8081}
   session-duration: PT30M
@@ -68,6 +69,17 @@ ocr:
   command: ${TESSERACT_COMMAND:tesseract}
   node-script: ${OCR_NODE_SCRIPT:}
   node: ${OCR_NODE_EXECUTABLE:node}
+patient-auth:
+  hmac-key: ${PATIENT_AUTH_HMAC_KEY:}
+sms:
+  provedor: ${SMS_PROVIDER:DESABILITADO}
+  teste-local-habilitado: ${SMS_LOCAL_TEST_ENABLED:false}
+  envio-real-autorizado: ${SMS_REAL_AUTHORIZED:false}
+  twilio:
+    conta: ${SMS_TWILIO_ACCOUNT_SID:}
+    segredo: ${SMS_TWILIO_AUTH_TOKEN:}
+    origem: ${SMS_TWILIO_FROM:}
+    servico: ${SMS_TWILIO_MESSAGING_SERVICE_SID:}
 food:
   analysis-enabled: ${FOOD_ANALYSIS_ENABLED:false}
   endpoint: ${FOOD_ANALYSIS_ENDPOINT:}

@@ -7,8 +7,9 @@ import { ModalidadePaciente } from "@/components/ListaPacientes";
 import { Modulos } from "@/components/Modulos";
 import { Icone } from "@/components/Icones";
 import { CuidadoPaciente } from "@/components/CuidadoPaciente";
-import { RefeicoesPaciente } from "@/components/RefeicoesPaciente";
 import { VinculosPaciente } from "@/components/VinculosPaciente";
+import { DadosPessoaisPaciente } from "@/components/DadosPessoaisPaciente";
+import type { DadosPessoaisPaciente as DadosPaciente } from "@viva/contracts";
 
 export default async function PaginaPaciente({
   params,
@@ -51,18 +52,23 @@ export default async function PaginaPaciente({
           <Icone name="shield" size={19} /> Acesso autorizado
         </span>
       </div>
+      <DadosPessoaisPaciente
+        inicial={await requisicaoAutenticada<DadosPaciente>(
+          `/pacientes/${id}/dados-pessoais`,
+        )}
+      />
       {user.role === "ADMIN" && <VinculosPaciente patientId={id} />}
       <CuidadoPaciente key={id} patient={paciente} />
-      <RefeicoesPaciente key={`meals-${id}`} patientId={id} />
       <details>
         <summary>Estado das integrações</summary>
         <div className="notice">
           <Icone name="lock" size={21} />
           <div>
-            <strong>Dados sintéticos de demonstração</strong>
+            <strong>Disponibilidade das integrações</strong>
             <p>
-              Registros disponíveis são consultados na API. Recomendações
-              clínicas e hardware real dependem de aprovação e configuração.
+              Os registros são consultados no acompanhamento do paciente.
+              Orientações personalizadas e integração com pulseira dependem de
+              validação e configuração.
             </p>
           </div>
         </div>

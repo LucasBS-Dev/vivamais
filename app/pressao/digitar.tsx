@@ -1,6 +1,7 @@
+import { Text } from "../../components/TextoAcessivel";
 import { useState } from "react";
 import { Redirect, router, useLocalSearchParams } from "expo-router";
-import { Pressable, Text, TextInput, View } from "react-native";
+import { Pressable, TextInput, View } from "react-native";
 import { useAutenticacao } from "../../hooks/useAutenticacao";
 import { useSalvarPressao } from "../../hooks/useSalvarPressao";
 import { interpretarPressao } from "../../services/sincronizacao/regrasSincronizacao";

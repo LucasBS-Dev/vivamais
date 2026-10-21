@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Redirect } from "expo-router";
+import { Redirect, router } from "expo-router";
 import { useAutenticacao } from "../../hooks/useAutenticacao";
 import { Botao, Carregando, Tela } from "../../components/ElementosInterface";
 import { TelaCuidado } from "../../components/TelaCuidado";
@@ -17,6 +17,12 @@ export default function Historico() {
   if (sessao.usuario.papel !== "PATIENT") return <Redirect href="/inicio" />;
   return (
     <TelaCuidado key={modulo} modulo={modulo} somenteHistorico>
+      {modulo === "activity" && (
+        <Botao
+          rotulo="Ver minha semana de atividades"
+          onPress={() => router.push("/atividade-fisica/historico")}
+        />
+      )}
       <Botao
         secundario
         rotulo="Histórico da pressão"

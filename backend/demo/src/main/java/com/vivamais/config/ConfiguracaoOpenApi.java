@@ -37,7 +37,13 @@ public class ConfiguracaoOpenApi {
             problem.addProperty("detail",new Schema<>().type("string"));
             api.getComponents().addSchemas("ApiProblem",problem);
             api.getPaths().forEach((path,item) -> item.readOperations().forEach(operation -> {
-                if(path.equals("/api/v1/auth/logout")) operation.setResponses(new ApiResponses().addApiResponse("204",new ApiResponse().description("Sessão revogada")));
+                if(path.equals("/api/v1/auth/logout") || path.equals("/api/v1/auth/paciente/esquecer")) operation.setResponses(new ApiResponses().addApiResponse("204",new ApiResponse().description("Sessão ou aparelho revogado")));
+                if(path.startsWith("/api/v1/auth/paciente/")) {
+                    if(!path.endsWith("/esquecer")) operation.setSecurity(List.of());
+                    operation.getResponses().addApiResponse("400",error("Formato inválido; nenhuma identificação de conta"));
+                    operation.getResponses().addApiResponse("413",error("Corpo maior que 8 KiB"));
+                    operation.getResponses().addApiResponse("429",error("Limite persistido; aguardar janela informada"));
+                }
                 operation.getResponses().addApiResponse("401",error("Sessão ausente, inválida ou credenciais incorretas"));
                 operation.getResponses().addApiResponse("500",error("Falha interna sem detalhes sensíveis"));
                 if(!path.equals("/api/v1/auth/login")) operation.getResponses().addApiResponse("403",error("Recurso fora do escopo autorizado"));

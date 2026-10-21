@@ -1,9 +1,8 @@
-import type { CSSProperties } from "react";
+import { getImageProps } from "next/image";
 
 export function Icone({
   name: nome,
   size: tamanho = 22,
-  style,
 }: {
   name:
     | "heart"
@@ -17,7 +16,6 @@ export function Icone({
     | "logout"
     | "check";
   size?: number;
-  style?: CSSProperties;
 }) {
   const paths = {
     heart: (
@@ -82,22 +80,33 @@ export function Icone({
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
-      style={style}
     >
       {paths[nome]}
     </svg>
   );
 }
 
-export function MarcaViva({ inverse = false }: { inverse?: boolean }) {
+export function MarcaViva({
+  inverse = false,
+  grande = false,
+}: {
+  inverse?: boolean;
+  grande?: boolean;
+}) {
+  const { props: propriedadesImagem } = getImageProps({
+    src: "/images/individuais/01_logos/logo_viva_mais_sem_slogan.png",
+    alt: "Viva+",
+    width: 1278,
+    height: 1230,
+    sizes: grande ? "164px" : "128px",
+    loading: "eager",
+  });
+  // Next prepara srcset/sizes; a aparência fica em CSS para respeitar a CSP.
   return (
-    <span className={`brand ${inverse ? "brand-inverse" : ""}`}>
-      <img
-        src="/images/logo-viva-verde.png"
-        alt="Viva+"
-        width={148}
-        height={45}
-      />
+    <span
+      className={`brand ${inverse ? "brand-inverse" : ""} ${grande ? "brand-grande" : ""}`}
+    >
+      <img {...propriedadesImagem} style={undefined} />
     </span>
   );
 }

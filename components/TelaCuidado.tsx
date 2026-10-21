@@ -1,15 +1,10 @@
+import { Text } from "./TextoAcessivel";
 import { useCallback, useEffect, useState, type ReactNode } from "react";
-import { Text, TextInput, View, Platform } from "react-native";
-import { router, useLocalSearchParams } from "expo-router";
+import { Pressable, TextInput, View, Platform } from "react-native";
+import { Redirect, router, useLocalSearchParams } from "expo-router";
 import * as Crypto from "expo-crypto";
 import { useAutenticacao } from "../hooks/useAutenticacao";
-import {
-  MarcaViva,
-  Botao,
-  MensagemErro,
-  Carregando,
-  Tela,
-} from "./ElementosInterface";
+import { Botao, MensagemErro, Carregando, Tela } from "./ElementosInterface";
 import { estilos as s } from "./estilos";
 import {
   interpretarPressao,
@@ -23,6 +18,7 @@ import { agendarLembretes } from "../services/lembretes/lembretes";
 import type { PlanoLembretes } from "../services/lembretes/calculoLembretes";
 import { FluxoFotografia, type ResultadoOcr } from "./FluxoFotografia";
 import { GraficoPressao } from "./GraficoPressao";
+import { IlustracaoViva } from "./IlustracoesViva";
 import {
   memorizarPaciente,
   recuperarPaciente,
@@ -58,8 +54,9 @@ export function TelaCuidado({
     sistolica?: string;
     diastolica?: string;
     pulso?: string;
+    atividade?: string;
   }>();
-  const { sessao: sessao, requisicao: requisicao } = useAutenticacao();
+  const { sessao, restaurando, requisicao } = useAutenticacao();
   const [paciente, definirPaciente] = useState(""),
     [linhas, definirLinhas] = useState<LinhaDados[]>([]),
     [planos, definirPlanos] = useState<PlanoLembretes[]>([]),
@@ -75,7 +72,9 @@ export function TelaCuidado({
     [pulso, definirPulso] = useState(parametros.pulso ?? ""),
     [confirmado, definirConfirmado] = useState(false),
     [dataHora, definirDataHora] = useState(new Date().toISOString()),
-    [atividade, definirAtividade] = useState(""),
+    [atividade, definirAtividade] = useState(
+      (parametros.atividade ?? "").slice(0, 160),
+    ),
     [duracao, definirDuracao] = useState(""),
     [estadoInformado, definirEstadoInformado] = useState(""),
     [observacoes, definirObservacoes] = useState("");
@@ -94,6 +93,17 @@ export function TelaCuidado({
         day: "2-digit",
       }).format(new Date()),
     );
+  const [exibirFila, definirExibirFila] = useState(false),
+    [medicaoExpandida, definirMedicaoExpandida] = useState<string | null>(null),
+    [exibirPeriodo, definirExibirPeriodo] = useState(false),
+    [periodoRapido, definirPeriodoRapido] = useState("Todos"),
+    [exibirPlanos, definirExibirPlanos] = useState(false);
+  const [atividadeConcluida, definirAtividadeConcluida] = useState<{
+    id: string;
+    nome: string;
+    minutos: number;
+    data: string;
+  } | null>(null);
   const rota =
     modulo === "blood-pressure"
       ? "readings"
@@ -200,8 +210,8 @@ export function TelaCuidado({
       definirPendentes(restantes);
       definirAviso(
         restantes.some((x) => x.id === corpo.id)
-          ? "Registro protegido na fila. Aguardando envio para a API."
-          : "Registro enviado e salvo na API.",
+          ? "Registro guardado. Será enviado quando houver conexão."
+          : "Registro salvo.",
       );
       if (!restantes.some((x) => x.id === corpo.id)) await carregar();
     } catch (e) {
@@ -249,6 +259,7 @@ export function TelaCuidado({
     }
   }
   async function salvarAtividade() {
+    if (ocupado) return;
     if (!estadoInformado) {
       definirErro("Informe como você se sente antes de registrar.");
       return;
@@ -256,14 +267,28 @@ export function TelaCuidado({
     if (
       !atividade.trim() ||
       !Number.isInteger(Number(duracao)) ||
-      Number(duracao) < 1
+      Number(duracao) < 1 ||
+      Number(duracao) > 1440 ||
+      atividade.trim().length > 160
     ) {
-      definirErro("Informe a atividade e a duração em minutos.");
+      definirErro(
+        "Informe a atividade (até 160 caracteres) e a duração de 1 a 1440 minutos.",
+      );
       return;
     }
     try {
+      const instanteAtividade = new Date(dataHora);
+      if (
+        !Number.isFinite(instanteAtividade.getTime()) ||
+        instanteAtividade.getTime() > Date.now() + 300000 ||
+        instanteAtividade.getTime() < Date.parse("1900-01-01T00:00:00Z")
+      ) {
+        definirErro("Confira a data e hora da atividade já realizada.");
+        return;
+      }
+      const idAtividade = Crypto.randomUUID();
       const aceito = await enfileirar(`/patients/${paciente}/activities`, {
-        id: Crypto.randomUUID(),
+        id: idAtividade,
         type: atividade.trim(),
         durationMinutes: Number(duracao),
         occurredAt: new Date(dataHora).toISOString(),
@@ -272,6 +297,12 @@ export function TelaCuidado({
       });
       if (!aceito) return;
       definirEstadoInformado("");
+      definirAtividadeConcluida({
+        id: idAtividade,
+        nome: atividade.trim(),
+        minutos: Number(duracao),
+        data: dataHora,
+      });
       definirAtividade("");
       definirDuracao("");
       definirObservacoes("");
@@ -279,17 +310,93 @@ export function TelaCuidado({
       definirErro("Confira a data e hora.");
     }
   }
-  if (!sessao)
+  if (restaurando)
     return (
       <Tela>
         <Carregando />
       </Tela>
     );
+  if (!sessao) return <Redirect href="/acesso" />;
+  if (sessao.usuario.papel !== "PATIENT") return <Redirect href="/inicio" />;
+  const atividadePendente = pendentes.find(
+    (item) => item.id === atividadeConcluida?.id,
+  );
+  if (atividadeConcluida && modulo === "activity" && !somenteHistorico)
+    return (
+      <Tela>
+        <Text style={s.title} accessibilityRole="header">
+          Registro da atividade
+        </Text>
+        <View style={{ alignItems: "center" }}>
+          <IlustracaoViva
+            nome={atividadePendente ? "horario" : "confirmado"}
+            tamanho={80}
+          />
+        </View>
+        <Text style={[s.title, { textAlign: "center" }]}>
+          {atividadePendente
+            ? "Atividade aguardando envio"
+            : "Sua atividade foi registrada"}
+        </Text>
+        <Text style={s.body} accessibilityLiveRegion="polite">
+          {atividadePendente
+            ? "Registro guardado. Será enviado quando houver conexão."
+            : "Registro salvo."}
+        </Text>
+        <View style={s.card}>
+          <Text style={s.label}>{atividadeConcluida.nome}</Text>
+          <Text style={s.body}>{atividadeConcluida.minutos} minutos</Text>
+          <Text style={s.small}>{formatarData(atividadeConcluida.data)}</Text>
+        </View>
+        {erro && <MensagemErro mensagem={erro} />}
+        {atividadePendente && (
+          <>
+            <Text style={s.small}>
+              {atividadePendente.message ||
+                "A equipe ainda não recebeu este registro."}
+            </Text>
+            <Botao
+              rotulo="Reenviar atividade"
+              ocupado={ocupado}
+              onPress={() => {
+                definirOcupado(true);
+                void sincronizar(true).finally(() => definirOcupado(false));
+              }}
+            />
+            <Botao
+              secundario
+              rotulo="Revisar fila de registros"
+              onPress={() => {
+                definirExibirFila(true);
+                definirAtividadeConcluida(null);
+              }}
+            />
+          </>
+        )}
+        <Botao
+          rotulo="Ver minha semana de atividades"
+          onPress={() => router.push("/atividade-fisica/historico")}
+        />
+        <Botao
+          secundario
+          rotulo="Registrar outra atividade"
+          onPress={() => definirAtividadeConcluida(null)}
+        />
+        <Botao
+          secundario
+          rotulo="Voltar ao início"
+          onPress={() => router.dismissTo("/inicio")}
+        />
+      </Tela>
+    );
   return (
     <Tela>
-      <MarcaViva />
-      <Text style={s.title} accessibilityRole="header">
-        {somenteHistorico ? "Meu Histórico" : (titulos[modulo] ?? "Histórico")}
+      <Text style={[s.title, { fontSize: 23 }]} accessibilityRole="header">
+        {somenteHistorico
+          ? modulo === "blood-pressure"
+            ? "Meu Histórico de Pressão"
+            : "Meu Histórico"
+          : (titulos[modulo] ?? "Histórico")}
       </Text>
       {children}
       {erro && <MensagemErro mensagem={erro} />}{" "}
@@ -299,25 +406,36 @@ export function TelaCuidado({
         </Text>
       )}
       {ocupado && <Carregando />}
-      <View style={s.notice}>
-        <Text style={s.label}>
-          {pendentes.length} registros pendentes de sincronização
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel="Detalhes da sincronização"
+        onPress={() => definirExibirFila(!exibirFila)}
+      >
+        <Text style={s.small}>
+          {pendentes.length} registros pendentes de sincronização　⌄
         </Text>
-        <Text style={s.small}>{queueStorageDescription}</Text>
-        {pendentes.map((item) => (
-          <Text key={item.id} style={s.small}>
-            {item.state === "ERROR" ? "Falha / nova tentativa" : "Pendente"} ·{" "}
-            {item.message ?? "Aguardando envio"}
+      </Pressable>
+      {(exibirFila || pendentes.length > 0) && (
+        <View style={s.notice}>
+          <Text style={s.label}>
+            {pendentes.length} registros pendentes de sincronização
           </Text>
-        ))}
-        <Botao
-          secundario
-          rotulo="Sincronizar agora"
-          onPress={() => {
-            void sincronizar(true).then(carregar);
-          }}
-        />
-      </View>
+          <Text style={s.small}>{queueStorageDescription}</Text>
+          {pendentes.map((item) => (
+            <Text key={item.id} style={s.small}>
+              {item.state === "ERROR" ? "Falha / nova tentativa" : "Pendente"} ·{" "}
+              {item.message ?? "Aguardando envio"}
+            </Text>
+          ))}
+          <Botao
+            secundario
+            rotulo="Sincronizar agora"
+            onPress={() => {
+              void sincronizar(true).then(carregar);
+            }}
+          />
+        </View>
+      )}
       {!somenteHistorico && modulo === "blood-pressure" && (
         <View style={s.card}>
           <Text style={s.title} accessibilityRole="header">
@@ -392,154 +510,246 @@ export function TelaCuidado({
         </View>
       )}
       {modulo === "blood-pressure" && (
-        <View style={s.card}>
-          <Text style={s.title}>Filtrar medições por período</Text>
-          <Text style={s.label}>De (AAAA-MM-DD)</Text>
-          <TextInput
-            style={s.field}
-            accessibilityLabel="Início do período"
-            value={filtroInicial}
-            onChangeText={definirFiltroInicial}
-          />
-          <Text style={s.label}>Até (AAAA-MM-DD)</Text>
-          <TextInput
-            style={s.field}
-            accessibilityLabel="Fim do período"
-            value={filtroFinal}
-            onChangeText={definirFiltroFinal}
-          />
-          <Botao
-            secundario
-            rotulo="Aplicar período"
-            onPress={() => {
-              try {
-                const start = filtroInicial
-                    ? new Date(`${filtroInicial}T00:00:00-03:00`).toISOString()
-                    : null,
-                  end = filtroFinal
-                    ? new Date(
-                        `${filtroFinal}T23:59:59.999-03:00`,
-                      ).toISOString()
-                    : null;
-                if (start && end && start > end) throw new Error();
-                definirPeriodo(
-                  `${start ? `&from=${encodeURIComponent(start)}` : ""}${end ? `&to=${encodeURIComponent(end)}` : ""}`,
-                );
-                definirPagina(0);
-              } catch {
-                definirErro("Informe um período válido.");
-              }
-            }}
-          />
+        <View style={s.section}>
+          <View style={{ flexDirection: "row", gap: 8 }}>
+            {["Semana", "Mês", "Todos"].map((rotulo) => (
+              <Pressable
+                key={rotulo}
+                accessibilityRole="button"
+                accessibilityState={{ selected: periodoRapido === rotulo }}
+                onPress={() => {
+                  definirPeriodoRapido(rotulo);
+                  definirPagina(0);
+                  definirPeriodo(
+                    rotulo === "Todos"
+                      ? ""
+                      : `&from=${encodeURIComponent(new Date(Date.now() - (rotulo === "Semana" ? 7 : 30) * 86400000).toISOString())}`,
+                  );
+                }}
+                style={{
+                  flex: 1,
+                  minHeight: 46,
+                  backgroundColor:
+                    periodoRapido === rotulo ? "#0077d4" : "#e9f2fc",
+                  borderRadius: 22,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Text
+                  style={{
+                    color: periodoRapido === rotulo ? "#fff" : "#00376b",
+                    fontSize: 16,
+                  }}
+                >
+                  {rotulo}
+                </Text>
+              </Pressable>
+            ))}
+          </View>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Escolher outro período"
+            onPress={() => definirExibirPeriodo(!exibirPeriodo)}
+          >
+            <Text style={[s.small, { color: "#0077d4", textAlign: "right" }]}>
+              Outro período　⌄
+            </Text>
+          </Pressable>
+          {exibirPeriodo && (
+            <View style={s.card}>
+              <Text style={s.title}>Filtrar medições por período</Text>
+              <Text style={s.label}>De (AAAA-MM-DD)</Text>
+              <TextInput
+                style={s.field}
+                accessibilityLabel="Início do período"
+                value={filtroInicial}
+                onChangeText={definirFiltroInicial}
+              />
+              <Text style={s.label}>Até (AAAA-MM-DD)</Text>
+              <TextInput
+                style={s.field}
+                accessibilityLabel="Fim do período"
+                value={filtroFinal}
+                onChangeText={definirFiltroFinal}
+              />
+              <Botao
+                secundario
+                rotulo="Aplicar período"
+                onPress={() => {
+                  try {
+                    const start = filtroInicial
+                        ? new Date(
+                            `${filtroInicial}T00:00:00-03:00`,
+                          ).toISOString()
+                        : null,
+                      end = filtroFinal
+                        ? new Date(
+                            `${filtroFinal}T23:59:59.999-03:00`,
+                          ).toISOString()
+                        : null;
+                    if (start && end && start > end) throw new Error();
+                    definirPeriodo(
+                      `${start ? `&from=${encodeURIComponent(start)}` : ""}${end ? `&to=${encodeURIComponent(end)}` : ""}`,
+                    );
+                    definirPagina(0);
+                  } catch {
+                    definirErro("Informe um período válido.");
+                  }
+                }}
+              />
+            </View>
+          )}
           <GraficoPressao
-            readings={linhas.map((resposta) => ({
-              systolic: Number(resposta.systolic),
-              diastolic: Number(resposta.diastolic),
-              measuredAt: String(resposta.measuredAt),
+            registros={linhas.map((resposta) => ({
+              sistolica: Number(resposta.systolic),
+              diastolica: Number(resposta.diastolic),
+              dataMedicao: String(resposta.measuredAt),
             }))}
           />
         </View>
       )}
       {modulo === "medications" && (
         <>
-          <View style={s.card}>
-            <Text style={s.body}>
-              Plano definido pelo profissional. Respostas são autorrelatos. Sem
-              confirmação não significa que a dose não foi tomada. Não tome dose
-              extra por orientação deste aplicativo.
-            </Text>
-            <Botao
-              secundario
-              rotulo="Autorizar e agendar lembretes locais"
-              onPress={() => {
-                agendarLembretes(idTitular, planos, true)
-                  .then(definirAviso)
-                  .catch(() =>
-                    definirErro(
-                      "Não foi possível agendar notificações neste build.",
-                    ),
-                  );
-              }}
-            />
-          </View>
-          <Text style={s.title}>Planos da equipe</Text>
-          {planos.map((plano) => (
-            <View style={s.card} key={plano.id}>
-              <Text style={s.label}>{plano.name}</Text>
-              <Text style={s.body}>{plano.instruction}</Text>
-              <Text style={s.body}>
-                Horários: {plano.schedules.join(", ")} · {plano.timeZone}
-              </Text>
-              <Text style={s.small}>
-                Vigência: {plano.startsOn} a {plano.endsOn || "sem data final"}{" "}
-                · versão {plano.version}
-              </Text>
-            </View>
-          ))}
-          <Text style={s.label}>Dia dos autorrelatos (AAAA-MM-DD)</Text>
-          <TextInput
-            style={s.field}
-            accessibilityLabel="Dia dos autorrelatos"
-            value={diaAutorrelatos}
-            onChangeText={definirDia}
-          />
+          <Text style={s.body}>
+            Aqui estão os horários dos seus medicamentos para o dia selecionado.
+          </Text>
+
+          {exibirPlanos && (
+            <>
+              <View style={s.card}>
+                <Text style={s.body}>
+                  Plano definido pelo profissional. Respostas são autorrelatos.
+                  Sem confirmação não significa que a dose não foi tomada. Não
+                  tome dose extra por orientação deste aplicativo.
+                </Text>
+                <Botao
+                  secundario
+                  rotulo="Autorizar e agendar lembretes locais"
+                  onPress={() => {
+                    agendarLembretes(idTitular, planos, true)
+                      .then(definirAviso)
+                      .catch(() =>
+                        definirErro(
+                          "Não foi possível agendar notificações neste build.",
+                        ),
+                      );
+                  }}
+                />
+              </View>
+              <Text style={s.title}>Planos da equipe</Text>
+              {planos.map((plano) => (
+                <View style={s.card} key={plano.id}>
+                  <Text style={s.label}>{plano.name}</Text>
+                  <Text style={s.body}>{plano.instruction}</Text>
+                  <Text style={s.body}>
+                    Horários: {plano.schedules.join(", ")} · {plano.timeZone}
+                  </Text>
+                  <Text style={s.small}>
+                    Vigência: {plano.startsOn} a{" "}
+                    {plano.endsOn || "sem data final"} · versão {plano.version}
+                  </Text>
+                </View>
+              ))}
+              <Text style={s.label}>Dia dos autorrelatos (AAAA-MM-DD)</Text>
+              <TextInput
+                style={s.field}
+                accessibilityLabel="Dia dos autorrelatos"
+                value={diaAutorrelatos}
+                onChangeText={definirDia}
+              />
+            </>
+          )}
           {linhas.length === 0 && (
             <Text style={s.body}>Nenhum horário programado para hoje.</Text>
           )}
           {linhas.map((ev, i) => (
-            <View style={s.card} key={i}>
-              <Text style={s.title}>{String(ev.name)}</Text>
-              <Text style={s.body}>{String(ev.instruction)}</Text>
-              <Text style={s.body}>{formatarData(ev.scheduledAt)}</Text>
-              <Text style={s.label}>
-                {ev.status === "TAKEN"
-                  ? "Tomei (autorrelato)"
-                  : ev.status === "NOT_TAKEN"
-                    ? "Não tomei (autorrelato)"
-                    : "Sem confirmação"}
-              </Text>
-              {Boolean(ev.reportedAt) && (
-                <Text style={s.small}>
-                  Resposta: {formatarData(ev.reportedAt)}
+            <View
+              style={[s.card, { flexDirection: "row", padding: 14, gap: 12 }]}
+              key={i}
+            >
+              <View style={{ flex: 1, gap: 8 }}>
+                <Text style={[s.title, { fontSize: 20, lineHeight: 27 }]}>
+                  {String(ev.name)}
                 </Text>
-              )}
-              {ev.status === "NO_CONFIRMATION" && (
-                <>
-                  <Botao
-                    rotulo="Tomei"
-                    onPress={() => {
-                      void enfileirar(
-                        `/patients/${paciente}/medication-reports`,
-                        {
-                          id: Crypto.randomUUID(),
-                          planId: ev.planId,
-                          scheduledAt: ev.scheduledAt,
-                          status: "TAKEN",
-                          reportedAt: new Date().toISOString(),
-                        },
-                      );
-                    }}
-                  />
-                  <Botao
-                    secundario
-                    rotulo="Não tomei"
-                    onPress={() => {
-                      void enfileirar(
-                        `/patients/${paciente}/medication-reports`,
-                        {
-                          id: Crypto.randomUUID(),
-                          planId: ev.planId,
-                          scheduledAt: ev.scheduledAt,
-                          status: "NOT_TAKEN",
-                          reportedAt: new Date().toISOString(),
-                        },
-                      );
-                    }}
-                  />
-                </>
-              )}
+                <Text style={[s.body, { fontSize: 16, lineHeight: 23 }]}>
+                  {String(ev.instruction)}
+                </Text>
+                <Text style={[s.label, { fontSize: 14 }]}>
+                  {ev.status === "TAKEN"
+                    ? "Tomei (autorrelato)"
+                    : ev.status === "NOT_TAKEN"
+                      ? "Não tomei (autorrelato)"
+                      : "Sem confirmação"}
+                </Text>
+                {Boolean(ev.reportedAt) && (
+                  <Text style={s.small}>
+                    Resposta: {formatarData(ev.reportedAt)}
+                  </Text>
+                )}
+              </View>
+              <View style={{ width: 120, gap: 8 }}>
+                <Text
+                  style={[s.label, { color: "#0077d4", textAlign: "center" }]}
+                >
+                  {new Date(String(ev.scheduledAt)).toLocaleTimeString(
+                    "pt-BR",
+                    {
+                      timeZone: "America/Sao_Paulo",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    },
+                  )}
+                </Text>
+                {ev.status === "NO_CONFIRMATION" && (
+                  <>
+                    <Botao
+                      rotulo="Tomei"
+                      compacto
+                      onPress={() => {
+                        void enfileirar(
+                          `/patients/${paciente}/medication-reports`,
+                          {
+                            id: Crypto.randomUUID(),
+                            planId: ev.planId,
+                            scheduledAt: ev.scheduledAt,
+                            status: "TAKEN",
+                            reportedAt: new Date().toISOString(),
+                          },
+                        );
+                      }}
+                    />
+                    <Botao
+                      secundario
+                      rotulo="Não tomei"
+                      compacto
+                      onPress={() => {
+                        void enfileirar(
+                          `/patients/${paciente}/medication-reports`,
+                          {
+                            id: Crypto.randomUUID(),
+                            planId: ev.planId,
+                            scheduledAt: ev.scheduledAt,
+                            status: "NOT_TAKEN",
+                            reportedAt: new Date().toISOString(),
+                          },
+                        );
+                      }}
+                    />
+                  </>
+                )}
+              </View>
             </View>
           ))}
+          <Botao
+            secundario
+            rotulo={
+              exibirPlanos
+                ? "Ocultar planos e lembretes"
+                : "Ver todos os medicamentos"
+            }
+            onPress={() => definirExibirPlanos(!exibirPlanos)}
+          />
         </>
       )}
       {!somenteHistorico && modulo === "activity" && (
@@ -580,6 +790,7 @@ export function TelaCuidado({
             <Text style={s.label}>Atividade realizada voluntariamente</Text>
             <TextInput
               accessibilityLabel="Atividade realizada"
+              maxLength={160}
               style={s.field}
               value={atividade}
               onChangeText={definirAtividade}
@@ -603,6 +814,7 @@ export function TelaCuidado({
             <TextInput
               style={s.field}
               value={observacoes}
+              maxLength={2000}
               onChangeText={definirObservacoes}
               multiline
             />
@@ -619,33 +831,79 @@ export function TelaCuidado({
       {modulo !== "medications" && modulo !== "food" && (
         <View style={s.section}>
           <Text style={s.title} accessibilityRole="header">
-            Histórico
+            {modulo === "blood-pressure"
+              ? "Seus últimos registros"
+              : "Histórico"}
           </Text>
           {linhas.length === 0 && !ocupado && (
             <Text style={s.body}>Nenhum registro disponível.</Text>
           )}
           {linhas.map((resposta, i) => (
-            <View style={s.card} key={String(resposta.id ?? i)}>
+            <View
+              style={[
+                s.card,
+                modulo === "blood-pressure" && {
+                  padding: 12,
+                  borderRadius: 10,
+                  gap: 6,
+                },
+              ]}
+              key={String(resposta.id ?? i)}
+            >
               {modulo === "blood-pressure" ? (
                 <>
-                  <Text style={s.title}>
-                    {String(resposta.systolic)} / {String(resposta.diastolic)}{" "}
-                    mmHg
-                  </Text>
-                  <Text style={s.body}>
-                    Medição: {formatarData(resposta.measuredAt)}
-                  </Text>
-                  <Text style={s.small}>
-                    Origem:{" "}
-                    {resposta.source === "PRINTED_DIARY"
-                      ? "Diário transcrito"
-                      : resposta.source === "OCR_CONFIRMED"
-                        ? "Foto confirmada"
-                        : resposta.source === "PROFESSIONAL"
-                          ? "Profissional"
-                          : "Digitação manual"}
-                    . Enviado: {formatarData(resposta.syncedAt)}
-                  </Text>
+                  <Pressable
+                    accessibilityRole="button"
+                    accessibilityLabel={`Detalhes da medição ${formatarData(resposta.measuredAt)}`}
+                    onPress={() =>
+                      definirMedicaoExpandida(
+                        medicaoExpandida === String(resposta.id)
+                          ? null
+                          : String(resposta.id),
+                      )
+                    }
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      gap: 12,
+                    }}
+                  >
+                    <Text style={s.small}>
+                      {new Date(String(resposta.measuredAt)).toLocaleString(
+                        "pt-BR",
+                        {
+                          timeZone: "America/Sao_Paulo",
+                          day: "2-digit",
+                          month: "2-digit",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        },
+                      )}
+                    </Text>
+                    <Text style={[s.title, { fontSize: 20, lineHeight: 28 }]}>
+                      {String(resposta.systolic)} / {String(resposta.diastolic)}{" "}
+                      mmHg
+                    </Text>
+                  </Pressable>
+                  {medicaoExpandida === String(resposta.id) && (
+                    <>
+                      <Text style={s.body}>
+                        Medição: {formatarData(resposta.measuredAt)}
+                      </Text>
+                      <Text style={s.small}>
+                        Origem:{" "}
+                        {resposta.source === "PRINTED_DIARY"
+                          ? "Diário transcrito"
+                          : resposta.source === "OCR_CONFIRMED"
+                            ? "Foto confirmada"
+                            : resposta.source === "PROFESSIONAL"
+                              ? "Profissional"
+                              : "Digitação manual"}
+                        . Enviado: {formatarData(resposta.syncedAt)}
+                      </Text>
+                    </>
+                  )}
                 </>
               ) : (
                 <>

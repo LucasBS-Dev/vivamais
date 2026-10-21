@@ -34,13 +34,13 @@ public class ConfiguracaoSeguranca {
     SecurityFilterChain securityFilterChain(HttpSecurity http, InstituicaoRepository repositorio, CodificadorToken codificadorTokens,
                                             ObjectMapper mapper, @org.springframework.beans.factory.annotation.Qualifier("corsConfigurationSource") CorsConfigurationSource cors) throws Exception {
         return http.cors(config -> config.configurationSource(cors))
-                // Bearer credential only: browsers cannot authenticate through automatically attached cookies.
+                // Recursos clínicos usam Bearer. Cookie de aparelho só é aceito no controller específico, com Origin obrigatório.
                 .csrf(config -> config.disable())
                 .sessionManagement(config -> config.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .requestCache(config -> config.disable())
                 .httpBasic(config -> config.disable()).formLogin(config -> config.disable()).logout(config -> config.disable())
                 .authorizeHttpRequests(config -> config
-                        .requestMatchers(HttpMethod.POST, "/api/v1/auth/login", "/api/v1/auth/activate").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/auth/login", "/api/v1/auth/paciente/iniciar", "/api/v1/auth/paciente/verificar", "/api/v1/auth/paciente/renovar").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/files/*/content").permitAll()
                         .requestMatchers(HttpMethod.GET, "/actuator/health", "/actuator/health/liveness", "/actuator/health/readiness").permitAll()
                         .anyRequest().authenticated())
@@ -59,7 +59,10 @@ public class ConfiguracaoSeguranca {
         config.setAllowedMethods(List.of("GET","POST","PUT","OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization","Content-Type"));
         config.setAllowCredentials(false); config.setMaxAge(600L);
-        UrlBasedCorsConfigurationSource source=new UrlBasedCorsConfigurationSource(); source.registerCorsConfiguration("/**",config);
+        UrlBasedCorsConfigurationSource source=new UrlBasedCorsConfigurationSource();
+        CorsConfiguration paciente=new CorsConfiguration(config);paciente.setAllowCredentials(true);
+        source.registerCorsConfiguration("/api/v1/auth/paciente/**",paciente);
+        source.registerCorsConfiguration("/**",config);
         return source;
     }
     private static void writeProblem(HttpServletResponse resposta, ObjectMapper mapper,int status,String title,String detail) throws IOException {

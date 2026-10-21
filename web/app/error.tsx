@@ -5,7 +5,7 @@ export default function ErrorPage({ reset }: { reset: () => void }) {
     <main id="conteudo" className="standalone-state">
       <h1>Não foi possível carregar</h1>
       <p>
-        A API pode estar indisponível ou sua conexão foi interrompida. Tente
+        O serviço pode estar indisponível ou sua conexão foi interrompida. Tente
         novamente.
       </p>
       <div className="state-actions">

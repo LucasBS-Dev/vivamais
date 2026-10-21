@@ -10,7 +10,7 @@ export default async function Relatorios() {
           <h1>Relatórios e resumos</h1>
           <p>
             Escolha um paciente, reúna o resumo dos registros disponíveis e
-            exporte o JSON autorizado. O acesso é auditado pela API.
+            exporte os dados em JSON. O acesso fica registrado para auditoria.
           </p>
         </div>
       </div>

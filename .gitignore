@@ -25,4 +25,20 @@ Thumbs.db
 .idea/
 .vscode/
 
+# Material privado de execução/transferência, inclusive se copiado por engano.
+# Saída acidental de ajuda do terminal, preservada somente no computador.
 /h -u origin main
+/work/
+/pg-data/
+*.dump
+*.backup
+*.sql.gz
+*.pfx
+*.pem
+*.key
+*.sms
+.encryption-key
+.patient-auth-key
+.chave
+consulta-privada.json
+*credentials*.json

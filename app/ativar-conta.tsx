@@ -1,99 +1,191 @@
+import { Text } from "../components/TextoAcessivel";
 import { useState } from "react";
-import { Text, TextInput, View } from "react-native";
+import { TextInput, View } from "react-native";
 import { router } from "expo-router";
-import { api } from "../services/api";
+import { useAutenticacao } from "../hooks/useAutenticacao";
 import {
   Tela,
   MarcaViva,
   Botao,
   MensagemErro,
+  Carregando,
 } from "../components/ElementosInterface";
-import { estilos as s } from "../components/estilos";
+import { estilos as e } from "../components/estilos";
 export default function AtivarConta() {
-  const [token, definirToken] = useState(""),
-    [senha, definirSenha] = useState(""),
-    [confirmacao, definirConfirmacao] = useState(""),
+  const { sessao, restaurando, desafioPendente, ativarConta } =
+    useAutenticacao();
+  const [codigo, definirCodigo] = useState(""),
     [ocupado, definirOcupado] = useState(false),
-    [mensagem, definirMensagem] = useState(""),
-    [concluido, definirConcluido] = useState(false);
-  async function ativarConta() {
-    definirMensagem("");
-    if (senha.length < 12 || senha !== confirmacao) {
-      definirMensagem("Use pelo menos 12 caracteres e confirme a mesma senha.");
+    [erro, definirErro] = useState(""),
+    [focado, definirFocado] = useState(false);
+  async function ativar() {
+    if (ocupado) return;
+    if (!/^\d{4}$/.test(codigo)) {
+      definirErro("Digite os 4 números do código.");
       return;
     }
     definirOcupado(true);
+    definirErro("");
     try {
-      await api("/auth/activate", {
-        method: "POST",
-        body: { token: token.trim(), password: senha },
-      });
-      definirConcluido(true);
-      definirToken("");
-      definirSenha("");
-      definirConfirmacao("");
-    } catch (e) {
-      definirMensagem(
-        e instanceof Error ? e.message : "Não foi possível ativar.",
+      await ativarConta(codigo);
+      definirCodigo("");
+    } catch (falha) {
+      definirCodigo("");
+      definirErro(
+        falha instanceof Error
+          ? falha.message
+          : "Não foi possível ativar. Tente novamente.",
       );
     } finally {
       definirOcupado(false);
     }
   }
+  if (restaurando)
+    return (
+      <Tela>
+        <Carregando />
+      </Tela>
+    );
+  if (sessao)
+    return (
+      <Tela>
+        <MarcaViva />
+        <Text style={e.title} accessibilityRole="header">
+          Acesso ativado!
+        </Text>
+        <Text style={e.body} accessibilityRole="alert">
+          Seu aparelho está autorizado. Você já pode usar o Viva+.
+        </Text>
+        <Botao
+          rotulo="Ir para o início"
+          onPress={() => router.replace("/inicio")}
+        />
+      </Tela>
+    );
   return (
     <Tela>
       <MarcaViva />
-      <Text accessibilityRole="header" style={s.title}>
-        Ativar ou recuperar conta
+      <Text style={e.title} accessibilityRole="header">
+        Ativar minha conta
       </Text>
-      {concluido ? (
-        <View style={s.card}>
-          <Text style={s.body}>
-            Conta ativada. Entre com seu e-mail e a nova senha.
+      <Text style={e.body}>
+        Informe o código de 4 números recebido por SMS para ativar seu acesso ao
+        Viva+.
+      </Text>
+      {!desafioPendente ? (
+        <View style={e.card}>
+          <Text style={e.body}>
+            Primeiro, informe seu CPF e sua data de nascimento na tela de
+            acesso.
           </Text>
           <Botao
-            rotulo="Ir para entrar"
-            onPress={() => router.dismissTo("/acesso")}
+            rotulo="Ir para o acesso"
+            onPress={() => router.replace("/acesso")}
           />
         </View>
       ) : (
-        <View style={s.card}>
-          <Text style={s.body}>
-            Use o código de uso único entregue pelo profissional autorizado. Ele
-            expira em 24 horas.
-          </Text>
-          {[
-            ["Código de ativação", token, definirToken, false],
-            ["Nova senha", senha, definirSenha, true],
-            ["Confirme a senha", confirmacao, definirConfirmacao, true],
-          ].map(([label, valor, set, secure]) => (
-            <View key={String(label)}>
-              <Text style={s.label}>{String(label)}</Text>
-              <TextInput
-                style={s.field}
-                accessibilityLabel={String(label)}
-                value={String(valor)}
-                onChangeText={set as (v: string) => void}
-                secureTextEntry={Boolean(secure)}
-                autoCapitalize="none"
-                autoCorrect={false}
-              />
+        <View style={e.card}>
+          <Text style={e.label}>Código de ativação</Text>
+          <View
+            style={{
+              alignSelf: "center",
+              width: 272,
+              height: 76,
+              position: "relative",
+            }}
+          >
+            <View
+              pointerEvents="none"
+              accessible={false}
+              accessibilityElementsHidden
+              importantForAccessibility="no-hide-descendants"
+              style={{
+                position: "absolute",
+                inset: 0,
+                flexDirection: "row",
+                gap: 8,
+              }}
+            >
+              {[0, 1, 2, 3].map((indice) => (
+                <View
+                  key={indice}
+                  style={{
+                    flex: 1,
+                    borderWidth: 2,
+                    borderColor: focado ? "#0067b1" : "#526b78",
+                    borderRadius: 10,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#fff",
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: 32,
+                      fontWeight: "700",
+                      color: "#123747",
+                    }}
+                  >
+                    {codigo[indice] || "·"}
+                  </Text>
+                </View>
+              ))}
             </View>
-          ))}
-          {mensagem && <MensagemErro mensagem={mensagem} />}
+            <TextInput
+              testID="codigo-ativacao-input"
+              accessibilityLabel="Código de ativação"
+              accessibilityHint="Digite os quatro números recebidos da equipe."
+              value={codigo}
+              onChangeText={(v) =>
+                definirCodigo(v.replace(/\D/g, "").slice(0, 4))
+              }
+              maxLength={4}
+              keyboardType="number-pad"
+              inputMode="numeric"
+              autoComplete="one-time-code"
+              textContentType="oneTimeCode"
+              autoCorrect={false}
+              editable={!ocupado}
+              onFocus={() => definirFocado(true)}
+              onBlur={() => definirFocado(false)}
+              style={{
+                width: "100%",
+                height: 76,
+                fontSize: 32,
+                color: "transparent",
+                backgroundColor: "transparent",
+              }}
+              caretHidden
+              onSubmitEditing={() => {
+                void ativar();
+              }}
+            />
+          </View>
+          {erro && <MensagemErro mensagem={erro} />}
           <Botao
-            rotulo="Ativar conta"
+            rotulo="ATIVAR CONTA"
             ocupado={ocupado}
             onPress={() => {
-              void ativarConta();
+              void ativar();
             }}
           />
+          <Text style={e.small}>
+            O código vale por 10 minutos e só pode ser usado uma vez. Muitas
+            tentativas bloqueiam a verificação por até 15 minutos.
+          </Text>
         </View>
       )}
+      <View style={e.notice}>
+        <Text style={e.body}>
+          Código inválido, expirado ou não recebido? Procure o profissional
+          responsável. Após confirmar sua identidade, ele pode emitir outro
+          código. O anterior deixa de valer.
+        </Text>
+      </View>
       <Botao
         secundario
         rotulo="Voltar ao acesso"
-        onPress={() => router.dismissTo("/acesso")}
+        onPress={() => router.replace("/acesso")}
       />
     </Tela>
   );

@@ -1,32 +1,76 @@
+import { Text } from "./TextoAcessivel";
 import type { ReactNode } from "react";
 import {
   ActivityIndicator,
   Image,
   Pressable,
   ScrollView,
-  Text,
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { estilos as s } from "./estilos";
+import { ilustracoes } from "./IlustracoesViva";
+import { ambienteDemonstracao } from "../services/ambiente";
 
-export function Tela({ children }: { children: ReactNode }) {
+export function Tela({
+  children,
+  rodape,
+  compacta = false,
+}: {
+  children: ReactNode;
+  rodape?: ReactNode;
+  compacta?: boolean;
+}) {
   return (
     <SafeAreaView style={s.safe}>
+      {ambienteDemonstracao && (
+        <View
+          style={{
+            paddingHorizontal: 20,
+            paddingVertical: 5,
+            backgroundColor: "#e6f1f7",
+          }}
+          testID="indicador-demonstracao"
+        >
+          <Text style={{ color: "#34556b", fontSize: 12, textAlign: "center" }}>
+            Demonstração · somente dados fictícios
+          </Text>
+        </View>
+      )}
       <ScrollView
-        contentContainerStyle={s.scroll}
+        style={{ flex: 1 }}
+        testID="conteudo-rolavel"
+        contentContainerStyle={[s.scroll, compacta && { paddingVertical: 12 }]}
         keyboardShouldPersistTaps="handled"
       >
-        <View style={s.content}>{children}</View>
+        <View style={[s.content, compacta && { gap: 12 }]}>{children}</View>
       </ScrollView>
+      {rodape && (
+        <View
+          testID="rodape-navegacao"
+          style={{
+            flexShrink: 0,
+            width: "100%",
+            maxWidth: 470,
+            alignSelf: "center",
+            paddingHorizontal: 20,
+            backgroundColor: "white",
+          }}
+        >
+          {rodape}
+        </View>
+      )}
     </SafeAreaView>
   );
 }
 
 export function MarcaViva({
-  variante = "azul",
+  grande = false,
+  largura,
 }: {
   variante?: "azul" | "verde";
+  grande?: boolean;
+  largura?: number;
 }) {
   return (
     <View
@@ -35,12 +79,12 @@ export function MarcaViva({
       accessible
     >
       <Image
-        source={
-          variante === "verde"
-            ? require("../assets/images/logo-viva-verde.png")
-            : require("../assets/images/logo-viva.png")
-        }
-        style={{ width: 140, height: 49, resizeMode: "contain" }}
+        source={ilustracoes.logo}
+        style={{
+          width: largura ?? (grande ? 164 : 128),
+          height: ((largura ?? (grande ? 164 : 128)) * 1230) / 1278,
+          resizeMode: "contain",
+        }}
         accessibilityLabel="Viva+"
       />
     </View>
@@ -53,6 +97,7 @@ export function Botao({
   ocupado: ocupado = false,
   secundario = false,
   desabilitado = false,
+  compacto = false,
   testID,
 }: {
   rotulo: string;
@@ -60,6 +105,7 @@ export function Botao({
   ocupado?: boolean;
   secundario?: boolean;
   desabilitado?: boolean;
+  compacto?: boolean;
   testID?: string;
 }) {
   return (
@@ -72,6 +118,12 @@ export function Botao({
       onPress={onPress}
       style={({ pressed }) => [
         secundario ? s.secondaryButton : s.button,
+        compacto && {
+          minHeight: 48,
+          paddingVertical: 10,
+          paddingHorizontal: 10,
+          borderRadius: 10,
+        },
         pressed && s.pressed,
         (ocupado || desabilitado) && s.disabled,
       ]}
@@ -82,7 +134,12 @@ export function Botao({
           accessibilityLabel="Aguarde"
         />
       ) : (
-        <Text style={secundario ? s.secondaryButtonText : s.buttonText}>
+        <Text
+          style={[
+            secundario ? s.secondaryButtonText : s.buttonText,
+            compacto && { fontSize: 16 },
+          ]}
+        >
           {rotulo}
         </Text>
       )}
@@ -103,14 +160,14 @@ export function MensagemErro({ mensagem: mensagem }: { mensagem: string }) {
 }
 
 export function Carregando({
-  rotulo: label = "Carregando seus dados…",
+  rotulo = "Carregando seus dados…",
 }: {
   rotulo?: string;
 }) {
   return (
     <View style={s.card} accessibilityLiveRegion="polite">
       <ActivityIndicator color="#086b92" />
-      <Text style={s.body}>{label}</Text>
+      <Text style={s.body}>{rotulo}</Text>
     </View>
   );
 }

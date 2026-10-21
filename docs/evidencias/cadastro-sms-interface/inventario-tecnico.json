@@ -1,0 +1,432 @@
+{
+  "executadoEm": "2026-10-20T20:39:12.143Z",
+  "criterio": "Inventário estático de arquivos e contrato; presença não significa funcionalidade aprovada",
+  "telasExpo": [
+    "app/+not-found.tsx",
+    "app/acesso.tsx",
+    "app/activate.tsx",
+    "app/alimentacao/index.tsx",
+    "app/alimentacao/resultado.tsx",
+    "app/ativar-conta.tsx",
+    "app/atividade-fisica/alternativa.tsx",
+    "app/atividade-fisica/atividade-hoje.tsx",
+    "app/atividade-fisica/como-esta-hoje.tsx",
+    "app/atividade-fisica/historico.tsx",
+    "app/atividade-fisica/ilustracoes.tsx",
+    "app/atividade-fisica/index.tsx",
+    "app/atividade-fisica/orientacoes.tsx",
+    "app/atividade-fisica/passo-a-passo.tsx",
+    "app/atividade-fisica/registro.tsx",
+    "app/atividade-fisica/suas-informacoes.tsx",
+    "app/atividade-fisica/verificacao-pressao.tsx",
+    "app/atividade-fisica/video.tsx",
+    "app/cadastro.tsx",
+    "app/configuracoes.tsx",
+    "app/historico/index.tsx",
+    "app/history.tsx",
+    "app/home.tsx",
+    "app/index.tsx",
+    "app/inicio.tsx",
+    "app/lembretes.tsx",
+    "app/login.tsx",
+    "app/medicamentos/index.tsx",
+    "app/mensagens.tsx",
+    "app/module/[key].tsx",
+    "app/perfil.tsx",
+    "app/pressao/digitar.tsx",
+    "app/pressao/foto.tsx",
+    "app/pressao/historico.tsx",
+    "app/pressao/index.tsx",
+    "app/pressao/resultado.tsx",
+    "app/profile.tsx"
+  ],
+  "telasPortal": [
+    "web/app/(portal)/configuracoes/page.tsx",
+    "web/app/(portal)/consultas/page.tsx",
+    "web/app/(portal)/pacientes/novo/page.tsx",
+    "web/app/(portal)/pacientes/page.tsx",
+    "web/app/(portal)/pacientes/[id]/page.tsx",
+    "web/app/(portal)/painel/page.tsx",
+    "web/app/(portal)/relatorios/page.tsx",
+    "web/app/exclusao-de-conta/page.tsx",
+    "web/app/page.tsx",
+    "web/app/privacidade/page.tsx",
+    "web/app/suporte/page.tsx"
+  ],
+  "operacoesApi": [
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/patients/{id}/activity-profile"
+    },
+    {
+      "metodo": "PUT",
+      "rota": "/api/v1/patients/{id}/activity-profile"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/pacientes/{idPaciente}/dados-pessoais"
+    },
+    {
+      "metodo": "PUT",
+      "rota": "/api/v1/pacientes/{idPaciente}/dados-pessoais"
+    },
+    {
+      "metodo": "PUT",
+      "rota": "/api/v1/pacientes/{idPaciente}/contato"
+    },
+    {
+      "metodo": "PUT",
+      "rota": "/api/v1/medications/{plan}"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/conta/preferencias"
+    },
+    {
+      "metodo": "PUT",
+      "rota": "/api/v1/conta/preferencias"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/patients"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/patients"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/patients/{id}/readings"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/patients/{id}/readings"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/patients/{id}/medications"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/patients/{id}/medications"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/patients/{id}/medication-reports"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/patients/{id}/meals"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/patients/{id}/meals"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/patients/{id}/files"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/patients/{id}/diary"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/patients/{id}/diary"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/patients/{id}/device"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/patients/{id}/device"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/patients/{id}/device/configurations"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/patients/{id}/device/configurations"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/patients/{id}/consultations"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/patients/{id}/consultations"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/patients/{id}/assignments"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/patients/{id}/assignments"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/patients/{id}/assignments/revoke"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/patients/{id}/activities"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/patients/{id}/activities"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/patients/{id}/access-reset"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/meals/{id}/analyze"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/files/{id}/ocr"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/files/{id}/link"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/auth/paciente/verificar"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/auth/paciente/renovar"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/auth/paciente/iniciar"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/auth/paciente/esquecer"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/auth/logout"
+    },
+    {
+      "metodo": "POST",
+      "rota": "/api/v1/auth/login"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/system/modules"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/refeicoes/{idRefeicao}"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/professionals"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/patients/{id}"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/patients/{id}/summary"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/patients/{id}/medication-events"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/patients/{id}/export"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/patients/{id}/access-status"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/patients/search"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/patients/me"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/pacientes/{idPaciente}/registros-pressao/{idRegistro}"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/pacientes/{idPaciente}/atividades/semana"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/organization"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/medications/{plan}/history"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/files/{id}/content"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/dashboard"
+    },
+    {
+      "metodo": "GET",
+      "rota": "/api/v1/auth/me"
+    }
+  ],
+  "tabelas": [
+    {
+      "tabela": "organization",
+      "migracao": "V1__foundation.sql"
+    },
+    {
+      "tabela": "user_account",
+      "migracao": "V1__foundation.sql"
+    },
+    {
+      "tabela": "professional",
+      "migracao": "V1__foundation.sql"
+    },
+    {
+      "tabela": "patient",
+      "migracao": "V1__foundation.sql"
+    },
+    {
+      "tabela": "patient_professional_assignment",
+      "migracao": "V1__foundation.sql"
+    },
+    {
+      "tabela": "auth_session",
+      "migracao": "V1__foundation.sql"
+    },
+    {
+      "tabela": "consent_or_legal_basis_record",
+      "migracao": "V1__foundation.sql"
+    },
+    {
+      "tabela": "audit_event",
+      "migracao": "V1__foundation.sql"
+    },
+    {
+      "tabela": "account_activation",
+      "migracao": "V2__care.sql"
+    },
+    {
+      "tabela": "sync_operation",
+      "migracao": "V2__care.sql"
+    },
+    {
+      "tabela": "blood_pressure_reading",
+      "migracao": "V2__care.sql"
+    },
+    {
+      "tabela": "medication_plan",
+      "migracao": "V2__care.sql"
+    },
+    {
+      "tabela": "medication_schedule",
+      "migracao": "V2__care.sql"
+    },
+    {
+      "tabela": "medication_plan_history",
+      "migracao": "V2__care.sql"
+    },
+    {
+      "tabela": "medication_self_report",
+      "migracao": "V2__care.sql"
+    },
+    {
+      "tabela": "physical_activity_profile",
+      "migracao": "V2__care.sql"
+    },
+    {
+      "tabela": "activity_record",
+      "migracao": "V2__care.sql"
+    },
+    {
+      "tabela": "printed_diary_entry",
+      "migracao": "V2__care.sql"
+    },
+    {
+      "tabela": "consultation",
+      "migracao": "V2__care.sql"
+    },
+    {
+      "tabela": "device",
+      "migracao": "V2__care.sql"
+    },
+    {
+      "tabela": "device_configuration",
+      "migracao": "V2__care.sql"
+    },
+    {
+      "tabela": "file_object",
+      "migracao": "V3__private_files.sql"
+    },
+    {
+      "tabela": "file_download_grant",
+      "migracao": "V3__private_files.sql"
+    },
+    {
+      "tabela": "pressure_ocr_document",
+      "migracao": "V3__private_files.sql"
+    },
+    {
+      "tabela": "meal_photo",
+      "migracao": "V3__private_files.sql"
+    },
+    {
+      "tabela": "food_analysis_attempt",
+      "migracao": "V4__analysis_budget.sql"
+    },
+    {
+      "tabela": "preferencia_conta",
+      "migracao": "V7__preferencias_conta.sql"
+    },
+    {
+      "tabela": "dispositivo_acesso_paciente",
+      "migracao": "V8__acesso_paciente_sem_senha.sql"
+    },
+    {
+      "tabela": "codigo_ativacao_paciente",
+      "migracao": "V8__acesso_paciente_sem_senha.sql"
+    },
+    {
+      "tabela": "desafio_acesso_paciente",
+      "migracao": "V8__acesso_paciente_sem_senha.sql"
+    },
+    {
+      "tabela": "limite_acesso_paciente",
+      "migracao": "V8__acesso_paciente_sem_senha.sql"
+    },
+    {
+      "tabela": "envio_sms_ativacao",
+      "migracao": "V9__envio_sms_ativacao.sql"
+    }
+  ],
+  "migracoes": [
+    "V1__foundation.sql",
+    "V2__care.sql",
+    "V3__private_files.sql",
+    "V4__analysis_budget.sql",
+    "V5__bloquear_acesso_direto_cliente.sql",
+    "V6__dados_pessoais_paciente.sql",
+    "V7__preferencias_conta.sql",
+    "V8__acesso_paciente_sem_senha.sql",
+    "V9__envio_sms_ativacao.sql"
+  ],
+  "testesNavegador": 17
+}

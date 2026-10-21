@@ -1,5 +1,8 @@
+import { Text } from "./TextoAcessivel";
 import { useEffect, useState } from "react";
-import { Image, Text, TextInput, View } from "react-native";
+import { Image, TextInput, View } from "react-native";
+import { router } from "expo-router";
+import { ImagemPrivada } from "./ImagemPrivada";
 import * as ImagePicker from "expo-image-picker";
 import { useAutenticacao } from "../hooks/useAutenticacao";
 import { enderecoApi } from "../services/api";
@@ -24,35 +27,6 @@ type Refeicao = {
     limitations: string;
   } | null;
 };
-function ImagemPrivada({ fileId }: { fileId: string }) {
-  const { requisicao: requisicao } = useAutenticacao();
-  const [url, setUrl] = useState("");
-  useEffect(() => {
-    let ativo = true;
-    requisicao<{ path: string }>(`/files/${fileId}/link`, {
-      method: "POST",
-      body: {},
-    })
-      .then((resposta) => {
-        if (ativo) setUrl(new URL(resposta.path, enderecoApi).toString());
-      })
-      .catch(() => {});
-    return () => {
-      ativo = false;
-    };
-  }, [requisicao, fileId]);
-  return url ? (
-    <Image
-      source={{ uri: url }}
-      style={{ width: "100%", height: 220, resizeMode: "contain" }}
-      accessibilityLabel="Foto privada da refeição"
-    />
-  ) : (
-    <Text style={s.small}>
-      Foto privada indisponível ou link expirado. Atualize a lista.
-    </Text>
-  );
-}
 export function FluxoFotografia({
   idPaciente: idPaciente,
   finalidade: purpose,
@@ -197,23 +171,41 @@ export function FluxoFotografia({
   }
   return (
     <View style={s.section}>
-      <View style={s.card}>
-        <Text style={s.title} accessibilityRole="header">
+      <View style={[s.section, { gap: 16 }]}>
+        <Text
+          style={[s.body, { textAlign: "center" }]}
+          accessibilityRole="header"
+        >
           {purpose === "MEAL" ? "Foto da refeição" : "Ler foto do visor"}
         </Text>
-        <Text style={s.body}>
-          Use apenas imagens sintéticas nesta demo. PNG ou JPEG, até 2 MB. Fotos
-          exigem conexão e ficam privadas; não entram na fila offline.
-        </Text>
-        {purpose === "PRESSURE_DISPLAY" && (
-          <Text style={s.body}>
-            O celular não mede pressão. O OCR lê apenas o visor e os valores
-            exigem confirmação antes de salvar.
+        <Image
+          source={
+            imagemSelecionada
+              ? { uri: imagemSelecionada.uri }
+              : purpose === "MEAL"
+                ? require("../assets/images/refeicao-exemplo.png")
+                : require("../assets/images/visor-exemplo.png")
+          }
+          style={{
+            width: "100%",
+            height: 300,
+            resizeMode: "contain",
+            borderRadius: 16,
+          }}
+          accessibilityLabel={
+            imagemSelecionada
+              ? "Foto selecionada para envio"
+              : "Exemplo ilustrativo; nenhuma foto enviada"
+          }
+        />
+        {!imagemSelecionada && (
+          <Text style={[s.small, { textAlign: "center" }]}>
+            Imagem de exemplo · escolha sua foto abaixo
           </Text>
         )}
         <Botao
-          secundario
           rotulo="Tirar foto"
+          desabilitado={ocupado}
           onPress={() => {
             void escolherImagem(true);
           }}
@@ -221,22 +213,17 @@ export function FluxoFotografia({
         <Botao
           secundario
           rotulo="Escolher foto da galeria"
+          desabilitado={ocupado}
           onPress={() => {
             void escolherImagem(false);
           }}
         />
-        {imagemSelecionada && (
-          <Image
-            source={{ uri: imagemSelecionada.uri }}
-            style={{ width: "100%", height: 220, resizeMode: "contain" }}
-            accessibilityLabel="Foto selecionada para envio"
-          />
-        )}
         {purpose === "MEAL" && (
           <>
             <Text style={s.label}>Observação sobre a refeição</Text>
             <TextInput
               style={s.field}
+              accessibilityLabel="Observação sobre a refeição"
               value={observacoes}
               onChangeText={definirObservacoes}
               maxLength={2000}
@@ -244,18 +231,26 @@ export function FluxoFotografia({
             />
           </>
         )}
-        <Botao
-          rotulo={
-            purpose === "MEAL"
-              ? "Enviar refeição e foto"
-              : "Enviar foto para OCR"
-          }
-          ocupado={ocupado}
-          desabilitado={!imagemSelecionada}
-          onPress={() => {
-            void enviar();
-          }}
-        />
+        {imagemSelecionada && (
+          <Botao
+            rotulo={
+              purpose === "MEAL"
+                ? "Enviar refeição e foto"
+                : "Enviar foto para OCR"
+            }
+            ocupado={ocupado}
+            desabilitado={!imagemSelecionada}
+            onPress={() => {
+              void enviar();
+            }}
+          />
+        )}
+        <Text style={s.small}>
+          PNG ou JPEG, até 2 MB. Fotos exigem conexão e ficam privadas.{" "}
+          {purpose === "PRESSURE_DISPLAY"
+            ? "O celular não mede pressão. Confira os valores reconhecidos antes de salvar."
+            : "A foto não mede nutrientes. A avaliação depende de serviço e critérios aprovados."}
+        </Text>
         {mensagem && (
           <Text accessibilityLiveRegion="polite" style={s.body}>
             {mensagem}
@@ -274,7 +269,7 @@ export function FluxoFotografia({
           </Text>
           {refeicoes.map((meal) => (
             <View style={s.card} key={meal.id}>
-              <ImagemPrivada fileId={meal.fileId} />
+              <ImagemPrivada idArquivo={meal.fileId} />
               <Text style={s.body}>
                 {new Date(meal.occurredAt).toLocaleString("pt-BR", {
                   timeZone: "America/Sao_Paulo",
@@ -298,6 +293,16 @@ export function FluxoFotografia({
               ) : (
                 <Text style={s.body}>Análise automatizada indisponível.</Text>
               )}
+              <Botao
+                secundario
+                rotulo="Ver resultado da refeição"
+                onPress={() =>
+                  router.push({
+                    pathname: "/alimentacao/resultado",
+                    params: { id: meal.id },
+                  })
+                }
+              />
               <Botao
                 secundario
                 rotulo="Consultar análise educativa"

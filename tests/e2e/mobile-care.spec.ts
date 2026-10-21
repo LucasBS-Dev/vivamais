@@ -1,3 +1,4 @@
+import { cadastrarComCodigo, entrarNaTela } from "./apoio-acesso-paciente";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 const api = process.env.API_BASE_URL || "http://127.0.0.1:8080";
@@ -17,12 +18,12 @@ test("Expo: ativação, plano real, fila offline, OCR confirmado e refeição pr
   const pro = await login.json();
   const headers = { Authorization: `Bearer ${pro.accessToken}` };
   const email = `mobile-${Date.now()}@demo.invalid`;
-  const created = await request.post(`${api}/api/v1/patients`, {
-    headers,
-    data: { displayName: "Pessoa Sintética Mobile", email, modality: "APP" },
-  });
-  expect(created.status()).toBe(200);
-  const { patient, activationToken } = await created.json();
+  const { patient, activationToken, cpf, dataNascimento } =
+    await cadastrarComCodigo(request, headers, {
+      displayName: "Pessoa Sintetica Mobile",
+      email,
+      modality: "APP",
+    });
   const date = new Intl.DateTimeFormat("en-CA", {
     timeZone: "America/Sao_Paulo",
     year: "numeric",
@@ -44,31 +45,12 @@ test("Expo: ativação, plano real, fila offline, OCR confirmado e refeição pr
       })
     ).status(),
   ).toBe(200);
-  await page.goto(mobile);
-  await page.getByRole("button", { name: "Começar", exact: true }).click();
-  await page
-    .getByRole("button", {
-      name: "Ativar conta ou usar código de recuperação",
-      exact: true,
-    })
-    .click();
-  await page
-    .getByLabel("Código de ativação", { exact: true })
-    .fill(activationToken);
-  await page.getByLabel("Nova senha", { exact: true }).fill(password!);
-  await page.getByLabel("Confirme a senha", { exact: true }).fill(password!);
-  await page.getByRole("button", { name: "Ativar conta", exact: true }).click();
-  await page
-    .getByRole("button", { name: "Ir para entrar", exact: true })
-    .click();
-  await expect(page).toHaveURL(`${mobile}/login`);
-  await page.getByRole("textbox", { name: "E-mail", exact: true }).fill(email);
-  await page
-    .getByLabel("Senha", { exact: true })
-    .filter({ visible: true })
-    .fill(password!);
-  await page.getByRole("button", { name: "Entrar", exact: true }).click();
-  await expect(page).toHaveURL(`${mobile}/home`);
+  const sessaoPaciente = await entrarNaTela(
+    page,
+    cpf,
+    dataNascimento,
+    activationToken,
+  );
   await page.getByTestId("module-medications").click();
   await expect(
     page.getByText("Plano compartilhado E2E", { exact: true }).first(),
@@ -90,9 +72,9 @@ test("Expo: ativação, plano real, fila offline, OCR confirmado e refeição pr
     .getByRole("button", { name: "Voltar ao início", exact: true })
     .click();
   await page.getByTestId("module-blood-pressure").click();
-  await expect(
-    page.getByRole("heading", { name: "Registrar pressão", exact: true }),
-  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "Digitar os valores", exact: true })
+    .click();
   const writes: string[] = [];
   await page.route("**/api/v1/patients/*/readings", async (route) => {
     if (route.request().method() === "POST") {
@@ -102,40 +84,36 @@ test("Expo: ativação, plano real, fila offline, OCR confirmado e refeição pr
   });
   await page.getByLabel("Sistólica", { exact: true }).fill("11");
   await page.getByLabel("Diastólica", { exact: true }).fill("7");
+  await page.getByRole("button", { name: "Salvar", exact: true }).click();
+  await expect(
+    page.getByText("Identificamos que você digitou 11 por 7.", {
+      exact: false,
+    }),
+  ).toBeVisible();
   await page
-    .getByRole("button", { name: "Salvar pressão", exact: true })
-    .click();
-  await expect(page.getByRole("alert")).toContainText("confirme");
-  await page
-    .getByRole("button", { name: "Confirmar estes valores", exact: true })
-    .click();
-  await page
-    .getByRole("button", { name: "Salvar pressão", exact: true })
+    .getByRole("button", { name: "Sim, está correto", exact: true })
     .click();
   await expect(
-    page.getByText("Registro protegido na fila. Aguardando envio para a API.", {
+    page.getByText("Registro protegido, aguardando sincronização", {
       exact: true,
     }),
   ).toBeVisible();
   expect(writes.length).toBeGreaterThan(0);
   await page.unroute("**/api/v1/patients/*/readings");
   await page
-    .getByRole("button", { name: "Sincronizar agora", exact: true })
+    .getByRole("button", { name: "Atualizar registro", exact: true })
     .click();
-  await expect(page.getByText("110 / 70 mmHg", { exact: true })).toBeVisible();
   await expect(
-    page.getByText("0 registros pendentes de sincronização", { exact: true }),
-  ).toBeVisible();
+    page.getByText("Pressão registrada com sucesso!", { exact: true }),
+  ).toBeVisible({ timeout: 25000 });
+  await expect(page.getByText("110 / 70", { exact: false })).toBeVisible();
   const readings = await request.get(
     `${api}/api/v1/patients/${patient.id}/readings`,
     { headers },
   );
   expect((await readings.json()).total).toBe(1);
   // Simulate a lost acknowledgement: resend the exact operation, as a professional cannot impersonate its original actor.
-  const patientLogin = await request.post(`${api}/api/v1/auth/login`, {
-    data: { email, password },
-  });
-  const own = await patientLogin.json();
+  const own = sessaoPaciente;
   const ownHeaders = { Authorization: `Bearer ${own.accessToken}` };
   expect(
     (
@@ -162,6 +140,16 @@ test("Expo: ativação, plano real, fila offline, OCR confirmado e refeição pr
     "Defina E2E_OCR_IMAGE para a imagem sintética de visor",
   ).toBeTruthy();
   const imageBytes = await readFile(image!);
+  await page
+    .getByRole("button", { name: "Ver meu histórico", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Voltar ao início", exact: true })
+    .click();
+  await page.getByTestId("module-blood-pressure").click();
+  await page
+    .getByRole("button", { name: "Tirar foto do aparelho", exact: true })
+    .click();
   const [chooser] = await Promise.all([
     page.waitForEvent("filechooser"),
     page
@@ -176,12 +164,7 @@ test("Expo: ativação, plano real, fila offline, OCR confirmado e refeição pr
   await page
     .getByRole("button", { name: "Enviar foto para OCR", exact: true })
     .click();
-  await expect(
-    page.getByText(
-      "OCR concluído. Confira os números no formulário e confirme antes de salvar.",
-      { exact: true },
-    ),
-  ).toBeVisible({ timeout: 45000 });
+  await expect(page).toHaveURL(/\/pressao\/digitar\?/, { timeout: 45000 });
   await expect(page.getByLabel("Sistólica", { exact: true })).toHaveValue(
     "118",
   );
@@ -194,13 +177,14 @@ test("Expo: ativação, plano real, fila offline, OCR confirmado e refeição pr
       ).json()
     ).total,
   ).toBe(1);
+  await page.getByRole("button", { name: "Salvar", exact: true }).click();
   await page
-    .getByRole("button", { name: "Confirmar estes valores", exact: true })
+    .getByRole("button", { name: "Sim, está correto", exact: true })
     .click();
+  await expect(page.getByText("118 / 76", { exact: false })).toBeVisible();
   await page
-    .getByRole("button", { name: "Salvar pressão", exact: true })
+    .getByRole("button", { name: "Ver meu histórico", exact: true })
     .click();
-  await expect(page.getByText("118 / 76 mmHg", { exact: true })).toBeVisible();
   await page
     .getByRole("button", { name: "Voltar ao início", exact: true })
     .click();
@@ -230,6 +214,25 @@ test("Expo: ativação, plano real, fila offline, OCR confirmado e refeição pr
   ).json();
   expect(mealPage.total).toBe(1);
   const meal = mealPage.items[0];
+  await page
+    .getByRole("button", { name: "Ver resultado da refeição", exact: true })
+    .first()
+    .click();
+  await expect(page).toHaveURL(/\/alimentacao\/resultado\?id=/);
+  await expect(
+    page.getByText("Análise educativa indisponível", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("img", { name: "Foto privada da refeição", exact: true }),
+  ).toBeVisible();
+  expect(
+    (
+      await request.get(`${api}/api/v1/refeicoes/${meal.id}`, { headers })
+    ).status(),
+  ).toBe(200);
+  await page
+    .getByRole("button", { name: "Ver minhas refeições", exact: true })
+    .click();
   const analysis = await (
     await request.post(`${api}/api/v1/meals/${meal.id}/analyze`, {
       headers: ownHeaders,
@@ -239,7 +242,7 @@ test("Expo: ativação, plano real, fila offline, OCR confirmado e refeição pr
   expect(analysis.providerCalled).toBe(false);
   expect(analysis.status).toBe("UNAVAILABLE");
   const foreign = await request.post(`${api}/api/v1/auth/login`, {
-    data: { email: "paciente.b@demo.vivamais.invalid", password },
+    data: { email: "profissional.b@demo.vivamais.invalid", password },
   });
   const other = await foreign.json();
   expect(
@@ -262,14 +265,18 @@ test("Expo: ativação, plano real, fila offline, OCR confirmado e refeição pr
   ]);
   const portal = await context.newPage();
   await portal.goto(`http://127.0.0.1:3000/pacientes/${patient.id}`);
+  await portal
+    .getByRole("tab", { name: "Pressão arterial", exact: true })
+    .click();
   await expect(
     portal.getByText("110 / 70 mmHg", { exact: true }),
   ).toBeVisible();
   await expect(
     portal.getByText("118 / 76 mmHg", { exact: true }),
   ).toBeVisible();
+  await portal.getByRole("tab", { name: "Alimentação", exact: true }).click();
   await expect(
-    portal.getByRole("img", { name: "Foto privada de refeição sintética" }),
+    portal.getByRole("img", { name: "Foto privada da refeição" }),
   ).toBeVisible();
   await portal.getByRole("button", { name: "Sair", exact: true }).click();
   for (const token of [pro.accessToken, own.accessToken, other.accessToken])

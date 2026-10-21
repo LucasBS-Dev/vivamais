@@ -11,7 +11,7 @@ import { origemPermitida, origemPublica } from "@/services/validacoes";
 export const dynamic = "force-dynamic";
 const uuid = "[0-9a-fA-F-]{36}";
 const allowed = new RegExp(
-  `^(?:patients(?:/search|/${uuid}(?:/(?:readings|medications|medication-events|medication-reports|diary|activities|activity-profile|consultations|summary|export|access-reset|assignments(?:/revoke)?|device(?:/configurations)?|meals|files))?)?|medications/${uuid}(?:/history)?|files/${uuid}/(?:link|ocr)|meals/${uuid}/analyze|professionals)$`,
+  `^(?:conta/preferencias|pacientes/${uuid}/dados-pessoais|patients(?:/search|/${uuid}(?:/(?:readings|medications|medication-events|medication-reports|diary|activities|activity-profile|consultations|summary|export|access-reset|access-status|assignments(?:/revoke)?|device(?:/configurations)?|meals|files))?)?|medications/${uuid}(?:/history)?|files/${uuid}/(?:link|ocr)|meals/${uuid}/analyze|professionals)$`,
 );
 
 async function proxy(

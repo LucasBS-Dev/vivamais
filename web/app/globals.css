@@ -2050,3 +2050,648 @@ h3 {
     font-size: 11px;
   }
 }
+.resumo-cuidados {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0 24px;
+}
+.resumo-cuidados article {
+  border: 1px solid #dce8f7;
+  border-radius: 9px;
+  padding: 16px 12px;
+  text-align: center;
+  display: grid;
+  gap: 10px;
+}
+.resumo-cuidados h2 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #00376b;
+}
+.resumo-cuidados strong {
+  font-size: 24px;
+  color: #00376b;
+  font-weight: 700;
+}
+.resumo-cuidados small {
+  font-size: 11px;
+  color: #536f8b;
+}
+.tabela-responsiva {
+  overflow-x: auto;
+}
+.care-tabs[role="tablist"] {
+  border-bottom: 1px solid #d2e3f4;
+  gap: 4px;
+  margin-bottom: 18px;
+}
+.care-tabs[role="tablist"] button {
+  border: 0;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  padding: 12px 10px;
+  font-size: 13px;
+}
+.care-tabs[role="tablist"] button[aria-selected="true"] {
+  border-bottom-color: #0079df;
+  color: #006dca;
+  background: #f1f8ff;
+}
+@media (max-width: 850px) {
+  .resumo-cuidados {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.area-clinica-paciente {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.tabela-cuidado {
+  width: 100%;
+  font-size: 14px;
+  border-collapse: collapse;
+}
+.tabela-cuidado th {
+  font-weight: 700;
+  text-align: left;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.tabela-cuidado td {
+  vertical-align: top;
+  max-width: 330px;
+}
+.tabela-cuidado progress {
+  display: block;
+  width: 100%;
+  max-width: 120px;
+  height: 10px;
+  accent-color: #00a567;
+}
+.tabela-cuidado small {
+  display: block;
+  font-size: 11px;
+  margin-top: 5px;
+}
+.tabela-cuidado details {
+  min-width: 80px;
+  font-size: 12px;
+}
+.tabela-cuidado summary {
+  cursor: pointer;
+  color: #0074d1;
+  padding: 5px 0;
+}
+.tabela-cuidado dl {
+  min-width: 180px;
+  display: grid;
+  gap: 8px;
+}
+.tabela-cuidado dt {
+  font-weight: 600;
+}
+.tabela-cuidado dd {
+  margin: 3px 0;
+  overflow-wrap: anywhere;
+}
+.adicionar-foto {
+  margin: 14px 0;
+}
+.adicionar-foto > summary {
+  display: inline-flex;
+  cursor: pointer;
+}
+.patient-profile {
+  padding: 14px 18px;
+  gap: 16px;
+  margin-bottom: 12px;
+  border-radius: 9px;
+}
+.profile-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+}
+.patient-profile h1 {
+  margin-bottom: 7px;
+  font-size: 25px;
+}
+.back-link {
+  min-height: 44px;
+  margin-bottom: 8px;
+}
+.grafico-pressao {
+  margin: 16px 0;
+}
+.grafico-pressao figcaption {
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+.grafico-pressao svg {
+  display: block;
+  width: 100%;
+  max-height: 290px;
+}
+.formulario-registro[data-modulo="consultations"] {
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  max-width: none;
+}
+.formulario-registro[data-modulo="consultations"] label:nth-child(2) {
+  grid-column: 1;
+  grid-row: 2 / 4;
+}
+.formulario-registro[data-modulo="consultations"] label:nth-child(2) textarea {
+  min-height: 210px;
+}
+.formulario-registro[data-modulo="consultations"] label:nth-child(3) {
+  grid-column: 2;
+  grid-row: 1 / 3;
+}
+.formulario-registro[data-modulo="consultations"] label:nth-child(4) {
+  grid-column: 2;
+}
+@media (max-width: 700px) {
+  .formulario-registro[data-modulo="consultations"] {
+    display: flex;
+    flex-direction: column;
+  }
+  .formulario-registro[data-modulo="consultations"] label {
+    width: 100%;
+  }
+}
+
+/* Cadastro e acesso completos: componentes reais, sem campos ilustrativos. */
+.campos-demograficos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px;
+}
+.campos-demograficos label {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #163858;
+}
+.campos-demograficos input,
+.campos-demograficos select {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  border: 1px solid #cbdced;
+  border-radius: 7px;
+  padding: 10px 12px;
+  background: white;
+  color: #163858;
+  font: inherit;
+  font-weight: 400;
+}
+.campos-demograficos .campo-inteiro {
+  grid-column: 1/-1;
+}
+.campos-demograficos small {
+  font-size: 12px;
+  font-weight: 400;
+  color: #48647a;
+}
+.dados-cadastro {
+  margin: 12px 0;
+}
+.dados-cadastro .section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.dados-cadastro .section-heading h2 {
+  font-size: 16px;
+  margin: 0;
+}
+.dados-cadastro fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 16px;
+}
+.resumo-demografico {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px 20px;
+  margin: 0;
+  font-size: 13px;
+}
+.resumo-demografico dt {
+  color: #52677d;
+  font-size: 12px;
+}
+.resumo-demografico dd {
+  margin: 3px 0 0;
+  overflow-wrap: anywhere;
+  color: #163858;
+}
+.acesso-paciente {
+  border-top: 1px solid #e1ecf5;
+  padding-top: 16px;
+  margin-top: 18px;
+  color: #163858;
+  font-size: 14px;
+}
+.acesso-paciente p {
+  margin: 7px 0 12px;
+  line-height: 1.5;
+}
+.acesso-viva .brand img {
+  width: 146px;
+  height: 140px;
+}
+.apresentacao-acesso .subtitulo-marca {
+  margin: 4px 0 0;
+}
+.ilustracao-profissionais {
+  max-width: 330px;
+}
+@media (max-width: 700px) {
+  .resumo-demografico {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .campos-demograficos {
+    grid-template-columns: 1fr;
+  }
+  .acesso-viva .brand img {
+    width: 104px;
+    height: 100px;
+  }
+}
+.dados-cadastro {
+  position: relative;
+  padding: 14px 16px;
+}
+.dados-cadastro .section-heading {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  margin: 0;
+}
+.dados-cadastro .section-heading .button {
+  min-height: 36px;
+  font-size: 13px;
+  padding: 8px 12px;
+}
+.dados-cadastro:has(fieldset) .section-heading {
+  position: static;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+.resumo-demografico {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding-right: 150px;
+}
+.dados-adicionais {
+  font-size: 12px;
+  color: #36536c;
+  margin-top: 8px;
+}
+.dados-adicionais summary {
+  cursor: pointer;
+}
+@media (max-width: 700px) {
+  .dados-cadastro .section-heading {
+    position: static;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+  }
+  .resumo-demografico {
+    padding-right: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+/* Logo original de alta resolução, sem recorte nem ampliação do bitmap antigo. */
+.brand img {
+  width: 128px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.brand.brand-grande img {
+  width: 164px;
+}
+.sidebar .brand-link {
+  justify-content: center;
+}
+.sidebar .brand img {
+  mix-blend-mode: normal;
+}
+
+.configuracoes-pagina {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+}
+.configuracoes-pagina .page-heading {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.configuracoes-grade {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+.configuracoes-grade > section {
+  min-width: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 18px;
+  padding: 24px;
+}
+.configuracoes-grade h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+.configuracoes-grade p {
+  margin: 0;
+  line-height: 1.6;
+  color: #415c73;
+}
+.dados-conta {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+}
+.dados-conta dt {
+  color: #546b80;
+  font-size: 0.875rem;
+  margin-bottom: 4px;
+}
+.dados-conta dd {
+  margin: 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.configuracoes-conta .button {
+  align-self: flex-start;
+  margin-top: auto;
+  white-space: normal;
+  text-align: center;
+}
+.preferencias-controles {
+  display: grid;
+  gap: 24px;
+  margin: 0;
+}
+.preferencias-controles label {
+  min-width: 0;
+}
+.care-form.preferencias-controles .preferencia-texto {
+  align-self: auto;
+  min-height: 48px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 12px;
+  background: #f2f8fd;
+  border-radius: 8px;
+}
+.preferencias-controles select {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 8px;
+}
+.estado-preferencias {
+  min-height: 28px;
+  color: #235e53;
+  line-height: 1.5;
+  margin-top: auto;
+}
+.configuracoes-privacidade {
+  grid-column: 1 / -1;
+}
+.links-configuracoes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.links-configuracoes a {
+  min-height: 48px;
+  padding: 12px 16px;
+  border: 1px solid #d8e6f2;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.links-configuracoes a:hover {
+  background: #eef6fd;
+}
+@media (max-width: 900px) {
+  .portal-shell .sidebar {
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr);
+    align-items: center;
+    gap: 0;
+    padding: 0;
+  }
+  .sidebar .brand-link {
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+    min-width: 0;
+    padding: 10px;
+  }
+  .sidebar .brand img {
+    width: 88px;
+  }
+  .portal-shell .portal-nav {
+    min-width: 0;
+    flex-wrap: wrap;
+    padding: 8px;
+    gap: 4px;
+  }
+  .configuracoes-grade {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+  .links-configuracoes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .configuracoes-grade > section {
+    padding: 18px;
+  }
+  .configuracoes-conta .button {
+    align-self: stretch;
+  }
+}
+
+.preferencias-portal {
+  min-height: 100vh;
+}
+.texto-ampliado
+  :is(
+    .portal-content p,
+    .portal-content label,
+    .care-table,
+    .patient-name,
+    .portal-content input,
+    .portal-content select,
+    .portal-content textarea,
+    .portal-content button
+  ) {
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+.texto-ampliado :is(.portal-content small, .care-table small) {
+  font-size: 1rem;
+}
+.care-form input[type="checkbox"] {
+  width: 24px;
+  min-height: 24px;
+  height: 24px;
+  margin-right: 8px;
+  vertical-align: middle;
+  accent-color: #0077d4;
+}
+.care-table th {
+  text-align: left;
+}
+.care-table td {
+  overflow-wrap: anywhere;
+}
+.care-table details summary {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+.care-table progress {
+  accent-color: #087d70;
+  max-width: 100%;
+}
+.brand img {
+  object-fit: contain;
+  height: auto;
+}
+:is(button, a, input, select, textarea, summary):focus-visible {
+  outline: 3px solid #005fcc;
+  outline-offset: 3px;
+}
+@media (max-width: 600px) {
+  .care-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .page-heading {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+}
+
+/* Classes compatíveis com CSP estrita; sem atributos style bloqueados. */
+.legenda-sistolica {
+  color: #c92943;
+}
+.legenda-diastolica {
+  color: #006dbd;
+}
+.indicador-azul {
+  color: #0090ed;
+}
+.indicador-verde {
+  color: #00a25a;
+}
+.indicador-laranja {
+  color: #ff9a12;
+}
+.indicador-roxo {
+  color: #b548ee;
+}
+.resumo-pressao {
+  background: #ffeff3;
+}
+.resumo-medicamentos {
+  background: #edfaf5;
+}
+.resumo-alimentacao {
+  background: #fff6e8;
+}
+.resumo-atividade {
+  background: #edf6ff;
+}
+.foto-refeicao-privada {
+  object-fit: contain;
+  max-width: 100%;
+  height: auto;
+}
+
+.care-form label.preferencia-texto {
+  display: flex;
+  align-items: center;
+  align-self: end;
+  gap: 12px;
+  min-height: 48px;
+  font-weight: 500;
+}
+.preferencia-texto input[type="checkbox"] {
+  flex-shrink: 0;
+  margin: 0;
+}
+.care-tabs:not([role="tablist"]) {
+  gap: 12px;
+  align-items: center;
+  border-bottom: 0;
+}
+
+.codigo-ativacao {
+  font-size: 2rem;
+  letter-spacing: 0.5em;
+  font-weight: 700;
+  max-width: 16rem;
+  text-align: center;
+}
+.ativacao-paciente {
+  margin-block: 20px;
+}
+.ativacao-paciente > p {
+  margin-block: 12px;
+}
+.ativacao-paciente > button {
+  margin-block: 12px;
+}
+.grupo-ativacao {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #c9dde5;
+  border-radius: 12px;
+}
+.grupo-ativacao legend {
+  font-weight: 600;
+  padding-inline: 6px;
+}
+.grupo-ativacao label.confirmacao-identidade {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+.grupo-ativacao .confirmacao-identidade input {
+  width: 24px;
+  min-height: 24px;
+  margin: 0;
+  flex-shrink: 0;
+}
+.grupo-ativacao .button {
+  justify-self: start;
+}

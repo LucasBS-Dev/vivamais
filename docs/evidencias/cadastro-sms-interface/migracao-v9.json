@@ -1,0 +1,15 @@
+{
+  "executadoEm": "2026-10-20T20:34:34.134Z",
+  "snapshotAnteriorCifrado": true,
+  "tabelasAnterioresConferidas": 30,
+  "dadosAnterioresPreservados": true,
+  "tabelasDivergentes": [],
+  "fontesV1V8Preservadas": true,
+  "arquivosAnterioresPreservados": true,
+  "metadados": {
+    "versao": "9",
+    "tabelas": 33,
+    "rls": 32
+  },
+  "transicao": "Códigos manuais pendentes invalidados por V9; cadastros, dados clínicos e aparelhos preservados. Telefones antigos não foram reescritos."
+}

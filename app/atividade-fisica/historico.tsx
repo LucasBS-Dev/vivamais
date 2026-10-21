@@ -1,4 +1,4 @@
-import { TelaCuidado } from "../../components/TelaCuidado";
+import { HistoricoAtividades } from "../../components/HistoricoAtividades";
 export default function HistoricoAtividade() {
-  return <TelaCuidado modulo="activity" somenteHistorico />;
+  return <HistoricoAtividades />;
 }

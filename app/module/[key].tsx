@@ -1,5 +1,6 @@
+import { Text } from "../../components/TextoAcessivel";
 import { Redirect, router, useLocalSearchParams } from "expo-router";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { useQuery } from "@tanstack/react-query";
 import type { ChaveModulo, EstadoModulo } from "@viva/contracts";
 import { useAutenticacao } from "../../hooks/useAutenticacao";
@@ -80,11 +81,11 @@ export default function ModuleScreen() {
           <Text style={s.body}>{selecionado.reason}</Text>
           <Text style={s.small}>
             Nenhum dado clínico é criado nesta tela. A disponibilidade foi
-            consultada na API do projeto.
+            consultada no serviço de acompanhamento.
           </Text>
         </View>
       ) : (
-        <MensagemErro mensagem="Este recurso não foi encontrado na API. Volte ao início e tente atualizar a conexão." />
+        <MensagemErro mensagem="Este recurso não está disponível. Volte ao início e tente atualizar a conexão." />
       )}
       {chave === "blood-pressure" && (
         <Text style={s.muted}>

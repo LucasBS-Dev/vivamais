@@ -1,6 +1,7 @@
+import { Text } from "../components/TextoAcessivel";
 import { useEffect, useState } from "react";
 import { Redirect, router } from "expo-router";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, View, Image, Linking } from "react-native";
 import { useAutenticacao } from "../hooks/useAutenticacao";
 import { useResumoPaciente } from "../hooks/useResumoPaciente";
 import {
@@ -12,6 +13,10 @@ import {
 } from "../components/ElementosInterface";
 import { BarraNavegacao } from "../components/BarraNavegacao";
 import { IconeModulo } from "../components/IconeModulo";
+import { IconeNavegacao } from "../components/IconeNavegacao";
+import { IlustracaoViva, ilustracoes } from "../components/IlustracoesViva";
+import { usePainelPaciente } from "../hooks/usePainelPaciente";
+import { enderecoPortal } from "../services/enderecosAcesso";
 import {
   filaRegistros,
   queueStorageDescription as descricaoFila,
@@ -53,6 +58,7 @@ export default function Inicio() {
     sair: sair,
   } = useAutenticacao();
   const resumo = useResumoPaciente();
+  const painel = usePainelPaciente();
   const [pendentes, definirPendentes] = useState(0),
     [erro, definirErro] = useState(""),
     [saindo, definirSaindo] = useState(false);
@@ -71,7 +77,12 @@ export default function Inicio() {
     );
   if (!sessao) return <Redirect href="/acesso" />;
   return (
-    <Tela>
+    <Tela
+      compacta
+      rodape={
+        sessao.usuario.papel === "PATIENT" ? <BarraNavegacao /> : undefined
+      }
+    >
       <View style={e.cabecalho}>
         <MarcaViva variante="verde" />
         <Pressable
@@ -80,7 +91,7 @@ export default function Inicio() {
           onPress={() => router.push("/perfil")}
           style={e.perfil}
         >
-          <Text style={e.pessoa}>●</Text>
+          <IconeNavegacao nome="perfil" cor="#004782" />
         </Pressable>
       </View>
       <View style={e.saudacao}>
@@ -92,14 +103,37 @@ export default function Inicio() {
         </Text>
       </View>
       {sessao.usuario.papel !== "PATIENT" ? (
-        <MensagemErro mensagem="A equipe profissional deve acessar o portal pelo navegador." />
+        <View style={{ gap: 16 }}>
+          <Image
+            source={ilustracoes.profissionais}
+            style={{ width: "100%", height: 180, resizeMode: "contain" }}
+            accessibilityLabel="Ilustração da equipe profissional"
+          />
+          <Text style={e.texto}>
+            Sua conta é da equipe profissional. No portal você pode cadastrar
+            pacientes, gerar ativações e consultar os registros.
+          </Text>
+          {enderecoPortal() && (
+            <Botao
+              rotulo="Abrir portal profissional"
+              onPress={() => {
+                void Linking.openURL(enderecoPortal()!).catch(() =>
+                  definirErro("Não foi possível abrir o portal."),
+                );
+              }}
+            />
+          )}
+          <Botao
+            secundario
+            rotulo="Configurações"
+            onPress={() => router.push("/configuracoes")}
+          />
+        </View>
       ) : (
         <>
-          {resumo.isPending && (
-            <Carregando rotulo="Consultando sua identificação na API…" />
-          )}
+          {resumo.isPending && <Carregando rotulo="Carregando seus dados…" />}
           {resumo.isError && (
-            <MensagemErro mensagem="Sem conexão com a API. Registros novos aguardam sincronização." />
+            <MensagemErro mensagem="Sem conexão. Seus novos registros aguardam envio." />
           )}
           <View style={e.grade}>
             {acoes.map((acao) => (
@@ -127,11 +161,63 @@ export default function Inicio() {
             onPress={() => router.push("/historico")}
             style={e.historico}
           >
-            <Text style={e.grafico}>▥</Text>
+            <IlustracaoViva nome="grafico" tamanho={32} />
             <Text style={e.rotuloHistorico}>Meu Histórico</Text>
             <Text style={e.seta}>›</Text>
           </Pressable>
-          <BarraNavegacao />
+          <View style={{ flexDirection: "row", gap: 10 }}>
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel="Meus Lembretes"
+              onPress={() => router.push("/lembretes")}
+              style={[e.atalho, { backgroundColor: "#fff8e3" }]}
+            >
+              <IlustracaoViva nome="lembrete" tamanho={28} />
+              <Text style={e.rotuloAtalho}>Lembretes</Text>
+            </Pressable>
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel="Configurações"
+              onPress={() => router.push("/configuracoes")}
+              style={e.atalho}
+            >
+              <Text style={e.rotuloAtalho}>⚙ Configurações</Text>
+            </Pressable>
+          </View>
+          <View style={e.resumo} accessibilityLabel="Meu acompanhamento">
+            <Text style={e.rotuloHistorico}>Meu acompanhamento</Text>
+            {painel.isPending && (
+              <Text style={e.nota}>Consultando seus registros…</Text>
+            )}
+            {painel.isError && (
+              <MensagemErro mensagem="Não foi possível consultar seu resumo. Tente novamente nos módulos." />
+            )}
+            {painel.data && (
+              <>
+                <Text style={e.texto}>
+                  {painel.data.pressao
+                    ? `Última pressão: ${painel.data.pressao.systolic} / ${painel.data.pressao.diastolic} mmHg`
+                    : "Você ainda não registrou sua pressão."}
+                </Text>
+                {painel.data.pressao && (
+                  <Text style={e.nota}>
+                    {new Date(painel.data.pressao.measuredAt).toLocaleString(
+                      "pt-BR",
+                      { timeZone: "America/Sao_Paulo" },
+                    )}
+                  </Text>
+                )}
+                <Text style={e.nota}>
+                  Medicamentos hoje: {painel.data.respostas} de{" "}
+                  {painel.data.horarios} horários com resposta.
+                </Text>
+                <Text style={e.nota}>
+                  {painel.data.refeicoes} refeições e {painel.data.atividades}{" "}
+                  atividades registradas no histórico.
+                </Text>
+              </>
+            )}
+          </View>
           {pendentes > 0 && (
             <Text style={e.nota}>
               {pendentes} registros pendentes. {descricaoFila}
@@ -139,7 +225,7 @@ export default function Inicio() {
           )}
           {resumo.data && (
             <Text style={e.nota}>
-              ✓ Conexão com a API confirmada ·{" "}
+              ✓ Conectado à sua equipe ·{" "}
               {resumo.data.modality === "APP"
                 ? "Aplicativo Viva+"
                 : "Pulseira + diário"}
@@ -149,7 +235,7 @@ export default function Inicio() {
       )}
       {erro && <MensagemErro mensagem={erro} />}
       <Text style={e.nota}>
-        Demonstração acadêmica · Somente dados sintéticos.
+        Seus registros ajudam sua equipe a acompanhar você.
       </Text>
       <Botao
         secundario
@@ -193,7 +279,7 @@ const e = StyleSheet.create({
   cartao: {
     flexGrow: 1,
     flexBasis: "45%",
-    minHeight: 158,
+    minHeight: 148,
     borderRadius: 16,
     alignItems: "center",
     justifyContent: "center",
@@ -225,4 +311,30 @@ const e = StyleSheet.create({
   rotuloHistorico: { fontSize: 19, fontWeight: "700", color: "#003b74" },
   seta: { marginLeft: "auto", fontSize: 30, color: "#004b86" },
   nota: { fontSize: 12, lineHeight: 18, color: "#61778f" },
+  atalho: {
+    flex: 1,
+    minHeight: 64,
+    padding: 12,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#dce8f5",
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 6,
+  },
+  rotuloAtalho: {
+    color: "#003b74",
+    fontSize: 16,
+    fontWeight: "600",
+    textAlign: "center",
+  },
+  resumo: {
+    padding: 16,
+    gap: 8,
+    borderRadius: 14,
+    backgroundColor: "#edf7ff",
+    borderWidth: 1,
+    borderColor: "#dce8f5",
+  },
 });

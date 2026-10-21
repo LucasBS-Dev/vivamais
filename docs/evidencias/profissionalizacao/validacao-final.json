@@ -1,0 +1,93 @@
+{
+  "executadoEm": "2026-10-20T15:37:14.243Z",
+  "escopo": "Fechamento documental e validacoes dirigidas; dados sinteticos, sem publicacao",
+  "documentos": {
+    "quantidade": 6,
+    "linksLocais": 110,
+    "linksQuebrados": [],
+    "fontesComCaminhoCompleto": 51,
+    "fontesAusentes": []
+  },
+  "capturas": {
+    "principais": 52,
+    "checagensComProblemas": 0,
+    "limite": "Heuristica estrutural; nao certifica acessibilidade ou igualdade visual",
+    "portalEstreito": [
+      {
+        "tela": "configuracoes",
+        "largura": 390,
+        "rolagemHorizontalPagina": false
+      },
+      {
+        "tela": "consultas",
+        "largura": 390,
+        "rolagemHorizontalPagina": false
+      }
+    ]
+  },
+  "segredos": {
+    "arquivosTextuais": 322,
+    "senhasConhecidas": 2,
+    "ocorrencias": 0,
+    "limite": "Busca local por valores conhecidos; scanner completo de CI pendente"
+  },
+  "git": {
+    "diffCheck": true,
+    "arquivosStage": 0,
+    "commitPushPublicacao": false
+  },
+  "banco": {
+    "origem": "Consulta autenticada somente de leitura nesta retomada",
+    "migrations": 7,
+    "ultimaMigration": 7,
+    "tabelas": 28,
+    "tabelasRls": 27
+  },
+  "servicos": {
+    "origem": "executar-local.ps1 -Servico Verificar",
+    "api": 200,
+    "portal": 200,
+    "aplicativo": 200,
+    "health": "UP"
+  },
+  "checagensTecnicas": {
+    "typescript": [
+      "app",
+      "web",
+      "contracts",
+      "design-tokens"
+    ],
+    "eslint": "app.config.ts e web/components/PreferenciasPortal.tsx",
+    "sintaxeNode": "infra/verificar-portal-estreito.mjs",
+    "resultado": "APROVADO"
+  },
+  "testesNovos": {
+    "e2eAposReinicio": 5,
+    "e2eAposCss": 1,
+    "unitariosConfiguracaoExpo": 2,
+    "unitariosPreferenciasPortal": 2,
+    "buildNext": "APROVADO"
+  },
+  "resultadosHerdados": {
+    "java": 31,
+    "frontend": 40,
+    "e2e": 13,
+    "exportsExpo": [
+      "web",
+      "Android",
+      "iOS"
+    ],
+    "reexecutadosIntegralmenteNestaRetomada": false
+  },
+  "auditoria": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 2,
+    "critical": 0,
+    "dependencias": 922,
+    "exitCode": 1,
+    "suppressions": false
+  },
+  "producaoLiberada": false
+}
