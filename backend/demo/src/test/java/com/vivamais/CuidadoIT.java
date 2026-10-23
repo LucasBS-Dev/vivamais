@@ -72,7 +72,18 @@ class CuidadoIT {
    mvc.perform(get(caminho)).andExpect(status().isUnauthorized());
   }
   mvc.perform(put("/api/v1/patients/"+id+"/activity-profile").header("Authorization","Bearer "+exigirProfissional).contentType(MediaType.APPLICATION_JSON).content(json.writeValueAsString(Map.of("mobility","Informação sintética","balance","Informação sintética","restrictions","","professionalGuidance","Orientação sintética")))).andExpect(status().isOk());
-  mvc.perform(get("/api/v1/patients/"+id+"/activity-profile").header("Authorization","Bearer "+exigirProfissional)).andExpect(status().isOk()).andExpect(jsonPath("$.professionalGuidance").value("Orientação sintética"));
+  mvc.perform(get("/api/v1/patients/"+id+"/activity-profile").header("Authorization","Bearer "+exigirProfissional)).andExpect(status().isOk()).andExpect(jsonPath("$.professionalGuidance").value("Orientação sintética")).andExpect(jsonPath("$.approvedCatalogGroup").value("NAO_DEFINIDO"));
+ }
+ @Test void perfilAtividadeVinculaSomenteOsGruposG16Aprovados()throws Exception{
+  var criado=write("/patients",Map.of("displayName","Pessoa Sintética Grupo G16","modality","BRACELET_DIARY"),exigirProfissional);String id=criado.get("patient").get("id").asText();
+  Map<String,Object> perfil=new LinkedHashMap<>();perfil.put("mobility","Informação sintética");perfil.put("balance","Informação sintética");perfil.put("restrictions","");perfil.put("professionalGuidance","Orientação sintética");
+  mvc.perform(put("/api/v1/patients/"+id+"/activity-profile").header("Authorization","Bearer "+exigirProfissional).contentType(MediaType.APPLICATION_JSON).content(json.writeValueAsString(perfil))).andExpect(status().isOk()).andExpect(jsonPath("$.approvedCatalogGroup").value("NAO_DEFINIDO")).andExpect(jsonPath("$.personalizationStatus").value("BLOCKED_PENDING_CLINICAL_APPROVAL"));
+  for(String grupo:List.of("COM_RISCO_QUEDA_SENTADO","SEM_RISCO_QUEDA_EM_PE")){
+   perfil.put("approvedCatalogGroup",grupo);
+   mvc.perform(put("/api/v1/patients/"+id+"/activity-profile").header("Authorization","Bearer "+exigirProfissional).contentType(MediaType.APPLICATION_JSON).content(json.writeValueAsString(perfil))).andExpect(status().isOk()).andExpect(jsonPath("$.approvedCatalogGroup").value(grupo)).andExpect(jsonPath("$.professionalGuidance").value("Orientação sintética")).andExpect(jsonPath("$.personalizationStatus").value("PROFESSIONAL_GROUP_APPROVED"));
+  }
+  perfil.put("approvedCatalogGroup","GRUPO_INVALIDO");
+  mvc.perform(put("/api/v1/patients/"+id+"/activity-profile").header("Authorization","Bearer "+exigirProfissional).contentType(MediaType.APPLICATION_JSON).content(json.writeValueAsString(perfil))).andExpect(status().isBadRequest());
  }
  @Test void administratorManagesAssignmentAndExportRemainsScoped()throws Exception{
   var created=write("/patients",Map.of("displayName","Pessoa vínculo sintético","modality","BRACELET_DIARY"),admin);String id=created.get("patient").get("id").asText();UUID idProfissional=DadosDemonstracao.id("profissional-a");
@@ -190,13 +201,14 @@ class CuidadoIT {
   mvc.perform(get("/api/v1/refeicoes/"+idRefeicao).header("Authorization","Bearer "+exigirProfissional)).andExpect(status().isOk());
   mvc.perform(get("/api/v1/refeicoes/"+idRefeicao).header("Authorization","Bearer "+other)).andExpect(status().isForbidden());
   mvc.perform(get("/api/v1/refeicoes/"+UUID.randomUUID()).header("Authorization","Bearer "+token)).andExpect(status().isForbidden());
-  var unavailable=write("/meals/"+idRefeicao+"/analyze",Map.of(),token);assertThat(unavailable.get("providerCalled").asBoolean()).isFalse();assertThat(unavailable.get("status").asText()).isEqualTo("UNAVAILABLE");
+  var unavailable=write("/meals/"+idRefeicao+"/analyze",Map.of(),token);assertThat(unavailable.get("providerCalled").asBoolean()).isFalse();assertThat(unavailable.get("status").asText()).isEqualTo("UNAVAILABLE");assertThat(unavailable.has("trafficLight")).isFalse();assertThat(unavailable.has("assessment")).isFalse();
+  mvc.perform(get("/api/v1/refeicoes/"+idRefeicao).header("Authorization","Bearer "+token)).andExpect(status().isOk()).andExpect(jsonPath("$.analysisStatus").value("UNAVAILABLE")).andExpect(jsonPath("$.assessment").doesNotExist());
   mvc.perform(post("/api/v1/auth/logout").header("Authorization","Bearer "+token)).andExpect(status().isNoContent());mvc.perform(get(path)).andExpect(status().isForbidden());
   mvc.perform(multipart("/api/v1/patients/"+paciente+"/files").file(new org.springframework.mock.web.MockMultipartFile("file","malicious.svg","image/svg+xml","<svg><script>bad</script></svg>".getBytes())).param("purpose","MEAL").header("Authorization","Bearer "+patientToken)).andExpect(status().isUnsupportedMediaType());
  }
  @Test void realOcrRequiresExplicitConfirmationBeforeAnyReadingIsInserted()throws Exception{
   Assumptions.assumeTrue(System.getenv("TEST_OCR_NODE_SCRIPT")!=null||"true".equals(System.getenv("TEST_NATIVE_OCR")),"Real Tesseract runtime required");
-  var arquivo=upload("PRESSURE_DISPLAY",patientToken,photo());var resultado=write("/files/"+arquivo.get("id").asText()+"/ocr",Map.of(),patientToken);assertThat(resultado.get("status").asText()).isEqualTo("RECOGNIZED");assertThat(resultado.get("systolic").asInt()).isEqualTo(118);assertThat(resultado.get("diastolic").asInt()).isEqualTo(76);assertThat(resultado.get("pulse").asInt()).isEqualTo(71);
+  var arquivo=upload("PRESSURE_DISPLAY",patientToken,photo());var resultado=write("/files/"+arquivo.get("id").asText()+"/ocr",Map.of(),patientToken);assertThat(resultado.get("status").asText()).isEqualTo("RECOGNIZED");assertThat(resultado.get("systolic").asInt()).isEqualTo(118);assertThat(resultado.get("diastolic").asInt()).isEqualTo(76);assertThat(resultado.get("pulse").asInt()).isEqualTo(71);assertThat(resultado.get("confirmationRequired").asBoolean()).isTrue();assertThat(resultado.get("reviewRequired").asBoolean()).isTrue();assertThat(resultado.get("criteriaVersion").asText()).isEqualTo("ocr-safety-v1");assertThat(resultado.get("modelVersion").asText()).isEqualTo("tesseract-eng-psm6");
   String document=resultado.get("id").asText();assertThat(jdbc.queryForObject("SELECT count(*) FROM blood_pressure_reading WHERE ocr_document_id=?",Integer.class,UUID.fromString(document))).isZero();
   Map<String,Object> entrada=new LinkedHashMap<>(Map.of("id",UUID.randomUUID(),"systolic",118,"diastolic",76,"pulse",71,"measuredAt",Instant.now().toString(),"source","OCR_CONFIRMED","ocrDocumentId",document,"ocrConfirmed",false));
   mvc.perform(post("/api/v1/patients/"+paciente+"/readings").header("Authorization","Bearer "+patientToken).contentType(MediaType.APPLICATION_JSON).content(json.writeValueAsString(entrada))).andExpect(status().isBadRequest());entrada.put("ocrConfirmed",true);write("/patients/"+paciente+"/readings",entrada,patientToken);assertThat(jdbc.queryForObject("SELECT count(*) FROM blood_pressure_reading WHERE ocr_document_id=?",Integer.class,UUID.fromString(document))).isEqualTo(1);

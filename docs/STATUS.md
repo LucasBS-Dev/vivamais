@@ -1,5 +1,13 @@
 # Estado atual — cadastro, SMS e interface — 20/10/2026
 
+## G16 — vínculo profissional de grupo — 22/10/2026
+
+GET/PUT /patients/{id}/activity-profile aceita e devolve approvedCatalogGroup de modo compatível, com padrão seguro NAO_DEFINIDO. Não houve alteração de schema ou migration: CuidadoService usa um marcador canônico validado no professional_guidance existente e o remove antes da resposta. A ficha web oferece seletor acessível e exibe o grupo atual; app só destaca os cinco materiais sentados ou em pé quando o profissional definiu o grupo e todas as travas permanecem satisfeitas. Sem liberação, alerta, restrição, pressão não confirmada ou dados insuficientes, não há roteiro ativo. TypeScript e lint passaram. O backend compila somente parcialmente nesta sandbox porque o compilador não consegue acessar um JAR no cache Maven; verify/snapshot OpenAPI continuam pendentes de ambiente com esse acesso.
+
+## G16 — catálogo local de mídias aprovadas — 21/10/2026
+
+Catálogo local `2026-10-21` recebeu as dez mídias aprovadas pela gestão, dividido nos grupos de risco fornecidos, com capa, dois quadros, GIF e MP4 por item. Não há protocolo clínico, seleção automática, mudança de API/banco ou prescrição: o roteiro bloqueia sugestão individual na ausência de dados, sinal/restrição ou protocolo pendente; o POST de autorrelato continua independente. TypeScript e lint passaram. A execução de `pnpm.cmd test` foi bloqueada antes de iniciar as suítes web/mobile por `Access is denied` do esbuild ao resolver o diretório-pai da configuração nesta sandbox; repetir fora desse bloqueio antes de declarar regressão aprovada.
+
 Publicação confirmada em 2026-10-21T00:25:40.4871877-03:00, main, conteúdo 54c92a34bf0c5054a428e6d56277d2257124e30d. Componentes/manuais/privados conferidos no remoto; detalhes em RELATORIO_TRANSFERENCIA_E_PUBLICACAO. Git fonte publicado; implantação/lojas/produção e CI verde não presumidos.
 
 ## Histórico anterior à confirmação da publicação

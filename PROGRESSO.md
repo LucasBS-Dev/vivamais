@@ -1,5 +1,13 @@
 # Progresso Viva+
 
+## G16 — vínculo profissional de grupo — 22/10/2026
+
+Implementado o estado explícito approvedCatalogGroup no Perfil Funcional, aceitando somente NAO_DEFINIDO, COM_RISCO_QUEDA_SENTADO e SEM_RISCO_QUEDA_EM_PE. Não houve migration nem alteração de V1–V9: o backend persiste um marcador canônico validado dentro de professional_guidance e o retira do GET. O portal permite escolher e mostra o grupo atual; o app filtra o roteiro ativo aos cinco materiais do grupo definido, mas mantém bloqueio por dados ausentes, mal-estar/alerta, pressão não confirmada, restrição e grupo não liberado. Autorrelato permanece independente. Testes novos cobrem os três estados e alertas/restrição; pnpm.cmd typecheck e pnpm.cmd lint passaram. A compilação/teste Java e a geração do snapshot OpenAPI aguardam execução fora da restrição desta sandbox ao cache Maven; não foram declarados aprovados.
+
+## G16 — catálogo local de mídias aprovadas — 21/10/2026
+
+Integrados `assets/images/exercicios/ex01-*` a `ex10-*` em catálogo estático versionado, com os grupos de gestão e capa/dois quadros/GIF/MP4 em telas Expo. A visualização é catálogo, não recomendação: sem dados, com alerta/restrição ou sem protocolo clínico não há seleção individual; o formulário de autorrelato permanece um POST separado e voluntário. `pnpm.cmd typecheck` e `pnpm.cmd lint` passaram. `pnpm.cmd test` não iniciou as suítes web/mobile nesta sandbox porque o esbuild recebeu `Access is denied` ao ler o diretório-pai durante o carregamento da configuração; não registrar como aprovação de testes até repetir em ambiente com essa permissão.
+
 Publicação confirmada em 2026-10-21T00:25:40.4871877-03:00, main, conteúdo 54c92a34bf0c5054a428e6d56277d2257124e30d. Componentes/manuais/privados conferidos no remoto; detalhes em RELATORIO_TRANSFERENCIA_E_PUBLICACAO. Git fonte publicado; implantação/lojas/produção e CI verde não presumidos.
 
 ## Histórico anterior à confirmação da publicação

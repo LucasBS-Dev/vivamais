@@ -1,5 +1,13 @@
 # Alterações
 
+## G16 — vínculo profissional de grupo de atividades — 22/10/2026
+
+O Perfil Funcional passa a aceitar o campo opcional approvedCatalogGroup: NAO_DEFINIDO, COM_RISCO_QUEDA_SENTADO ou SEM_RISCO_QUEDA_EM_PE. Sem migration, o serviço codifica o estado validado em marcador canônico no campo existente physical_activity_profile.professional_guidance, remove-o da resposta e mantém o texto clínico público intacto. Portal, app e testes usam o mesmo contrato: apenas grupo definido pelo profissional, sem alerta, restrição impeditiva ou falha da verificação do dia mostra os cinco materiais educativos correspondentes; autorrelato continua um POST separado.
+
+## G16 — catálogo local de mídias aprovadas — 21/10/2026
+
+Catálogo estático versionado com dez exercícios e suas capas, quadros, GIFs e MP4 locais, separados nos dois grupos fornecidos pela gestão. Player `expo-video` incluído. Não há prescrição, classificação automática de risco ou POST acionado pela visualização: ausência de dados, alerta/restrição e protocolo clínico pendente mantêm a sugestão individual indisponível.
+
 ## Transferência técnica e publicação de fonte — 20/10/2026
 
 Consolidação do código existente e manuais específicos,catálogo58operações/dicionário33tabelas/inventário32grupos;pendências40IDs e plano21pacotes. Gitignore reforçado e CI com credenciais efêmeras mascaradas. Novos testes74Java/69frontend/17E2E e builds aprovados;2altos e privilégio local excessivo documentados. Publicação só do fonte/documentação,sem deploy/lojas ou mudança de visibilidade. Relatório em docs/RELATORIO_TRANSFERENCIA_E_PUBLICACAO.md.
