@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "typescript": "5.9.3",
-    "vitest": "4.1.11",
+    "vitest": "4.1.12",
     "openapi-typescript": "7.10.1",
     "prettier": "3.6.2",
     "@playwright/test": "1.56.1",

@@ -1,5 +1,8 @@
 # Alterações
 
+## Correção de CI do PR #1 — 29/10/2026
+
+Resolução do Next compatível com instalação hoisted nos E2E e scripts locais; node-forge 1.4.2/Zod 4.6.6 restritos ao Expo CLI, Vitest 4.1.12 e testes dos consumidores reais; auditoria pnpm no limite high aprovada sem suprimir alertas. Cache, retries, conexão/tempo limitados e diagnóstico para NVD, mantendo falha em erro/CVSS >= 7; browser em Ubuntu 24.04 com build otimizado do Next. E2E ajustados aos rótulos/catálogo recebidos, mantendo validação do banco, das travas, do salvamento assíncrono e da CSP. Validação local: 81 Java, 88 frontend e 17 E2E aprovados; OWASP/novo CI remoto pendentes. Evidências e pendências em docs/evidencias/CORRECAO_PR1_CI_2026-10-29.md; sem merge ou nova publicação nesta etapa.
 ## G16 — vínculo profissional de grupo de atividades — 22/10/2026
 
 O Perfil Funcional passa a aceitar o campo opcional approvedCatalogGroup: NAO_DEFINIDO, COM_RISCO_QUEDA_SENTADO ou SEM_RISCO_QUEDA_EM_PE. Sem migration, o serviço codifica o estado validado em marcador canônico no campo existente physical_activity_profile.professional_guidance, remove-o da resposta e mantém o texto clínico público intacto. Portal, app e testes usam o mesmo contrato: apenas grupo definido pelo profissional, sem alerta, restrição impeditiva ou falha da verificação do dia mostra os cinco materiais educativos correspondentes; autorrelato continua um POST separado.

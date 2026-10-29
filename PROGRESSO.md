@@ -1,5 +1,13 @@
 # Progresso Viva+
 
+<!-- INICIO_CORRECAO_PR1 -->
+## Correção do PR #1 — 29/10/2026 — código validado localmente; publicação pendente
+
+Revisão isolada em `codex/corrigir-pr-1`, a partir de `3cc7e95`. A `main` permanece limpa; banco original mantém V1–V9 e 33 tabelas. V1–V10 do PR intactas. Next localizado pela resolução do Node, inclusive no inicializador Windows; overrides restritos de node-forge 1.4.2/Zod 4.6.6, Vitest 4.1.12 em todos os workspaces; consumidores reais do Expo CLI testados. Workflow preserva os gates e acrescenta cache, retries/timeout NVD e Ubuntu 24.04 no browser.
+
+Aprovados nesta execução: 81 testes Java com PostgreSQL real em bancos novos exclusivos; 88 frontend (37 web e 51 app); TypeScript/lint; Next produção; exports Expo web/Android/iOS; contratos reproduzidos; auditoria pnpm com zero críticos/altos/moderados e um baixo; parsers YAML/PowerShell e scanner de segredos do commit/diff. Playwright final: 17 cenários aprovados em 1,5 minuto, sem falhas/ignorados/retries. Seletores ajustados ao catálogo/ícone e ao checkbox confirmado pela API; persistência, isolamento e bloqueio mantidos. CI constrói e testa o portal otimizado, preservando a asserção de zero recusas CSP. A configuração privada local só altera a posse dos servidores para contornar o encerramento bloqueado no Windows. Próxima tarefa: autorizar/publicar as correções na branch do PR e reexecutar os checks remotos. OWASP local sem conclusão por cache H2 somente leitura; falha remota recebida era HTTP 521 da NVD. Nenhum commit/push/merge ou serviço real de SMS/IA. Detalhes em [relatório](docs/evidencias/CORRECAO_PR1_CI_2026-10-29.md).
+<!-- FIM_CORRECAO_PR1 -->
+
 ## G16 — vínculo profissional de grupo — 22/10/2026
 
 Implementado o estado explícito approvedCatalogGroup no Perfil Funcional, aceitando somente NAO_DEFINIDO, COM_RISCO_QUEDA_SENTADO e SEM_RISCO_QUEDA_EM_PE. Não houve migration nem alteração de V1–V9: o backend persiste um marcador canônico validado dentro de professional_guidance e o retira do GET. O portal permite escolher e mostra o grupo atual; o app filtra o roteiro ativo aos cinco materiais do grupo definido, mas mantém bloqueio por dados ausentes, mal-estar/alerta, pressão não confirmada, restrição e grupo não liberado. Autorrelato permanece independente. Testes novos cobrem os três estados e alertas/restrição; pnpm.cmd typecheck e pnpm.cmd lint passaram. A compilação/teste Java e a geração do snapshot OpenAPI aguardam execução fora da restrição desta sandbox ao cache Maven; não foram declarados aprovados.

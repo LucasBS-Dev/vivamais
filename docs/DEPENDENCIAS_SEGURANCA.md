@@ -1,6 +1,6 @@
 # Auditoria de dependências
 
-**Estado vigente em 20/10/2026:** 0 críticos, 2 altos e 0 moderados; auditoria retorna exit 1. Os registros abaixo preservam a evolução das verificações. Ver a reavaliação de transferência ao final para riscos e alternativas.
+**Estado desta revisão do PR #1, em 29/10/2026:** pnpm 10.28.2 auditou 923 dependências: 0 críticos, 0 altos, 0 moderados e 1 baixo (deepmerge). O gate `--audit-level high` passou, sem supressões. Overrides localizados do Expo CLI (node-forge 1.4.2 e Zod 4.6.6) e Vitest 4.1.12 foram verificados com testes e builds. OWASP Java permanece sem conclusão por falha de gravação do cache local; no run remoto anterior houve HTTP 521 da NVD. Alterações ainda locais, sem novo CI remoto ou merge. Ver [evidências e limites](evidencias/CORRECAO_PR1_CI_2026-10-29.md). Os registros abaixo são históricos e não substituem esse resultado.
 
 Auditoria pnpm executada localmente em 16/10/2026. A primeira execução encontrou alertas críticos em Vitest/Tinypool. A atualização para Vitest 4.1.11 e override Tinypool 2.1.2 removeu todos os alertas críticos; testes foram reexecutados nas versões finais. Dependências Expo foram alinhadas ao SDK 57, incluindo React Native 0.86.3, Metro 0.86.3, Reanimated 4.5.1 e Worklets 0.10.1.
 

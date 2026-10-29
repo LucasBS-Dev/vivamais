@@ -23,3 +23,103 @@ assert.ok(ids.every((id) => /^[A-F0-9]{24}$/.test(id)));
 console.log(
   "APROVADO: importação CJS/ESM, consultas acentuadas/repetidas, entrada malformada e UUIDs do projeto iOS.",
 );
+
+// Exercita os consumidores reais das dependências atualizadas do Expo CLI.
+const carregarExpo = createRequire(require.resolve("@expo/cli/package.json"));
+const compararVersao = carregarExpo("semver");
+assert.ok(
+  compararVersao.gte(carregarExpo("node-forge/package.json").version, "1.4.2"),
+);
+assert.ok(
+  compararVersao.gte(carregarExpo("zod/package.json").version, "4.6.6"),
+);
+const { PluginSchema, DevToolsPluginOutputSchema } = carregarExpo(
+  "./build/src/start/server/DevToolsPlugin.schema.js",
+);
+const { createMCPDevToolsExtensionSchema } = carregarExpo(
+  "./build/src/start/server/createMCPDevToolsExtensionSchema.js",
+);
+const plugin = PluginSchema.parse({
+  packageName: "plugin-local-teste",
+  packageRoot: process.cwd(),
+  cliExtensions: {
+    description: "Validação local de compatibilidade",
+    entryPoint: "index.js",
+    commands: [
+      {
+        name: "exibir",
+        title: "Exibir informação de teste",
+        environments: ["cli", "mcp"],
+        parameters: [{ name: "quantidade", type: "number" }],
+      },
+    ],
+  },
+});
+assert.equal(PluginSchema.safeParse({}).success, false);
+const esquemaComando = createMCPDevToolsExtensionSchema(plugin);
+assert.equal(
+  esquemaComando.safeParse({ command: "exibir", quantidade: 2 }).success,
+  true,
+);
+assert.equal(
+  esquemaComando.safeParse({ command: "exibir", quantidade: "2" }).success,
+  false,
+);
+assert.equal(
+  esquemaComando.safeParse({ command: "inexistente" }).success,
+  false,
+);
+assert.equal(
+  DevToolsPluginOutputSchema.safeParse([
+    { type: "text", text: "Informação de teste", level: "info" },
+  ]).success,
+  true,
+);
+assert.equal(
+  DevToolsPluginOutputSchema.safeParse([{ type: "audio", url: "invalida" }])
+    .success,
+  false,
+);
+const zod = carregarExpo("zod").z;
+let elementosProcessados = 0;
+const colecaoLimitada = zod
+  .array(
+    zod.string().transform((valor) => {
+      elementosProcessados++;
+      return valor;
+    }),
+  )
+  .max(2);
+assert.equal(
+  colecaoLimitada.safeParse(Array(1000).fill("teste")).success,
+  false,
+);
+assert.equal(
+  elementosProcessados,
+  0,
+  "Coleção acima do limite deve ser recusada antes de processar os elementos",
+);
+const forge = carregarExpo("node-forge");
+const chavesTemporarias = forge.pki.rsa.generateKeyPair({
+  bits: 2048,
+  e: 65537,
+});
+const resumo = forge.md.sha256.create();
+resumo.update("Verificação local do consumidor", "utf8");
+const assinatura = chavesTemporarias.privateKey.sign(resumo);
+assert.equal(
+  chavesTemporarias.publicKey.verify(resumo.digest().bytes(), assinatura),
+  true,
+);
+const resumoDivergente = forge.md.sha256.create();
+resumoDivergente.update("Outro conteúdo", "utf8");
+assert.equal(
+  chavesTemporarias.publicKey.verify(
+    resumoDivergente.digest().bytes(),
+    assinatura,
+  ),
+  false,
+);
+console.log(
+  "APROVADO: schemas reais do Expo CLI, parâmetros inválidos, limites Zod e assinatura com node-forge atualizado.",
+);

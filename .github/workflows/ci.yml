@@ -20,6 +20,7 @@ jobs:
       - run: pnpm lint
       - run: pnpm typecheck
       - run: pnpm test
+      - run: node infra/verificar-dependencias.mjs
       - run: pnpm build:web
       - run: pnpm export:mobile
       - run: pnpm contracts:generate && git diff --exit-code -- packages/contracts/src/generated.ts
@@ -39,11 +40,34 @@ jobs:
         working-directory: backend/demo
         env:
           TEST_NATIVE_OCR: true
+      - name: Cache da base de vulnerabilidades
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/viva-dependency-check
+          key: odc-12.1.8-${{ runner.os }}-${{ hashFiles('backend/demo/pom.xml') }}-${{ github.run_id }}
+          restore-keys: |
+            odc-12.1.8-${{ runner.os }}-${{ hashFiles('backend/demo/pom.xml') }}-
       - name: Dependency scan
-        run: bash mvnw --batch-mode --no-transfer-progress org.owasp:dependency-check-maven:12.1.8:check -DfailBuildOnCVSS=7 -Dformats=JSON,HTML -DnvdApiKeyEnvironmentVariable=NVD_API_KEY
+        id: auditoria_java
+        timeout-minutes: 35
+        run: |
+          if [ -z "$NVD_API_KEY" ]; then
+            echo "::notice::NVD_API_KEY ausente. PRs de forks não recebem os segredos do repositório base; o download sem chave pode ser limitado pela NVD."
+          fi
+          bash mvnw --batch-mode --no-transfer-progress \
+            org.owasp:dependency-check-maven:12.1.8:check \
+            -DfailBuildOnCVSS=7 -DfailOnError=true -Dformats=JSON,HTML \
+            -DnvdApiKeyEnvironmentVariable=NVD_API_KEY \
+            -DdataDirectory="$ODC_DATA_DIRECTORY" \
+            -DnvdMaxRetryCount=3 -DconnectionTimeout=30000
         working-directory: backend/demo
         env:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+          ODC_DATA_DIRECTORY: ${{ runner.temp }}/viva-dependency-check
+      - name: Orientação para falha da auditoria Java
+        if: ${{ failure() && steps.auditoria_java.outcome == 'failure' }}
+        run: |
+          echo "::error::A auditoria Java não foi concluída com sucesso. Consulte o erro: CVEs encontradas exigem correção; HTTP 429/5xx ou base NVD ausente exigem nova execução/cache/chave em ambiente autorizado. Não desative o gate nem execute código de fork com segredos via pull_request_target."
   secret-scan:
     runs-on: ubuntu-latest
     steps:
@@ -54,7 +78,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   browser:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Start isolated PostgreSQL with an ephemeral credential
@@ -86,6 +110,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm export:mobile
+      - run: pnpm build:web
       - name: Generate ephemeral bootstrap credential
         run: |
           senhaContas=$(openssl rand -hex 24)
