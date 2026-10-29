@@ -1,5 +1,8 @@
 # Estado atual — revisão do PR #1 — 29/10/2026
 
+## Auditoria NVD — correção subsequente do PR #1
+
+O commit `1174688` já está no PR. TypeScript, browser e secret-scan passaram no GitHub; o job Java aprovou verify e parou na atualização da NVD. A alteração atual usa feeds oficiais e cache salvo antes da análise; atualização/checagem continuam obrigatórias. 12 testes e Actionlint aprovados; carga completa NVD concluída em cerca de 5 minutos. A análise local não foi aprovada por restrição de renomeação do índice CPE no sandbox Windows; a confirmação integral depende do novo CI Linux. [Relatório](evidencias/CORRECAO_NVD_PR1_2026-10-29.md). Registros abaixo são históricos.
 ## Correção das verificações do PR #1 — 29/10/2026
 
 Na branch isolada `codex/corrigir-pr-1`: resolvido caminho do Next com workspace hoisted, atualizadas dependências vulneráveis do Expo CLI e Vitest e melhorada a recuperação da auditoria NVD sem desativar gates. Novos resultados locais: 81 Java/PostgreSQL real, 88 frontend, tipagem/lint, Next e Expo web/Android/iOS aprovados; pnpm audit no limite high aprovado (um alerta baixo permanece). Contratos/migrações preservados. E2E final: 17 aprovados em 1,5 minuto, sem falhas/ignorados/retries, com portal otimizado e APIs/banco reais; configuração local só reutiliza servidores controlados separadamente. OWASP sem conclusão por cache local somente leitura. Sem novo CI remoto, publicação desta correção ou merge. Ver [relatório atual](evidencias/CORRECAO_PR1_CI_2026-10-29.md); registros anteriores abaixo são históricos.

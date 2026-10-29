@@ -1,5 +1,8 @@
 # Alterações
 
+## Auditoria NVD do PR #1 — 29/10/2026
+
+Dependency-Check 12.2.2 e feeds oficiais compactados substituem a carga paginada da API sem chave. Validação de atualidade, atualização obrigatória separada, cache salvo antes da análise e relatórios preservados; gate CVSS >= 7/falha em erro mantido. 12 testes novos, Actionlint e carga completa NVD em cerca de 5 minutos aprovados; análise integral pendente de CI Linux por restrição do índice CPE no sandbox local. Nenhuma mudança de código ou dependências da aplicação.
 ## Correção de CI do PR #1 — 29/10/2026
 
 Resolução do Next compatível com instalação hoisted nos E2E e scripts locais; node-forge 1.4.2/Zod 4.6.6 restritos ao Expo CLI, Vitest 4.1.12 e testes dos consumidores reais; auditoria pnpm no limite high aprovada sem suprimir alertas. Cache, retries, conexão/tempo limitados e diagnóstico para NVD, mantendo falha em erro/CVSS >= 7; browser em Ubuntu 24.04 com build otimizado do Next. E2E ajustados aos rótulos/catálogo recebidos, mantendo validação do banco, das travas, do salvamento assíncrono e da CSP. Validação local: 81 Java, 88 frontend e 17 E2E aprovados; OWASP/novo CI remoto pendentes. Evidências e pendências em docs/evidencias/CORRECAO_PR1_CI_2026-10-29.md; sem merge ou nova publicação nesta etapa.

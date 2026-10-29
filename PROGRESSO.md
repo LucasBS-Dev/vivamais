@@ -1,5 +1,10 @@
 # Progresso Viva+
 
+## Auditoria NVD do PR #1 — 29/10/2026 — correção preparada; CI remoto pendente
+
+Publicação de `1174688` confirmada no fork/PR. CI remoto: TypeScript, navegador e segredos aprovados; Maven verify aprovado, auditoria Java sem conclusão após 35 minutos de download da API NVD. Implementados feeds oficiais compactados sem chave, Dependency-Check 12.2.2, validação de atualidade, cache após atualização completa e antes da análise, mantendo CVSS >= 7 e falha em erro. 12 testes novos, Actionlint e consulta real dos metadados aprovados. Carga integral NVD concluída localmente em 303.248 ms; análise completa não aprovada por restrição de renomeação do índice CPE no sandbox Windows. Não houve suppression ou alteração de limiar. Aplicação/migrações preservadas. Próximo passo: publicar a correção revisada no mesmo PR e verificar a auditoria integral no runner Linux. [Evidências](docs/evidencias/CORRECAO_NVD_PR1_2026-10-29.md).
+
+## Histórico da primeira correção, antes de sua publicação
 <!-- INICIO_CORRECAO_PR1 -->
 ## Correção do PR #1 — 29/10/2026 — código validado localmente; publicação pendente
 
