@@ -8,7 +8,7 @@ import com.vivamais.service.*;
 import com.vivamais.model.*;
 import java.nio.file.*;
 import java.util.concurrent.*;
-import com.fasterxml.jackson.databind.*;
+import tools.jackson.databind.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

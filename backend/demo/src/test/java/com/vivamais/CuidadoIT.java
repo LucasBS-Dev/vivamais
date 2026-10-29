@@ -11,10 +11,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import java.util.*;
 import java.time.*;
-import com.fasterxml.jackson.databind.*;
+import tools.jackson.databind.*;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.*;
 import org.springframework.test.web.servlet.MockMvc;
@@ -22,7 +22,7 @@ import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.testcontainers.containers.PostgreSQLContainer;
 
-@SpringBootTest @AutoConfigureMockMvc(print=org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrint.NONE) @ActiveProfiles("bootstrap") @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@SpringBootTest @AutoConfigureMockMvc(print=org.springframework.boot.webmvc.test.autoconfigure.MockMvcPrint.NONE) @ActiveProfiles("bootstrap") @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CuidadoIT {
  static final String PASSWORD=new CodificadorToken().issue(),SCHEMA="care_"+UUID.randomUUID().toString().replace("-","");
  static PostgreSQLContainer<?> container;
@@ -39,7 +39,7 @@ class CuidadoIT {
  @BeforeAll void setup()throws Exception{exigirProfissional=entrar("profissional.a@demo.vivamais.invalid",PASSWORD);other=entrar("profissional.b@demo.vivamais.invalid",PASSWORD);patientToken=entrar("paciente.a@demo.vivamais.invalid",PASSWORD);admin=entrar("admin.a@demo.vivamais.invalid",PASSWORD);}
  @AfterAll void cleanup(){jdbc.execute("SET search_path TO public");jdbc.execute("DROP SCHEMA "+SCHEMA+" CASCADE");if(container!=null)container.stop();}
  String entrar(String email,String senha)throws Exception{if(jdbc.queryForObject("SELECT count(*) FROM user_account WHERE email=? AND role='PATIENT'",Integer.class,email)>0)return ApoioAcessoPaciente.sessaoAutorizada(mvc,json,jdbc,email);return json.readTree(mvc.perform(post("/api/v1/auth/login").contentType(MediaType.APPLICATION_JSON).content(json.writeValueAsString(Map.of("email",email,"password",senha)))).andExpect(status().isOk()).andReturn().getResponse().getContentAsString()).get("accessToken").asText();}
- JsonNode write(String path,Object body,String token)throws Exception{if(path.equals("/patients")){var dados=json.valueToTree(body);if(!dados.has("telefone"))((com.fasterxml.jackson.databind.node.ObjectNode)dados).put("telefone",ApoioAcessoPaciente.gerarTelefone());body=dados;}return json.readTree(mvc.perform(post("/api/v1"+path).header("Authorization","Bearer "+token).contentType(MediaType.APPLICATION_JSON).content(json.writeValueAsString(body))).andExpect(status().isOk()).andReturn().getResponse().getContentAsString());}
+ JsonNode write(String path,Object body,String token)throws Exception{if(path.equals("/patients")){var dados=json.valueToTree(body);if(!dados.has("telefone"))((tools.jackson.databind.node.ObjectNode)dados).put("telefone",ApoioAcessoPaciente.gerarTelefone());body=dados;}return json.readTree(mvc.perform(post("/api/v1"+path).header("Authorization","Bearer "+token).contentType(MediaType.APPLICATION_JSON).content(json.writeValueAsString(body))).andExpect(status().isOk()).andReturn().getResponse().getContentAsString());}
  @Test void preferenciasPersistemEntreSessoesComIsolamentoEConflito()throws Exception{
   String caminho="/api/v1/conta/preferencias";
   mvc.perform(get(caminho)).andExpect(status().isUnauthorized());

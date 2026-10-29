@@ -17,6 +17,7 @@ spring:
     enabled: true
     clean-disabled: true
   jackson:
+    use-jackson2-defaults: true
     time-zone: UTC
   mvc:
     problemdetails:

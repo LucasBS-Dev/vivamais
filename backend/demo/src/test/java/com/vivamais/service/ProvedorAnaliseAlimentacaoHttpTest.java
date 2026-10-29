@@ -1,8 +1,8 @@
 package com.vivamais.service;
 import static org.assertj.core.api.Assertions.*;
 import java.util.*;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
 class ProvedorAnaliseAlimentacaoHttpTest {

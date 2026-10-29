@@ -4,7 +4,7 @@ import java.net.http.*;
 import java.time.Duration;
 import java.util.*;
 import java.util.regex.Pattern;
-import com.fasterxml.jackson.databind.*;
+import tools.jackson.databind.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -30,7 +30,7 @@ public class ProvedorAnaliseAlimentacaoHttp implements ProvedorAnaliseAlimentaca
  }
  static Map<String,Object> validarResposta(ObjectMapper json,byte[] bytes,Contexto contexto,double minimumConfidence)throws Exception{
   JsonNode data=json.readTree(bytes);if(data==null||!data.isObject())throw CuidadoService.error(503,"Resposta educativa inválida.");
-  var nomes=data.fieldNames();while(nomes.hasNext())if(!CAMPOS.contains(nomes.next()))throw CuidadoService.error(503,"Resposta educativa inválida.");
+  var nomes=data.propertyNames().iterator();while(nomes.hasNext())if(!CAMPOS.contains(nomes.next()))throw CuidadoService.error(503,"Resposta educativa inválida.");
   String status=texto(data,"status",30),contrato=texto(data,"contractVersion",120),criterios=texto(data,"criteriaVersion",120),modelo=texto(data,"modelVersion",120),explicacao=texto(data,"explanation",2000),limitacoes=texto(data,"limitations",2000);
   if(!STATUS.contains(status)||!CONTRATO.equals(contrato)||!contexto.versaoModelo().equals(modelo)||!contexto.versaoCriterios().equals(criterios)||!data.path("confidence").isNumber())throw CuidadoService.error(503,"Resposta educativa inválida.");
   double confianca=data.path("confidence").asDouble();if(!Double.isFinite(confianca)||confianca<minimumConfidence||confianca>1||INFERENCIA_VEDADA.matcher(explicacao+" "+limitacoes).matches())throw CuidadoService.error(503,"Resposta requer revisão profissional.");

@@ -1,7 +1,7 @@
 package com.vivamais.service;
 import static org.assertj.core.api.Assertions.*;
 import java.io.InputStream;
-import com.fasterxml.jackson.databind.*;
+import tools.jackson.databind.*;
 import org.junit.jupiter.api.Test;
 
 class ArquivoPrivadoServiceOcrTest {
